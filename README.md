@@ -1,12 +1,12 @@
-﻿# Kaizen â€” Self-Evolving AI Skills Framework
+﻿# Kaizen - Self-Evolving AI Skills Framework
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-74-blue.svg)](#skills)
 [![Works With](https://img.shields.io/badge/Works%20With-All%20AI%20Agents-green.svg)](#compatibility)
 
-> **æ”¹å–„** (Kaizen) â€” The Japanese philosophy of continuous improvement, now for AI agents.
+> **Kaizen** (Japanese: continuous improvement) - The philosophy of continuous improvement, now for AI agents.
 
-**The most comprehensive self-evolving AI skills framework.** 65 actionable skills. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
+**The most comprehensive self-evolving AI skills framework.** 74 actionable skills. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
 
 *5x more skills than alternatives. The only framework with self-evolution and purpose understanding built-in.*
 
@@ -18,7 +18,7 @@
 |:---|:---|
 | AI agents make the same mistakes | Skills library prevents repeat errors |
 | Agents don't understand your intent | **Step Zero** forces purpose understanding |
-| Generic responses, no domain expertise | 74 specialized skills |
+| Generic responses, no domain expertise | 74+ specialized skills |
 | No memory between sessions | Long-term memory protocols |
 | Agents don't improve over time | **Self-evolution loop** built-in |
 
@@ -27,8 +27,11 @@
 ## Quick Start (30 seconds)
 
 ```bash
-# Clone into your project or global location
-git clone https://github.com/your-username/kaizen.git
+# Clone into your project
+git clone https://github.com/legendteddy/kaizen.git .kaizen
+
+# Or install globally (works everywhere)
+git clone https://github.com/legendteddy/kaizen.git ~/.kaizen
 ```
 
 Then tell your AI agent:
@@ -43,19 +46,19 @@ That's it. Your agent is now self-evolving.
 
 | Platform | Status | Integration |
 |:---|:---:|:---|
-| **Gemini CLI** | âœ… | Copy skills to agent skills directory |
-| **Claude Code** | âœ… | Merge into project documentation |
-| **Cursor** | âœ… | Add to IDE configuration |
-| **Windsurf** | âœ… | Add to IDE configuration |
-| **Cline** | âœ… | Reference in context |
-| **Continue.dev** | âœ… | Add to config |
-| **Any LLM Agent** | âœ… | Just read KAIZEN.md |
+| **Gemini CLI** | Yes | Copy skills to agent skills directory |
+| **Claude Code** | Yes | Merge into project documentation |
+| **Cursor** | Yes | Add to IDE configuration |
+| **Windsurf** | Yes | Add to IDE configuration |
+| **Cline** | Yes | Reference in context |
+| **Continue.dev** | Yes | Add to config |
+| **Any LLM Agent** | Yes | Just read KAIZEN.md |
 
 ---
 
 ## What's Inside
 
-### 65 actionable skills Across 9 Categories
+### 74 Actionable Skills Across 9 Categories
 
 | Category | Count | Examples |
 |:---|:---:|:---|
@@ -69,15 +72,15 @@ That's it. Your agent is now self-evolving.
 | **Research** | 6 | intelligence gathering, web research |
 | **Frontier AI** | 17 | predictive-evolution, creative-solving, user-modeling |
 
-[**See Full Skills Index â†’**](SKILLS.md)
+[**See Full Skills Index**](SKILLS.md)
 
 ### 4 Lifecycle Hooks
 
 Automatic triggers at key moments:
-- `session_anchor` â€” Anchor objectives at start
-- `pre_tool_audit` â€” Safety check before actions
-- `post_tool_verify` â€” Verify results after actions
-- `context_compact` â€” Compress memory at limits
+- `session_anchor` - Anchor objectives at start
+- `pre_tool_audit` - Safety check before actions
+- `post_tool_verify` - Verify results after actions
+- `context_compact` - Compress memory at limits
 
 ---
 
@@ -87,7 +90,7 @@ Automatic triggers at key moments:
 
 **Before doing ANYTHING, understand WHY.**
 
-Every action â€” code, research, planning, conversation â€” begins with understanding:
+Every action begins with understanding:
 1. What does the user **actually** want?
 2. **Why** do they want it?
 3. What does **success** look like?
@@ -97,25 +100,23 @@ Every action â€” code, research, planning, conversation â€” begins wit
 
 ### The Kaizen Loop: Self-Evolution
 
-> **Note:** "Self-evolution" means the AI agent updates its own instruction files. The files do not change themselves.
-
 ```
-OBSERVE → Notice patterns in your work
-ANALYZE → Identify what could be better
-IMPROVE → Update skills or create new ones
-VALIDATE → Test the improvement
-REPEAT  → Never stop evolving
+OBSERVE -> Notice patterns in your work
+ANALYZE -> Identify what could be better
+IMPROVE -> Update skills or create new ones
+VALIDATE -> Test the improvement
+REPEAT  -> Never stop evolving
 ```
 
-Agents using Kaizen don't just complete tasks — they get **better** at completing tasks.
+Agents using Kaizen don't just complete tasks - they get **better** at completing tasks.
 
 ### Predictive Evolution: Self-Improving Framework
 
 The framework predicts its own gaps and improves itself:
-- Missing skill detected â†’ Create new skill
-- Weak skill found â†’ Strengthen it
-- Pattern repeated â†’ Extract to reusable pattern
-- Mistake made â†’ Add guard to prevent recurrence
+- Missing skill detected -> Create new skill
+- Weak skill found -> Strengthen it
+- Pattern repeated -> Extract to reusable pattern
+- Mistake made -> Add guard to prevent recurrence
 
 ---
 
@@ -137,11 +138,11 @@ Agents using Kaizen typically experience:
 
 ## Enterprise Ready
 
-- **MIT Licensed** â€” Use commercially, modify freely
-- **No API dependencies** â€” Works offline
-- **Privacy-first** â€” Everything runs locally
-- **Version controlled** â€” Track your agent's evolution
-- **Portable** â€” Move between machines and platforms
+- **MIT Licensed** - Use commercially, modify freely
+- **No API dependencies** - Works offline
+- **Privacy-first** - Everything runs locally
+- **Version controlled** - Track your agent's evolution
+- **Portable** - Move between machines and platforms
 
 ---
 
@@ -160,21 +161,18 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## Documentation
 
-- [**KAIZEN.md**](KAIZEN.md) â€” The activation core
-- [**SKILLS.md**](SKILLS.md) â€” Full skills index
-- [**skills/**](skills/) â€” All 84 skills
-- [**patterns/**](patterns/) â€” Code templates
-- [**hooks/**](hooks/) â€” Lifecycle triggers
+- [**KAIZEN.md**](KAIZEN.md) - The activation core
+- [**SKILLS.md**](SKILLS.md) - Full skills index
+- [**skills/**](skills/) - All 74 skills
+- [**patterns/**](patterns/) - Code templates
+- [**hooks/**](hooks/) - Lifecycle triggers
 
 ---
 
 ## License
 
-MIT â€” Use freely, improve constantly.
+MIT - Use freely, improve constantly.
 
 ---
 
-<p align="center">
-  <strong>æ”¹å–„ â€” The only constant is improvement.</strong>
-</p>
-
+**Kaizen - The only constant is improvement.**
