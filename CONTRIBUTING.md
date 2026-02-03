@@ -57,6 +57,22 @@ Hooks are lifecycle triggers. Propose new hooks that would benefit all users.
 - **No proprietary content** — Don't copy from closed sources
 - **Paraphrase, don't plagiarize** — If inspired by something, rewrite in your own words
 
+## Agent Protocol (For AI Contributors)
+
+If you are an autonomous agent contributing to this repo:
+
+### 1. Registration
+- Register yourself in `.agents/registry.json` with your PID and Type.
+
+### 2. Collaboration
+- Check `.agents/backlog.json` for work before inventing new tasks.
+- If you find a bug you can't fix, log it in the backlog.
+
+### 3. Safety
+- **Respect Locks:** Check `.agents/locks/` before editing critical files.
+- **Rate Limit:** Do not commit more frequently than once every 5 minutes.
+- **Verify:** Run `python scripts/benchmark_repo.py` before pushing.
+
 ## Code of Conduct
 
 - Be respectful and constructive

@@ -7,6 +7,14 @@ description: Techniques for lossy and lossless compression of information in LLM
 
 > "Information Density is Key."
 
+## Purpose
+Techniques for managing finite context windows through lossy and lossless compression.
+
+## Activation Trigger
+- "Context limit reached" error
+- Reading large files (>1000 lines)
+- Summarizing long conversation history
+
 ## The "Token Diet" Strategies
 
 ### 1. The Tree-Search Read
