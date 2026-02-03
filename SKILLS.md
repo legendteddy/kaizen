@@ -15,12 +15,12 @@
 | [clean-code-python](skills/clean-code-python/) | Skill for clean-code-python tasks and workflows. |
 | [code-review](skills/code-review/) | Giving and receiving code review with constructive feedback. |
 | [coding-agents](skills/coding-agents/) | Skill for building and managing autonomous software engineering agents (Devin-like). |
-| [computer-use](skills/computer-use/) | Skill for computer-use tasks and workflows. |
+| [computer-use](skills/computer-use/) | Skill for controlling the cursor and keyboard to automate GUI tasks (Anthropic/OpenAI Computer Use). |
 | [context-limits](skills/context-limits/) | Work effectively within token limits. Compress, summarize, and manage memory. |
 | [context-manager](skills/context-manager/) | Comprehensive context window optimization and memory management, covering working memory efficiency, persistent memory storage, and session continuity across conversations. |
 | [creative-solving](skills/creative-solving/) | Approach novel problems without precedent. Think outside existing patterns. |
 | [cursor-ide](skills/cursor-ide/) | Skill for cursor-ide tasks and workflows. |
-| [data-intelligence-pro](skills/data-intelligence-pro/) | Autonomous Data Scientist & Researcher (Consolidated Analyst + Researcher + RAG Expert). |
+| [data-intelligence-pro](skills/data-intelligence-pro/) | Skill for advanced data analysis, cleaning, and insight generation. |
 | [database-operations](skills/database-operations/) | Comprehensive database engineering covering schema design, SQL optimization, SQLite patterns, data integrity, and migration strategies. |
 | [debug-master](skills/debug-master/) | Advanced debugging methodology with 4-phase root cause analysis, stack trace interpretation, and systematic problem isolation. |
 | [deepseek-enhancer](skills/deepseek-enhancer/) | Forces System 2 deep reasoning with Chain-of-Thought, verification loops, and recursive self-correction. |
@@ -29,7 +29,7 @@
 | [error-recovery](skills/error-recovery/) | Gracefully handle failures, retry intelligently, and recover without user intervention. |
 | [execution-verification](skills/execution-verification/) | Confirm work actually worked before reporting completion. |
 | [expert-claude-code-user](skills/expert-claude-code-user/) | Mastery over the Claude Code CLI, leveraging deep integration and plugins. |
-| [fastapi-expert](skills/fastapi-expert/) | Best practices for high-performance, scalable FastAPI applications. |
+| [fastapi-expert](skills/fastapi-expert/) | Skill for building high-performance, async web APIs with FastAPI. |
 | [feedback-learning](skills/feedback-learning/) | Learn from user corrections permanently. Don't repeat mistakes. |
 | [git-workflow](skills/git-workflow/) | Comprehensive Git best practices including branching, Conventional Commits, worktrees, and professional version control standards. |
 | [godot-expert](skills/godot-expert/) | Expert guidance for Godot 4.x game development. |
@@ -37,7 +37,7 @@
 | [knowledge-synthesis](skills/knowledge-synthesis/) | Combine information from multiple sources into coherent understanding. |
 | [mcp-protocol](skills/mcp-protocol/) | Skill for mcp-protocol tasks and workflows. |
 | [open-source-llms](skills/open-source-llms/) | Skill for open-source-llms tasks and workflows. |
-| [pandas-expert](skills/pandas-expert/) | Expert knowledge for the Pandas data analysis library. Focuses on vectorization, efficiency, and modern best practices. |
+| [pandas-expert](skills/pandas-expert/) | Skill for expert-level data manipulation using Pandas (Python). |
 | [precision-coder](skills/precision-coder/) | Elite coding standards with zero-bug tolerance, type safety enforcement, security-first development, and comprehensive code review checklists. |
 | [predictive-evolution](skills/predictive-evolution/) | Predict what Kaizen needs next and improve itself automatically. |
 | [prioritization](skills/prioritization/) | Decide what matters most when everything seems urgent. |
@@ -47,7 +47,7 @@
 | [prompt-engineering](skills/prompt-engineering/) | Skill for prompt-engineering tasks and workflows. |
 | [python-automation-expert](skills/python-automation-expert/) | Skill for writing robust, safe, and maintainable Python automation scripts and CLI tools. |
 | [python-development](skills/python-development/) | Skill for python-development tasks and workflows. |
-| [pytorch-expert](skills/pytorch-expert/) | Deep learning engineering using PyTorch. Focuses on tensor operations, device management, and efficient training loops. |
+| [pytorch-expert](skills/pytorch-expert/) | Skill for Deep Learning engineering using PyTorch. |
 | [react-ts-expert](skills/react-ts-expert/) | Modern best practices for React 18+ with strict TypeScript integration. |
 | [research-intelligence](skills/research-intelligence/) | Advanced research methodology combining CRAG (Corrective Retrieval-Augmented Generation), agentic RAG patterns, and proactive web research for accurate, up-to-date solutions. |
 | [robotics-ai](skills/robotics-ai/) | Skill for robotics-ai tasks and workflows. |
