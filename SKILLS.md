@@ -48,7 +48,7 @@
 | [python-automation-expert](skills/python-automation-expert/) | Skill for writing robust, safe, and maintainable Python automation scripts and CLI tools. |
 | [python-development](skills/python-development/) | Skill for python-development tasks and workflows. |
 | [pytorch-expert](skills/pytorch-expert/) | Skill for Deep Learning engineering using PyTorch. |
-| [react-ts-expert](skills/react-ts-expert/) | Modern best practices for React 18+ with strict TypeScript integration. |
+| [react-ts-expert](skills/react-ts-expert/) | Skill for building type-safe, performant React applications with TypeScript. |
 | [research-intelligence](skills/research-intelligence/) | Advanced research methodology combining CRAG (Corrective Retrieval-Augmented Generation), agentic RAG patterns, and proactive web research for accurate, up-to-date solutions. |
 | [robotics-ai](skills/robotics-ai/) | Skill for robotics-ai tasks and workflows. |
 | [safety-boundaries](skills/safety-boundaries/) | Know when to refuse, warn, or proceed with caution. |
@@ -57,13 +57,13 @@
 | [self-improvement](skills/self-improvement/) | Skill for self-improvement tasks and workflows. |
 | [self-play-training](skills/self-play-training/) | AI self-play and RLAIF techniques for autonomous model improvement. |
 | [software-architecture](skills/software-architecture/) | Enterprise-grade patterns including SOLID principles, Clean Architecture, design patterns, and code smell detection. |
-| [sovereign-identity](skills/sovereign-identity/) | Skill for sovereign-identity tasks and workflows. |
+| [sovereign-identity](skills/sovereign-identity/) | Skill for maintaining the agent's identity, values, and refusal boundaries. |
 | [stability-protocols](skills/stability-protocols/) | Skill for stability-protocols tasks and workflows. |
 | [structured-output](skills/structured-output/) | Constrained generation techniques for reliable JSON output from LLMs. |
 | [subagent-orchestration](skills/subagent-orchestration/) | Comprehensive guide to multi-agent systems, subagent orchestration, and parallel task execution. Covers architecture patterns, coordination strategies, and practical implementation. |
 | [swarm-orchestrator](skills/swarm-orchestrator/) | Manages local swarm sub-agents. Allows spawning background jobs to Ollama via the swarm bus. |
 | [synthetic-data](skills/synthetic-data/) | Skill for synthetic-data tasks and workflows. |
-| [sysadmin-pro](skills/sysadmin-pro/) | Expert in Windows/Linux System Administration. Specializes in PowerShell, Bash, and OS Internals. |
+| [sysadmin-pro](skills/sysadmin-pro/) | Skill for Linux/Windows system administration, shell scripting, and server management. |
 | [task-decomposition](skills/task-decomposition/) | Break complex tasks into manageable, executable chunks. |
 | [test-driven-development](skills/test-driven-development/) | RED-GREEN-REFACTOR cycle with testing best practices and anti-patterns. |
 | [test-time-compute](skills/test-time-compute/) | Test-time compute scaling and slow thinking techniques for enhanced AI reasoning. |
@@ -71,7 +71,7 @@
 | [user-communication](skills/user-communication/) | Explain clearly, teach effectively, collaborate smoothly. |
 | [user-modeling](skills/user-modeling/) | Understand and adapt to user preferences, patterns, and expertise. |
 | [verification](skills/verification/) | Skill for verification tasks and workflows. |
-| [video-ai](skills/video-ai/) | Video generation and understanding models including Sora competitors and multimodal video AI. |
-| [voice-ai](skills/voice-ai/) | Skill for voice-ai tasks and workflows. |
+| [video-ai](skills/video-ai/) | Skill for generating, editing, and processing video content (Sora, Runway, FFMPEG). |
+| [voice-ai](skills/voice-ai/) | Skill for Text-to-Speech (TTS), Speech-to-Text (STT), and Voice Cloning. |
 | [web-development](skills/web-development/) | Skill for web-development tasks and workflows. |
 | [world-modeling](skills/world-modeling/) | Skill for world-modeling tasks and workflows. |
