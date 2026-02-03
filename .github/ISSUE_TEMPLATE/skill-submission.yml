@@ -1,0 +1,66 @@
+name: Skill Submission
+description: Submit a new skill to the Kaizen framework
+title: "[SKILL] "
+labels: ["enhancement", "skill"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing a skill to Kaizen!
+        
+  - type: input
+    id: skill-name
+    attributes:
+      label: Skill Name
+      description: What is your skill called?
+      placeholder: "e.g., kubernetes-deployment"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: skill-description
+    attributes:
+      label: Description
+      description: What does this skill enable?
+      placeholder: "This skill helps agents deploy applications to Kubernetes..."
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which category does this skill belong to?
+      options:
+        - Core
+        - Cognition
+        - Development
+        - Architecture
+        - Tools
+        - Collaboration
+        - AI Agents
+        - Research
+        - Frontier AI
+    validations:
+      required: true
+      
+  - type: textarea
+    id: skill-content
+    attributes:
+      label: Skill Content
+      description: Paste your SKILL.md content here
+      render: markdown
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've checked that this skill doesn't duplicate existing skills
+          required: true
+        - label: I've tested this skill works with at least one AI platform
+          required: true
+        - label: This skill contains no proprietary or copied content
+          required: true
