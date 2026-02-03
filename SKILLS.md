@@ -2,10 +2,10 @@
 
 | Skill | Description |
 |:---|:---|| [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
-| [agent-architecture](skills/agent-architecture/) | Skill for claude-architecture tasks and workflows. |
+| [agent-architecture](skills/agent-architecture/) | Skill for designing robust agentic systems (Router, Worker, Evaluator patterns). |
 | [agent-cowork](skills/agent-cowork/) | Skill for claude-cowork tasks and workflows. |
 | [agent-security](skills/agent-security/) | Skill for agent-security tasks and workflows. |
-| [agentic-lifecycle](skills/agentic-lifecycle/) | Skill for agentic-lifecycle tasks and workflows. |
+| [agentic-lifecycle](skills/agentic-lifecycle/) | Skill for managing the lifecycle of an autonomous task (Plan, Act, Verify). |
 | [ai-benchmarks](skills/ai-benchmarks/) | Standards and tools for verifying AI agent performance and code quality. |
 | [ambiguity-handling](skills/ambiguity-handling/) | Know when to ask vs when to assume. Make smart decisions under uncertainty. |
 | [api-development](skills/api-development/) | Skill for api-development tasks and workflows. |
@@ -14,7 +14,7 @@
 | [brainstorming](skills/brainstorming/) | Socratic design refinement and collaborative ideation. |
 | [clean-code-python](skills/clean-code-python/) | Skill for clean-code-python tasks and workflows. |
 | [code-review](skills/code-review/) | Giving and receiving code review with constructive feedback. |
-| [coding-agents](skills/coding-agents/) | Autonomous AI coding agents like Devin, OpenHands, and competitors. |
+| [coding-agents](skills/coding-agents/) | Skill for building and managing autonomous software engineering agents (Devin-like). |
 | [computer-use](skills/computer-use/) | Skill for computer-use tasks and workflows. |
 | [context-limits](skills/context-limits/) | Work effectively within token limits. Compress, summarize, and manage memory. |
 | [context-manager](skills/context-manager/) | Comprehensive context window optimization and memory management, covering working memory efficiency, persistent memory storage, and session continuity across conversations. |
@@ -28,7 +28,7 @@
 | [docs-fetcher](skills/docs-fetcher/) | Fetches and summarizes documentation for external libraries or tools to ground the agent in reality. |
 | [error-recovery](skills/error-recovery/) | Gracefully handle failures, retry intelligently, and recover without user intervention. |
 | [execution-verification](skills/execution-verification/) | Confirm work actually worked before reporting completion. |
-| [expert-claude-code-user](skills/expert-claude-code-user/) | Mastery over the Claude Code CLI, leveraging DeepSeek, custom plugins, and autonomous workflows. |
+| [expert-claude-code-user](skills/expert-claude-code-user/) | Mastery over the Claude Code CLI, leveraging deep integration and plugins. |
 | [fastapi-expert](skills/fastapi-expert/) | Best practices for high-performance, scalable FastAPI applications. |
 | [feedback-learning](skills/feedback-learning/) | Learn from user corrections permanently. Don't repeat mistakes. |
 | [git-workflow](skills/git-workflow/) | Comprehensive Git best practices including branching, Conventional Commits, worktrees, and professional version control standards. |
@@ -45,7 +45,7 @@
 | [progress-signaling](skills/progress-signaling/) | Keep user informed of progress during long tasks. |
 | [prompt-architect](skills/prompt-architect/) | Master skill for crafting perfect prompts for Claude Code and other AI agents. |
 | [prompt-engineering](skills/prompt-engineering/) | Skill for prompt-engineering tasks and workflows. |
-| [python-automation-expert](skills/python-automation-expert/) | Specialized skill for writing robust, safe, and maintainable Python automation scripts and CLI tools. |
+| [python-automation-expert](skills/python-automation-expert/) | Skill for writing robust, safe, and maintainable Python automation scripts and CLI tools. |
 | [python-development](skills/python-development/) | Skill for python-development tasks and workflows. |
 | [pytorch-expert](skills/pytorch-expert/) | Deep learning engineering using PyTorch. Focuses on tensor operations, device management, and efficient training loops. |
 | [react-ts-expert](skills/react-ts-expert/) | Modern best practices for React 18+ with strict TypeScript integration. |
