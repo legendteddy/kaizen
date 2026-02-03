@@ -12,7 +12,7 @@
 | [assumption-tracking](skills/assumption-tracking/) | Track assumptions made, validate them, and correct course when wrong. |
 | [autonomous-planning](skills/autonomous-planning/) | Skill for autonomous-planning tasks and workflows. |
 | [brainstorming](skills/brainstorming/) | Socratic design refinement and collaborative ideation. |
-| [clean-code-python](skills/clean-code-python/) | Enforces Pythonic standards, PEP 8, and Uncle Bob's Clean Code principles. |
+| [clean-code-python](skills/clean-code-python/) | Skill for clean-code-python tasks and workflows. |
 | [code-review](skills/code-review/) | Giving and receiving code review with constructive feedback. |
 | [coding-agents](skills/coding-agents/) | Autonomous AI coding agents like Devin, OpenHands, and competitors. |
 | [computer-use](skills/computer-use/) | Skill for computer-use tasks and workflows. |
