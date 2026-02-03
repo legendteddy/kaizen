@@ -1,87 +1,59 @@
 ---
 name: context-limits
-description: Work effectively within token limits. Compress, summarize, and manage memory.
+description: Techniques for lossy and lossless compression of information in LLM context.
 ---
 
-# Context Limit Management
+# Context Limits & Compression
 
-> Limited memory is a feature, not a bug. Use it wisely.
+> "Information Density is Key."
 
-## Activation Trigger
-- Long conversation
-- Many files open
-- Complex multi-step task
-- Near context limit warning
+## The "Token Diet" Strategies
 
----
+### 1. The Tree-Search Read
+Don't dump files. Walk the tree.
+1. `ls -R` (See structure)
+2. `grep "KeyWord"` (Find location)
+3. `read_file` (Extract payload)
 
-## Context Strategy
+### 2. Lossy Compression (Summarization)
+When summarizing a long thread, use this template to preserve **signal**:
 
+```markdown
+# Summary of [Task]
+- **Status:** [Active/Blocked/Done]
+- **Decisions:**
+  - Used BytePair Encoding for tokenizer.
+  - Rejected Regex approach due to complexity.
+- **Current State:**
+  - `main.py`: Functional
+  - `utils.py`: Needs refactoring
+- **Next Action:** Run tests.
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    CONTEXT MANAGEMENT                           │
-│                                                                 │
-│  KEEP in context:                                              │
-│  ✓ Current task objective                                      │
-│  ✓ Active file content                                         │
-│  ✓ Recent conversation                                         │
-│  ✓ Critical constraints                                        │
-│                                                                 │
-│  REMOVE from context:                                          │
-│  ✗ Completed subtasks                                          │
-│  ✗ Files no longer needed                                      │
-│  ✗ Verbose explanations                                        │
-│  ✗ Redundant information                                       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+*Drop the "he said/she said". Keep the state.*
 
-## Information Layering
+### 3. Lossless Compression (Code)
+Use `grep` or `outline` instead of `cat`.
+- **Skeletonizing:** Read only functions definitions, skip bodies.
+- **Diffing:** Only read lines changed since last commit.
 
-Store information at appropriate layers:
-```
-Layer 1: Working Memory (current context)
-  → Active task, current file, recent changes
+### 4. The Artifact Offload
+If you generate a massive plan or log analysis:
+1. Don't put it in chat.
+2. Write it to `analysis.md`.
+3. Reference it: "See `analysis.md` for details."
 
-Layer 2: Session Memory (conversation)
-  → Key decisions, completed work, constraints
+## Context Bankruptcy (What to do when full)
+If the model says "Context Full" or starts forgetting:
 
-Layer 3: Persistent Memory (files/skills)
-  → Patterns, lessons, domain knowledge
-```
-
-## Compression Techniques
-
-| Original | Compressed |
-|:---|:---|
-| Full file content | Outline + relevant sections |
-| Long conversation | Summary of decisions made |
-| Multiple examples | Single representative example |
-| Verbose errors | Error type + cause + fix |
-
-## When Near Limit
-
-```
-1. Summarize conversation so far
-2. State current objective clearly
-3. List only essential context
-4. Drop completed work details
-5. Proceed with compressed context
-```
+1.  **Halt.** Do not continue. You will hallucinate.
+2.  **Dump:** Write everything you know to `dump.md`.
+3.  **Reset:** Instruct user to clear context/start new session.
+4.  **Load:** Read `dump.md` in the new session.
 
 ## Anti-Patterns
+- **The Copy-Paste Bomb:** Pasting 2000 lines of error logs. (Just paste the last 50).
+- **The "Context Hoarder":** Keeping `package-lock.json` in context "just in case".
 
-**Don't:**
-- Load entire codebase at once
-- Keep all conversation history verbatim
-- Store redundant information
-- Ignore context warnings
-
-## Self-Improvement Hook
-
-After context management:
-```
-□ Did I keep the right information?
-□ Did I lose something important?
-□ Can I document this for persistence?
-```
+## Self-Improvement
+- **Did I fail to find a bug?** -> Maybe it was in a file I "compressed" too much? Check assumptions.
+- **Did I hallucinate a library?** -> You probably guessed instead of checking `package.json`.
