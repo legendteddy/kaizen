@@ -1,5 +1,5 @@
 ---
-name: claude-architecture
+name: agent-architecture
 description: Skill for claude-architecture tasks and workflows.
 ---
 

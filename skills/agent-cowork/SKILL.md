@@ -1,5 +1,5 @@
 ---
-name: claude-cowork
+name: agent-cowork
 description: Skill for claude-cowork tasks and workflows.
 ---
 
