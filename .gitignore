@@ -29,10 +29,26 @@ __pycache__/
 env/
 venv/
 
-# Build artifacts
+# Testing & Quality Checks
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Distribution
 dist/
 build/
-# Agent Framework
+*.egg-info/
+.eggs/
+
+# Secrets (CRITICAL)
+.env
+.env.*
+.secrets/
+
+# Agent Runtime
+.agents/locks/*
+.agents/signals/*
 .agents/registry.json
-.agents/locks/
-.agents/signals/
+benchmark.log
