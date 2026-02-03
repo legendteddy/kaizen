@@ -65,17 +65,17 @@ Add the content of `UNIVERSAL_PROMPT.txt` to your custom Instructions.
 ## 📚 Contents
 
 ### 74 Actionable Skills
-| Category | Count | Examples |
-|:---|:---:|:---|
-| **Core** | 8 | self-improvement, verification, stability |
-| **Cognition** | 7 | reasoning, memory, context management |
-| **Development** | 9 | Python, React, FastAPI, PyTorch |
-| **Architecture** | 9 | API design, databases, refactoring |
-| **Tools** | 5 | debugging, planning, automation |
-| **Collaboration** | 8 | TDD, code review, git workflow |
-| **AI Agents** | 15 | multi-agent, subagents, MCP protocol |
-| **Research** | 6 | intelligence gathering, web research |
-| **Frontier AI** | 17 | predictive-evolution, creative-solving |
+| Category | Examples |
+|:---|:---|
+| **Core** | self-improvement, verification, stability |
+| **Cognition** | reasoning, memory, context management |
+| **Development** | Python, React, FastAPI, PyTorch |
+| **Architecture** | API design, databases, refactoring |
+| **Tools** | debugging, planning, automation |
+| **Collaboration** | TDD, code review, git workflow |
+| **AI Agents** | multi-agent, subagents, MCP protocol |
+| **Research** | intelligence gathering, web research |
+| **Frontier AI** | predictive-evolution, creative-solving |
 
 [**See Full Skills Index**](SKILLS.md)
 
