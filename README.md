@@ -2,12 +2,12 @@
 
 [![Kaizen CI](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml/badge.svg)](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-71-blue.svg)](#skills)
+[![Skills](https://img.shields.io/badge/Skills-72-blue.svg)](#skills)
 [![Works With](https://img.shields.io/badge/Works%20With-All%20AI%20Agents-green.svg)](#compatibility)
 
 > **改善** (Kaizen) — Continuous Improvement
 
-**A systematic cognitive framework for AI agents.** 71 actionable skill protocols. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
+**A systematic cognitive framework for AI agents.** 72 actionable skill protocols. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
 
 ---
 
@@ -70,7 +70,7 @@ You can run a standalone, autonomous agent that improves the repository continuo
 # Requirements: Python 3.10+
 # Default LLM: Ollama (localhost:11434)
 
-python -m kaizen_core.main
+python scripts/continuous_improve.py
 ```
 
 The agent will:
