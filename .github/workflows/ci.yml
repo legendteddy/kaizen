@@ -1,5 +1,8 @@
 name: Kaizen CI
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ master, main ]
