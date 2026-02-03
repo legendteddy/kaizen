@@ -107,6 +107,9 @@ The framework identifies its own gaps. If an agent struggles with a task, it wri
 ## License
 MIT — Use freely, improve constantly.
 
+## Disclaimer
+This project is an independent open-source initiative and is not affiliated with, endorsed by, or connected to Anthropic, OpenAI, Google, or any other AI model provider. All product names, logos, and brands are property of their respective owners.
+
 ---
 
 > *"The only constant is improvement."*
