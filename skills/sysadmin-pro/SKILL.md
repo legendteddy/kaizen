@@ -37,6 +37,19 @@ Scripts must be safe to run multiple times.
 - **Text Encoding:** Be careful with `>`. Use `Out-File -Encoding UTF8`.
 - **Filtering:** Filter *left*. `Get-ChildItem -Filter` is faster than `| Where-Object`.
 
+## Cross-Platform Equivalents
+
+| Capability | Linux (Bash) | Windows (PowerShell) |
+|:---|:---|:---|
+| **Admin Check** | `if [ "$EUID" -ne 0 ]` | `([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)` |
+| **Env Var** | `$HOME` | `$env:USERPROFILE` |
+| **List Files** | `ls -la` | `Get-ChildItem -Force` |
+| **Find File** | `find . -name "*.txt"` | `Get-ChildItem -Recurse -Filter "*.txt"` |
+| **Read File** | `cat file.txt` | `Get-Content file.txt` |
+| **Services** | `systemctl status nginx` | `Get-Service nginx` |
+| **Kill Process** | `kill -9 <pid>` | `Stop-Process -Id <pid> -Force` |
+| **Download** | `curl -O url` | `Invoke-WebRequest -Uri url -OutFile file` |
+
 ## Diagnostic Workflow
 1. **Resource Check:** High CPU/RAM? (`top`, `Get-Process`)
 2. **Disk Space:** Full disk? (`df -h`, `Get-PSDrive`)

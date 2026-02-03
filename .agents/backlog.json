@@ -2,9 +2,9 @@
     {
         "id": "task_init_1",
         "title": "Audit 'sysadmin-pro' skill for Windows compatibility",
-        "status": "pending",
+        "status": "completed",
         "priority": "low",
-        "assigned_to": null,
+        "assigned_to": "antigravity-gemini",
         "created_at": "2026-02-03T12:00:00Z"
     }
 ]
