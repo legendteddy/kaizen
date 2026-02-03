@@ -1,73 +1,83 @@
 ---
 name: ai-benchmarks
-description: Skill for ai-benchmarks tasks and workflows.
+description: Standards and tools for verifying AI agent performance and code quality.
 ---
 
-# Skill: AI Benchmarks 2026 (v1.0)
+# Skill: AI Benchmarking & Verification (v1.0)
 
-> Beyond traditional LLM benchmarks
+> "If you can't measure it, you can't improve it."
 
 ## Purpose
-Understand modern AI evaluation landscape.
+Provide a rigorous framework for verifying agent performance, prompt effectiveness, and software engineering quality using industry-standard benchmarks.
 
 ## Activation Trigger
-- Model comparison needs
-- Performance evaluation
-- Capability assessment
+- User asks to "verify," "benchmark," or "test performance."
+- Before a major release or public publication.
+- When evaluating the impact of a new skill or prompt.
 
 ---
 
-## Benchmark Categories
+## 1. The Verification Stack (2026 Standards)
 
-### 1. Multimodal
-| Benchmark | Focus |
-|:---|:---|
-| MMMU | College-level multimodal reasoning |
-| HELM Safety | Safety evaluation |
-| LM Arena Vision | Human preference (visual) |
-| ScreenSpot-Pro | GUI grounding |
+### Software Engineering (SWE-bench)
+For complex, multi-file software tasks:
+- **Protocol**: Reproduce the issue -> Implement fix -> Verify with tests.
+- **Metric**: Resolution Rate (Did the agent solve the GitHub issue?).
 
-### 2. Reasoning
-| Benchmark | Focus |
-|:---|:---|
-| HLE | Expert-level, no memorization |
-| GPQA | PhD-level science questions |
-| GSM8K | Grade school math reasoning |
-| MATH | Competition math problems |
-| FrontierMath | Research-level math |
+### Prompt Evaluation (Promptfoo)
+For deterministic and high-quality outputs:
+- **Assertions**: String matching, JSON schema validation, LLM-as-a-judge rubrics.
+- **Testing**: Run 50+ test cases to check for regressions in prompt behavior.
 
-### 3. Real-World
-| Benchmark | Focus |
-|:---|:---|
-| SWE-bench | GitHub issue resolution |
-| WebArena | Shopping agent tasks |
-| PaperBench | Scientific research |
-| Multi-IF | Multi-turn multilingual |
-
-### 4. Safety & Ethics
-| Benchmark | Focus |
-|:---|:---|
-| AgentHarm | Guardrail override tests |
-| ST-WebAgentBench | High-risk business apps |
+### General Reasoning (AgentBench)
+For autonomous decision making:
+- **Focus**: Multi-step planning, tool use accuracy, and error recovery.
 
 ---
 
-## 2026 Leaders
+## 2. Internal Kaizen Benchmark
 
-| Benchmark | Top Model | Score |
+Use this checklist for immediate self-verification:
+
+| Category | Check | Pass/Fail |
 |:---|:---|:---:|
-| SWE-bench Verified | Claude Opus 4.5 | 80.9% |
-| GPQA | GPT-5.2 | High |
-| HLE | Claude/GPT | Low (hard) |
-| SWE-bench Pro | GPT-5 | 23.3% |
+| **Correctness** | Does the code solve the specific problem? | |
+| **Security** | Are there secrets, injections, or vulnerabilities? | |
+| **Efficiency** | Is the token usage optimized? | |
+| **Coherence** | Does the change follow project conventions? | |
+| **Stability** | Are all imports/exports valid and existing? | |
 
 ---
 
-## For Sovereign Framework
+## 3. Implementation Workflow
 
-Benchmarks inform:
-1. **Model selection**: Choose best for task
-2. **Capability limits**: Know what AI can't do
-3. **Safety validation**: Test guardrails
-4. **Progress tracking**: Measure improvement
+### Step 1: Baseline
+- Record the current performance/output before making changes.
+- Use `promptfoo` to capture a snapshot of the current prompt behavior.
 
+### Step 2: Experiment
+- Apply the new skill, pattern, or prompt change.
+- Run the task in a sandbox environment.
+
+### Step 3: Evaluation
+- Compare results against the baseline.
+- **LLM-as-Judge**: Ask a separate model instance to critique the output based on a specific rubric.
+
+### Step 4: Verification Commit
+- Only commit the change if it passes >90% of the verification criteria.
+
+---
+
+## 4. Tools & Commands
+
+| Tool | Purpose | Command (Example) |
+|:---|:---|:---|
+| `promptfoo` | Prompt testing | `npx promptfoo eval` |
+| `pytest` | Logic verification | `pytest tests/` |
+| `ruff` | Linting & Standards | `ruff check .` |
+| `tsc` | Type checking | `npx tsc --noEmit` |
+
+---
+
+## 5. Continuous Improvement
+Add new failure cases to your local benchmark dataset every time a mistake is caught. This prevents regression and builds the framework's "immune system."
