@@ -57,7 +57,7 @@ WHERE: patterns/{pattern_name}.md
 When mistakes occur:
 ```
 IF: Error caused by avoidable issue
-THEN: Document in lessons_learned.md
+THEN: Document in memory/lessons_learned.md (create if missing)
 ADD: Guard to relevant skill
 ```
 
@@ -102,7 +102,7 @@ EVOLVE  ? Become better than your sources
 STEP 1: SEARCH EXISTING
   +-- List all skills in the skills directory
   +-- Search for keywords from new skill topic
-  +-- Check SKILL_INDEX.md for similar entries
+  +-- Check SKILLS.md for similar entries
 
 STEP 2: CHECK FOR OVERLAP
   +-------------------------------------------------+
@@ -169,7 +169,7 @@ Every 50 tool calls:
 - New hard boundaries identified
 - Permission model needs adjustment
 
-### Update MANIFEST.md When:
+### Update README.md When:
 - Framework structure changes
 - New components added
 - Documentation updates needed

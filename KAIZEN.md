@@ -127,6 +127,134 @@ After EVERY task, ask:
 
 ---
 
+## Skill Obsolescence Protocol (Preventing Overflow)
+
+Skills must be pruned to prevent bloat. Apply this periodically:
+
+### Removal Criteria
+
+| Condition | Action |
+|:---|:---|
+| **Duplicate** — Another skill covers this | MERGE into existing skill, DELETE this one |
+| **Unused** — Not used in 30+ days | Mark as deprecated, DELETE after confirmation |
+| **Outdated** — Technology/API changed | UPDATE or DELETE |
+| **Low quality** — Description-only, not actionable | IMPROVE or DELETE |
+| **Superseded** — Better skill exists | DELETE in favor of better one |
+
+### Audit Questions (Monthly)
+
+For each skill, ask:
+1. Was this skill used in the last month?
+2. Is there another skill that does the same thing?
+3. Is the content still accurate?
+4. Is it actionable (has protocols, not just descriptions)?
+
+### Merge Protocol
+
+When merging skills:
+```
+1. Identify the primary skill (keep this one)
+2. Copy unique content from secondary skill
+3. Delete secondary skill
+4. Update SKILLS.md index
+```
+
+### Deprecation Protocol
+
+Before deleting:
+```
+1. Mark skill with [DEPRECATED] in title
+2. Wait one session for objections
+3. If no objections, delete
+4. Remove from SKILLS.md index
+```
+
+### Target: Keep Under 100 Skills
+
+If skill count exceeds 100:
+- Audit for duplicates first
+- Merge related skills
+- Remove unused skills
+- Quality over quantity
+
+---
+
+## Skill Discovery Protocol (Finding New Skills)
+
+When encountering a domain not covered by existing skills, actively search for the best techniques:
+
+### Discovery Sources
+
+| Source | What to Search | How |
+|:---|:---|:---|
+| **Web Search** | "[domain] best practices 2025" | Search engine |
+| **GitHub** | "awesome-[domain]", "[domain] skills" | GitHub search |
+| **Documentation** | Official docs for frameworks/tools | Direct URL |
+| **Research Papers** | "[domain] methodology" | Google Scholar |
+| **Community** | Reddit, HN, Discord for [domain] | Forum search |
+| **Prompt Libraries** | Leaked prompts, prompt engineering | Curated collections |
+
+### Discovery Protocol
+
+```
+1. IDENTIFY   → What domain/skill is missing?
+2. SEARCH     → Check all sources above
+3. EVALUATE   → Is this technique proven? Recent? Actionable?
+4. EXTRACT    → Pull out the core principles
+5. SYNTHESIZE → Generalize into Kaizen skill format
+6. CREATE     → Write new skill with proper SKILL.md format
+7. VALIDATE   → Test the skill on a real task
+```
+
+### Skill Import Criteria
+
+Only create a skill if it meets ALL criteria:
+- **Proven** — Used successfully by others
+- **Actionable** — Has clear steps, not just concepts
+- **General** — Applies to multiple situations
+- **Current** — Not outdated (check date)
+
+### Auto-Discovery Triggers
+
+When you encounter these, trigger discovery:
+- "I don't know how to do X" → Search for X
+- User asks about unfamiliar domain → Search for domain
+- Task requires unknown technology → Search for best practices
+- Error/failure pattern → Search for solutions
+
+### Synthesis Template
+
+When creating skill from discovered knowledge:
+```markdown
+---
+name: [skill-name]
+description: [one-line description]
+source: [where you found this]
+---
+
+# [Skill Name]
+
+> [Core principle in one line]
+
+## When to Use
+[Triggers for this skill]
+
+## Protocol
+[Step-by-step instructions]
+
+## Anti-Patterns
+[What NOT to do]
+```
+
+### Discovery Ethics
+
+- **Cite sources** when creating skills from external content
+- **Generalize** — Don't copy verbatim, extract principles
+- **Validate** — Test before adding to Kaizen
+- **Contribute back** — Share improvements with community
+
+---
+
 ## Structure
 
 ```
