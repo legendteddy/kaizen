@@ -22,6 +22,8 @@ Enable deep thinking for complex problems requiring multi-step analysis.
 
 ### Standard Pattern (o3-inspired)
 
+> **Implementation:** See `patterns/reasoning_loop.py` for executable code.
+
 ```python
 def deliberative_reasoning(problem: str) -> str:
     # Phase 1: GENERATE candidates

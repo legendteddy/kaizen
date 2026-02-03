@@ -92,3 +92,5 @@ Cursor patterns align with our approach:
 3. **Codebase context** = Our grep-first retrieval
 4. **Multi-file** = Our Composer-style operations
 
+> **Reference Pattern:** See `patterns/agentic_ide.md` for the full architectural breakdown.
+

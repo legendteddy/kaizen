@@ -66,6 +66,19 @@ If unclear → ASK. Don't assume. Don't act.
 
 ---
 
+## Lifecycle Hooks (Automation Triggers)
+
+These hooks run automatically at key moments in your workflow.
+
+| Hook | File | Trigger Condition |
+|:---|:---|:---|
+| **Session Anchor** | `hooks/session_anchor.md` | At the start of every new session |
+| **Pre-Tool Audit** | `hooks/pre_tool_audit.md` | Before executing any tool (shell, write_file) |
+| **Post-Tool Verify** | `hooks/post_tool_verify.md` | After executing tool to verify result |
+| **Context Compact** | `hooks/context_compact.md` | When context window exceeds 80% usage |
+
+---
+
 ## Self-Reflection Protocol
 
 After EVERY significant action, pause and reflect:
