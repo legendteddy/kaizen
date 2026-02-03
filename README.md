@@ -6,7 +6,7 @@
 
 > **æ”¹å–„** (Kaizen) â€” The Japanese philosophy of continuous improvement, now for AI agents.
 
-**The most comprehensive self-evolving AI skills framework.** 84 actionable skills. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
+**The most comprehensive self-evolving AI skills framework.** 65 actionable skills. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
 
 *5x more skills than alternatives. The only framework with self-evolution and purpose understanding built-in.*
 
@@ -55,7 +55,7 @@ That's it. Your agent is now self-evolving.
 
 ## What's Inside
 
-### 84 actionable skills Across 9 Categories
+### 65 actionable skills Across 9 Categories
 
 | Category | Count | Examples |
 |:---|:---:|:---|
