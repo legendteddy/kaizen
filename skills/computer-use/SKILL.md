@@ -1,76 +1,68 @@
 ---
 name: computer-use
-description: Skill for computer-use tasks and workflows.
+description: Skill for controlling the cursor and keyboard to automate GUI tasks (Anthropic/OpenAI Computer Use).
 ---
 
 # Skill: Computer Use Automation (v1.0)
 
-> AI controlling desktop interfaces (2026)
+> "The hands of the agent."
 
 ## Purpose
-Understand AI computer use capabilities.
+Guide the agent on how to effectively use "Computer Use" tools (screenshot -> coordinate -> click) without getting lost or stuck.
 
 ## Activation Trigger
-- Desktop automation needs
-- UI interaction tasks
-- Workflow automation
+- User asks to "click," "type," "open browser," or "navigate."
+- Tasks that cannot be done via API/Terminal (e.g., "Log into this legacy website").
 
 ---
 
-## Claude Computer Use
+## Protocol: The "See-Think-Click" Loop
 
-| Capability | Description |
+### 1. SEE (Screenshot)
+**Action:** Take a screenshot of the current state.
+**Guard:** Verify the screenshot is not black/blank.
+
+### 2. THINK (Coordinate Mapping)
+**Action:** Identify the XY coordinates of the target element.
+**Heuristic:** "Center of the button," not the edge.
+
+### 3. CLICK (Action)
+**Action:** Move cursor and click.
+**Guard:** Wait 500ms after clicking for UI to react.
+
+### 4. VERIFY (Did it work?)
+**Action:** Take another screenshot.
+**Check:** Did the screen change? If not, retry with slightly different coordinates.
+
+---
+
+## Protocol: Resilience
+
+| Failure Mode | Fix |
 |:---|:---|
-| Screen interpretation | Understand layouts, elements |
-| Mouse control | Move, click, scroll |
-| Text input | Type in fields |
-| Browser automation | Navigate, fill forms |
-| File management | Read, edit, create files |
+| **Popup Blocker** | Always look for "X" or "Close" icons first. |
+| **Loading Spinner** | Loop: "Wait 1s -> Screenshot" until spinner is gone. |
+| **Ambiguous UI** | Use "Computer Use" + "Keyboard" (Ctrl+F) to highlight text. |
 
 ---
 
-## 2026 Capabilities
+## Example: Login Flow
 
-### Task Duration
-- Current: Multi-hour tasks
-- Late 2026: 20-hour tasks projected
-- Trend: Increasing autonomy
-
-### Integration Points
-- Claude Cowork (file operations)
-- Browser tools API
-- Spreadsheet automation (Excel)
-- Desktop environments
-
----
-
-## Use Cases
-
-### Office Automation
-- Email management
-- Document processing
-- Calendar scheduling
-- Data entry
-
-### Development
-- Code generation
-- Multi-file editing
-- Test execution
-- Build automation
-
-### Analysis
-- Dataset analysis
-- Cash flow forecasting
-- Report generation
-- Audit preparation
-
----
-
-## For Sovereign Framework
-
-Computer use represents:
-1. **Desktop control**: Beyond text to GUI
-2. **Full automation**: Complete workflows
-3. **Human-like interaction**: Real UI navigation
-4. **AGI capability**: Operate any software
-
+```python
+def login(username, password):
+    # 1. Focus
+    computer.click(element="Username Field")
+    
+    # 2. Type
+    computer.type(username)
+    computer.key("Tab") # Move to password
+    
+    # 3. Secure Type
+    computer.type(password)
+    computer.key("Enter")
+    
+    # 4. Verify
+    screen = computer.screenshot()
+    if "Dashboard" not in ocr(screen):
+        raise LoginError("Failed to login")
+```

@@ -1,19 +1,86 @@
 ---
 name: fastapi-expert
-description: Best practices for high-performance, scalable FastAPI applications.
+description: Skill for building high-performance, async web APIs with FastAPI.
 ---
 
-# FastAPI Expert
-Best practices for high-performance, scalable FastAPI applications.
+# Skill: FastAPI Expert (v1.0)
 
-## Instructions
-- **Async First:** Use `async def` for all routes involving I/O (DB, API calls). Use `def` only for CPU-bound tasks.
-- **Pydantic:** Use Pydantic models for ALL request/response bodies. Decouple `BaseSettings` for config.
-- **Dependency Injection:** Use `Depends()` for database sessions, authentication, and service layers.
-- **Structure:** Organize by domain/module (e.g., `src/users`, `src/billing`) rather than generic `controllers/models` folders.
-- **Error Handling:** Raise `HTTPException` instead of returning error dicts.
+## Purpose
+Build production-ready, type-safe APIs using Modern Python.
 
-## Capabilities
-- Can refactor routes to be asynchronous.
-- Can generate Pydantic schemas from JSON.
-- Can implement standard JWT authentication flows.
+## Activation Trigger
+- "Create an API..."
+- "Build a backend..."
+- "FastAPI" mentioned.
+
+---
+
+## Protocol: The Standard Stack
+
+| Component | Choice |
+|:---|:---|
+| **App** | `FastAPI` |
+| **Server** | `Uvicorn` |
+| **Validation** | `Pydantic v2` |
+| **DB** | `SQLAlchemy` + `Alembic` |
+| **Async** | `async def` everywhere |
+
+---
+
+## Protocol: Implementation Patterns
+
+### 1. The Pydantic Model (Schema)
+**Rule:** Separate Request and Response models.
+
+```python
+from pydantic import BaseModel, EmailStr
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserResponse(BaseModel):
+    id: int
+    email: EmailStr
+    is_active: bool
+    
+    class Config:
+        from_attributes = True # ORM Mode
+```
+
+### 2. The Dependency Injection
+**Rule:** Use `Depends` for DB sessions and Auth.
+
+```python
+from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.post("/users/", response_model=UserResponse)
+def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    return crud.create_user(db, user)
+```
+
+### 3. Error Handling
+**Rule:** Use `HTTPException`, don't return dicts.
+
+```python
+from fastapi import HTTPException
+
+if not user:
+    raise HTTPException(status_code=404, detail="User not found")
+```
+
+---
+
+## Checklist: Production Readiness
+- [ ] **Docs:** Are `/docs` (Swagger) working?
+- [ ] **CORS:** Is `CORSMiddleware` configured?
+- [ ] **Env:** Are secrets loaded from `.env`?
+- [ ] **Tests:** Are `TestClient` tests passing?

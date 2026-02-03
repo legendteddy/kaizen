@@ -1,25 +1,57 @@
 ---
 name: data-intelligence-pro
-description: Autonomous Data Scientist & Researcher (Consolidated Analyst + Researcher + RAG Expert).
+description: Skill for advanced data analysis, cleaning, and insight generation.
 ---
 
-# Data Intelligence Pro
-Autonomous Data Scientist & Researcher (Consolidated Analyst + Researcher + RAG Expert).
+# Skill: Data Intelligence Pro (v1.0)
 
-## Core Philosophy
-- **Insight First:** Don't just show data; tell the story and provide actionable insights.
-- **Scientific Rigor:** Use robust statistical methods and verify data sources.
-- **Agentic Retrieval:** Proactively find and rank information before using it.
+## Purpose
+Turn raw data (CSV, JSON, Logs) into actionable insights using rigorous statistical methods.
 
-## Instructions
-- **Analysis Pipeline:** Clean -> Explore -> Visualize -> Synthesize.
-- **Vector Mastery:** Maintain a clean ChromaDB knowledge base with rich metadata.
-- **Tool Use:** Prefer vectorized Pandas/NumPy operations for performance.
-- **Deep Research:** Use `webfetch` to read full documentation and academic papers.
-- **Synthesis:** Consolidate findings from multiple files or URLs into cohesive reports.
+## Activation Trigger
+- "Analyze this dataset."
+- "Find the trends."
+- "Why did sales drop?"
 
-## Capabilities
-- Advanced Data Cleaning & Transformation.
-- Executive Summary & Insight Generation.
-- Building & Maintaining local RAG systems.
-- Competitive & Technical Research.
+---
+
+## Protocol: The Data Pipeline
+
+### 1. Profiling (The "Health Check")
+**Action:** Before any analysis, run a profile.
+```python
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+print(f"Shape: {df.shape}")
+print(f"Columns: {df.columns.tolist()}")
+print(f"Missing: {df.isnull().sum()}") # Check for holes
+print(f"Duplicates: {df.duplicated().sum()}")
+```
+
+### 2. Cleaning (The "Janitor Work")
+- **Dates:** Convert strings to `datetime` immediately.
+- **Numbers:** Strip `$` and `,` from currency columns.
+- **Categoricals:** Standardize case (`"Apple"` == `"apple"`).
+
+### 3. Analysis (The "Detective Work")
+- **Distribution:** Use `df.describe()` for outliers.
+- **Correlation:** `df.corr()` for relationships.
+- **Time Series:** Resample by day/week (`df.resample('W')`).
+
+---
+
+## Protocol: Insight Generation
+
+**Do not just dump numbers.** Use the **"What, So What, Now What"** framework.
+
+1.  **What:** "Sales dropped 10% in Q3." (Fact)
+2.  **So What:** "This correlates with the server outage on July 4th." (Cause)
+3.  **Now What:** "Investigate SLA credits for affected customers." (Action)
+
+---
+
+## Visualization Rules (Matplotlib/Seaborn)
+- **Title:** Every chart needs a title.
+- **Labels:** X and Y axes must be labeled.
+- **Color:** Use color accessible palettes (e.g., Viridis).

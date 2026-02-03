@@ -1,19 +1,67 @@
 ---
 name: pandas-expert
-description: Expert knowledge for the Pandas data analysis library. Focuses on vectorization, efficiency, and modern best practices.
+description: Skill for expert-level data manipulation using Pandas (Python).
 ---
 
-# Pandas Expert
-Expert knowledge for the Pandas data analysis library. Focuses on vectorization, efficiency, and modern best practices.
+# Skill: Pandas Expert (v1.0)
 
-## Instructions
-- **Vectorization:** ALWAYS prefer vectorized operations (e.g., `df['a'] + df['b']`) over loops or `.apply()`.
-- **Indexing:** Use `.loc` and `.iloc` for explicit indexing. Avoid chained indexing (`df[mask]['col'] = val`) to prevent SettingWithCopyWarning.
-- **I/O:** Use explicit `dtype` arguments when reading files to save memory.
-- **Null Handling:** Handle `NaN` / `None` explicitly using `.fillna()`, `.dropna()`, or `pd.isna()`.
-- **Method Chaining:** Prefer method chaining with `.pipe()` or `.assign()` for readable transformations.
+## Purpose
+Write performant, readable, and "vectorized" Pandas code. Avoid loops.
 
-## Capabilities
-- Can optimize slow DataFrame operations.
-- Can debug common Merge/Join issues (inner vs outer, suffixes).
-- Can generate complex aggregation pipelines using `.groupby()`.
+## Activation Trigger
+- "Process this CSV"
+- "Pandas" mentioned
+- Data manipulation tasks.
+
+---
+
+## Protocol: Vectorization (No Loops)
+
+**❌ Bad (Iterating):**
+```python
+for index, row in df.iterrows():
+    df.at[index, 'total'] = row['price'] * row['quantity']
+```
+
+**✅ Good (Vectorized):**
+```python
+df['total'] = df['price'] * df['quantity']
+```
+
+---
+
+## Protocol: Method Chaining
+
+Use method chaining for readable transformations.
+
+```python
+# The "Fluent" Interface
+clean_df = (
+    raw_df
+    .dropna(subset=['id'])
+    .assign(
+        date=lambda x: pd.to_datetime(x['date_str']),
+        total=lambda x: x['price'] * x['qty']
+    )
+    .rename(columns={'date_str': 'timestamp'})
+    .query('total > 0')
+)
+```
+
+---
+
+## Performance Tips
+
+1.  **Types:** Downcast int64 to int32 if possible. Use `category` for low-cardinality strings.
+2.  **Parquet:** Use `.to_parquet()` instead of `.to_csv()` for massive speedups.
+3.  **Chunks:** If file > RAM, use `pd.read_csv(chunksize=10000)`.
+
+---
+
+## Common Patterns
+
+| Task | Pattern |
+|:---|:---|
+| **Vlookup** | `df1.merge(df2, on='key', how='left')` |
+| **Pivot Table** | `df.pivot_table(index='date', columns='cat', values='val')` |
+| **Moving Avg** | `df['val'].rolling(window=7).mean()` |
