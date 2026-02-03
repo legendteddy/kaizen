@@ -1,128 +1,82 @@
 ---
 name: git-workflow
-description: Comprehensive Git best practices including branching, Conventional Commits, worktrees, and professional version control standards.
+description: Professional version control standards (Branching, Conventional Commits, Worktrees).
 ---
 
 # Git Workflow
 
-> Professional version control for clean history and team collaboration.
+## Visual Branching Strategy
 
-## Branching Strategy
-
-```
-main ─────────────────────────────────────→
-       \                    /
-        feature/add-auth ──→ (merge)
-```
-
-### Branch Naming
-```
-feature/add-user-auth
-bugfix/fix-login-crash
-hotfix/security-patch
-refactor/cleanup-database
-```
-
----
-
-## Commit Messages (Conventional Commits)
-
-### Format
-```
-<type>(<scope>): <description>
-
-[optional body]
-
-[optional footer]
+```mermaid
+gitGraph
+    commit
+    commit
+    branch feature/auth
+    checkout feature/auth
+    commit id: "feat: add jwt"
+    commit id: "test: verify token"
+    checkout main
+    merge feature/auth
+    branch fix/monitor
+    commit id: "fix: memory leak"
+    checkout main
+    merge fix/monitor
+    commit tag: "v1.0.0"
 ```
 
-**Rules:**
-- **Type:** Required (feat, fix, docs, style, refactor, test, chore)
-- **Scope:** Optional but encouraged for monorepos (e.g., `(frontend)`, `(core)`)
-- **Description:** Imperative mood ("Add" not "Added"), max 50 characters
-- **Body:** Wrap at 72 characters, explain what and why
+## Branch Naming
+- `feature/kb-integration`
+- `fix/login-timeout`
+- `refactor/database-layer`
+- `chore/upgrade-deps`
 
-### Types
-| Type | Use For |
-|:---|:---|
-| feat | New feature |
-| fix | Bug fix |
-| docs | Documentation only |
-| style | Formatting/whitespace changes |
-| refactor | Code restructuring without logic change |
-| test | Adding or updating tests |
-| chore | Maintenance, tooling, build changes |
+## Conventional Commits
 
-### Examples
+| Type | Meaning | Example |
+|:---|:---|:---|
+| **feat** | New feature | `feat(auth): add google sso` |
+| **fix** | Bug fix | `fix(api): handle timeout 500s` |
+| **docs** | Documentation | `docs: update readme badges` |
+| **chore** | Tooling | `chore: update .gitignore` |
+| **refactor** | clean up | `refactor: extract logic to util` |
+
+**Format:**
+`type(scope): imperative description`
+
+## Advanced Workflows
+
+### 1. Git Worktrees (Parallel Dev)
+Stop switching branches. Use parallel folders.
 ```bash
-# Good
-feat(auth): add JWT login support
+# Create detached folder for hotfix
+git worktree add ../hotfix-folder hotfix/login-bug
 
-fix(api): handle null user response
+# Work there, commit, push
+cd ../hotfix-folder
+git push origin hotfix/login-bug
 
-docs(readme): update installation steps
-
-# Bad (don't do these)
-feat: added login support        # "Added" not imperative
-fix: bug                       # Too vague
-feat(auth): some changes         # No scope, vague description
+# Delete when done
+cd ../main-repo
+git worktree remove ../hotfix-folder
 ```
 
----
-
-## Git Worktrees
-
-For parallel development on multiple branches:
-```bash
-# Create worktree for a feature
-git worktree add ../feature-auth feature/add-auth
-
-# Work in parallel directories
-cd ../feature-auth
-# ... make changes ...
-
-# Remove when done
-git worktree remove ../feature-auth
-```
-
----
-
-## Common Operations
-
-### Undo Last Commit (keep changes)
-```bash
-git reset --soft HEAD~1
-```
-
-### Interactive Rebase (clean history)
+### 2. Clean History (Interactive Rebase)
+Squash messy "wip" commits before merging.
 ```bash
 git rebase -i HEAD~3
+# Pick the first, 'squash' the rest
 ```
 
-### Stash Changes
-```bash
-git stash push -m "work in progress"
-git stash pop
-```
-
----
+### 3. "Oh Shit" Recovery
+| Situation | Command |
+|:---|:---|
+| Undo commit (keep files) | `git reset --soft HEAD~1` |
+| Undo commit (delete files) | `git reset --hard HEAD~1` |
+| Edit last message | `git commit --amend` |
+| Forgot to add file | `git add . && git commit --amend` |
 
 ## Pre-Push Checklist
-```
-□ All tests pass
-□ No debug code left (console.log, debuggers)
-□ Commit messages follow Conventional Commits format
-□ Commits are in imperative mood
-□ Branch is up to date with main
-□ No secrets or credentials in commits
-```
-
----
-
-## Capabilities
-
-- Generate compliant commit messages from `git diff`
-- Manage complex rebase/merge conflicts
-- Create standard Release Notes / Changelogs
-- Enforce branch naming conventions
-- Review commit history for quality
+- [ ] `git status` is clean
+- [ ] `npm test` passes
+- [ ] No `console.log` left behind
+- [ ] No secrets in `git diff`

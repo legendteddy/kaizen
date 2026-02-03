@@ -1,80 +1,81 @@
 ---
 name: agentic-lifecycle
-description: Skill for managing the lifecycle of an autonomous task (Plan, Act, Verify).
+description: Protocols for the autonomous execution loop (Perceive, Plan, Act, Reflect).
 ---
 
-# Skill: Agentic Lifecycle (v1.0)
+# Agentic Lifecycle
 
 > "The cycle of autonomy."
 
-## Purpose
-Standardize the execution flow of autonomous agents to prevent "looping" or "hallucinated completion."
+## Visual State Machine
 
-## Activation Trigger
-- Designing the main loop of an agent.
-- Debugging agents that get stuck or finish early.
-
----
+```mermaid
+stateDiagram-v2
+    [*] --> Perceive
+    Perceive --> Plan: Context Loaded
+    Plan --> Act: Tool Selected
+    Act --> Reflect: Output Received
+    
+    state Reflect {
+        [*] --> Verify
+        Verify --> Success: Goal Met
+        Verify --> Failure: Issue Found
+    }
+    
+    Reflect --> Perceive: Failure (Iterate)
+    Reflect --> [*]: Success (Final Answer)
+    
+    note right of Act
+      Tool execution happens here.
+      Must catch errors!
+    end note
+```
 
 ## Protocol: The Standard Loop
 
-Every autonomous agent must implement this 4-step state machine:
-
 ### 1. PERCEIVE (Input)
 - **Action:** Read user input + current context + tool outputs.
-- **Guard:** Ensure context window isn't full. If >80%, trigger `context-compact`.
+- **Guard:** Check context window usage. If >80%, trigger `context-compact`.
 
 ### 2. PLAN (Reasoning)
-- **Action:** Generate a Chain-of-Thought (CoT) before calling tools.
-- **Format:**
+- **Action:** Generate Chain-of-Thought (CoT).
+- **Template:**
   ```text
   THOUGHT:
-  1. User wants X.
-  2. I need to use tool Y.
-  3. Then I will check Z.
+  1. User goal is X.
+  2. Missing information Y.
+  3. Action: Call tool Z.
   ```
 
-### 3. ACT (Tool Execution)
-- **Action:** Execute the tool call.
-- **Guard:** Wrap in `try/catch`. If tool fails, do NOT hallucinate a success. Report the error to the PLAN phase.
+### 3. ACT (Tool Use)
+- **Action:** Emit structured tool call.
+- **Guard:** NEVER hallucinate tool outputs. If the tool errors, reading the error IS the observation.
 
 ### 4. REFLECT (Verification)
-- **Action:** Compare Tool Output vs. User Intent.
-- **Logic:**
-  ```python
-  if is_goal_met(output):
-      return FINAL_ANSWER
-  else:
-      return GOTO_STEP_1
-  ```
+- **Action:** Did the tool output actually solve the step?
+- **Decision:**
+  - If YES -> Move to next step.
+  - If NO -> Update plan, retry with different parameters.
 
----
-
-## Implementation Template (Python)
+## Python Implementation Template
 
 ```python
-class Agent:
-    def run(self, goal: str):
-        self.memory.add(goal)
+def agent_loop(goal: str, max_turns=10):
+    msgs = [{"role": "user", "content": goal}]
+    
+    for _ in range(max_turns):
+        # 1-2. Perceive & Plan
+        response = llm.generate(msgs)
         
-        for turn in range(MAX_TURNS):
-            # 1. Perceive
-            context = self.memory.get_recent()
+        # 3. Act
+        if response.tool_calls:
+            for tool in response.tool_calls:
+                result = tools.execute(tool)
+                msgs.append({"role": "tool", "content": result})
+        
+        # 4. Reflect (Implicit via LLM next turn)
+        if is_final_answer(response):
+            return response.content
             
-            # 2. Plan
-            plan = self.llm.think(context)
-            
-            # 3. Act
-            if plan.tool_call:
-                try:
-                    result = self.tools.execute(plan.tool_call)
-                except Exception as e:
-                    result = f"Error: {str(e)}"
-            
-            # 4. Reflect
-            self.memory.add(result)
-            if self.verifier.check(result, goal):
-                return result
-                
-        return "Max turns reached."
+    return "Timeout"
 ```
