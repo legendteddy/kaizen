@@ -57,7 +57,10 @@ git clone https://github.com/legendteddy/kaizen.git ~/.kaizen-skills
 # Link to Claude's skill directory
 ln -s ~/.kaizen-skills/skills/* ~/.claude/skills/
 ```
-Once linked, Claude will automatically discover and load these protocols during relevant tasks.
+
+### Advanced Integrations
+- [**LangGraph**](integrations/langgraph.md) - Using Kaizen as the cognitive layer for graph nodes.
+- [**OpenDevin**](integrations/opendevin.md) - Injecting Kaizen protocols into agent sandboxes.
 
 ### Other Platforms
 | Platform | Status | Integration |
