@@ -62,6 +62,24 @@ Add the content of `UNIVERSAL_PROMPT.txt` to your custom Instructions.
 
 ---
 
+## 🤖 Run the Kaizen Agent (Beta)
+
+You can run a standalone, autonomous agent that improves the repository continuously.
+
+```bash
+# Requirements: Python 3.10+
+# Default LLM: Ollama (localhost:11434)
+
+python -m kaizen_core.main
+```
+
+The agent will:
+1. Poll the `.agents/backlog.json` for tasks.
+2. Use local LLMs to plan and execute tasks.
+3. Collaborate with other active agents.
+
+---
+
 ## 📚 Contents
 
 ### 71 Actionable Skills
