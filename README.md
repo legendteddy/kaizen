@@ -46,15 +46,26 @@ Then instruct your AI agent:
 
 ## Integration Support
 
+### Claude Code (Standard Library)
+Kaizen is designed to serve as the comprehensive **Standard Library** for the Claude Code CLI. It adheres strictly to the `SKILL.md` open standard.
+
+To install Kaizen skills into Claude Code:
+```bash
+# Clone the repository
+git clone https://github.com/legendteddy/kaizen.git ~/.kaizen-skills
+
+# Link to Claude's skill directory
+ln -s ~/.kaizen-skills/skills/* ~/.claude/skills/
+```
+Once linked, Claude will automatically discover and load these protocols during relevant tasks.
+
+### Other Platforms
 | Platform | Status | Integration |
 |:---|:---:|:---|
-| **Gemini CLI** | Yes | Copy skills to agent skills directory |
-| **Claude Code** | Yes | Merge into project documentation |
-| **Cursor** | Yes | Add to IDE configuration |
-| **Windsurf** | Yes | Add to IDE configuration |
-| **Cline** | Yes | Reference in context |
-| **Continue.dev** | Yes | Add to config |
-| **Any LLM Agent** | Yes | Just read KAIZEN.md |
+| **Gemini CLI** | Yes | Copy skills to `~/.gemini/skills` |
+| **Cursor** | Yes | Add `UNIVERSAL_PROMPT.txt` to `.cursorrules` |
+| **Windsurf** | Yes | Add `UNIVERSAL_PROMPT.txt` to `.windsurfrules` |
+| **Any LLM** | Yes | Paste `UNIVERSAL_PROMPT.txt` into system instructions |
 
 ---
 
