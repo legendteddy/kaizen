@@ -7,7 +7,14 @@
 
 > **改善** (Kaizen) — Continuous Improvement
 
-**A systematic cognitive framework for AI agents.** 72 actionable skill protocols. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
+## Abstract
+**Kaizen** is a research framework investigating the practical implementation of **Recursive Self-Improvement (RSI)** in autonomous software agents. Unlike static prompt libraries, Kaizen implements a cognitive architecture where the agent actively maintains, verifies, and evolves its own skill set. By treating "skills" as modular, version-controlled markdown files (`.md`), the framework enables agents to perform **Epistemic Upgrades**—learning from mistakes and codifying new knowledge without human intervention.
+
+## Methodology
+The framework operates on a **ReAct** (Reason+Act) cognitive loop, augmented by three core protocols:
+1.  **The Hive Mind:** A shared task backlog (`.agents/backlog.json`) allowing heterogeneous agents (Gemini, Claude, Local Llama) to collaborate asynchronously.
+2.  **Epistemic Sovereignty:** The agent runs locally (`kaizen_core`) and possesses the authority to modify its own source code and instruction set.
+3.  **Stability Circuit Breakers:** To prevent hallucination loops common in RSI systems, Kaizen enforces strict "3-strike" failure limits and sandbox confinement.
 
 ---
 
