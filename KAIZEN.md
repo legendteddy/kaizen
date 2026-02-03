@@ -268,6 +268,37 @@ source: [where you found this]
 
 ---
 
+## Skill Balancing Protocol (Splitting vs Merging)
+
+A healthy framework requires balance. Not too granular, not too broad.
+
+### atomic vs holistic
+
+| Factor | Favor Splitting (Atomic) | Favor Merging (Holistic) |
+|:---|:---|:---|
+| **Context Cost** | Validating specific logic is cheap | Agent needs full picture to act |
+| **Usage Freq** | Used independently often | Used together always |
+| **Complexity** | File length > 200 lines | Concepts are tightly coupled |
+| **Trigger** | Distinct keywords trigger it | Same keywords trigger both |
+
+### When to SPLIT a Skill
+*Check if a skill is "too fat":*
+1. **Multiple Responsibilities:** Does it do X *and* Y? (e.g., `web-backend-frontend` → `web-backend`, `web-frontend`)
+2. **Context Waste:** Do you read the whole file but only use 10%?
+3. **Cognitive Load:** Is the protocol list longer than 15 steps?
+
+### When to MERGE Skills
+*Check if skills are "too thin":*
+1. **Always Together:** Do you always load `skill-A` and `skill-B` together?
+2. **Redundant:** Do they share >50% of the same instructions?
+3. **Fragmented:** Does the agent lose context because logic is split?
+
+**Rule of Thumb:**
+> **"One Skill, One Distinct Capability."**
+> A skill should be actionable on its own, but small enough to be loaded cheaply.
+
+---
+
 ## Structure
 
 ```
