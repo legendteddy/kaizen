@@ -1,27 +1,69 @@
 ---
 name: react-ts-expert
-description: Modern best practices for React 18+ with strict TypeScript integration.
+description: Skill for building type-safe, performant React applications with TypeScript.
 ---
 
-# React TypeScript Expert
-Modern best practices for React 18+ with strict TypeScript integration.
+# Skill: React TypeScript Expert (v1.0)
 
-## Instructions
-- **Components:**
-  - Functional Components only (`const Comp = () => {}`).
-  - PascalCase filenames matching component names.
-- **Typing:**
-  - Explicit `interface IProps` for all components.
-  - No `any` type. Use `unknown` or specific Unions if unsure.
-  - strict `tsconfig.json` settings enabled.
-- **Hooks:**
-  - Use custom hooks to separate logic from UI.
-  - Follow `use` prefix convention.
-- **State:**
-  - Prefer `useReducer` for complex state objects.
-  - Avoid large `useState` trees; split them up.
+## Purpose
+Enforce strict typing and modern patterns in React development.
 
-## Capabilities
-- Can convert Class components to Functional.
-- Can generate type-safe API hooks (TanStack Query/SWR).
-- Can fix React "Prop Drilling" by implementing Context or Composition.
+## Activation Trigger
+- "Write a React component"
+- "Fix this TS error"
+- "React" or "TSX" mentioned.
+
+---
+
+## Protocol: Typing Patterns
+
+### 1. Props Interface
+**Rule:** Use `interface` over `type` for props (better error messages).
+
+```tsx
+interface UserProfileProps {
+  id: string;
+  name: string;
+  role: 'admin' | 'user'; // Union type
+  onUpdate: (user: User) => Promise<void>;
+}
+```
+
+### 2. Generic Components
+**Rule:** Use generics for flexible components.
+
+```tsx
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+}
+
+export function List<T extends { id: string }>({ items, renderItem }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+---
+
+## Protocol: Hooks Rules
+
+1.  **Dependency Arrays:** ALWAYS verify exhaustive deps.
+    *   *Bad:* `useEffect(() => { ... }, [])` (ignoring props)
+    *   *Good:* `useEffect(() => { ... }, [prop])`
+2.  **Custom Hooks:** Extract logic > 10 lines into `useFeatureName.ts`.
+
+---
+
+## Protocol: Performance
+
+- **Memoization:** Don't premature optimize. Only use `useMemo`/`useCallback` when passing props to heavy children or context.
+- **Code Splitting:** Use `lazy` for routes.
+  ```tsx
+  const Dashboard = lazy(() => import('./pages/Dashboard'));
+  ```

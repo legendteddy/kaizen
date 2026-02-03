@@ -1,33 +1,55 @@
 ---
 name: sysadmin-pro
-description: Expert in Windows/Linux System Administration. Specializes in PowerShell, Bash, and OS Internals.
+description: Skill for Linux/Windows system administration, shell scripting, and server management.
 ---
 
-# Sysadmin Pro
-Expert in Windows/Linux System Administration. Specializes in PowerShell, Bash, and OS Internals.
+# Skill: Sysadmin Pro (v1.0)
 
-## Core Protocols
+## Purpose
+Manage servers and local environments safely using shell commands.
 
-### 1. Windows Administration
-- **PowerShell First:** Always use PowerShell 7+ over cmd.exe. Use verbs-nouns (`Get-Service`, `Set-ItemProperty`).
-- **Registry Safety:** Backup keys before modification (`reg export`). Use `HKCU` over `HKLM` when possible to avoid admin requirement.
-- **Services:** Manage services via `Get-Service` and `sc.exe` (if needed for legacy).
+## Activation Trigger
+- "Configure this server"
+- "Fix permission denied"
+- "Install these packages"
+- Shell/Bash/Powershell tasks.
 
-### 2. Linux Administration
-- **Bash Robustness:** Use `set -euo pipefail` in all scripts.
-- **Permissions:** Use octal mode for `chmod` (e.g., `644`, `755`).
-- **Systemd:** Prefer systemd units over init scripts for background tasks.
+---
 
-### 3. Cross-Platform Automation
-- **Path Handling:** NEVER hardcode separators (`\` or `/`). Use `pathlib` or `os.path.join`.
-- **Environment:** Check `os.name == 'nt'` before running platform-specific commands.
+## Protocol: Safe Execution
 
-## Instructions
-- **Logging:** All scripts must log to stdout AND a file in the appropriate system log directory.
-- **Idempotency:** Scripts should check state before acting (e.g., "If registry key exists, update it; else create it").
-- **Backup:** Creating a `.bak` file is mandatory before editing config files.
+### 1. Non-Interactive Flags
+**Rule:** Always assume no human is watching.
+- `apt-get install -y`
+- `npm install --yes`
+- `docker run -d`
 
-## Capabilities
-- Can write advanced PowerShell scripts with error handling.
-- Can debug Windows Registry issues.
-- Can create systemd services for Linux deployments.
+### 2. Idempotency
+**Rule:** Scripts should run twice without breaking.
+```bash
+# Bad
+mkdir /app
+
+# Good
+mkdir -p /app
+```
+
+### 3. Permissions
+**Rule:** Never use `sudo` unless explicitly requested. If permission denied, report it.
+
+---
+
+## Cheat Sheet: One-Liners
+
+| Task | Command |
+|:---|:---|
+| **Find file** | `find . -name "*.log"` |
+| **Check Port** | `lsof -i :8080` (Linux) / `netstat -ano` (Win) |
+| **Disk Usage** | `du -sh * | sort -h` |
+| **Process** | `ps aux | grep node` |
+
+---
+
+## Windows Specifics (PowerShell)
+- Use `Get-ChildItem` instead of `ls` for scripting stability.
+- Use `Test-Path` before `Copy-Item`.

@@ -1,65 +1,50 @@
 ---
 name: video-ai
-description: Video generation and understanding models including Sora competitors and multimodal video AI.
+description: Skill for generating, editing, and processing video content (Sora, Runway, FFMPEG).
 ---
 
-# Video AI Models (v1.0)
-
-> 2026 text-to-video and video understanding landscape
+# Skill: Video AI & Processing (v1.0)
 
 ## Purpose
-Understand video AI capabilities for generation and analysis.
+Navigate the landscape of Video AI tools and perform programmatic video editing.
 
 ## Activation Trigger
-- Video generation needs
-- Video analysis tasks
-- Multimodal content creation
+- "Make a video..."
+- "Edit this clip..."
+- "FFMPEG" mentioned.
 
 ---
 
-## Leading Models (2026)
+## Protocol: FFMPEG Mastery
 
-| Model | Creator | Key Features |
+**Rule:** Always stream copy when possible to avoid re-encoding quality loss.
+
+### Common Operations
+
+**1. Cut/Trim:**
+```bash
+ffmpeg -i input.mp4 -ss 00:00:10 -t 00:00:05 -c copy output.mp4
+```
+
+**2. Extract Audio:**
+```bash
+ffmpeg -i input.mp4 -vn -acodec libmp3lame output.mp3
+```
+
+**3. Resize/Scale:**
+```bash
+ffmpeg -i input.mp4 -vf scale=1280:720 -c:a copy output.mp4
+```
+
+---
+
+## Protocol: AI Video Generation
+
+| Tool | Strength | Prompt Strategy |
 |:---|:---|:---|
-| Sora 2 | OpenAI | Realistic scenes, strict policies |
-| SkyReels V3 | Skywork | Multi-subject, audio-guided |
-| Emu3.5 | BAAI | Unified multimodal, world model |
-| Ray3.14 | Luma AI | Native 1080p, fast |
-| Gen-4 | RunwayML | Cinematic quality, professional |
-| Veo 3.1 | Google | 8s 1080p text/image-to-video |
-| Kling AI | Kuaishou | Long, complex videos |
-| Cosmos | NVIDIA | Robotics world models |
+| **Sora** | Physics simulation | Describe lighting, camera angle, and movement physics. |
+| **Runway Gen-3** | Stylization | Use "Motion Brush" concepts in prompt. |
+| **Luma Dream Machine** | Keyframe animation | Define Start and End frames. |
 
----
-
-## Capabilities
-
-### Generation
-- Text → Video
-- Image → Video
-- Video → Video (extension)
-- Audio-guided generation
-
-### Understanding
-- Video reasoning (Gemini 3 Pro)
-- Scene analysis
-- Object tracking
-- Action recognition
-
----
-
-## Use Cases
-
-1. **Content creation**: Marketing, social media
-2. **Simulation**: Training data, robotics
-3. **Storytelling**: Multimodal narratives
-4. **Editing**: AI-powered enhancement
-
----
-
-## For Sovereign Framework
-
-Video AI enables:
-- **Visual output**: Generate demonstrations
-- **Simulation**: Test scenarios visually
-- **Content**: Create rich documentation
+**Prompt Template:**
+"A cinematic wide shot of [SUBJECT], [ACTION], 4k resolution, shallow depth of field, golden hour lighting."

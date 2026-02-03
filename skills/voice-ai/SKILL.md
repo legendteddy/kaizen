@@ -1,61 +1,61 @@
 ---
 name: voice-ai
-description: Skill for voice-ai tasks and workflows.
+description: Skill for Text-to-Speech (TTS), Speech-to-Text (STT), and Voice Cloning.
 ---
 
 # Skill: Voice AI Models (v1.0)
 
-> Speech-to-text and text-to-speech (2026 state-of-art)
-
 ## Purpose
-Understand voice AI landscape for speech processing tasks.
+Implement voice interfaces using ElevenLabs, OpenAI Whisper, or local models.
 
 ## Activation Trigger
-- Transcription needs
-- Voice synthesis
-- Audio processing
+- "Transcribe this audio"
+- "Generate speech"
+- "Voice clone"
 
 ---
 
-## Speech-to-Text Leaders (2026)
+## Protocol: Transcription (STT)
 
-| Model | Specialty | WER |
-|:---|:---|:---:|
-| Canary Qwen 2.5B | Best English accuracy | 5.63% |
-| Whisper Large V3 | Multilingual (99 langs) | Gold standard |
-| Deepgram Nova-3 | Real-time, code-switching | Very low |
-| ElevenLabs Scribe | 99 languages, events | Top tier |
-| Parakeet TDT | Ultra low-latency | Fast |
-| MS VibeVoice-ASR | Hour-long transcription | Low DER |
+### OpenAI Whisper (Python)
+```python
+import openai
 
----
+audio_file = open("audio.mp3", "rb")
+transcript = openai.Audio.transcribe("whisper-1", audio_file)
+print(transcript["text"])
+```
 
-## Text-to-Speech Leaders (2026)
+### Local Whisper (Faster-Whisper)
+**Use when:** Privacy is required or offline.
+```python
+from faster_whisper import WhisperModel
 
-| Model | Key Feature |
-|:---|:---|
-| ElevenLabs | Natural, expressive, customizable |
-| Qwen3-TTS | 3-second voice cloning, 10 langs |
-| WellSaid | Enterprise, regulated workflows |
-| OpenAI TTS | Real-time streaming |
+model = WhisperModel("large-v3", device="cuda", compute_type="float16")
+segments, info = model.transcribe("audio.mp3", beam_size=5)
+```
 
 ---
 
-## Privacy Options
+## Protocol: Synthesis (TTS)
 
-For local processing:
-- **Voibe**: 100% offline Mac, Whisper-based
-- **VoiceInk**: Open-source, 100+ languages
-- **DictaFlow**: Windows, hybrid local/cloud
-- **MacWhisper**: Offline batch transcription
+### ElevenLabs (High Quality)
+- **Latency:** ~1s
+- **Cost:** High
+- **Use:** Final production audio.
 
----
+### OpenAI TTS (Speed)
+- **Latency:** ~300ms
+- **Cost:** Low
+- **Use:** Real-time chat.
 
-## For Sovereign Framework
+### Edge TTS (Local)
+**Use:** Zero cost, offline.
+```python
+import edge_tts
+import asyncio
 
-Voice AI enables:
-1. **Dictation**: Hands-free coding
-2. **Meeting transcription**: Automated notes
-3. **Audio analysis**: Process recordings
-4. **TTS output**: Voice responses
-
+async def main():
+    communicate = edge_tts.Communicate("Hello World", "en-US-AriaNeural")
+    await communicate.save("hello.mp3")
+```
