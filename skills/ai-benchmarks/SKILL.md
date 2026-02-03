@@ -17,67 +17,79 @@ Provide a rigorous framework for verifying agent performance, prompt effectivene
 
 ---
 
-## 1. The Verification Stack (2026 Standards)
+## Protocol: The Verification Stack
 
-### Software Engineering (SWE-bench)
+### 1. Software Engineering (SWE-bench)
 For complex, multi-file software tasks:
-- **Protocol**: Reproduce the issue -> Implement fix -> Verify with tests.
-- **Metric**: Resolution Rate (Did the agent solve the GitHub issue?).
 
-### Prompt Evaluation (Promptfoo)
+**Setup:**
+```bash
+git clone https://github.com/princeton-nlp/SWE-bench
+pip install swebench
+```
+
+**Execution:**
+```bash
+# Run evaluation on specific instance
+python run_evaluation.py --instance_id django__django-11001 --predictions_path my_pred.json
+```
+
+**Metric:** Resolution Rate (Did the agent solve the GitHub issue?).
+
+### 2. Prompt Evaluation (Promptfoo)
 For deterministic and high-quality outputs:
-- **Assertions**: String matching, JSON schema validation, LLM-as-a-judge rubrics.
-- **Testing**: Run 50+ test cases to check for regressions in prompt behavior.
 
-### General Reasoning (AgentBench)
+**Setup:**
+```bash
+npx promptfoo@latest init
+```
+
+**Configuration (`promptfooconfig.yaml`):**
+```yaml
+prompts: [prompts/system_prompt.txt]
+providers: [openai:gpt-4o, anthropic:claude-3-5-sonnet-20240620]
+tests:
+  - description: "Test JSON output"
+    vars:
+      user_input: "List 3 fruits"
+    assert:
+      - type: is-json
+      - type: contains
+        value: "apple"
+```
+
+**Execution:**
+```bash
+npx promptfoo eval
+npx promptfoo view
+```
+
+### 3. General Reasoning (AgentBench)
 For autonomous decision making:
 - **Focus**: Multi-step planning, tool use accuracy, and error recovery.
 
 ---
 
-## 2. Internal Kaizen Benchmark
+## Protocol: Internal Self-Audit
 
-Use this checklist for immediate self-verification:
+Before committing code, run this sequence:
 
-| Category | Check | Pass/Fail |
-|:---|:---|:---:|
-| **Correctness** | Does the code solve the specific problem? | |
-| **Security** | Are there secrets, injections, or vulnerabilities? | |
-| **Efficiency** | Is the token usage optimized? | |
-| **Coherence** | Does the change follow project conventions? | |
-| **Stability** | Are all imports/exports valid and existing? | |
-
----
-
-## 3. Implementation Workflow
-
-### Step 1: Baseline
-- Record the current performance/output before making changes.
-- Use `promptfoo` to capture a snapshot of the current prompt behavior.
-
-### Step 2: Experiment
-- Apply the new skill, pattern, or prompt change.
-- Run the task in a sandbox environment.
-
-### Step 3: Evaluation
-- Compare results against the baseline.
-- **LLM-as-Judge**: Ask a separate model instance to critique the output based on a specific rubric.
-
-### Step 4: Verification Commit
-- Only commit the change if it passes >90% of the verification criteria.
+1.  **Static Analysis:**
+    ```bash
+    ruff check .  # Python
+    eslint .      # JS/TS
+    ```
+2.  **Type Safety:**
+    ```bash
+    mypy .        # Python
+    tsc --noEmit  # TS
+    ```
+3.  **Unit Tests:**
+    ```bash
+    pytest tests/
+    ```
 
 ---
 
-## 4. Tools & Commands
-
-| Tool | Purpose | Command (Example) |
-|:---|:---|:---|
-| `promptfoo` | Prompt testing | `npx promptfoo eval` |
-| `pytest` | Logic verification | `pytest tests/` |
-| `ruff` | Linting & Standards | `ruff check .` |
-| `tsc` | Type checking | `npx tsc --noEmit` |
-
----
-
-## 5. Continuous Improvement
+## Continuous Improvement
 Add new failure cases to your local benchmark dataset every time a mistake is caught. This prevents regression and builds the framework's "immune system."

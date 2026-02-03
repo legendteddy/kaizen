@@ -5,52 +5,78 @@ description: Skill for web-development tasks and workflows.
 
 # Skill: Web Development (v1.0)
 
+> Modern, component-driven, and accessible web engineering.
+
 ## Purpose
-Best practices for building premium, modern web applications.
+Build production-grade web interfaces using React, Tailwind, and Vite.
 
 ## Activation Trigger
-- User mentions: "website," "web app," "HTML," "CSS," "frontend"
-- Creating new web projects or landing pages.
+- User mentions: "website," "web app," "frontend," "dashboard"
+- Task involves HTML/CSS/JS generation.
 
-## Tech Stack (Approved)
-| Category | Allowed |
-|:---|:---|
-| Core | HTML5 + Vanilla JavaScript (ES6+) |
-| Styling | Tailwind CSS or Vanilla CSS |
-| Icons | `lucide-react` only |
-| Charts | `recharts` only |
-| Frameworks | Next.js or Vite (only if explicitly requested) |
+---
 
-## Design Aesthetics (Mandatory)
+## Protocol: The Stack
 
-### 1. First Impression
-- User should be **wowed** at first glance.
-- Use vibrant colors, dark modes, glassmorphism, micro-animations.
-- Avoid generic colors (plain red, blue, green).
+| Layer | Choice | Rationale |
+|:---|:---|:---|
+| **Framework** | React + Vite | Fast HMR, massive ecosystem |
+| **Language** | TypeScript | Prevents 90% of runtime errors |
+| **Styling** | Tailwind CSS | Colocated styles, design system tokens |
+| **Icons** | Lucide React | Clean, consistent SVG icons |
 
-### 2. Typography
-- Use modern fonts: Inter, Roboto, Outfit (Google Fonts).
-- Never use browser defaults.
+---
 
-### 3. Dynamic Design
-- Hover effects and interactive elements.
-- Micro-animations for engagement.
-- Smooth gradients and transitions.
+## Protocol: Component Implementation
 
-### 4. Premium Feel
-- No placeholders—generate real images with `generate_image`.
-- No "minimum viable" designs—make it feel state-of-the-art.
+### 1. Component Structure
+**Rule:** One component per file. PascalCase naming.
 
-## SEO Best Practices
-- Proper `<title>` and `<meta description>` on every page.
-- Single `<h1>` per page with proper heading hierarchy.
-- Semantic HTML5 elements.
-- Unique IDs for all interactive elements.
+```tsx
+// src/components/Button.tsx
+import { ReactNode } from 'react';
 
-## Implementation Workflow
-1. **Plan**: Understand requirements, draw inspiration.
-2. **Foundation**: Create/modify `index.css` with design system.
-3. **Components**: Build reusable components.
-4. **Assemble**: Create pages with responsive layouts.
-5. **Polish**: Review UX, optimize performance.
+interface ButtonProps {
+  children: ReactNode;
+  variant?: 'primary' | 'secondary';
+  onClick?: () => void;
+}
 
+export function Button({ children, variant = 'primary', onClick }: ButtonProps) {
+  const baseStyles = "px-4 py-2 rounded-md font-medium transition-colors";
+  const variants = {
+    primary: "bg-blue-600 text-white hover:bg-blue-700",
+    secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300"
+  };
+
+  return (
+    <button 
+      className={`${baseStyles} ${variants[variant]}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+### 2. State Management
+**Rule:** Use `useState` for local, `Zustand` for global. Avoid Redux unless requested.
+
+### 3. File Organization
+```
+src/
+├── components/   # Reusable UI atoms (Button, Card)
+├── features/     # Domain specific logic (Auth, Dashboard)
+├── hooks/        # Custom React hooks
+└── lib/          # Utilities (API clients, formatters)
+```
+
+---
+
+## Checklist: Before Shipping
+
+- [ ] **Mobile Responsive**: Does it work on 375px width?
+- [ ] **Accessibility**: Are `aria-labels` used on icon buttons?
+- [ ] **Clean Console**: No React unique key warnings?
+- [ ] **Type Check**: `tsc --noEmit` passes?
