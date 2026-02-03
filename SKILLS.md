@@ -4,10 +4,10 @@
 |:---|:---|| [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
 | [agent-architecture](skills/agent-architecture/) | Skill for designing robust agentic systems (Router, Worker, Evaluator patterns). |
 | [agent-cowork](skills/agent-cowork/) | Skill for claude-cowork tasks and workflows. |
-| [agent-security](skills/agent-security/) | Skill for agent-security tasks and workflows. |
+| [agent-security](skills/agent-security/) | Protocols for prompt injection defense, tool sandboxing, and output validation. |
 | [agentic-lifecycle](skills/agentic-lifecycle/) | Protocols for the autonomous execution loop (Perceive, Plan, Act, Reflect). |
 | [ai-benchmarks](skills/ai-benchmarks/) | Standards and tools for verifying AI agent performance and code quality. |
-| [ambiguity-handling](skills/ambiguity-handling/) | Know when to ask vs when to assume. Make smart decisions under uncertainty. |
+| [ambiguity-handling](skills/ambiguity-handling/) | Protocols for resolving uncertainty, handling edge cases, and making reversible assumptions. |
 | [api-development](skills/api-development/) | Skill for api-development tasks and workflows. |
 | [assumption-tracking](skills/assumption-tracking/) | Track assumptions made, validate them, and correct course when wrong. |
 | [autonomous-planning](skills/autonomous-planning/) | Skill for autonomous-planning tasks and workflows. |
