@@ -164,6 +164,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 ## Documentation
 
 - [**KAIZEN.md**](KAIZEN.md) — The activation core
+- [**TECHNICAL_GUIDE.md**](TECHNICAL_GUIDE.md) — How it works (The Mechanics)
+- [**EXAMPLES.md**](EXAMPLES.md) — Before/After traces
 - [**FAQ.md**](FAQ.md) — Frequently Asked Questions
 - [**SKILLS.md**](SKILLS.md) — Full skills index
 - [**skills/**](skills/) - All 74 skills
