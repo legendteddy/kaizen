@@ -1,60 +1,41 @@
 name: Kaizen CI
 
-permissions:
-  contents: write
-
 on:
   push:
-    branches: [ master, main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ master, main ]
+    branches: [ "main" ]
 
 jobs:
-  validate-skills:
+  quality-gate:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
     
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: "3.10"
         
-    - name: Validate Skills Format
+    - name: Install dependencies
       run: |
-        # Simple bash check for SKILL.md existence and frontmatter
-        EXIT_CODE=0
-        for dir in skills/*/; do
-          if [ ! -f "$dir/SKILL.md" ]; then
-            echo "❌ Error: $dir missing SKILL.md"
-            EXIT_CODE=1
-          else
-             # Check for frontmatter start
-             if ! head -n 1 "$dir/SKILL.md" | grep -q "^---"; then
-               echo "❌ Error: $dir/SKILL.md missing frontmatter (---)"
-               EXIT_CODE=1
-             fi
-          fi
-        done
-        exit $EXIT_CODE
-
-  update-index:
-    needs: validate-skills
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+        python -m pip install --upgrade pip
+        pip install ruff mypy
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
-    - name: Run Index Generator
-      run: python scripts/generate_index.py
-      
-    - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "chore: auto-update SKILLS.md index"
-        file_pattern: SKILLS.md
+    - name: Lint with Ruff
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        ruff check . --output-format=github --select=E9,F63,F7,F82
+        # Default strict checks
+        ruff check . --output-format=github
+        
+    - name: Type Check with Mypy
+      run: |
+        mypy .
+        
+    - name: Internal Audit (Repo Judge)
+      run: |
+        # The judge script must pass its own quality gate (score >= 90)
+        python -m kaizen_core.judge

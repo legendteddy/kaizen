@@ -1,84 +1,42 @@
 # Contributing to Kaizen
 
-Thank you for your interest in contributing to Kaizen! This framework grows through community contributions.
+Thank you for your interest in contributing to the Kaizen framework. We are building the future of Recursive Self-Improvement (RSI) for autonomous agents.
 
-## How to Contribute
+## Core Philosophy: The Kaizen Loop
 
-### Adding a New Skill
+All contributions must adhere to the core loop:
+1.  **Observe:** Identify a gap or inefficiency.
+2.  **Improve:** Implement a fix or new skill.
+3.  **Codify:** Document the improvement in a `SKILL.md` or Pattern.
+4.  **Verify:** Prove it works (Benchmarks/Tests).
 
-1. **Check for duplicates** — Search `skills/` to ensure your skill doesn't overlap with existing ones
-2. **Create the skill folder** — `skills/your-skill-name/`
-3. **Add SKILL.md** with this format:
+## Development Standards
 
-```markdown
----
-name: your-skill-name
-description: Brief description of what this skill enables.
----
+### 1. Epistemic Sovereignty
+- Agents must be able to run locally (Ollama/Llama).
+- No hard dependencies on closed-source APIs (OpenAI/Anthropic) unless optional.
 
-# Your Skill Name
-
-> One-line summary
-
-## Purpose
-Why this skill exists.
-
-## Activation Trigger
-When this skill should be used.
-
----
-
-## Content
-Your skill content here.
+### 2. Code Quality
+We enforce strict standards using `ruff` and `mypy`.
+```bash
+# Run before committing
+ruff check .
+ruff format .
+mypy .
 ```
 
-4. **Submit a PR** with a clear description
+### 3. Skill Architecture
+New skills must follow the template in `skills/_template/SKILL.md`.
+- **Purpose:** One sentence goal.
+- **Trigger:** When should an agent use this?
+- **Protocol:** Step-by-step instructions.
 
-### Improving Existing Skills
+## Pull Request Process
 
-- Fix typos and improve clarity
-- Add missing edge cases
-- Update with new techniques
-- Remove outdated information
+1.  **Fork** the repo.
+2.  **Create** a branch (`feat/new-skill-x`).
+3.  **Verify** using the Repo Judge: `python -m kaizen_core.judge`.
+4.  **Submit** PR.
 
-### Adding Patterns
-
-Patterns are reusable code templates. Add to `patterns/` with clear documentation.
-
-### Adding Hooks
-
-Hooks are lifecycle triggers. Propose new hooks that would benefit all users.
-
-## Guidelines
-
-- **Keep it universal** — Skills should work across all AI platforms
-- **Be concise** — Agents have limited context windows
-- **Test your skill** — Verify it works before submitting
-- **No proprietary content** — Don't copy from closed sources
-- **Paraphrase, don't plagiarize** — If inspired by something, rewrite in your own words
-
-## Agent Protocol (For AI Contributors)
-
-If you are an autonomous agent contributing to this repo:
-
-### 1. Registration
-- Register yourself in `.agents/registry.json` with your PID and Type.
-
-### 2. Collaboration
-- Check `.agents/backlog.json` for work before inventing new tasks.
-- If you find a bug you can't fix, log it in the backlog.
-
-### 3. Safety
-- **Respect Locks:** Check `.agents/locks/` before editing critical files.
-- **Rate Limit:** Do not commit more frequently than once every 5 minutes.
-- **Verify:** Run `python scripts/benchmark_repo.py` before pushing.
-
-## Code of Conduct
-
-- Be respectful and constructive
-- Focus on improving the framework
-- Help others learn
-
-## Questions?
-
-Open an issue if you have questions about contributing.
+## License
+By contributing, you agree that your contributions will be licensed under its MIT License.
