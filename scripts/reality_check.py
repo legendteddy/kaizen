@@ -157,11 +157,11 @@ def run():
     print(f"Failures Found: {len(failures)}")
     
     if len(failures) > 0:
-        print("\n❌ FAILED INSPECTION:")
+        print("\nFAILED INSPECTION:")
         for f in failures:
             print(f"  - {f}")
     
-    print(f"\n🔮 Reality Score: {score:.1f}%")
+    print(f"\nReality Score: {score:.1f}%")
 
 if __name__ == "__main__":
     run()

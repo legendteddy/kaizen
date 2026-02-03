@@ -36,8 +36,8 @@ def install_cursor():
     with open(target, mode, encoding="utf-8") as f:
         f.write("\n\n" + prompt)
         
-    print(f"✅ Injected Kaizen activation into {target}")
-    print("👉 NOTE: Ensure the 'skills/' folder is in your project root.")
+    print(f"Injected Kaizen activation into {target}")
+    print("NOTE: Ensure the 'skills/' folder is in your project root.")
 
 def install_claude():
     print("\n[Claude Code Setup]")
@@ -50,7 +50,7 @@ def install_claude():
     with open(target, mode, encoding="utf-8") as f:
         f.write("\n\n" + prompt)
         
-    print(f"✅ Injected Kaizen activation into {target}")
+    print(f"Injected Kaizen activation into {target}")
 
 def install_gemini():
     print("\n[Gemini CLI Setup]")
@@ -62,7 +62,7 @@ def install_gemini():
         try:
             os.makedirs(target_skills)
         except OSError:
-            print(f"❌ Could not create {target_skills}")
+            print(f"Error: Could not create {target_skills}")
             return
 
     print(f"Installing skills to {target_skills}...")
@@ -80,12 +80,12 @@ def install_gemini():
             shutil.copytree(s, d)
             count += 1
             
-    print(f"✅ Installed {count} skills to Gemini CLI.")
+    print(f"Installed {count} skills to Gemini CLI.")
 
 def main():
     print_header()
     if not os.path.exists("skills"):
-        print("❌ Error: Run this from the kaizen root directory.")
+        print("Error: Run this from the kaizen root directory.")
         sys.exit(1)
         
     choice = get_user_choice()
@@ -101,7 +101,7 @@ def main():
         print("1. Copy 'skills/' to your agent's context.")
         print("2. Paste content of 'UNIVERSAL_PROMPT.txt' into system prompt.")
         
-    print("\n✨ Installation Complete. Kaizen is active.")
+    print("\nInstallation Complete. Kaizen is active.")
 
 if __name__ == "__main__":
     main()

@@ -67,7 +67,7 @@ class RepoJudge:
         return (connected / total * 100) if total > 0 else 0
 
     def run(self):
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] ⚖️  Running Judgment Day (God Mode)...")
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] Running benchmark...")
         
         # Track failures
         fails_depth = []
@@ -135,18 +135,18 @@ class RepoJudge:
         }
         
         self.log_report(report)
-        print(f"🏆 God Mode Score: {report['kaizen_score']}/100")
+        print(f"Score: {report['kaizen_score']}/100")
         print(f"   - Compliance: {report['metrics']['compliance']}%")
         print(f"   - Intelligence: {report['metrics']['intelligence']}%")
         print(f"   - Actionability: {report['metrics']['actionability']}%")
         
         print(f"   - Connectivity: {report['metrics']['connectivity']}% (Failed: {len(fails_connectivity)})")
         if fails_connectivity:
-            print(f"     ❌ {fails_connectivity[:5]}... (+{len(fails_connectivity)-5} more)" if len(fails_connectivity) > 5 else f"     ❌ {fails_connectivity}")
+            print(f"     FAIL: {fails_connectivity[:5]}... (+{len(fails_connectivity)-5} more)" if len(fails_connectivity) > 5 else f"     FAIL: {fails_connectivity}")
         
         print(f"   - Depth (>2KB): {report['metrics']['depth_strict']}% (Failed: {len(fails_depth)})")
         if fails_depth:
-            print(f"     ❌ {fails_depth}")
+            print(f"     FAIL: {fails_depth}")
         
         return report
 

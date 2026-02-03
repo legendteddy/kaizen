@@ -1,10 +1,13 @@
 import json
+import logging
 import os
 import subprocess
 import time
 import urllib.error
 import urllib.request
 from typing import Any
+
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 
 
 class LLMClient:
@@ -19,15 +22,15 @@ class LLMClient:
     def _ensure_ollama_running(self):
         """Checks if Ollama is running, starts it, and ensures model exists."""
         # 1. Start Server
-        print("❤️ Checking AI Pulse (Ollama)...")
+        logging.info("Checking Ollama health...")
         if not self._is_healthy():
-            print("⚠️ AI is offline. Attempting to defibrillate (ollama serve)...")
+            logging.warning("Ollama is offline. Starting server...")
             self._start_server()
         
         # 2. Check Model
-        print(f"🧠 Checking for model '{self.model}'...")
+        logging.info(f"Checking for model '{self.model}'...")
         if not self._has_model(self.model):
-            print(f"📉 Model '{self.model}' missing. Downloading (this may take a while)...")
+            logging.warning(f"Model '{self.model}' missing. Downloading...")
             self._pull_model(self.model)
 
     def _start_server(self):
@@ -46,14 +49,14 @@ class LLMClient:
                 creationflags=subprocess.CREATE_NEW_CONSOLE if os.name == 'nt' else 0
             )
             for i in range(20):
-                print(f"   Waiting for AI heartbeat ({i+1}/20)...")
+                logging.debug(f"Waiting for server ({i+1}/20)...")
                 time.sleep(1)
                 if self._is_healthy():
-                    print("✅ AI successfully resurrected!")
+                    logging.info("Ollama started successfully.")
                     return
-            print("❌ Failed to start Ollama (Timed out).")
+            logging.error("Failed to start Ollama (timed out).")
         except Exception as e:
-            print(f"❌ Error starting Ollama: {e}")
+            logging.error(f"Error starting Ollama: {e}")
 
     def _has_model(self, model_name: str) -> bool:
         try:
@@ -73,14 +76,14 @@ class LLMClient:
         req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
         try:
             # We don't stream the response here for simplicity, just wait
-            print("   Pulling... (please wait)")
+            logging.info("Pulling model... (please wait)")
             with urllib.request.urlopen(req, timeout=600) as response:
                  # Read stream to completion
                  while response.read(1024): 
                      pass
-            print("✅ Model installed.")
+            logging.info("Model installed.")
         except Exception as e:
-             print(f"❌ Failed to pull model: {e}")
+             logging.error(f"Failed to pull model: {e}")
 
     def _is_healthy(self) -> bool:
         try:

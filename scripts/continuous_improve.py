@@ -45,7 +45,7 @@ class ContinuousImprover:
         # 1. Check for work
         task = self.hive.get_task()
         if task:
-            print(f"✅ Claimed Task: {task['title']}")
+            print(f"Claimed task: {task['title']}")
             self.comm.log(f"Started task: {task['title']}")
             
             # Placeholder: Agentic Execution Loop
@@ -53,10 +53,10 @@ class ContinuousImprover:
             time.sleep(2) 
             
             self.hive.complete_task(task['id'], result="Analyzed and updated.")
-            print(f"🏁 Completed Task: {task['title']}")
+            print(f"Completed task: {task['title']}")
             self.comm.log(f"Completed task: {task['title']}")
         else:
-            print("💤 No tasks. Checking for improvements...")
+            print("No tasks. Checking for improvements...")
             # 2. If no work, look for improvements (Self-Evolution)
             self.check_skill_decay()
             time.sleep(5)

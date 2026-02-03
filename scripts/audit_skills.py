@@ -39,7 +39,7 @@ def audit_skills():
             print(f"  - {s}")
 
     if not missing_from_index and not missing_from_folders:
-        print("\n✅ SUCCESS: Index is perfectly synced.")
+        print("\nSUCCESS: Index is perfectly synced.")
         return 0
     
     return 1

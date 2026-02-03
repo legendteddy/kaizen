@@ -45,7 +45,7 @@ def generate_index():
             link = f"skills/{skill['name']}/"
             f.write(f"| [{skill['name']}]({link}) | {skill['desc']} |\n")
             
-    print(f"✅ Generated index for {len(skills)} skills.")
+    print(f"Generated index for {len(skills)} skills.")
 
 if __name__ == "__main__":
     generate_index()

@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 import time
@@ -8,14 +9,16 @@ from .llm import LLMClient
 from .models import Task
 from .tools.manager import ToolManager
 
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
+
 # Constants
 REPO_ROOT = Path(__file__).parent.parent
 AGENT_ID = f"kaizen-core-{os.getpid()}"
 MAX_TURNS = 10 # Increased for complex tasks
 
 def main():
-    print(f"🚀 Kaizen Agent ({AGENT_ID}) started.")
-    print(f"📂 Workspace: {REPO_ROOT}")
+    logging.info(f"Kaizen Agent ({AGENT_ID}) started.")
+    logging.info(f"Workspace: {REPO_ROOT}")
     
     backlog = BacklogManager(AGENT_ID)
     tools = ToolManager(REPO_ROOT)
@@ -23,11 +26,11 @@ def main():
  
 
     while True:
-        print("👀 Polling backlog...")
+        logging.debug("Polling backlog...")
         task = backlog.get_pending_task()
         
         if task:
-            print(f"⚡ Claimed Task: {task['title']}")
+            logging.info(f"Claimed task: {task['title']}")
             process_task(task, tools, llm, backlog)
         else:
             time.sleep(5) 
@@ -74,43 +77,43 @@ Begin.
         max_failures = 3
 
         for turn in range(MAX_TURNS):
-            print(f"🔄 Turn {turn+1}/{MAX_TURNS}")
+            logging.debug(f"Turn {turn+1}/{MAX_TURNS}")
             
             # CALL LLM
             response = llm.complete(system_prompt, format_history(history))
-            print(f"🤖 Agent:\n{response}")
+            logging.debug(f"Agent response: {response[:100]}...")
             history.append({"role": "assistant", "content": response})
 
             # CHECK FOR FINISH
             if "FINISHED:" in response:
                 summary = response.split("FINISHED:", 1)[1].strip()
                 backlog.complete_task(task.id, success=True, result=summary)
-                print("✅ Task Completed.")
+                logging.info("Task completed.")
                 return
 
             # PARSE AND EXECUTE TOOL
             tool_call = parse_tool_call(response)
             if tool_call:
                 name, args = tool_call
-                print(f"🛠️  Proposing: {name} {args}")
+                logging.debug(f"Proposing tool: {name} {args}")
 
                 # --- REFLEXION LOOP (AGI LEVEL 1) ---
                 # "Measure twice, cut once."
-                print("🤔 Critiquing action...")
+                logging.debug("Running critic review...")
                 critique = llm.critique_action(
                     proposed_action=f"{name} {args}", 
                     context=format_history(history[-2:]) # Last 2 turns context
                 )
 
                 if not critique.get("approved", True):
-                    print(f"🛑 CRITIC REJECTED: {critique['feedback']}")
+                    logging.warning(f"CRITIC REJECTED: {critique['feedback']}")
                     history.append({
                         "role": "user", 
                         "content": f"CRITIC_INTERVENTION: Action blocked. Feedback: {critique['feedback']}. Please revise your plan."
                     })
                     continue  # SKIP EXECUTION, FORCE RETRY
                 
-                print(f"✅ Critic Approved: {critique.get('feedback', 'Go ahead')}")
+                logging.debug(f"Critic approved: {critique.get('feedback', 'ok')}")
                 # ------------------------------------
                 
                 output = execute_tool(name, args, tools)
@@ -118,30 +121,30 @@ Begin.
                 # STABILITY CHECK: If tool output is an error, count as failure
                 if output.startswith("Error") or output.startswith("SECURITY ALERT"):
                     consecutive_failures += 1
-                    print(f"⚠️ Tool Failure ({consecutive_failures}/{max_failures})")
+                    logging.warning(f"Tool failure ({consecutive_failures}/{max_failures})")
                 else:
                     consecutive_failures = 0 # Reset on success
                 
-                print(f"📄 Output:\n{output[:200]}...") # Truncate log
+                logging.debug(f"Tool output: {output[:100]}...")
                 history.append({"role": "user", "content": f"TOOL_OUTPUT: {output}"})
             else:
                 consecutive_failures += 1
-                print(f"⚠️ No tool call detected ({consecutive_failures}/{max_failures}).")
+                logging.warning(f"No tool call detected ({consecutive_failures}/{max_failures}).")
                 history.append({"role": "user", "content": "Error: No valid tool call found. You MUST use XML format."})
 
             # CIRCUIT BREAKER
             if consecutive_failures >= max_failures:
                 error_msg = "Circuit Breaker Tripped: Too many consecutive failures/hallucinations."
-                print(f"❌ {error_msg}")
+                logging.error(error_msg)
                 backlog.complete_task(task.id, success=False, result=error_msg)
                 return
 
         # If we run out of turns
         backlog.complete_task(task.id, success=False, result="Task timed out (Max turns reached).")
-        print("❌ Task Timed Out.")
+        logging.error("Task timed out.")
         
     except Exception as e:
-        print(f"❌ Task Failed: {e}")
+        logging.error(f"Task failed: {e}")
         backlog.complete_task(task.id, success=False, result=str(e))
 
 def format_history(history):

@@ -19,7 +19,7 @@ def log_evolution(event, insight, action):
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry) + "\n")
     
-    print(f"✅ [Kaizen Memory] Logged event: {event}")
+    print(f"Logged event: {event}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
