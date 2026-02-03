@@ -1,23 +1,54 @@
 ---
 name: docs-fetcher
-description: Fetches and summarizes documentation for external libraries or tools to ground the agent in reality.
+description: Protocol for retrieving, parsing, and applying external documentation.
 ---
 
 # Documentation Fetcher
 
-Use this skill when the User introduces a new tool or asks for an explanation.
+> "Read the manual so the user doesn't have to."
 
-## Vibe Check
--   **User Intent**: "Explain how this works" or "Use that new library."
--   **Goal**: Learn the tool instantly so the user doesn't have to explain it.
+## When to Use
+- User mentions a library/tool you don't know.
+- You encounter an API error (deprecated methods).
+- You need to verify syntax for a specific version (v1 vs v2).
 
-## Protocol
-1.  **Search**: Find the official docs.
-2.  **Learn**: Read the "Get Started" and "API Reference".
-3.  **Teach**: Explain it back to the user in simple terms (if asked).
-4.  **Do**: Use the correct syntax in the code.
+## Targeted Retrieval Protocol
 
-## Example Trigger
-User: "Use the new `super-grid` library."
-Agent: "I don't know `super-grid`. Learning it now..."
-(Agent searches -> fetches docs -> implements code).
+Never dump entire documentation into context. Use this precision flow:
+
+### 1. Identify Critical Scope
+Before fetching, define exactly what you need.
+- **Wrong:** "Read pandas docs"
+- **Right:** "Read pandas.DataFrame.merge parameters"
+
+### 2. The Retrieval Loop
+1. **Search** for official documentation URL (avoid 3rd party tutorials if official exists).
+2. **Fetch** the `Quickstart` or `API Reference` page first.
+3. **Scan** for keywords related to the task.
+4. **Extract** ONLY the relevant function signatures and examples.
+5. **Discard** marketing fluff, installation guides (unless installing), and unrelated features.
+
+### 3. Context Optimization
+| Content | Action |
+|:---|:---|
+| Function Signature | KEEP exact syntax |
+| Code Example | KEEP, but minimize comments |
+| Conceptual Guide | SUMMARIZE in 1-2 bullets |
+| Deprecation Warnings | HIGHLIGHT as critical |
+
+## Self-Correction Hook
+If code written using fetched docs fails:
+1. **Don't guess**.
+2. Go back to docs.
+3. Check **Version Number** (are you looking at v2 docs for v3 code?).
+4. Check **Breaking Changes** log.
+
+## Anti-Patterns
+- **The "Whole Book" Error**: Reading the entire documentation site.
+- **The "Hallucination" Error**: Guessing API methods because you're lazy to fetch.
+- **The "Stale" Error**: Using training data knowledge instead of fetching live docs for rapidly moving tools (e.g., LangChain, Next.js).
+
+## Self-Improvement
+- **Did I fetch too much?** -> Refine search queries next time.
+- **Did I miss a parameter?** -> Check function signature more carefully.
+- **Is this a tool I use often?** -> Suggest creating a dedicated skill for it.

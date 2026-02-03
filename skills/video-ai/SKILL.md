@@ -1,50 +1,53 @@
 ---
 name: video-ai
-description: Skill for generating, editing, and processing video content (Sora, Runway, FFMPEG).
+description: Protocols for generative video and programmatic editing (FFmpeg).
 ---
 
-# Skill: Video AI & Processing (v1.0)
+# Video AI & Processing
 
-## Purpose
-Navigate the landscape of Video AI tools and perform programmatic video editing.
+## 1. Generative Video Strategy
+To get consistent, high-quality video, you must control the camera and physics.
 
-## Activation Trigger
-- "Make a video..."
-- "Edit this clip..."
-- "FFMPEG" mentioned.
+### Prompting Structure
+1.  **Camera Movement:** (Static, Pan Right, Zoom In, Drone Shot, Tracking Shot)
+2.  **Subject Action:** (Walking forward, Looking at camera, Transforming)
+3.  **Atmosphere:** (Golden hour, Cyberpunk neon, Foggy, Studio lighting)
+4.  **Technical:** (4k, 60fps, shallow depth of field, anamorphic lens)
 
----
+### Consistency Hacks
+- **Image-to-Video:** Always prefer starting with a generated image (Midjourney) rather than Raw Text-to-Video for better composition control.
+- **Reference Start/End:** If the tool supports it (Luma, Runway), define the end frame to control the trajectory.
+- **Motion Bucket:** Lower motion = less artifacts. Higher motion = more chaos. Start low (3-4/10).
 
-## Protocol: FFMPEG Mastery
+## 2. The Editing Pipeline (FFmpeg)
 
-**Rule:** Always stream copy when possible to avoid re-encoding quality loss.
+Avoid re-encoding whenever possible.
 
-### Common Operations
-
-**1. Cut/Trim:**
+### Lossless Cut
+`-c copy` is your best friend. It slices without decoding.
 ```bash
-ffmpeg -i input.mp4 -ss 00:00:10 -t 00:00:05 -c copy output.mp4
+ffmpeg -i input.mp4 -ss 00:00:30 -to 00:00:40 -c copy output.mp4
 ```
 
-**2. Extract Audio:**
+### Quality Encoding (CRF)
+When you MUST re-encode, control quality with CRF (18-28).
+lower = better quality, higher size.
 ```bash
-ffmpeg -i input.mp4 -vn -acodec libmp3lame output.mp3
+ffmpeg -i input.mp4 -vcodec libx264 -crf 23 -preset fast output.mp4
 ```
 
-**3. Resize/Scale:**
+### Format Standardization
+Convert weird formats to standard web-ready MP4.
 ```bash
-ffmpeg -i input.mp4 -vf scale=1280:720 -c:a copy output.mp4
+ffmpeg -i input.mkv -c:v libx264 -profile:v high -level 4.0 -pix_fmt yuv420p -c:a aac output.mp4
 ```
 
----
+## 3. Workflow: The 'Sandwich' Method
+1.  **Generate Image:** Create the perfect keyframe.
+2.  **Animate:** Use Image-to-Video (4s).
+3.  **Extend:** If good, extend by 4s (using the last frame as input).
+4.  **Upscale:** Use Topaz or AI upscaler as the FINAL step.
 
-## Protocol: AI Video Generation
-
-| Tool | Strength | Prompt Strategy |
-|:---|:---|:---|
-| **Sora** | Physics simulation | Describe lighting, camera angle, and movement physics. |
-| **Runway Gen-3** | Stylization | Use "Motion Brush" concepts in prompt. |
-| **Luma Dream Machine** | Keyframe animation | Define Start and End frames. |
-
-**Prompt Template:**
-"A cinematic wide shot of [SUBJECT], [ACTION], 4k resolution, shallow depth of field, golden hour lighting."
+## Self-Improvement
+- **Did the video look melty?** -> Reduce motion parameters.
+- **Did FFMPEG invalid input?** -> Check if input file path has spaces (quote them).

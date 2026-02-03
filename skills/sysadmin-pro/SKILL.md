@@ -1,55 +1,48 @@
 ---
 name: sysadmin-pro
-description: Skill for Linux/Windows system administration, shell scripting, and server management.
+description: Protocols for safe, idempotent system administration (Linux/Windows).
 ---
 
-# Skill: Sysadmin Pro (v1.0)
+# Sysadmin Pro
 
-## Purpose
-Manage servers and local environments safely using shell commands.
+> "Measure twice, cut once."
 
-## Activation Trigger
-- "Configure this server"
-- "Fix permission denied"
-- "Install these packages"
-- Shell/Bash/Powershell tasks.
+## Safety First: The Blast Radius Check
+Before running ANY command that modifies state (`rm`, `mv`, `dd`, `chmod`, `kill`):
 
----
+1. **Verify Target:** Am I in the right directory? (`pwd`)
+2. **Dry Run:** Echo the command first or use `--dry-run` if available.
+3. **Backup:** Copy critical files before editing. `cp config.xml config.xml.bak`
+4. **Wildcard Danger:** Never run `rm -rf $VAR/*` without verifying `$VAR` is set.
 
-## Protocol: Safe Execution
+## Protocol: Idempotency
+Scripts must be safe to run multiple times.
 
-### 1. Non-Interactive Flags
-**Rule:** Always assume no human is watching.
-- `apt-get install -y`
-- `npm install --yes`
-- `docker run -d`
+| Bad | Good | Why |
+|:---|:---|:---|
+| `mkdir /data` | `mkdir -p /data` | Won't error if exists |
+| `echo "line" >> file` | `grep -q "line" file || echo "line" >> file` | Prevents duplicates |
+| `npm install` | `npm ci` | Strict version install |
 
-### 2. Idempotency
-**Rule:** Scripts should run twice without breaking.
-```bash
-# Bad
-mkdir /app
+## Shell Specifics
 
-# Good
-mkdir -p /app
-```
+### Linux / Bash
+- **Non-interactive:** Use `-y` or `-f` flags. `apt-get install -y`.
+- **Exit on Error:** Start scripts with `set -e` or handle error codes.
+- **Pipe Safety:** `set -o pipefail` checks for errors in pipes.
 
-### 3. Permissions
-**Rule:** Never use `sudo` unless explicitly requested. If permission denied, report it.
+### Windows / PowerShell
+- **Path Safety:** Use `Join-Path` instead of string concatenation.
+- **Error Handling:** Use `-ErrorAction Stop` to catch failures.
+- **Text Encoding:** Be careful with `>`. Use `Out-File -Encoding UTF8`.
+- **Filtering:** Filter *left*. `Get-ChildItem -Filter` is faster than `| Where-Object`.
 
----
+## Diagnostic Workflow
+1. **Resource Check:** High CPU/RAM? (`top`, `Get-Process`)
+2. **Disk Space:** Full disk? (`df -h`, `Get-PSDrive`)
+3. **Logs:** Check the tail. (`tail -f`, `Get-Content -Wait -Tail 10`)
+4. **Network:** Port open? (`curl`, `Test-NetConnection`)
 
-## Cheat Sheet: One-Liners
-
-| Task | Command |
-|:---|:---|
-| **Find file** | `find . -name "*.log"` |
-| **Check Port** | `lsof -i :8080` (Linux) / `netstat -ano` (Win) |
-| **Disk Usage** | `du -sh * | sort -h` |
-| **Process** | `ps aux | grep node` |
-
----
-
-## Windows Specifics (PowerShell)
-- Use `Get-ChildItem` instead of `ls` for scripting stability.
-- Use `Test-Path` before `Copy-Item`.
+## Self-Improvement
+- **Did a script fail silently?** -> Add error checking next time.
+- **Did I accidentally overwrite a file?** -> Use `cp -n` (no clobber) or backup pattern.
