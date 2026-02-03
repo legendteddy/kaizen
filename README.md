@@ -5,77 +5,66 @@
 [![Skills](https://img.shields.io/badge/Skills-74-blue.svg)](#skills)
 [![Works With](https://img.shields.io/badge/Works%20With-All%20AI%20Agents-green.svg)](#compatibility)
 
-> **Kaizen** (Japanese: continuous improvement) - The philosophy of continuous improvement, now for AI agents.
+> **改善** (Kaizen) — Continuous Improvement
 
 **A systematic cognitive framework for AI agents.** 74 actionable skill protocols. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
 
-*Focuses on purpose understanding (Step Zero) and structured reasoning patterns to ensure consistent, production-grade agent behavior.*
+---
+
+## ⚡ Quick Start
+
+### For Cursor Users (Recommended)
+Automatically configures your project with Kaizen intelligence.
+```bash
+# In your project root:
+curl -o .cursorrules https://raw.githubusercontent.com/legendteddy/kaizen/main/.cursorrules
+```
+*Restart Cursor, and your AI is instantly upgraded.*
+
+### For Everyone Else (Universal Install)
+```bash
+git clone https://github.com/legendteddy/kaizen.git
+```
+Then tell your AI agent:
+> "Read KAIZEN.md from the kaizen folder and activate it."
 
 ---
 
-## Why Kaizen?
+## 🚀 Why Use This?
+
+[**See Real Examples (Before vs After)**](EXAMPLES.md)
 
 | Problem | Kaizen Solution |
 |:---|:---|
-| AI agents make the same mistakes | Skills library prevents repeat errors |
-| Agents don't understand your intent | **Step Zero** forces purpose understanding |
-| Generic responses, no domain expertise | 74+ specialized skills |
-| No memory between sessions | Long-term memory protocols |
-| Agents don't improve over time | **Self-evolution loop** built-in |
+| **Ambiguity** | "Fix login" -> *Agent asks clarifying questions* |
+| **Hallucination** | "Use library X" -> *Agent checks docs first* |
+| **Security** | "Summarize URL" -> *Agent blocks prompt injection* |
+| **Amnesia** | Long chat -> *Agent compresses context intelligently* |
 
 ---
 
-## Installation
+## 🛠️ Integration Support
 
-### Option A: Automatic Installer (Recommended)
+### Claude Code (CLI)
+Kaizen serves as the standard library for Claude Code.
 ```bash
-git clone https://github.com/legendteddy/kaizen.git
-cd kaizen
-python install.py
+# Link skills to Claude's directory
+ln -s ~/kaizen/skills/* ~/.claude/skills/
 ```
-*Configures Cursor, Claude, or Gemini automatically.*
 
-### Option B: Manual Setup
+### Gemini CLI
 ```bash
-git clone https://github.com/legendteddy/kaizen.git
+cp -r kaizen/skills ~/.gemini/skills
 ```
-Then instruct your AI agent:
-> "Read KAIZEN.md and activate it."
+
+### Windsurf / VS Code
+Add the content of `UNIVERSAL_PROMPT.txt` to your custom Instructions.
 
 ---
 
-## Integration Support
-
-### Claude Code (Standard Library)
-Kaizen is designed to serve as the comprehensive **Standard Library** for the Claude Code CLI. It adheres strictly to the `SKILL.md` open standard.
-
-To install Kaizen skills into Claude Code:
-```bash
-# Clone the repository
-git clone https://github.com/legendteddy/kaizen.git ~/.kaizen-skills
-
-# Link to Claude's skill directory
-ln -s ~/.kaizen-skills/skills/* ~/.claude/skills/
-```
-
-### Advanced Integrations
-- [**LangGraph**](integrations/langgraph.md) - Using Kaizen as the cognitive layer for graph nodes.
-- [**OpenDevin**](integrations/opendevin.md) - Injecting Kaizen protocols into agent sandboxes.
-
-### Other Platforms
-| Platform | Status | Integration |
-|:---|:---:|:---|
-| **Gemini CLI** | Yes | Copy skills to `~/.gemini/skills` |
-| **Cursor** | Yes | Add `UNIVERSAL_PROMPT.txt` to `.cursorrules` |
-| **Windsurf** | Yes | Add `UNIVERSAL_PROMPT.txt` to `.windsurfrules` |
-| **Any LLM** | Yes | Paste `UNIVERSAL_PROMPT.txt` into system instructions |
-
----
-
-## Contents
+## 📚 Contents
 
 ### 74 Actionable Skills
-
 | Category | Count | Examples |
 |:---|:---:|:---|
 | **Core** | 8 | self-improvement, verification, stability |
@@ -86,106 +75,38 @@ ln -s ~/.kaizen-skills/skills/* ~/.claude/skills/
 | **Collaboration** | 8 | TDD, code review, git workflow |
 | **AI Agents** | 15 | multi-agent, subagents, MCP protocol |
 | **Research** | 6 | intelligence gathering, web research |
-| **Frontier AI** | 17 | predictive-evolution, creative-solving, user-modeling |
+| **Frontier AI** | 17 | predictive-evolution, creative-solving |
 
 [**See Full Skills Index**](SKILLS.md)
-
-### Lifecycle Hooks
-
-Triggers that run at key workflow moments:
-- `session_anchor` - Start of session context injection
-- `pre_tool_audit` - Safety check before tool execution
-- `post_tool_verify` - Validation after tool output
-- `context_compact` - Context window management
 
 ---
 
 ## Core Concepts
 
 ### Purpose Understanding (Step Zero)
-
 **Understand why before acting.**
-
-Every action begins with understanding:
-1. What does the user **actually** want?
-2. **Why** do they want it?
-3. What does **success** look like?
-4. What **constraints** exist?
+Every action begins with answering: *What does success look like?*
 
 ### The Improvement Loop
-
 1. Observe patterns
 2. Analyze root causes
-3. Update instructions (skills)
+3. **Update SKILL.md** (Self-Evolution)
 4. Validate results
 
-Agents using Kaizen effectively patch their own instructions to prevent repeat errors.
-
-### Predictive Framework
-
-The framework identifies gaps:
-- Missing skill detected -> Create new skill
-- Weak skill found -> Strengthen it
-- Pattern repeated -> Extract to reusable pattern
-
----
-
-## What to Expect
-
-Agents using Kaizen typically experience:
-
-| Benefit | Why |
-|:---|:---|
-| Fewer repeated mistakes | Skills encode lessons learned |
-| Better first attempts | Step Zero ensures understanding |
-| Consistent quality | Patterns provide proven templates |
-| Faster debugging | Systematic debugging methodology |
-| Continuous improvement | Self-evolution is built-in |
-
-*Results depend on your use case and how you integrate the framework.*
-
----
-
-## Enterprise Ready
-
-- **MIT Licensed** - Use commercially, modify freely
-- **No API dependencies** - Works offline
-- **Privacy-first** - Everything runs locally
-- **Version controlled** - Track your agent's evolution
-- **Portable** - Move between machines and platforms
-
----
-
-## Contributing
-
-Kaizen improves through contributions:
-
-1. Fork the repository
-2. Add your skill to `skills/`
-3. Follow the SKILL.md format
-4. Submit a pull request
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+### Predictive Evolution
+The framework identifies its own gaps. If an agent struggles with a task, it writes a new skill to handle it next time.
 
 ---
 
 ## Documentation
-
 - [**KAIZEN.md**](KAIZEN.md) — The activation core
-- [**TECHNICAL_GUIDE.md**](TECHNICAL_GUIDE.md) — How it works (The Mechanics)
-- [**EXAMPLES.md**](EXAMPLES.md) — Before/After traces
-- [**FAQ.md**](FAQ.md) — Frequently Asked Questions
-- [**SKILLS.md**](SKILLS.md) — Full skills index
-- [**skills/**](skills/) - All 74 skills
-- [**patterns/**](patterns/) - Code templates
-- [**hooks/**](hooks/) - Lifecycle triggers
-
----
+- [**EXAMPLES.md**](EXAMPLES.md) — See it in action
+- [**SKILLS.md**](SKILLS.md) — Full catalog
+- [**TECHNICAL_GUIDE.md**](TECHNICAL_GUIDE.md) — Deep dive
 
 ## License
-
-MIT - Use freely, improve constantly.
+MIT — Use freely, improve constantly.
 
 ---
 
-**Kaizen - The only constant is improvement.**
+> *"The only constant is improvement."*
