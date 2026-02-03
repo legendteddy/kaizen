@@ -2,8 +2,9 @@
 
 [![Kaizen CI](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml/badge.svg)](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Skills](https://img.shields.io/badge/Skills-72-blue.svg)](#skills)
-[![Works With](https://img.shields.io/badge/Works%20With-All%20AI%20Agents-green.svg)](#compatibility)
 
 > **改善** (Kaizen) — Continuous Improvement
 

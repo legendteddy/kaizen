@@ -1,0 +1,41 @@
+name: Skill Proposal
+description: Propose a new AI skill or capability
+title: "[Skill]: "
+labels: ["enhancement", "skill-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        "The only constant is improvement." — Kaizen Motto
+  - type: input
+    id: skill_name
+    attributes:
+      label: Skill Name
+      placeholder: e.g. docker-expert
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: What problem does this skill solve?
+    validations:
+      required: true
+  - type: textarea
+    id: protocol
+    attributes:
+      label: Proposed Protocol
+      description: Draft the key steps or rules for this skill.
+      placeholder: |
+        1. Verify X
+        2. Execute Y
+        3. Check Z
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked that this skill does not already exist
+          required: true

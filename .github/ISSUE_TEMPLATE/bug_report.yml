@@ -1,40 +1,41 @@
 name: Bug Report
-description: Create a report to help us improve
-title: "[BUG] "
-labels: ["bug"]
+description: Create a report to help us improve the Kaizen framework
+title: "[Bug]: "
+labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
   - type: textarea
-    id: description
+    id: what-happened
     attributes:
-      label: Describe the bug
-      description: A clear and concise description of what the bug is.
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: "The Kaizen agent tried to read a file outside the sandbox..."
     validations:
       required: true
   - type: textarea
     id: reproduction
     attributes:
-      label: Steps to Reproduce
-      description: |
-        1. Go to '...'
-        2. Run command '...'
-        3. See error
+      label: Reproduction Steps
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Run `python -m kaizen_core.main`
+        2. Add task X to backlog
+        3. See error...
     validations:
       required: true
   - type: input
-    id: agent
+    id: version
     attributes:
-      label: AI Agent Used
-      description: e.g., Cursor, Claude Code, Gemini CLI, Custom Script
-      placeholder: Cursor 0.14.0
-    validations:
-      required: true
-  - type: textarea
-    id: logs
+      label: Version
+      description: What version of Kaizen or commit hash are you using?
+  - type: checkboxes
+    id: terms
     attributes:
-      label: Relevant Log Output
-      description: Please copy and paste any relevant log output.
-      render: shell
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/legendteddy/kaizen/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
