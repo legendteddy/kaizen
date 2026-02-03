@@ -25,7 +25,7 @@
 
 ---
 
-## Quick Start (30 seconds)
+## Installation
 
 ### Option A: Automatic Installer (Recommended)
 ```bash
@@ -33,18 +33,18 @@ git clone https://github.com/legendteddy/kaizen.git
 cd kaizen
 python install.py
 ```
-*Follow the wizard to configure Cursor, Claude, or Gemini automatically.*
+*Configures Cursor, Claude, or Gemini automatically.*
 
 ### Option B: Manual Setup
 ```bash
 git clone https://github.com/legendteddy/kaizen.git
 ```
-Then tell your AI agent:
+Then instruct your AI agent:
 > "Read KAIZEN.md and activate it."
 
 ---
 
-## Works With Everything
+## Integration Support
 
 | Platform | Status | Integration |
 |:---|:---:|:---|
@@ -58,9 +58,9 @@ Then tell your AI agent:
 
 ---
 
-## What's Inside
+## Contents
 
-### 74 Actionable Skills Across 9 Categories
+### 74 Actionable Skills
 
 | Category | Count | Examples |
 |:---|:---:|:---|
@@ -76,21 +76,21 @@ Then tell your AI agent:
 
 [**See Full Skills Index**](SKILLS.md)
 
-### 4 Lifecycle Hooks
+### Lifecycle Hooks
 
-Automatic triggers at key moments:
-- `session_anchor` - Anchor objectives at start
-- `pre_tool_audit` - Safety check before actions
-- `post_tool_verify` - Verify results after actions
-- `context_compact` - Compress memory at limits
+Triggers that run at key workflow moments:
+- `session_anchor` - Start of session context injection
+- `pre_tool_audit` - Safety check before tool execution
+- `post_tool_verify` - Validation after tool output
+- `context_compact` - Context window management
 
 ---
 
-## Key Innovations
+## Core Concepts
 
-### Step Zero: Purpose Understanding
+### Purpose Understanding (Step Zero)
 
-**Before doing ANYTHING, understand WHY.**
+**Understand why before acting.**
 
 Every action begins with understanding:
 1. What does the user **actually** want?
@@ -98,27 +98,21 @@ Every action begins with understanding:
 3. What does **success** look like?
 4. What **constraints** exist?
 
-*If you don't understand the purpose, you cannot verify success.*
+### The Improvement Loop
 
-### The Kaizen Loop: Self-Evolution
+1. Observe patterns
+2. Analyze root causes
+3. Update instructions (skills)
+4. Validate results
 
-```
-OBSERVE -> Notice patterns in your work
-ANALYZE -> Identify what could be better
-IMPROVE -> Update skills or create new ones
-VALIDATE -> Test the improvement
-REPEAT  -> Never stop evolving
-```
+Agents using Kaizen effectively patch their own instructions to prevent repeat errors.
 
-Agents using Kaizen don't just complete tasks - they get **better** at completing tasks.
+### Predictive Framework
 
-### Predictive Evolution: Self-Improving Framework
-
-The framework predicts its own gaps and improves itself:
+The framework identifies gaps:
 - Missing skill detected -> Create new skill
 - Weak skill found -> Strengthen it
 - Pattern repeated -> Extract to reusable pattern
-- Mistake made -> Add guard to prevent recurrence
 
 ---
 
