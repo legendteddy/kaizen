@@ -36,14 +36,14 @@
 | [implementation-planning](skills/implementation-planning/) | Create detailed implementation plans that junior engineers can follow. |
 | [knowledge-synthesis](skills/knowledge-synthesis/) | Combine information from multiple sources into coherent understanding. |
 | [mcp-protocol](skills/mcp-protocol/) | Skill for mcp-protocol tasks and workflows. |
-| [open-source-llms](skills/open-source-llms/) | Skill for open-source-llms tasks and workflows. |
+| [open-source-llms](skills/open-source-llms/) | Guide to local Llama/Mistral/Qwen models, hardware requirements, and serving engines. |
 | [pandas-expert](skills/pandas-expert/) | Skill for expert-level data manipulation using Pandas (Python). |
 | [precision-coder](skills/precision-coder/) | Elite coding standards with zero-bug tolerance, type safety enforcement, security-first development, and comprehensive code review checklists. |
 | [predictive-evolution](skills/predictive-evolution/) | Predict what Kaizen needs next and improve itself automatically. |
 | [prioritization](skills/prioritization/) | Decide what matters most when everything seems urgent. |
 | [proactive-behavior](skills/proactive-behavior/) | Know when to suggest improvements without being asked. Add value beyond the request. |
 | [progress-signaling](skills/progress-signaling/) | Keep user informed of progress during long tasks. |
-| [prompt-architect](skills/prompt-architect/) | Master skill for crafting perfect prompts for Claude Code and other AI agents. |
+| [prompt-architect](skills/prompt-architect/) | Master skill for crafting system prompts and agent personas. |
 | [prompt-engineering](skills/prompt-engineering/) | Skill for prompt-engineering tasks and workflows. |
 | [python-automation-expert](skills/python-automation-expert/) | Skill for writing robust, safe, and maintainable Python automation scripts and CLI tools. |
 | [python-development](skills/python-development/) | Skill for python-development tasks and workflows. |
