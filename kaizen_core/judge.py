@@ -109,6 +109,11 @@ class RepoJudge:
         self.report.append(f"- 🔻 **-{points} pts**: {reason}")
 
 if __name__ == "__main__":
+    import sys
+    # Force UTF-8 output for emojis on Windows
+    if sys.stdout.encoding != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8')
+
     # Test run
     # If running as 'python -m kaizen_core.judge' from 'kaizen/' dir
     current_dir = Path.cwd()
