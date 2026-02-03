@@ -38,10 +38,10 @@
     "self-reflection",
     "predictive-evolution"
   ],
-  "homepage": "https://github.com/your-username/kaizen",
+  "homepage": "https://github.com/legendteddy/kaizen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/kaizen.git"
+    "url": "https://github.com/legendteddy/kaizen.git"
   },
   "license": "MIT",
   "author": "Kaizen Contributors"
