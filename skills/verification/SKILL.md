@@ -26,6 +26,23 @@ Enforce verification as a mandatory step before claiming completion.
 ✅ RIGHT: "I made the change. Verified: [proof]. Done."
 ```
 
+## Verification Protocol
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    EXECUTION VERIFICATION                       │
+│                                                                 │
+│  Before saying "done", ALWAYS:                                 │
+│                                                                 │
+│  1. RUN    → Execute the code/command                          │
+│  2. CHECK  → Look at actual output                             │
+│  3. TEST   → Verify expected behavior                          │
+│  4. EDGE   → Consider edge cases                               │
+│  5. CLEAN  → No errors, warnings addressed                     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 ---
 
 ## Verification Methods

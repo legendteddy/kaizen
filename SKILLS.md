@@ -1,7 +1,8 @@
-# Skills Index (74 Actionable Skills)
+# Skills Index (71 Actionable Skills)
 
 | Skill | Description |
-|:---|:---|| [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
+|:---|:---|
+| [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
 | [agent-architecture](skills/agent-architecture/) | Skill for designing robust agentic systems (Router, Worker, Evaluator patterns). |
 | [agent-cowork](skills/agent-cowork/) | Skill for claude-cowork tasks and workflows. |
 | [agent-security](skills/agent-security/) | Protocols for prompt injection defense, tool sandboxing, and output validation. |
@@ -12,7 +13,6 @@
 | [assumption-tracking](skills/assumption-tracking/) | Track assumptions made, validate them, and correct course when wrong. |
 | [autonomous-planning](skills/autonomous-planning/) | Skill for autonomous-planning tasks and workflows. |
 | [brainstorming](skills/brainstorming/) | Protocols for Generative Thinking, First Principles, and Inversion. |
-| [clean-code-python](skills/clean-code-python/) | Skill for clean-code-python tasks and workflows. |
 | [code-review](skills/code-review/) | Giving and receiving code review with constructive feedback. |
 | [coding-agents](skills/coding-agents/) | Skill for building and managing autonomous software engineering agents (Devin-like). |
 | [computer-use](skills/computer-use/) | Skill for controlling the cursor and keyboard to automate GUI tasks (Anthropic/OpenAI Computer Use). |
@@ -27,7 +27,6 @@
 | [deliberative-reasoning](skills/deliberative-reasoning/) | Skill for deliberative-reasoning tasks and workflows. |
 | [docs-fetcher](skills/docs-fetcher/) | Protocol for retrieving, parsing, and applying external documentation. |
 | [error-recovery](skills/error-recovery/) | Gracefully handle failures, retry intelligently, and recover without user intervention. |
-| [execution-verification](skills/execution-verification/) | Confirm work actually worked before reporting completion. |
 | [expert-claude-code-user](skills/expert-claude-code-user/) | Mastery over the Claude Code CLI, leveraging deep integration and plugins. |
 | [fastapi-expert](skills/fastapi-expert/) | Skill for building high-performance, async web APIs with FastAPI. |
 | [feedback-learning](skills/feedback-learning/) | Learn from user corrections permanently. Don't repeat mistakes. |
@@ -44,7 +43,6 @@
 | [proactive-behavior](skills/proactive-behavior/) | Know when to suggest improvements without being asked. Add value beyond the request. |
 | [progress-signaling](skills/progress-signaling/) | Keep user informed of progress during long tasks. |
 | [prompt-architect](skills/prompt-architect/) | Master skill for crafting system prompts and agent personas. |
-| [prompt-engineering](skills/prompt-engineering/) | Skill for prompt-engineering tasks and workflows. |
 | [python-automation-expert](skills/python-automation-expert/) | Skill for writing robust, safe, and maintainable Python automation scripts and CLI tools. |
 | [python-development](skills/python-development/) | Skill for python-development tasks and workflows. |
 | [pytorch-expert](skills/pytorch-expert/) | Skill for Deep Learning engineering using PyTorch. |

@@ -64,6 +64,33 @@ End every response with a defined Next Step.
 
 ## 2. Dynamic Prompting (Meta-Prompts)
 
+### Advanced Techniques (2026)
+
+#### Chain-of-Thought (CoT)
+Force the model to reason before answering.
+```
+"Let's think step by step:
+1. First, identify the problem
+2. Break it into components
+3. Solve each component
+4. Combine for final answer"
+```
+
+#### Tree of Thoughts (ToT)
+Explore multiple possibilities.
+```
+Generate multiple solutions → Evaluate each →
+Search promising branches → Select best path
+```
+
+#### Few-Shot Learning
+Provide clear examples to set the pattern.
+```
+Example 1: Input → Output
+Example 2: Input → Output
+Now: [New Input] → ?
+```
+
 ### The "Chain of Density"
 Iteratively pack more information into the prompt.
 > "Summarize this article." -> "Summarize in 5 bullets." -> "Summarize in 5 bullets, focusing on technical details, with < 50 words per bullet."

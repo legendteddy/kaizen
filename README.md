@@ -2,12 +2,12 @@
 
 [![Kaizen CI](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml/badge.svg)](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/Skills-74-blue.svg)](#skills)
+[![Skills](https://img.shields.io/badge/Skills-71-blue.svg)](#skills)
 [![Works With](https://img.shields.io/badge/Works%20With-All%20AI%20Agents-green.svg)](#compatibility)
 
 > **改善** (Kaizen) — Continuous Improvement
 
-**A systematic cognitive framework for AI agents.** 74 actionable skill protocols. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
+**A systematic cognitive framework for AI agents.** 71 actionable skill protocols. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents.
 
 ---
 
@@ -64,7 +64,7 @@ Add the content of `UNIVERSAL_PROMPT.txt` to your custom Instructions.
 
 ## 📚 Contents
 
-### 74 Actionable Skills
+### 71 Actionable Skills
 | Category | Examples |
 |:---|:---|
 | **Core** | self-improvement, verification, stability |

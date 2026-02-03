@@ -119,6 +119,41 @@ def sample_config():
 
 ---
 
+## Tooling Configuration (`pyproject.toml`)
+
+Enforce quality with Ruff.
+
+```toml
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"] # Pycodestyle, Pyflakes, Isort, Pyupgrade, Bugbear
+```
+
+---
+
+## Protocol: Implementation Workflow
+
+1.  **Draft**: Write working code first.
+2.  **Type**: Add `mypy` compatible hints.
+3.  **Lint**: Run `ruff check --fix .`.
+4.  **Format**: Run `ruff format .`.
+5.  **Test**: Write at least one `pytest` case for happy path.
+
+---
+
+## Anti-Patterns
+
+| Pattern | Why it's bad | Fix |
+|:---|:---|:---|
+| `from module import *` | Pollutes namespace, hard to trace | Import specific names |
+| `except Exception:` | Catches Ctrl-C and SystemExit | `except Exception as e:` |
+| `print()` debugging | Clutters stdout | Use `logging` or `rich` |
+
+---
+
 ## Common Libraries
 
 | Purpose | Library |
