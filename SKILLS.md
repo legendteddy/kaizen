@@ -16,8 +16,8 @@
 | [code-review](skills/code-review/) | Giving and receiving code review with constructive feedback. |
 | [coding-agents](skills/coding-agents/) | Skill for building and managing autonomous software engineering agents (Devin-like). |
 | [computer-use](skills/computer-use/) | Skill for controlling the cursor and keyboard to automate GUI tasks (Anthropic/OpenAI Computer Use). |
-| [context-limits](skills/context-limits/) | Work effectively within token limits. Compress, summarize, and manage memory. |
-| [context-manager](skills/context-manager/) | Comprehensive context window optimization and memory management, covering working memory efficiency, persistent memory storage, and session continuity across conversations. |
+| [context-limits](skills/context-limits/) | Techniques for lossy and lossless compression of information in LLM context. |
+| [context-manager](skills/context-manager/) | Protocols for Context Hygiene, Session Anchors, and Memory Persistence. |
 | [creative-solving](skills/creative-solving/) | Approach novel problems without precedent. Think outside existing patterns. |
 | [cursor-ide](skills/cursor-ide/) | Skill for cursor-ide tasks and workflows. |
 | [data-intelligence-pro](skills/data-intelligence-pro/) | Skill for advanced data analysis, cleaning, and insight generation. |
