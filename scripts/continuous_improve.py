@@ -8,12 +8,15 @@ from datetime import datetime
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from hive_client import HiveClient
 from agent_comm import AgentComm
+from benchmark_repo import RepoJudge
 
 class ContinuousImprover:
     def __init__(self, agent_name="worker"):
         self.agent_id = f"{agent_name}-{os.getpid()}"
         self.hive = HiveClient(self.agent_id)
         self.comm = AgentComm(self.agent_id)
+        self.judge = RepoJudge()
+        self.cycle_count = 0
         self.comm.log("Continuous Improver Daemon Started.")
 
     def check_skill_decay(self):
@@ -28,8 +31,16 @@ class ContinuousImprover:
 
     def run_cycle(self):
         """Single Tick"""
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] Polling backlog...")
+        self.cycle_count += 1
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] Polling backlog (Cycle {self.cycle_count})...")
         
+        # 0. Run Benchmarks (every 10 cycles)
+        if self.cycle_count % 10 == 0:
+            report = self.judge.run()
+            self.comm.log(f"Kaizen Score: {report['kaizen_score']}")
+            if report['kaizen_score'] < 50:
+                 self.hive.add_task("Improve Repository Health (Score < 50)", priority="high")
+
         # 1. Check for work
         task = self.hive.get_task()
         if task:

@@ -91,5 +91,24 @@ Before committing code, run this sequence:
 
 ---
 
+---
+
+## Protocol: Internal Repo Benchmark (The Kaizen Score)
+
+To continuously measure the health of the Kaizen repository, run:
+
+```bash
+python scripts/benchmark_repo.py
+```
+
+### Metrics Judged
+1.  **Scale:** Total number of effective skills (Target: 70+).
+2.  **Depth:** Percentage of skills that are "Industrial Grade" (> 1.5KB).
+3.  **Safety:** Absence of stale file locks in `.agents/locks`.
+
+**Target Score:** > 80/100.
+
+---
+
 ## Continuous Improvement
 Add new failure cases to your local benchmark dataset every time a mistake is caught. This prevents regression and builds the framework's "immune system."
