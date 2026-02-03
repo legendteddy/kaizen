@@ -268,6 +268,33 @@ source: [where you found this]
 
 ---
 
+## Protocol: Just-in-Time Skill Calibration
+
+**"Don't use a rusty tool."**
+
+Before relying heavily on a skill (especially for Frontier AI, Frameworks, or Security), perform a rapid calibration.
+
+### The Micro-Loop (Pre-Use)
+
+1.  **Check Date/Version**:
+    *   Read the skill. Is it utilizing `v1` when `v2` is standard?
+    *   *Example:* "This React skill uses `useEffect` for fetching, but Next.js 14 uses Server Components."
+
+2.  **Benchmark Search**:
+    *   `search_web("latest best practices for [TOPIC] 2026")`
+    *   `search_web("[TOPIC] state of the art benchmarks")`
+
+3.  **Nano-Upgrade**:
+    *   If the skill is outdated, **update the SKILL.md** file *before* executing the task.
+    *   Add the new best practice found.
+
+4.  **Execute**:
+    *   Use the newly polished skill.
+
+> **Why?** This ensures Kaizen never rots. Every use is an opportunity to modernize.
+
+---
+
 ## Skill Balancing Protocol (Splitting vs Merging)
 
 A healthy framework requires balance. Not too granular, not too broad.
