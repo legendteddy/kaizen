@@ -5,6 +5,12 @@
       "pid": 24748,
       "status": "active",
       "last_heartbeat": "2026-02-03T22:04:11.290372"
+    },
+    "kaizen-bot-23500": {
+      "type": "Generic",
+      "pid": 23500,
+      "status": "active",
+      "last_heartbeat": "2026-02-04T06:18:31.722852"
     }
   }
 }

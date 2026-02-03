@@ -1,6 +1,6 @@
-import unittest
 import os
-import yaml
+import unittest
+
 
 class TestKaizenIntegrity(unittest.TestCase):
     
@@ -18,7 +18,7 @@ class TestKaizenIntegrity(unittest.TestCase):
             readme = os.path.join(skill_path, "SKILL.md")
             self.assertTrue(os.path.exists(readme), f"Missing SKILL.md in {skill_name}")
             
-            with open(readme, 'r', encoding='utf-8') as f:
+            with open(readme, encoding='utf-8') as f:
                 content = f.read()
                 
             self.assertTrue(content.startswith("---"), f"{skill_name} missing frontmatter start")

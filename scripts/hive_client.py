@@ -1,8 +1,8 @@
-import os
 import json
-import time
+import os
 import uuid
 from datetime import datetime
+
 try:
     from agent_comm import AgentComm
 except ImportError:
@@ -25,7 +25,7 @@ class HiveClient:
             if not os.path.exists(backlog_file):
                 return None
             
-            with open(backlog_file, 'r') as f:
+            with open(backlog_file) as f:
                 tasks = json.load(f)
             
             for task in tasks:
@@ -45,7 +45,7 @@ class HiveClient:
     def complete_task(self, task_id, status="completed", result=None):
         """Mark a task as completed."""
         with self.comm.file_lock("backlog.json"):
-            with open(backlog_file, 'r') as f:
+            with open(backlog_file) as f:
                 tasks = json.load(f)
             
             for task in tasks:
@@ -63,10 +63,10 @@ class HiveClient:
         """Add a new task to the backlog."""
         with self.comm.file_lock("backlog.json"):
             if os.path.exists(backlog_file):
-                with open(backlog_file, 'r') as f:
+                with open(backlog_file) as f:
                     try:
                         tasks = json.load(f)
-                    except:
+                    except json.JSONDecodeError:
                         tasks = []
             else:
                 tasks = []

@@ -1,7 +1,7 @@
 {
   "name": "kaizen",
   "version": "1.0.0",
-  "description": "The most comprehensive self-evolving AI skills framework. 84 actionable skills that make any AI agent better. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents. Features Step Zero purpose understanding, self-evolution loop, and predictive improvement.",
+  "description": "The most comprehensive self-evolving AI skills framework. 74 actionable skills that make any AI agent better. Works with Gemini CLI, Claude Code, Cursor, Windsurf, and all LLM agents. Features Step Zero purpose understanding, self-evolution loop, and predictive improvement.",
   "keywords": [
     "ai",
     "ai-agent",

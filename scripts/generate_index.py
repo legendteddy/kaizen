@@ -12,7 +12,7 @@ def get_skill_info(skill_path):
     if not os.path.exists(readme_path):
         return None
     
-    with open(readme_path, 'r', encoding='utf-8') as f:
+    with open(readme_path, encoding='utf-8') as f:
         content = f.read()
         
     # Extract description from frontmatter
@@ -22,12 +22,6 @@ def get_skill_info(skill_path):
     return description
 
 def generate_index():
-    categories = {
-        "Core": ["self-improvement", "verification", "stability-protocols", "sovereign-identity"],
-        "Development": ["python", "react", "typescript", "clean-code"],
-        "Tools": ["debug", "git", "test"],
-        "Uncategorized": []
-    }
     
     skills = []
     

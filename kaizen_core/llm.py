@@ -1,10 +1,11 @@
 import json
 import os
-import time
 import subprocess
-import urllib.request
+import time
 import urllib.error
-from typing import List, Dict, Optional
+import urllib.request
+from typing import Any
+
 
 class LLMClient:
     def __init__(self, provider="ollama", model="llama3.2", base_url="http://localhost:11434"):
@@ -63,7 +64,7 @@ class LLMClient:
                         if model["name"].startswith(model_name):
                             return True
             return False
-        except:
+        except Exception:
             return False
 
     def _pull_model(self, model_name: str):
@@ -85,7 +86,7 @@ class LLMClient:
         try:
             with urllib.request.urlopen(f"{self.base_url}/api/tags", timeout=1) as response:
                 return response.status == 200
-        except:
+        except Exception:
             return False
 
     def complete(self, system_prompt: str, user_prompt: str) -> str:
@@ -103,7 +104,44 @@ class LLMClient:
         else:
             raise NotImplementedError(f"Provider {self.provider} not implemented yet.")
 
-    def _call_ollama(self, messages: List[Dict]) -> str:
+    def critique_action(self, proposed_action: str, context: str) -> dict[str, Any]:
+        """
+        Reflexion Loop: Asks the LLM to critique the proposed action.
+        Returns: {"approved": bool, "feedback": str}
+        """
+        system_prompt = """
+You are the KAIZEN CRITIC. Your job is to prevent the agent from making mistakes.
+Review the proposed tool action.
+
+CRITERIA:
+1. SAFETY: Is the command dangerous (e.g., 'rm -rf')?
+2. CORRECTNESS: Does the syntax look valid?
+3. RELEVANCE: Does this help the objective?
+
+Output JSON ONLY:
+{
+    "approved": true/false,
+    "feedback": "Short reason why approved or rejected"
+}
+"""
+        user_prompt = f"CONTEXT: {context}\n\nPROPOSED ACTION: {proposed_action}"
+        
+        response = self.complete(system_prompt, user_prompt)
+        
+        try:
+            # Extract JSON from potential markdown blocks
+            json_str = response.strip()
+            if "```json" in json_str:
+                json_str = json_str.split("```json")[1].split("```")[0].strip()
+            elif "```" in json_str:
+                json_str = json_str.split("```")[1].split("```")[0].strip()
+                
+            return json.loads(json_str)
+        except Exception:
+            # Fallback if JSON parsing fails - assume cautious approval but warn
+            return {"approved": True, "feedback": f"Warning: Could not parse Critic JSON. Proceeding with caution. Raw: {response[:50]}"}
+
+    def _call_ollama(self, messages: list[dict]) -> str:
         url = f"{self.base_url}/api/chat"
         payload = {
             "model": self.model,

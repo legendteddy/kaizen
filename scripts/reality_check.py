@@ -1,10 +1,6 @@
+import ast
 import os
 import re
-import ast
-import urllib.request
-import urllib.error
-import time
-from pathlib import Path
 from datetime import datetime
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,9 +11,10 @@ SCAN_DIRS = [SKILLS_DIR, PATTERNS_DIR]
 def get_anchors(file_path):
     """Extracts all headers as slugified anchors from a markdown file."""
     anchors = set()
-    if not os.path.exists(file_path): return anchors
+    if not os.path.exists(file_path):
+        return anchors
     
-    with open(file_path, 'r', encoding='utf-8') as f:
+    with open(file_path, encoding='utf-8') as f:
         for line in f:
             if line.startswith("#"):
                 # Clean header to slug: "## My Header!" -> "my-header"
@@ -89,7 +86,8 @@ def run():
     code_regex = re.compile(r'```python(.*?)```', re.DOTALL)
     
     for scan_dir in SCAN_DIRS:
-        if not os.path.exists(scan_dir): continue
+        if not os.path.exists(scan_dir):
+            continue
         
         for sk in os.listdir(scan_dir):
             path = os.path.join(scan_dir, sk)
@@ -100,12 +98,14 @@ def run():
             if not os.path.exists(path): 
                 # Fallback for patterns which are .py files or .md files directly
                 path = os.path.join(scan_dir, sk)
-                if not os.path.isfile(path): continue
+                if not os.path.isfile(path):
+                    continue
             
             # Skip non-markdown/python text files
-            if not path.endswith('.md') and not path.endswith('.py'): continue
+            if not path.endswith('.md') and not path.endswith('.py'):
+                continue
 
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(path, encoding='utf-8') as f:
                 content = f.read()
             
             # Special check for .py files: The whole file is code
@@ -132,7 +132,8 @@ def run():
             for match in code_regex.finditer(content):
                 total_checks += 1
                 code = match.group(1).strip()
-                if "..." in code and len(code) < 20: continue 
+                if "..." in code and len(code) < 20:
+                    continue 
                 
                 valid, err = check_python_syntax(code)
                 if valid:
@@ -151,7 +152,7 @@ def run():
                 
     score = (passed_checks / total_checks * 100) if total_checks > 0 else 0
     
-    print(f"\nRESULTS:")
+    print("\nRESULTS:")
     print(f"Total Deep Checks: {total_checks}")
     print(f"Failures Found: {len(failures)}")
     

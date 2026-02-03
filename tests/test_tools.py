@@ -1,6 +1,8 @@
+
 import pytest
-from pathlib import Path
-from kaizen_core.tools import ToolManager, SecurityError
+
+from kaizen_core.tools import SecurityError, ToolManager
+
 
 @pytest.fixture
 def workspace(tmp_path):

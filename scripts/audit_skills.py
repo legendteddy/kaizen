@@ -2,6 +2,7 @@ import os
 import re
 import sys
 
+
 def audit_skills():
     """
     Audits the sync between skills/ directories and SKILLS.md index.
@@ -15,7 +16,7 @@ def audit_skills():
     real_skills = {d for d in os.listdir(skills_dir) if os.path.isdir(os.path.join(skills_dir, d))}
     
     # 2. Get listed skills from SKILLS.md
-    with open(index_file, 'r', encoding='utf-8') as f:
+    with open(index_file, encoding='utf-8') as f:
         content = f.read()
     
     # Extract links like [skill-name](skills/skill-name/)

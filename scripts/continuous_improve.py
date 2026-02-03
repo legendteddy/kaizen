@@ -1,14 +1,15 @@
 import os
-import time
-import sys
 import random
+import sys
+import time
 from datetime import datetime
 
 # Add local path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from hive_client import HiveClient
 from agent_comm import AgentComm
 from benchmark_repo import RepoJudge
+from hive_client import HiveClient
+
 
 class ContinuousImprover:
     def __init__(self, agent_name="worker"):

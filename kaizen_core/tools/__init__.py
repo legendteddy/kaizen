@@ -1,8 +1,8 @@
-import subprocess
 import os
 import shlex
+import subprocess
 from pathlib import Path
-from typing import List
+
 
 class SecurityError(Exception):
     pass
@@ -30,7 +30,7 @@ class ToolManager:
             
             return target
         except Exception as e:
-            raise SecurityError(f"Invalid path: {e}")
+            raise SecurityError(f"Invalid path: {e}") from e
 
     def _validate_command(self, command: str):
         """Prevents dangerous shell execution."""
@@ -55,7 +55,7 @@ class ToolManager:
             if not target.is_file():
                 return f"Error: {file_path} is not a file."
                 
-            with open(target, 'r', encoding='utf-8') as f:
+            with open(target, encoding='utf-8') as f:
                 return f.read()
         except SecurityError as e:
             return f"SECURITY ALERT: {e}"

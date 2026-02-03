@@ -1,8 +1,7 @@
 import os
 import re
 from pathlib import Path
-from typing import Dict, List, Any
-import subprocess
+
 
 class RepoJudge:
     def __init__(self, repo_root: Path):
@@ -98,7 +97,7 @@ class RepoJudge:
             try:
                 content = py_file.read_text(encoding="utf-8")
                 todos += len(re.findall(r"#\s*TODO", content, re.IGNORECASE))
-            except:
+            except Exception:
                 pass
         
         self.report.append(f"- Found {todos} TODO markers in core code.")
@@ -118,7 +117,7 @@ class RepoJudge:
 
         try:
             import json
-            with open(backlog_path, 'r', encoding='utf-8') as f:
+            with open(backlog_path, encoding='utf-8') as f:
                 tasks = json.load(f)
             
             pending = sum(1 for t in tasks if t['status'] == 'pending')
@@ -130,7 +129,7 @@ class RepoJudge:
             if in_progress > 3:
                 self._deduct(5, "High WIP (Work In Progress).")
             if pending > 10:
-                self.report.append("- ℹ️ Backlog is growing.")
+                self.report.append("- [INFO] Backlog is growing.")
         except Exception as e:
             self.report.append(f"- ❌ Error reading backlog: {e}")
 

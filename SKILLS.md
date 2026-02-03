@@ -35,6 +35,7 @@
 | [implementation-planning](skills/implementation-planning/) | Creating architectural blueprints, dependency graphs, and phased rollout plans. |
 | [knowledge-synthesis](skills/knowledge-synthesis/) | Combine information from multiple sources into coherent understanding. |
 | [mcp-protocol](skills/mcp-protocol/) | Skill for mcp-protocol tasks and workflows. |
+| [meta-optimizer](skills/meta-optimizer/) | Self-Taught Optimizer (STO) protocol. Systematically improve the agent's own cognitive source code. |
 | [open-source-llms](skills/open-source-llms/) | Guide to local Llama/Mistral/Qwen models, hardware requirements, and serving engines. |
 | [pandas-expert](skills/pandas-expert/) | High-performance data manipulation, vectorization patterns, and memory optimization. |
 | [precision-coder](skills/precision-coder/) | Elite coding standards with zero-bug tolerance, type safety enforcement, security-first development, and comprehensive code review checklists. |
@@ -47,6 +48,7 @@
 | [python-development](skills/python-development/) | Skill for python-development tasks and workflows. |
 | [pytorch-expert](skills/pytorch-expert/) | Skill for Deep Learning engineering using PyTorch. |
 | [react-ts-expert](skills/react-ts-expert/) | Protocols for React 19, Server Components, TypeScript, and State Management. |
+| [reflexion-loop](skills/reflexion-loop/) | Runtime self-correction protocol. Critique and refine output BEFORE delivery. |
 | [research-intelligence](skills/research-intelligence/) | Advanced research methodology combining CRAG (Corrective Retrieval-Augmented Generation), agentic RAG patterns, and proactive web research for accurate, up-to-date solutions. |
 | [robotics-ai](skills/robotics-ai/) | Skill for robotics-ai tasks and workflows. |
 | [safety-boundaries](skills/safety-boundaries/) | Know when to refuse, warn, or proceed with caution. |

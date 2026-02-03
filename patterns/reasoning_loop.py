@@ -20,8 +20,8 @@ def sovereign_reasoning_loop(objective: str) -> tuple[str, str]:
         simplicity_score = evaluate_simplicity(candidate)
         scores.append(safety_score + correctness_score + simplicity_score)
     
-    # 3. SELECT optimal path
-    optimal_index = argmax(scores)
+    # 3. SELECT optimal path (argmax is a placeholder for scores.index(max(scores)))
+    optimal_index = scores.index(max(scores))
     optimal_path = candidates[optimal_index]
     
     # 4. REFLECT and EXPLAIN

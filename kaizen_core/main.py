@@ -1,16 +1,17 @@
-import time
-import sys
 import os
 import re
+import time
 from pathlib import Path
+
 from .backlog import BacklogManager
 from .llm import LLMClient
-from .tools import ToolManager
+from .models import Task
+from .tools.manager import ToolManager
 
 # Constants
 REPO_ROOT = Path(__file__).parent.parent
 AGENT_ID = f"kaizen-core-{os.getpid()}"
-MAX_TURNS = 5
+MAX_TURNS = 10 # Increased for complex tasks
 
 def main():
     print(f"🚀 Kaizen Agent ({AGENT_ID}) started.")
@@ -19,6 +20,7 @@ def main():
     backlog = BacklogManager(AGENT_ID)
     tools = ToolManager(REPO_ROOT)
     llm = LLMClient() 
+ 
 
     while True:
         print("👀 Polling backlog...")
@@ -30,7 +32,7 @@ def main():
         else:
             time.sleep(5) 
 
-def process_task(task, tools, llm, backlog):
+def process_task(task: Task, tools: ToolManager, llm: LLMClient, backlog: BacklogManager):
     try:
         # 1. Gather Context
         kaizen_principles = tools.read_file("KAIZEN.md")
@@ -52,19 +54,7 @@ Your goal is to complete the assigned task by executing tools.
 
 # Protocol
 1. THINK: Analyze the situation and decide next step.
-2. ACT: Execute a tool using XML format:
-   
-   For writing files:
-   <tool name="write_file" path="filename.md">
-   File content goes here...
-   </tool>
-
-   For commands:
-   <tool name="run_shell" command="ls -la" />
-
-3. OBSERVE: Read the tool output.
-4. REPEAT: Loop until task is done.
-5. FINISH: When done, output "FINISHED: <summary>"
+2. ACT: Execute a tool using XML format.
 
 # IMPORTANT
 - Only one tool call per turn.
@@ -72,8 +62,8 @@ Your goal is to complete the assigned task by executing tools.
 """
         
         initial_user_prompt = f"""
-TASK: {task['title']}
-CONTEXT: {task.get('context', 'None')}
+TASK: {task.title}
+CONTEXT: {task.context or 'None'}
 WORKSPACE: {files}
 
 Begin.
@@ -81,7 +71,7 @@ Begin.
         history.append({"role": "user", "content": initial_user_prompt})
 
         consecutive_failures = 0
-        MAX_FAILURES = 3
+        max_failures = 3
 
         for turn in range(MAX_TURNS):
             print(f"🔄 Turn {turn+1}/{MAX_TURNS}")
@@ -94,7 +84,7 @@ Begin.
             # CHECK FOR FINISH
             if "FINISHED:" in response:
                 summary = response.split("FINISHED:", 1)[1].strip()
-                backlog.complete_task(task['id'], success=True, result=summary)
+                backlog.complete_task(task.id, success=True, result=summary)
                 print("✅ Task Completed.")
                 return
 
@@ -102,14 +92,33 @@ Begin.
             tool_call = parse_tool_call(response)
             if tool_call:
                 name, args = tool_call
-                print(f"🛠️ Executing: {name} {args}")
+                print(f"🛠️  Proposing: {name} {args}")
+
+                # --- REFLEXION LOOP (AGI LEVEL 1) ---
+                # "Measure twice, cut once."
+                print("🤔 Critiquing action...")
+                critique = llm.critique_action(
+                    proposed_action=f"{name} {args}", 
+                    context=format_history(history[-2:]) # Last 2 turns context
+                )
+
+                if not critique.get("approved", True):
+                    print(f"🛑 CRITIC REJECTED: {critique['feedback']}")
+                    history.append({
+                        "role": "user", 
+                        "content": f"CRITIC_INTERVENTION: Action blocked. Feedback: {critique['feedback']}. Please revise your plan."
+                    })
+                    continue  # SKIP EXECUTION, FORCE RETRY
+                
+                print(f"✅ Critic Approved: {critique.get('feedback', 'Go ahead')}")
+                # ------------------------------------
                 
                 output = execute_tool(name, args, tools)
                 
                 # STABILITY CHECK: If tool output is an error, count as failure
                 if output.startswith("Error") or output.startswith("SECURITY ALERT"):
                     consecutive_failures += 1
-                    print(f"⚠️ Tool Failure ({consecutive_failures}/{MAX_FAILURES})")
+                    print(f"⚠️ Tool Failure ({consecutive_failures}/{max_failures})")
                 else:
                     consecutive_failures = 0 # Reset on success
                 
@@ -117,23 +126,23 @@ Begin.
                 history.append({"role": "user", "content": f"TOOL_OUTPUT: {output}"})
             else:
                 consecutive_failures += 1
-                print(f"⚠️ No tool call detected ({consecutive_failures}/{MAX_FAILURES}).")
+                print(f"⚠️ No tool call detected ({consecutive_failures}/{max_failures}).")
                 history.append({"role": "user", "content": "Error: No valid tool call found. You MUST use XML format."})
 
             # CIRCUIT BREAKER
-            if consecutive_failures >= MAX_FAILURES:
+            if consecutive_failures >= max_failures:
                 error_msg = "Circuit Breaker Tripped: Too many consecutive failures/hallucinations."
                 print(f"❌ {error_msg}")
-                backlog.complete_task(task['id'], success=False, result=error_msg)
+                backlog.complete_task(task.id, success=False, result=error_msg)
                 return
 
         # If we run out of turns
-        backlog.complete_task(task['id'], success=False, result="Task timed out (Max turns reached).")
+        backlog.complete_task(task.id, success=False, result="Task timed out (Max turns reached).")
         print("❌ Task Timed Out.")
         
     except Exception as e:
         print(f"❌ Task Failed: {e}")
-        backlog.complete_task(task['id'], success=False, result=str(e))
+        backlog.complete_task(task.id, success=False, result=str(e))
 
 def format_history(history):
     return "\n".join([f"{msg['role'].upper()}: {msg['content']}" for msg in history])
@@ -180,13 +189,16 @@ def parse_tool_call(text):
         args = {}
         
         path_match = re.search(r'path=["\']([^"\\]+)["\\]', args_str)
-        if path_match: args['path'] = path_match.group(1)
+        if path_match:
+            args['path'] = path_match.group(1)
         
         content_match = re.search(r'content=["\']([\s\S]*)["\\]', args_str)
-        if content_match: args['content'] = content_match.group(1)
+        if content_match:
+            args['content'] = content_match.group(1)
         
         cmd_match = re.search(r'command=["\']([^"\\]+)["\\]', args_str)
-        if cmd_match: args['command'] = cmd_match.group(1)
+        if cmd_match:
+            args['command'] = cmd_match.group(1)
         
         return name, args
     return None

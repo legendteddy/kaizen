@@ -1,6 +1,5 @@
-import os
 import json
-import time
+import os
 from datetime import datetime
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,7 +41,7 @@ class RepoJudge:
             path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
             if os.path.exists(path):
                 total += 1
-                with open(path, 'r', encoding='utf-8') as f:
+                with open(path, encoding='utf-8') as f:
                     content = f.read()
                     if "- [ ]" in content or "- [x]" in content or "## Checklist" in content:
                         actionable += 1
@@ -58,7 +57,7 @@ class RepoJudge:
             path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
             if os.path.exists(path):
                 total += 1
-                with open(path, 'r', encoding='utf-8') as f:
+                with open(path, encoding='utf-8') as f:
                     content = f.read()
                     # Check for markdown links to sibling directories
                     # Regex for [Text](../skill_name) or [Text](./skill_name) or just skill_name
@@ -80,14 +79,15 @@ class RepoJudge:
         if os.path.exists(SKILLS_DIR):
             for sk in os.listdir(SKILLS_DIR):
                 path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
-                if not os.path.exists(path): continue
+                if not os.path.exists(path):
+                    continue
                 
                 # Check Depth
                 if os.path.getsize(path) <= 2000:
                     fails_depth.append(sk)
                 
                 # Check Content
-                with open(path, 'r', encoding='utf-8') as f:
+                with open(path, encoding='utf-8') as f:
                     content = f.read()
                     # Compliance
                     if "## Activation Trigger" not in content or "> " not in content:
@@ -111,7 +111,7 @@ class RepoJudge:
         
         # Blended Score (God Mode)
         # 20% Each: Compliance, Intelligence, Depth, Actionability, Connectivity
-        scale_score = min(100, (skill_count / 70) * 100)
+        min(100, (skill_count / 70) * 100)
         
         kaizen_score = (
             (compliance * 0.20) + 
@@ -141,10 +141,12 @@ class RepoJudge:
         print(f"   - Actionability: {report['metrics']['actionability']}%")
         
         print(f"   - Connectivity: {report['metrics']['connectivity']}% (Failed: {len(fails_connectivity)})")
-        if fails_connectivity: print(f"     ❌ {fails_connectivity[:5]}... (+{len(fails_connectivity)-5} more)" if len(fails_connectivity) > 5 else f"     ❌ {fails_connectivity}")
+        if fails_connectivity:
+            print(f"     ❌ {fails_connectivity[:5]}... (+{len(fails_connectivity)-5} more)" if len(fails_connectivity) > 5 else f"     ❌ {fails_connectivity}")
         
         print(f"   - Depth (>2KB): {report['metrics']['depth_strict']}% (Failed: {len(fails_depth)})")
-        if fails_depth: print(f"     ❌ {fails_depth}")
+        if fails_depth:
+            print(f"     ❌ {fails_depth}")
         
         return report
 

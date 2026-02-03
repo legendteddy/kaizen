@@ -1,8 +1,7 @@
-import os
-import json
-import time
-import uuid
 import contextlib
+import json
+import os
+import time
 from datetime import datetime, timedelta
 
 AGENTS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".agents")
@@ -72,14 +71,14 @@ class AgentComm:
             
             # Check for stale lock
             try:
-                with open(lock_path, 'r') as f:
+                with open(lock_path) as f:
                     data = json.load(f)
                     expiry = datetime.fromisoformat(data["expiry"])
                     if datetime.now() > expiry:
                         print(f"Stealing stale lock from {data['agent']}")
                         os.remove(lock_path)
                         continue
-            except:
+            except Exception:
                 pass
                 
             time.sleep(1)

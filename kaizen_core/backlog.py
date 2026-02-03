@@ -1,118 +1,84 @@
 import json
-import os
-import time
+import sqlite3
 from datetime import datetime
-from typing import Optional, List, Dict
 from pathlib import Path
 
-# Paths relative to the repository root
-# Assuming this runs from inside kaizen/ or similar
-REPO_ROOT = Path(__file__).parent.parent
-AGENTS_DIR = REPO_ROOT / ".agents"
-BACKLOG_FILE = AGENTS_DIR / "backlog.json"
-LOCK_FILE = AGENTS_DIR / "backlog.json.lock"
+from .models import Task, TaskStatus
+
 
 class BacklogManager:
-    def __init__(self, agent_id: str):
+    def __init__(self, agent_id: str, db_path: Path | None = None):
         self.agent_id = agent_id
-        self._ensure_dir()
+        if db_path is None:
+            # Look for repo root
+            self.db_path = Path(__file__).parent.parent / ".agents" / "kaizen.db"
+        else:
+            self.db_path = db_path
+        
+        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        self._init_db()
 
-    def _ensure_dir(self):
-        if not AGENTS_DIR.exists():
-            AGENTS_DIR.mkdir(parents=True)
-        if not BACKLOG_FILE.exists():
-            with open(BACKLOG_FILE, 'w') as f:
-                json.dump([], f)
-
-    def _acquire_lock(self, timeout=5):
-        start = time.time()
-        while time.time() - start < timeout:
-            if not LOCK_FILE.exists():
-                try:
-                    with open(LOCK_FILE, 'w') as f:
-                        f.write(self.agent_id)
-                    return True
-                except FileExistsError:
-                    pass
-            time.sleep(0.1)
-        return False
-
-    def _release_lock(self):
-        if LOCK_FILE.exists():
-            try:
-                os.remove(LOCK_FILE)
-            except:
-                pass
-
-    def get_pending_task(self) -> Optional[Dict]:
-        """Finds a pending task and claims it."""
-        if not self._acquire_lock():
-            return None
-
-        try:
-            with open(BACKLOG_FILE, 'r') as f:
-                tasks = json.load(f)
-
-            for task in tasks:
-                if task["status"] == "pending" and task["assigned_to"] is None:
-                    # Claim it
-                    task["status"] = "in_progress"
-                    task["assigned_to"] = self.agent_id
-                    task["started_at"] = datetime.utcnow().isoformat()
-                    
-                    # Save
-                    with open(BACKLOG_FILE, 'w') as f:
-                        json.dump(tasks, f, indent=4)
-                    
-                    return task
-            return None
-        finally:
-            self._release_lock()
-
-    def complete_task(self, task_id: str, success: bool = True, result: str = ""):
-        """Marks a task as completed or failed."""
-        if not self._acquire_lock():
-            print("Failed to acquire lock to complete task")
-            return
-
-        try:
-            with open(BACKLOG_FILE, 'r') as f:
-                tasks = json.load(f)
-
-            for task in tasks:
-                if task["id"] == task_id:
-                    task["status"] = "completed" if success else "failed"
-                    task["completed_at"] = datetime.utcnow().isoformat()
-                    task["result"] = result
-                    break
-            
-            with open(BACKLOG_FILE, 'w') as f:
-                json.dump(tasks, f, indent=4)
-        finally:
-            self._release_lock()
+    def _init_db(self):
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS tasks (
+                    id TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    context TEXT,
+                    status TEXT NOT NULL,
+                    priority TEXT NOT NULL,
+                    assigned_to TEXT,
+                    created_at TEXT NOT NULL,
+                    started_at TEXT,
+                    completed_at TEXT,
+                    result TEXT,
+                    metadata TEXT
+                )
+            """)
+            conn.commit()
 
     def add_task(self, title: str, priority: str = "medium", context: str = ""):
-        """Adds a new task to the backlog."""
-        if not self._acquire_lock():
-            return
+        task = Task(title=title, priority=priority, context=context)
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute(
+                "INSERT INTO tasks (id, title, context, status, priority, created_at, metadata) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (task.id, task.title, task.context, task.status.value, task.priority.value, task.created_at.isoformat(), json.dumps(task.metadata))
+            )
 
-        try:
-            with open(BACKLOG_FILE, 'r') as f:
-                tasks = json.load(f)
+    def get_pending_task(self) -> Task | None:
+        """Atomically claims a pending task using SQLite."""
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
             
-            new_task = {
-                "id": f"task_{int(time.time())}",
-                "title": title,
-                "status": "pending",
-                "priority": priority,
-                "assigned_to": None,
-                "created_at": datetime.utcnow().isoformat(),
-                "context": context
-            }
+            # Use a transaction to find and update
+            cursor.execute(
+                "SELECT * FROM tasks WHERE status = ? AND assigned_to IS NULL LIMIT 1", 
+                (TaskStatus.PENDING.value,)
+            )
+            row = cursor.fetchone()
             
-            tasks.append(new_task)
-            
-            with open(BACKLOG_FILE, 'w') as f:
-                json.dump(tasks, f, indent=4)
-        finally:
-            self._release_lock()
+            if row:
+                task_id = row['id']
+                started_at = datetime.utcnow().isoformat()
+                cursor.execute(
+                    "UPDATE tasks SET status = ?, assigned_to = ?, started_at = ? WHERE id = ?",
+                    (TaskStatus.IN_PROGRESS.value, self.agent_id, started_at, task_id)
+                )
+                conn.commit()
+                
+                # Convert row to Task object
+                data = dict(row)
+                data['status'] = TaskStatus(data['status'])
+                data['metadata'] = json.loads(data['metadata'])
+                return Task(**data)
+        return None
+
+    def complete_task(self, task_id: str, success: bool = True, result: str = ""):
+        status = TaskStatus.COMPLETED if success else TaskStatus.FAILED
+        completed_at = datetime.utcnow().isoformat()
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute(
+                "UPDATE tasks SET status = ?, completed_at = ?, result = ? WHERE id = ?",
+                (status.value, completed_at, result, task_id)
+            )

@@ -1,7 +1,7 @@
-import sys
-import json
 import datetime
+import json
 import os
+import sys
 
 LOG_FILE = os.path.join("proof", "evolution_log.jsonl")
 

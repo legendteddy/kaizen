@@ -1,7 +1,7 @@
 import os
-import sys
 import shutil
-import platform
+import sys
+
 
 def print_header():
     print("==========================================")
@@ -28,7 +28,7 @@ def install_cursor():
     target = ".cursorrules"
     
     # Read universal prompt
-    with open("UNIVERSAL_PROMPT.txt", "r", encoding="utf-8") as f:
+    with open("UNIVERSAL_PROMPT.txt", encoding="utf-8") as f:
         prompt = f.read()
         
     # Append to .cursorrules
@@ -43,7 +43,7 @@ def install_claude():
     print("\n[Claude Code Setup]")
     target = "CLAUDE.md"
     
-    with open("UNIVERSAL_PROMPT.txt", "r", encoding="utf-8") as f:
+    with open("UNIVERSAL_PROMPT.txt", encoding="utf-8") as f:
         prompt = f.read()
         
     mode = "a" if os.path.exists(target) else "w"
