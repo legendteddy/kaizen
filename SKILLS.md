@@ -1,4 +1,4 @@
-# Skills Index (65 Actionable Skills)
+# Skills Index (74 Actionable Skills)
 
 ## 🔄 Core — Self-Evolution
 | Skill | Description |
