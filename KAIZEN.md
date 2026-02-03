@@ -415,6 +415,33 @@ cp -r kaizen/skills ~/.gemini/skills
 
 ---
 
+## Protocol: The Hive Mind (Continuous Collaboration)
+
+> **"None of us is as smart as all of us."**
+
+To enable true **Continuous Improvement**, Kaizen agents operate as a collective "Hive Mind".
+
+### 1. The Shared Backlog (`.agents/backlog.json`)
+Agents do not just wait for commands. They actively seek work from the shared queue.
+
+- **Poll:** Check the backlog for `pending` tasks.
+- **Claim:** Lock the task and mark it `in_progress`.
+- **Execute:** Perform the work using your specific skills (e.g., `gemini-cli`, `anthropics-client`).
+- **Complete:** Mark as `completed` and log results.
+
+### 2. The "Pass the Baton" Rule
+If you hit a wall (e.g., "I don't know how to fix this React bug"), do not fail silently.
+**Create a Task:** Add a task to the backlog for a specialist agent to pick up.
+
+### 3. Continuous Improvement Daemon
+Run `python scripts/continuous_improve.py` to enter "Daemon Mode".
+The agent will:
+1.  Execute backlog tasks.
+2.  Scan for "Skill Decay" (outdated files).
+3.  Auto-generate maintenance tasks.
+
+---
+
 ## License
 
 MIT — Use freely, improve constantly.
