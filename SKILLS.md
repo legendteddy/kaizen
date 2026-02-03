@@ -3,6 +3,7 @@
 | Skill | Description |
 |:---|:---|
 | [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
+| [agent-communication](skills/agent-communication/) | Protocols for Inter-Agent Communication (IAC), Locking, and Swarm Coordination. |
 | [agent-architecture](skills/agent-architecture/) | Skill for designing robust agentic systems (Router, Worker, Evaluator patterns). |
 | [agent-cowork](skills/agent-cowork/) | Skill for claude-cowork tasks and workflows. |
 | [agent-security](skills/agent-security/) | Protocols for prompt injection defense, tool sandboxing, and output validation. |
