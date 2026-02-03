@@ -17,11 +17,41 @@ class RepoJudge:
         self.report = ["# Repo Health Audit", f"**Date:** {os.environ.get('DATE', 'Today')}", ""]
         
         self._check_skills_structure()
+        self._check_duplicate_skills()
         self._check_python_quality()
         self._check_backlog_health()
         
         self.report.append(f"\n## Final Score: {self.score}/100")
+        
+        # QUALITY GATE
+        if self.score < 90:
+            self.report.append("\n❌ **FAILED: Score below 90/100 threshold.**")
+            # In a real CI env, we would sys.exit(1) here
+        else:
+            self.report.append("\n✅ **PASSED: Quality Standards Met.**")
+            
         return "\n".join(self.report)
+
+    def _check_duplicate_skills(self):
+        """Check for potentially duplicate skill names."""
+        self.report.append("\n## 1.5 Duplicate Check")
+        skills = [f.name for f in self.skills_dir.iterdir() if f.is_dir()]
+        
+        # Simple similarity check
+        seen = set()
+        duplicates = []
+        for s in skills:
+            # Normalize: "agent-security" -> "agentsecurity"
+            norm = s.replace("-", "").replace("_", "")
+            if norm in seen:
+                duplicates.append(s)
+            seen.add(norm)
+            
+        if duplicates:
+            self.report.append(f"- ⚠️ Potential duplicates: {duplicates}")
+            self._deduct(len(duplicates) * 5, "Duplicate skills found.")
+        else:
+            self.report.append("- ✅ No obvious duplicates found.")
 
     def _check_skills_structure(self):
         """Audit the skills directory."""
