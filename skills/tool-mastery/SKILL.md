@@ -7,6 +7,11 @@ description: Master the available tools for file operations, code search, web re
 
 > Optimal use of available tools for maximum efficiency.
 
+## Activation Trigger
+- Selecting the right tool for a task.
+- Optimizing tool usage (reducing tokens).
+- Debugging tool errors.
+
 ## Available Tools
 
 ### 1. File Operations

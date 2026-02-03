@@ -5,6 +5,11 @@ description: Protocols for generative video and programmatic editing (FFmpeg).
 
 # Video AI & Processing
 
+## Activation Trigger
+- Generating video prompts (Camera/Lighting).
+- Editing video programmatically (FFmpeg).
+- Upscaling or verifying video assets.
+
 ## 1. Generative Video Strategy
 To get consistent, high-quality video, you must control the camera and physics.
 

@@ -5,6 +5,11 @@ description: Protocols for TTS, STT, Voice Cloning, and audio pipeline optimizat
 
 # Voice AI
 
+## Activation Trigger
+- Implementing Text-to-Speech (TTS) or STT.
+- Optimizing audio pipelines for latency.
+- Cloning voices.
+
 ## 1. Speech-to-Text (STT) Strategy
 
 ### Preprocessing (Critical)

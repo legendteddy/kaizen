@@ -7,6 +7,11 @@ description: RED-GREEN-REFACTOR cycle with testing best practices and anti-patte
 
 > Write the test first, then make it pass.
 
+## Activation Trigger
+- Starting a new feature implementation.
+- Refactoring legacy code (needs safety net).
+- Designing test suites (Unit vs Integration).
+
 ## The Cycle
 
 ```

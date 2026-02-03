@@ -7,6 +7,11 @@ description: Enforcing JSON/XML formats via Pydantic, Zod, and Grammar Constrain
 
 > "If it's not JSON, it didn't happen."
 
+## Activation Trigger
+- Generating machine-readable data (JSON/XML).
+- Interfacing with APIs or databases.
+- Enforcing schema validation (Pydantic/Zod).
+
 ## 1. The Pydantic Protocol (Python)
 Don't ask for "JSON". Ask for a "Pydantic Schema".
 

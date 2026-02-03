@@ -7,6 +7,11 @@ description: Protocols for Multi-Agent coordination, Shared Message Bus, and Swa
 
 > "None of us is as smart as all of us."
 
+## Activation Trigger
+- Designing swarm topologies (Mesh vs Hierarchy).
+- Implementing inter-agent messaging.
+- Resolving conflicts between agents.
+
 ## 1. Topologies
 
 ### The Hierarchy (Boss-Worker)

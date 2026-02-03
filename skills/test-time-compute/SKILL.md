@@ -7,6 +7,11 @@ description: Scaling intelligence at inference via Chain-of-Thought, Best-of-N, 
 
 > "Don't just answer. Think."
 
+## Activation Trigger
+- Solving logic puzzles or math problems.
+- Generating complex architectural plans.
+- When standard inference yields low quality.
+
 ## 1. The Scaling Law
 Accuracy scales with inference compute.
 - **System 1 (Fast):** "Paris is the capital of France." (0.1s)

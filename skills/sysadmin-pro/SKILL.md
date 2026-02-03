@@ -7,6 +7,11 @@ description: Protocols for safe, idempotent system administration (Linux/Windows
 
 > "Measure twice, cut once."
 
+## Activation Trigger
+- Executing shell commands (Bash/PowerShell).
+- Managing system resources or processes.
+- Ensuring script safety (idempotency).
+
 ## Safety First: The Blast Radius Check
 Before running ANY command that modifies state (`rm`, `mv`, `dd`, `chmod`, `kill`):
 

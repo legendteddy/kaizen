@@ -7,6 +7,11 @@ description: Comprehensive guide to multi-agent systems, subagent orchestration,
 
 > Patterns for coordinating multiple AI agents to solve complex problems efficiently.
 
+## Activation Trigger
+- Task requires parallel execution.
+- Complex workflows needing specialized roles.
+- Coordinating >3 sub-agents.
+
 ## When to Use Multiple Agents
 
 Use subagents when:

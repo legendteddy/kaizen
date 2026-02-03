@@ -7,6 +7,11 @@ description: Circuit breakers, retry backoffs, and anti-hallucination loops for 
 
 > "It's not if it breaks, but when."
 
+## Activation Trigger
+- Managing long-running autonomous tasks.
+- Recovering from repetitive failures (loops).
+- Preventing context drift.
+
 ## 1. The Circuit Breaker
 Stop runaway agents from draining your API credits or loop-crashing.
 
