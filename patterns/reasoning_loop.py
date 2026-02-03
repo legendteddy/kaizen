@@ -1,6 +1,5 @@
 # Pattern: Deliberative Reasoning Loop (Python Template)
 
-```python
 def sovereign_reasoning_loop(objective: str) -> tuple[str, str]:
     """
     o3-style deliberative reasoning for complex decisions.
@@ -59,4 +58,3 @@ def evaluate_simplicity(approach: str) -> float:
 def generate_reflection(chosen: str, alternatives: list, reason: str) -> str:
     """Generate a human-readable explanation of the decision."""
     return f"Selected: {chosen}\nReason: {reason}\nAlternatives considered: {len(alternatives)}"
-```

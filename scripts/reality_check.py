@@ -9,6 +9,8 @@ from datetime import datetime
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS_DIR = os.path.join(ROOT_DIR, "skills")
+PATTERNS_DIR = os.path.join(ROOT_DIR, "patterns")
+SCAN_DIRS = [SKILLS_DIR, PATTERNS_DIR]
 
 def get_anchors(file_path):
     """Extracts all headers as slugified anchors from a markdown file."""
@@ -86,43 +88,66 @@ def run():
     link_regex = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
     code_regex = re.compile(r'```python(.*?)```', re.DOTALL)
     
-    for sk in os.listdir(SKILLS_DIR):
-        path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
-        if not os.path.exists(path): continue
+    for scan_dir in SCAN_DIRS:
+        if not os.path.exists(scan_dir): continue
         
-        with open(path, 'r', encoding='utf-8') as f:
-            content = f.read()
+        for sk in os.listdir(scan_dir):
+            path = os.path.join(scan_dir, sk)
+            if not os.path.isfile(path):
+                # Handle subdirectories like in skills/, but patterns/ might be flat files
+                 path = os.path.join(scan_dir, sk, "SKILL.md")
             
-        # 1. Check Links & Anchors
-        for match in link_regex.finditer(content):
-            total_checks += 1
-            text, url = match.groups()
-            valid, err = check_link(url, path)
-            if valid:
-                passed_checks += 1
-            else:
-                failures.append(f"[BROKEN LINK] {sk}: {text} -> {url} ({err})")
-                
-        # 2. Check Code Logic
-        for match in code_regex.finditer(content):
-            total_checks += 1
-            code = match.group(1).strip()
-            if "..." in code and len(code) < 20: continue 
+            if not os.path.exists(path): 
+                # Fallback for patterns which are .py files or .md files directly
+                path = os.path.join(scan_dir, sk)
+                if not os.path.isfile(path): continue
             
-            valid, err = check_python_syntax(code)
-            if valid:
-                passed_checks += 1
-            else:
-                failures.append(f"[BAD SYNTAX] {sk}: {err}")
+            # Skip non-markdown/python text files
+            if not path.endswith('.md') and not path.endswith('.py'): continue
 
-        # 3. Check Gremlins
-        found_gremlins = check_gremlins(content)
-        if found_gremlins:
-            total_checks += 1
-            failures.append(f"[GREMLIN] {sk}: Found {found_gremlins}")
-        else:
-            total_checks += 1
-            passed_checks += 1
+            with open(path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Special check for .py files: The whole file is code
+            if path.endswith('.py'):
+                total_checks += 1
+                valid, err = check_python_syntax(content)
+                if valid:
+                    passed_checks += 1
+                else:
+                    failures.append(f"[BAD SYNTAX] {sk}: {err}")
+                continue
+                
+            # 1. Check Links & Anchors
+            for match in link_regex.finditer(content):
+                total_checks += 1
+                text, url = match.groups()
+                valid, err = check_link(url, path)
+                if valid:
+                    passed_checks += 1
+                else:
+                    failures.append(f"[BROKEN LINK] {sk}: {text} -> {url} ({err})")
+                    
+            # 2. Check Code Logic
+            for match in code_regex.finditer(content):
+                total_checks += 1
+                code = match.group(1).strip()
+                if "..." in code and len(code) < 20: continue 
+                
+                valid, err = check_python_syntax(code)
+                if valid:
+                    passed_checks += 1
+                else:
+                    failures.append(f"[BAD SYNTAX] {sk}: {err}")
+    
+            # 3. Check Gremlins
+            found_gremlins = check_gremlins(content)
+            if found_gremlins:
+                total_checks += 1
+                failures.append(f"[GREMLIN] {sk}: Found {found_gremlins}")
+            else:
+                total_checks += 1
+                passed_checks += 1
                 
     score = (passed_checks / total_checks * 100) if total_checks > 0 else 0
     
