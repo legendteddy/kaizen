@@ -1,15 +1,12 @@
-# Skills Index (74 Actionable Skills)
+# Skills Index (65 Actionable Skills)
 
 ## 🔄 Core — Self-Evolution
 | Skill | Description |
 |:---|:---|
 | [self-improvement](skills/self-improvement/) | The Kaizen Loop |
-| [recursive-kaizen](skills/recursive-kaizen/) | Continuous improvement |
 | [verification](skills/verification/) | Verify before reporting |
 | [adversarial-critique](skills/adversarial-critique/) | Challenge assumptions |
 | [sovereign-identity](skills/sovereign-identity/) | Agent identity |
-| [sovereign-reasoning](skills/sovereign-reasoning/) | Reasoning patterns |
-| [sovereign-upgrader](skills/sovereign-upgrader/) | Self-upgrade |
 | [stability-protocols](skills/stability-protocols/) | Stability patterns |
 | [predictive-evolution](skills/predictive-evolution/) | Predict future improvements |
 
@@ -19,7 +16,6 @@
 | [deliberative-reasoning](skills/deliberative-reasoning/) | Think before acting |
 | [context-manager](skills/context-manager/) | Context & memory optimization |
 | [decision-router](skills/decision-router/) | Route decisions |
-| [trajectory-sentinel](skills/trajectory-sentinel/) | Track progress |
 | [ambiguity-handling](skills/ambiguity-handling/) | Handle uncertainty |
 | [assumption-tracking](skills/assumption-tracking/) | Track and validate assumptions |
 | [context-limits](skills/context-limits/) | Manage context pressure |
@@ -47,8 +43,6 @@
 | [api-development](skills/api-development/) | API design |
 | [database-operations](skills/database-operations/) | Database engineering |
 | [precision-coder](skills/precision-coder/) | Elite coding standards |
-| [legacy-refactorer](skills/legacy-refactorer/) | Refactor old code |
-| [changelog-generator](skills/changelog-generator/) | Generate changelogs |
 | [data-intelligence-pro](skills/data-intelligence-pro/) | Data analysis |
 
 ## 🔧 Tools & Workflow
@@ -76,8 +70,6 @@
 | [git-workflow](skills/git-workflow/) | Git best practices & Conventional Commits |
 | [brainstorming](skills/brainstorming/) | Ideation techniques |
 | [implementation-planning](skills/implementation-planning/) | Detailed plans |
-| [technical-writer](skills/technical-writer/) | Documentation |
-| [vibe-coder-workflows](skills/vibe-coder-workflows/) | Coding workflows |
 | [user-communication](skills/user-communication/) | Communicate effectively |
 
 ## 🤖 AI Agents
@@ -101,8 +93,6 @@
 |:---|:---|
 | [research-intelligence](skills/research-intelligence/) | CRAG & Agentic RAG research |
 | [docs-fetcher](skills/docs-fetcher/) | Documentation retrieval |
-| [skill-seekers](skills/skill-seekers/) | Find skills |
-| [skill-seeker-engine](skills/skill-seeker-engine/) | Skill discovery |
 
 ## 🚀 Frontier AI (2026)
 | Skill | Description |
