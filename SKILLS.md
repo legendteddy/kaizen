@@ -25,14 +25,14 @@
 | [debug-master](skills/debug-master/) | Advanced debugging methodology with 4-phase root cause analysis, stack trace interpretation, and systematic problem isolation. |
 | [deepseek-enhancer](skills/deepseek-enhancer/) | Forces System 2 deep reasoning with Chain-of-Thought, verification loops, and recursive self-correction. |
 | [deliberative-reasoning](skills/deliberative-reasoning/) | Skill for deliberative-reasoning tasks and workflows. |
-| [docs-fetcher](skills/docs-fetcher/) | Fetches and summarizes documentation for external libraries or tools to ground the agent in reality. |
+| [docs-fetcher](skills/docs-fetcher/) | Protocol for retrieving, parsing, and applying external documentation. |
 | [error-recovery](skills/error-recovery/) | Gracefully handle failures, retry intelligently, and recover without user intervention. |
 | [execution-verification](skills/execution-verification/) | Confirm work actually worked before reporting completion. |
 | [expert-claude-code-user](skills/expert-claude-code-user/) | Mastery over the Claude Code CLI, leveraging deep integration and plugins. |
 | [fastapi-expert](skills/fastapi-expert/) | Skill for building high-performance, async web APIs with FastAPI. |
 | [feedback-learning](skills/feedback-learning/) | Learn from user corrections permanently. Don't repeat mistakes. |
 | [git-workflow](skills/git-workflow/) | Comprehensive Git best practices including branching, Conventional Commits, worktrees, and professional version control standards. |
-| [godot-expert](skills/godot-expert/) | Expert guidance for Godot 4.x game development. |
+| [godot-expert](skills/godot-expert/) | Expert protocols for Godot 4.x development (GDScript, Nodes, Architecture). |
 | [implementation-planning](skills/implementation-planning/) | Create detailed implementation plans that junior engineers can follow. |
 | [knowledge-synthesis](skills/knowledge-synthesis/) | Combine information from multiple sources into coherent understanding. |
 | [mcp-protocol](skills/mcp-protocol/) | Skill for mcp-protocol tasks and workflows. |
@@ -63,7 +63,7 @@
 | [subagent-orchestration](skills/subagent-orchestration/) | Comprehensive guide to multi-agent systems, subagent orchestration, and parallel task execution. Covers architecture patterns, coordination strategies, and practical implementation. |
 | [swarm-orchestrator](skills/swarm-orchestrator/) | Manages local swarm sub-agents. Allows spawning background jobs to Ollama via the swarm bus. |
 | [synthetic-data](skills/synthetic-data/) | Skill for synthetic-data tasks and workflows. |
-| [sysadmin-pro](skills/sysadmin-pro/) | Skill for Linux/Windows system administration, shell scripting, and server management. |
+| [sysadmin-pro](skills/sysadmin-pro/) | Protocols for safe, idempotent system administration (Linux/Windows). |
 | [task-decomposition](skills/task-decomposition/) | Break complex tasks into manageable, executable chunks. |
 | [test-driven-development](skills/test-driven-development/) | RED-GREEN-REFACTOR cycle with testing best practices and anti-patterns. |
 | [test-time-compute](skills/test-time-compute/) | Test-time compute scaling and slow thinking techniques for enhanced AI reasoning. |
@@ -71,7 +71,7 @@
 | [user-communication](skills/user-communication/) | Explain clearly, teach effectively, collaborate smoothly. |
 | [user-modeling](skills/user-modeling/) | Understand and adapt to user preferences, patterns, and expertise. |
 | [verification](skills/verification/) | Skill for verification tasks and workflows. |
-| [video-ai](skills/video-ai/) | Skill for generating, editing, and processing video content (Sora, Runway, FFMPEG). |
-| [voice-ai](skills/voice-ai/) | Skill for Text-to-Speech (TTS), Speech-to-Text (STT), and Voice Cloning. |
+| [video-ai](skills/video-ai/) | Protocols for generative video and programmatic editing (FFmpeg). |
+| [voice-ai](skills/voice-ai/) | Protocols for TTS, STT, Voice Cloning, and audio pipeline optimization. |
 | [web-development](skills/web-development/) | Skill for web-development tasks and workflows. |
 | [world-modeling](skills/world-modeling/) | Skill for world-modeling tasks and workflows. |
