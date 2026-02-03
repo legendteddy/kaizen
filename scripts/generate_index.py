@@ -1,8 +1,11 @@
 import os
 import re
 
-SKILLS_DIR = "skills"
-INDEX_FILE = "SKILLS.md"
+# Resolve paths relative to the script location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(SCRIPT_DIR)
+SKILLS_DIR = os.path.join(ROOT_DIR, "skills")
+INDEX_FILE = os.path.join(ROOT_DIR, "SKILLS.md")
 
 def get_skill_info(skill_path):
     readme_path = os.path.join(skill_path, "SKILL.md")

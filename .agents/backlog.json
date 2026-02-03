@@ -10,9 +10,9 @@
     {
         "id": "task_meta_2",
         "title": "Harden 'generate_index.py' path handling",
-        "status": "pending",
+        "status": "completed",
         "priority": "medium",
-        "assigned_to": null,
+        "assigned_to": "antigravity-gemini",
         "created_at": "2026-02-03T12:15:00Z",
         "context": "Script fails if not run from specific relative path. Should auto-detect root."
     },
