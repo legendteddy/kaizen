@@ -1,14 +1,14 @@
 ---
 name: agent-communication
-description: Protocols for Inter-Agent Communication (IAC), Locking, and Swarm Coordination.
+description: Protocols for Inter-Agent Communication (IAC), Locking, Swarm Coordination, and Continuous Collaboration.
 ---
 
-# Agent Communication Protocol (ACP) v1.0
+# Agent Communication Protocol (ACP) v1.1
 
-> "Don't fight over the steering wheel."
+> "None of us is as smart as all of us."
 
 ## 1. Purpose
-Define how multiple autonomous agents (Claude, Gemini, Cursor) coexist in the same repository without race conditions or file corruption.
+Define how multiple autonomous agents (Claude, Gemini, Cursor) coexist in the same repository without race conditions and **actively collaborate** to improve the codebase.
 
 ## 2. Directory Structure
 All communication happens in `.agents/`:
@@ -16,68 +16,54 @@ All communication happens in `.agents/`:
 ```text
 .agents/
 ├── registry.json       # Who is active?
+├── backlog.json        # Shared Task Queue (The Hive Mind)
 ├── locks/              # File locks
 │   └── README.md.lock
 ├── signals/            # Async messages
-│   └── sig_uuid.json
 └── chat.log            # Shared transcript
 ```
 
 ## 3. Protocol: The Registry (`registry.json`)
-When an agent starts a session, it MUST register itself.
+When an agent starts, it registers itself to announce presence.
+
+## 4. Protocol: The Hive Mind (Continuous Improvement)
+Agents should not just wait for commands. They should **seek work**.
+
+### The Backlog (`backlog.json`)
+A JSON list of tasks that any agent can pick up.
 
 ```json
-{
-  "agents": {
-    "antigravity-1": {
-      "type": "Claude Code",
-      "pid": 1234,
-      "status": "active",
-      "last_heartbeat": "2026-02-03T12:00:00Z"
-    },
-    "gemini-crawler": {
-      "type": "Gemini CLI",
-      "pid": 5678,
-      "status": "idle"
-    }
+[
+  {
+    "id": "task_001",
+    "title": "Upgrade 'git-workflow' skill",
+    "status": "pending",
+    "priority": "medium",
+    "assigned_to": null
   }
-}
+]
 ```
 
-## 4. Protocol: Semantic Locking
-Before editing a critical file, acquire a lock.
+### The Collaboration Loop
+1.  **Poll:** Read `backlog.json`.
+2.  **Claim:** If a task is `pending` and `assigned_to` is null:
+    - Lock `backlog.json`.
+    - Set `status="in_progress"` and `assigned_to="me"`.
+    - Unlock.
+3.  **Execute:** Perform the task (edit files, run tests).
+4.  **Complete:** Mark as `completed` in backlog.
 
-1.  **Check:** Does `.agents/locks/{filename}.lock` exist?
-    *   **Yes:** Check timestamp. If < 5 mins old, WAIT. If > 5 mins, STEAL (Stale lock).
-    *   **No:** Proceed.
-2.  **Acquire:** Write `{ "agent": "id", "expiry": "timestamp" }` to the lock file.
-3.  **Work:** Edit the file.
-4.  **Release:** Delete the lock file.
+## 5. Protocol: Semantic Locking
+Before editing a critical file, acquire a lock. (See `scripts/agent_comm.py`).
 
-**Critical Files:** `SKILLS.md`, `README.md`, `KAIZEN.md`.
+## 6. Protocol: "Pass the Baton"
+If an agent hits a blocker (e.g., "I don't know React"), it creates a task in `backlog.json`:
+- Title: "Fix React Component"
+- Status: "pending"
+- Context: "I tried X, but failed. Structure is in `src/`."
 
-## 5. Protocol: Asynchronous Signals
-To tell another agent to do something (without blocking).
+Another agent (e.g., `react-ts-expert`) picks it up.
 
-**Write to `.agents/signals/{uuid}.json`:**
-```json
-{
-  "to": "gemini-crawler",
-  "from": "antigravity",
-  "action": "index_new_skills",
-  "priority": "high"
-}
-```
-
-**Target Agent:** Watches the folder and executes.
-
-## 6. Protocol: The Shared Log (`chat.log`)
-Agents should log high-level intent to avoid redundant work.
-
-```log
-[2026-02-03T12:00:00Z] [Antigravity]: UPGRADING 10 skills. Please avoid editing skills/* for 5 minutes.
-[2026-02-03T12:01:00Z] [Gemini]: Acknowledged. I will focus on 'tests/'.
-```
-
-## 7. Implementation (Python Helper)
-See `scripts/agent_comm.py` (if available) for lock handling.
+## 7. Safety Limits
+- **Max Concurrency:** Check `registry.json`. If > 3 agents active, consider yielding.
+- **Rate Limit:** Do not commit more than once every 5 minutes per agent to avoid git conflicts.
