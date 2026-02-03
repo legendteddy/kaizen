@@ -91,3 +91,19 @@ class ToolManager:
             return "\n".join(os.listdir(target))
         except SecurityError as e:
             return f"SECURITY ALERT: {e}"
+
+    def write_file(self, file_path: str, content: str) -> str:
+        """Writes content to a file. Overwrites if exists."""
+        try:
+            target = self._validate_path(file_path)
+            
+            # Ensure parent directory exists
+            target.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(target, 'w', encoding='utf-8') as f:
+                f.write(content)
+            return f"Success: Wrote to {file_path}"
+        except SecurityError as e:
+            return f"SECURITY ALERT: {e}"
+        except Exception as e:
+            return f"Error writing file: {e}"
