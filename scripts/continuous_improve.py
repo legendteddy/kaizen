@@ -18,10 +18,10 @@ class ContinuousImprover:
 
     def check_skill_decay(self):
         """
-        Simulated Logic: Check for skills that haven't been touched in 30 days.
-        In a real agent, this would analyze file timestamps.
+        Check for skills that have not been updated recently.
+        TODO: Implement file timestamp analysis.
         """
-        # 10% chance to find "decay" for demo purposes
+        # Heuristic: 10% chance to flag decay during demo mode
         if random.random() < 0.1:
             self.comm.log("Detected skill decay in 'random-skill'. Creating task.")
             self.hive.add_task("Review 'random-skill' for updates", priority="low")
@@ -36,8 +36,8 @@ class ContinuousImprover:
             print(f"✅ Claimed Task: {task['title']}")
             self.comm.log(f"Started task: {task['title']}")
             
-            # SIMULATE WORK (In reality, this is where the Agentic Loop runs)
-            # e.g. subprocess.run(["claude", "do", task['title']])
+            # Placeholder: Agentic Execution Loop
+            # In production, this invokes the LLM agent to perform the work.
             time.sleep(2) 
             
             self.hive.complete_task(task['id'], result="Analyzed and updated.")
