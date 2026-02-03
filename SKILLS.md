@@ -5,7 +5,7 @@
 | [agent-architecture](skills/agent-architecture/) | Skill for designing robust agentic systems (Router, Worker, Evaluator patterns). |
 | [agent-cowork](skills/agent-cowork/) | Skill for claude-cowork tasks and workflows. |
 | [agent-security](skills/agent-security/) | Skill for agent-security tasks and workflows. |
-| [agentic-lifecycle](skills/agentic-lifecycle/) | Skill for managing the lifecycle of an autonomous task (Plan, Act, Verify). |
+| [agentic-lifecycle](skills/agentic-lifecycle/) | Protocols for the autonomous execution loop (Perceive, Plan, Act, Reflect). |
 | [ai-benchmarks](skills/ai-benchmarks/) | Standards and tools for verifying AI agent performance and code quality. |
 | [ambiguity-handling](skills/ambiguity-handling/) | Know when to ask vs when to assume. Make smart decisions under uncertainty. |
 | [api-development](skills/api-development/) | Skill for api-development tasks and workflows. |
@@ -31,7 +31,7 @@
 | [expert-claude-code-user](skills/expert-claude-code-user/) | Mastery over the Claude Code CLI, leveraging deep integration and plugins. |
 | [fastapi-expert](skills/fastapi-expert/) | Skill for building high-performance, async web APIs with FastAPI. |
 | [feedback-learning](skills/feedback-learning/) | Learn from user corrections permanently. Don't repeat mistakes. |
-| [git-workflow](skills/git-workflow/) | Comprehensive Git best practices including branching, Conventional Commits, worktrees, and professional version control standards. |
+| [git-workflow](skills/git-workflow/) | Professional version control standards (Branching, Conventional Commits, Worktrees). |
 | [godot-expert](skills/godot-expert/) | Expert protocols for Godot 4.x development (GDScript, Nodes, Architecture). |
 | [implementation-planning](skills/implementation-planning/) | Create detailed implementation plans that junior engineers can follow. |
 | [knowledge-synthesis](skills/knowledge-synthesis/) | Combine information from multiple sources into coherent understanding. |
