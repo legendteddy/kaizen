@@ -7,6 +7,11 @@ description: Guide to local Llama/Mistral/Qwen models, hardware requirements, an
 
 > "Own your intelligence."
 
+## Activation Trigger
+- Choosing a local model for a specific task.
+- Configuring hardware (VRAM optimization).
+- Debugging local inference performance.
+
 ## 1. Top Models (The Starting Lineup)
 
 | Model Family | Best For | Typical Params |

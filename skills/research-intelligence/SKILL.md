@@ -7,6 +7,11 @@ description: Advanced research methodology combining CRAG (Corrective Retrieval-
 
 > Advanced research methodology for accurate, verified information retrieval.
 
+## Activation Trigger
+- Unfamiliar domain or new library.
+- Verification of assumptions required.
+- "Fact check" mode needed.
+
 ## When to Research
 
 **Proactive Triggers:**

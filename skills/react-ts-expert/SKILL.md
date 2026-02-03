@@ -7,6 +7,11 @@ description: Protocols for React 19, Server Components, TypeScript, and State Ma
 
 > "UI as a function of State."
 
+## Activation Trigger
+- Building React components (Client or Server).
+- Managing complex state (Zustand/Context).
+- Optimizing frontend performance.
+
 ## 1. React 19 & Server Components (RSC)
 The paradigm has shifted. Data fetching belongs on the server.
 

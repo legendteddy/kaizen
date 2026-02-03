@@ -7,6 +7,11 @@ description: Elite coding standards with zero-bug tolerance, type safety enforce
 
 This skill enforces **production-grade code quality**. Every line you write should be deployable.
 
+## Activation Trigger
+- Writing critical path code (Auth/Payments).
+- Defining Type Interfaces (TypeScript/Python/Rust).
+- Final Polish phase before merging.
+
 ---
 
 ## 1. The Zero-Bug Mindset

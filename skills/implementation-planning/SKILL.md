@@ -7,6 +7,11 @@ description: Creating architectural blueprints, dependency graphs, and phased ro
 
 > "Measure twice, cut once."
 
+## Activation Trigger
+- Starting a complex feature (>1 day work).
+- Modifying core architecture or DB schema.
+- Coordinating dependency chains across multiple files.
+
 ## 1. The Planning Template (Artifact)
 
 Create an `implementation_plan.md` before writing code for complex features.

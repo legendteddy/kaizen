@@ -7,6 +7,11 @@ description: Enterprise-grade patterns including SOLID principles, Clean Archite
 
 This skill enforces **professional architecture standards**. Every system you build should be maintainable, scalable, and beautiful.
 
+## Activation Trigger
+- Designing a new module or service.
+- Refactoring legacy code (Code Smells).
+- Deciding on design patterns (Factory/Strategy).
+
 ---
 
 ## 1. SOLID Principles

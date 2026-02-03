@@ -7,6 +7,11 @@ description: Master skill for crafting system prompts and agent personas.
 
 > "You are not just writing text. You are programming behavior."
 
+## Activation Trigger
+- Creating a new System Prompt (Persona).
+- Debugging agent hallucinations.
+- Designing complex Chain-of-Thought flows.
+
 ## 1. System Prompt Architecture
 
 A robust System Prompt has 5 structural layers.

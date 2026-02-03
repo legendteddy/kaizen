@@ -7,6 +7,11 @@ description: High-performance data manipulation, vectorization patterns, and mem
 
 > "If you are looping, you are losing."
 
+## Activation Trigger
+- Manipulating large datasets (>10k rows).
+- Optimizing slow data processing pipelines.
+- Debugging memory issues in Python data scripts.
+
 ## 1. Vectorization Protocols
 
 **The Golden Rule:** NEVER use `iterrows()` for math.
