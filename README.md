@@ -1,5 +1,6 @@
-﻿# Kaizen - Self-Evolving AI Skills Framework
+﻿# Kaizen — Self-Evolving AI Skills Framework
 
+[![Kaizen CI](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml/badge.svg)](https://github.com/legendteddy/kaizen/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/Skills-74-blue.svg)](#skills)
 [![Works With](https://img.shields.io/badge/Works%20With-All%20AI%20Agents-green.svg)](#compatibility)
