@@ -161,8 +161,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## Documentation
 
-- [**KAIZEN.md**](KAIZEN.md) - The activation core
-- [**SKILLS.md**](SKILLS.md) - Full skills index
+- [**KAIZEN.md**](KAIZEN.md) — The activation core
+- [**FAQ.md**](FAQ.md) — Frequently Asked Questions
+- [**SKILLS.md**](SKILLS.md) — Full skills index
 - [**skills/**](skills/) - All 74 skills
 - [**patterns/**](patterns/) - Code templates
 - [**hooks/**](hooks/) - Lifecycle triggers

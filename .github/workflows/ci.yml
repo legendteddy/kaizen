@@ -1,0 +1,57 @@
+name: Kaizen CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  validate-skills:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Validate Skills Format
+      run: |
+        # Simple bash check for SKILL.md existence and frontmatter
+        EXIT_CODE=0
+        for dir in skills/*/; do
+          if [ ! -f "$dir/SKILL.md" ]; then
+            echo "❌ Error: $dir missing SKILL.md"
+            EXIT_CODE=1
+          else
+             # Check for frontmatter start
+             if ! head -n 1 "$dir/SKILL.md" | grep -q "^---"; then
+               echo "❌ Error: $dir/SKILL.md missing frontmatter (---)"
+               EXIT_CODE=1
+             fi
+          fi
+        done
+        exit $EXIT_CODE
+
+  update-index:
+    needs: validate-skills
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Run Index Generator
+      run: python scripts/generate_index.py
+      
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "chore: auto-update SKILLS.md index"
+        file_pattern: SKILLS.md
