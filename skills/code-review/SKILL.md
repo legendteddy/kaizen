@@ -7,6 +7,11 @@ description: Giving and receiving code review with constructive feedback.
 
 > Improve code quality through collaborative review.
 
+## Activation Trigger
+- Reviewing a Pull Request.
+- Auditing code quality.
+- Receiving feedback on your own code.
+
 ## Giving Reviews
 
 ### Pre-Review Checklist

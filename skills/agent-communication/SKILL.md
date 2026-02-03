@@ -10,6 +10,11 @@ description: Protocols for Inter-Agent Communication (IAC), Locking, Swarm Coord
 ## 1. Purpose
 Define how multiple autonomous agents (Claude, Gemini, Cursor) coexist in the same repository without race conditions and **actively collaborate** to improve the codebase.
 
+## Activation Trigger
+- Multiple agents detected (PID check).
+- File lock contention errors.
+- Collaborative task execution (Hive Mind).
+
 ## 2. Directory Structure
 All communication happens in `.agents/`:
 

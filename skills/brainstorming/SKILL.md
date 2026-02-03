@@ -7,6 +7,11 @@ description: Protocols for Generative Thinking, First Principles, and Inversion.
 
 > "The best way to have a good idea is to have a lot of ideas."
 
+## Activation Trigger
+- Stuck on a hard problem.
+- Need novel solutions (divergent thinking).
+- Applying "First Principles" to a challenge.
+
 ## 1. First Principles Thinking (Physics)
 Break problems down to fundamental truths.
 1.  **Deconstruct:** What are the absolute non-negotiables? (e.g., "Must run on a browser").
