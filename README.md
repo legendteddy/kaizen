@@ -26,19 +26,20 @@
 
 ## Quick Start (30 seconds)
 
+### Option A: Automatic Installer (Recommended)
 ```bash
-# Clone into your project
-git clone https://github.com/legendteddy/kaizen.git .kaizen
-
-# Or install globally (works everywhere)
-git clone https://github.com/legendteddy/kaizen.git ~/.kaizen
+git clone https://github.com/legendteddy/kaizen.git
+cd kaizen
+python install.py
 ```
+*Follow the wizard to configure Cursor, Claude, or Gemini automatically.*
 
+### Option B: Manual Setup
+```bash
+git clone https://github.com/legendteddy/kaizen.git
+```
 Then tell your AI agent:
-
-> **"Read KAIZEN.md and activate it."**
-
-That's it. Your agent is now self-evolving.
+> "Read KAIZEN.md and activate it."
 
 ---
 
