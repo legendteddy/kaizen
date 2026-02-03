@@ -1,10 +1,9 @@
 # Skills Index (72 Actionable Skills)
 
 | Skill | Description |
-|:---|:---|
-| [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
+|:---|:---|| [adversarial-critique](skills/adversarial-critique/) | Skill for adversarial-critique tasks and workflows. |
 | [agent-architecture](skills/agent-architecture/) | Skill for designing robust agentic systems (Router, Worker, Evaluator patterns). |
-| [agent-communication](skills/agent-communication/) | Protocols for Inter-Agent Communication (IAC), Locking, and Swarm Coordination. |
+| [agent-communication](skills/agent-communication/) | Protocols for Inter-Agent Communication (IAC), Locking, Swarm Coordination, and Continuous Collaboration. |
 | [agent-cowork](skills/agent-cowork/) | Skill for claude-cowork tasks and workflows. |
 | [agent-security](skills/agent-security/) | Protocols for prompt injection defense, tool sandboxing, and output validation. |
 | [agentic-lifecycle](skills/agentic-lifecycle/) | Protocols for the autonomous execution loop (Perceive, Plan, Act, Reflect). |
