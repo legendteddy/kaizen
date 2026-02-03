@@ -1,87 +1,74 @@
 ---
 name: agent-architecture
-description: Skill for claude-architecture tasks and workflows.
+description: Skill for designing robust agentic systems (Router, Worker, Evaluator patterns).
 ---
 
-# Skill: Claude Code Architecture (v1.0)
+# Skill: Agent Architecture (v1.0)
 
-> Extracted from `CLAUDE_INTERNAL_ARCHITECTURE.md` - Reverse-engineered Claude Code CLI v2.1.19
+> "Structure determines function."
 
 ## Purpose
-Understanding Claude Code's internal architecture enables this agent to match or exceed its capabilities.
+Design and implement robust multi-agent architectures using proven patterns like Router-Gateway, Worker-Swarm, and Evaluator-Optimizer.
 
 ## Activation Trigger
-- Designing multi-agent systems
-- Implementing agentic workflows
-- Understanding competitor architecture
+- User asks to "design an agent system."
+- Tasks involving "multiple agents" or "orchestration."
+- Debugging complex agent interactions.
 
 ---
 
-## 1. Core Runtime Architecture
+## Protocol: The Core Patterns
 
-### The Brain (Multi-Model Orchestration)
-Claude Code uses hybrid intelligence with dynamic routing:
-- **Reasoning**: Uses `deepseek-reasoner` for complex logic and planning
-- **Code/Chat**: Uses Anthropic models (Sonnet/Haiku) for standard interaction
+### 1. Router Pattern (The Switchboard)
+**Use when:** You have one input that could go to many different tools.
 
-### Agentic Recursion
-- Main Agent spawns Sub-Agents for specific tasks
-- Sub-agents run in isolated contexts
-- Prevents context pollution in main window
+```python
+# Router Logic
+def route_request(user_input: str) -> str:
+    classification = classifier_agent.predict(user_input)
+    if classification == "SQL":
+        return sql_agent.run(user_input)
+    elif classification == "Search":
+        return search_agent.run(user_input)
+    else:
+        return chat_agent.run(user_input)
+```
 
----
+### 2. Worker Swarm (The Parallel Process)
+**Use when:** You have a massive task that can be split (e.g., "Research 50 companies").
 
-## 2. Memory Palace (3-Tier State)
+```python
+# Swarm Logic
+def run_swarm(companies: list[str]):
+    results = []
+    # Parallel execution
+    with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(research_agent.run, c) for c in companies]
+        for future in as_completed(futures):
+            results.append(future.result())
+    return aggregator_agent.summarize(results)
+```
 
-| Tier | Storage | Purpose |
-|:---|:---|:---|
-| **Hot** | Session JSONL | Every thought, tool call, file snapshot |
-| **Warm** | Project Registry | Links sessions to directory paths |
-| **Cold** | Task Persistence | JSON state machine for crash recovery |
+### 3. Evaluator-Optimizer (The Loop)
+**Use when:** Quality is more important than speed (e.g., generating code).
 
----
-
-## 3. Superpowers (Encoded Skills)
-
-### Systematic Debugging
-1. Observe symptom
-2. Find immediate cause
-3. Trace upstream ("Who called this?")
-4. Find original trigger
-5. Defense in depth (validate at every layer)
-
-### Code Reviewer Persona
-1. Plan Alignment: Compare implementation to architecture
-2. Code Quality: Patterns, error handling, type safety
-3. Architecture: SOLID principles
-4. Documentation: Comments and headers
-
-### Other Key Skills
-| Skill | Logic |
-|:---|:---|
-| `verification-before-completion` | Always verify before marking Done |
-| `subagent-driven-development` | Break large tasks into sub-agent workloads |
-| `writing-plans` | Create markdown plans before coding |
-| `test-driven-development` | Write test before implementation |
-
----
-
-## 4. Psychological Protocols (Cialdini's Principles)
-
-| Principle | Application |
-|:---|:---|
-| Authority | "YOU MUST" language for safety rules |
-| Commitment | Force explicit skill announcement |
-| Scarcity | "IMMEDIATELY" triggers for verification |
-| Social Proof | Frame errors as universal failures |
-| Unity | "We are colleagues" for collaboration |
+```python
+# Self-Correction Logic
+def generate_high_quality_code(spec: str):
+    code = coder_agent.write(spec)
+    for _ in range(3): # Max 3 retries
+        critique = reviewer_agent.review(code)
+        if critique.is_pass:
+            return code
+        code = coder_agent.fix(code, critique.feedback)
+    return code # Or raise error
+```
 
 ---
 
-## 5. Assimilation for Gemini
+## Architecture Checklist
 
-1. **Task State**: Always maintain "Current Objective" status
-2. **Enforce Verification**: Never assume a fix works
-3. **Use Sub-Agents**: Delegate broad analysis
-4. **Respect the Plan**: Always update the Master Plan
-
+- [ ] **State Management:** Where is the conversation history stored? (Redis/Memory/File)
+- [ ] **Loop Prevention:** Is there a `max_turns` limit?
+- [ ] **Tool Sandboxing:** Are shell commands running in Docker?
+- [ ] **Observability:** Are trace logs (LangSmith/Phoenix) enabled?

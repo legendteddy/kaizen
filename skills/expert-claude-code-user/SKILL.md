@@ -1,42 +1,64 @@
 ---
 name: expert-claude-code-user
-description: Mastery over the Claude Code CLI, leveraging DeepSeek, custom plugins, and autonomous workflows.
+description: Mastery over the Claude Code CLI, leveraging deep integration and plugins.
 ---
 
-# Expert Claude Code User
+# Skill: Expert Claude Code User (v1.0)
 
-You are a master of the Claude Code CLI environment, optimized with DeepSeek-V3.
+## Purpose
+Maximize the capabilities of the `claude` CLI tool for terminal-based workflow automation.
 
-## Operational Protocol
+## Activation Trigger
+- User is using `claude` CLI.
+- Questions about `/slash` commands or configuration.
 
-1.  **DeepSeek Primacy**: All "Anthropic" calls are actually proxied to `deepseek-chat`.
-    -   *Constraint*: Do not use features exclusive to Sonnet 3.5 (like Artifacts) unless the CLI emulates them.
-    -   *Advantage*: You have massive context windows (64k output) and superior reasoning for code.
+---
 
-2.  **Plugin Orchestration**:
-    -   **Planning**: Use `superpowers` (write-plan) for broad strategies.
-    -   **Testing**: Use `playwright` for "End-to-End" verification of the project OS frontend.
-    -   **Documentation**: Use `context7` to fetch fresh library docs if you get stuck.
-    -   **Design**: Use `frontend-design` to prevent "AI Slop" aesthetics.
+## Protocol: Power User Workflow
 
-3.  **Skill Injection**:
-    -   You can "install" new skills on the fly by writing to `.claude/skills/`.
-    -   Use this for repeating tasks (e.g., "Generate Monthly Report").
+### 1. Context Management
+- **Add files:** `/add src/` (Adds generic context)
+- **Compact:** `/compact` (Clears conversation history but keeps file context)
+- **Reset:** `/clear` (Nuke everything)
 
-4.  **Debugging Methodology (DeepSeek Style)**:
-    -   **Reason First**: When a command fails, output a `<thinking>` block explaining *why* before trying a fix.
-    -   **Chain of Thought**: Leverage the model's strength in logic puzzles for complex Rust borrow-checker errors.
+### 2. Plugin Management
+- **List:** `/plugin list`
+- **Install:** `/plugin install <name>`
+- **Marketplace:** `/plugin marketplace search <query>`
 
-## Recommended Workflows
+### 3. Execution Patterns
+- **Bash:** Claude can run bash commands.
+    - *Prompt:* "Run ls -la and tell me what is wrong."
+- **Files:** Claude can edit files directly.
+    - *Prompt:* "Refactor app.py to use FastAPI."
 
-### 1. The "Sovereign Feature" Loop
-1.  **Plan**: `claude plan "Add [feature]"` (triggers `feature-dev`).
-2.  **Spec**: `claude design "UI for [feature]"` (triggers `frontend-design`).
-3.  **Code**: `claude code "Implement [feature]"` (triggers `superpowers` loop).
-4.  **Test**: `claude test "Verify [feature]"` (triggers `playwright`).
-5.  **Commit**: `claude commit` (triggers `commit-commands`).
+---
 
-### 2. The "Deep Audit" Loop
-1.  **Scan**: `claude audit` (custom alias/skill).
-2.  **Review**: Triggers `code-review` plugin.
-3.  **Fix**: Autonomous application of fixes.
+## Protocol: The "MCP" Advantage
+
+Claude Code supports **Model Context Protocol (MCP)** servers.
+
+**Connecting a Database:**
+1.  Install MCP server: `npm install -g mcp-server-postgres`
+2.  Configure `claude_config.json`:
+    ```json
+    {
+      "mcpServers": {
+        "postgres": {
+          "command": "mcp-server-postgres",
+          "args": ["postgresql://user:pass@localhost/db"]
+        }
+      }
+    }
+    ```
+3.  **Result:** Claude can now query your DB directly.
+
+---
+
+## Troubleshooting
+
+| Issue | Fix |
+|:---|:---|
+| "Context full" | Run `/compact` immediately. |
+| "I can't run commands" | Check permissions (`claude --approve-tools`). |
+| "Hallucinating files" | Run `/add <filename>` to ground it. |

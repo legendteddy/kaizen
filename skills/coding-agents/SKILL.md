@@ -1,81 +1,72 @@
 ---
 name: coding-agents
-description: Autonomous AI coding agents like Devin, OpenHands, and competitors.
+description: Skill for building and managing autonomous software engineering agents (Devin-like).
 ---
 
-# Coding Agents (v1.0)
+# Skill: Coding Agents (v1.0)
 
-> Autonomous software engineering agents (2026 landscape)
+> "Automating the artisan."
 
 ## Purpose
-Understand the landscape of AI coding agents.
+Best practices for building agents that write, run, and fix code autonomously.
 
 ## Activation Trigger
-- Autonomous development tasks
-- End-to-end coding workflows
-- Agent architecture discussions
+- Building "Devin" clones or coding assistants.
+- Tasks involving file system manipulation and test running.
 
 ---
 
-## Major Agents (2026)
+## Protocol: Safety & Sandboxing
 
-| Agent | Creator | Key Feature |
-|:---|:---|:---|
-| Devin | Cognition | End-to-end autonomous |
-| OpenHands | Open-source | Extensible framework |
-| Devika | Open-source | Goal → steps → code |
-| Cursor | Anysphere | IDE with agent mode |
-| Claude Code | Anthropic | Terminal-based agent |
-| GitHub Copilot | Microsoft | Workspace integration |
-| Cody | Sourcegraph | Large codebase understanding |
-| Amazon Q | AWS | Enterprise, multi-file |
-| Junie | JetBrains | IDE-integrated |
-| PlayCode Agent | PlayCode | Web dev specialist |
-| Replit Agent | Replit | Browser-based, fast prototypes |
+**CRITICAL:** Coding agents must NEVER run on the host machine without isolation.
+
+1.  **Docker Sandbox:**
+    *   Mount workspace as volume.
+    *   Network: Restricted (allow pip/npm, block generic internet if possible).
+    *   Timeout: Kill processes > 30s.
+
+2.  **File Guards:**
+    *   Block edits to `.git/`, `.env`, and system files.
+    *   Always read file content *before* editing (to avoid overwriting logic).
 
 ---
 
-## Capabilities
+## Protocol: The "Edit-Run-Fix" Loop
 
-### Autonomous Tasks
-- Research and planning
-- Multi-file editing
-- Code generation
-- Testing and debugging
-- Deployment
+Coding agents fail when they "blindly edit." Enforce this loop:
 
-### Human-in-Loop
-- Inspect agent state
-- Correct actions
-- Approve changes
-- Maintain oversight
+### Step 1: SEARCH
+- Don't assume file locations.
+- `ls -R` or `find` to map the structure.
+- `grep` to find the relevant code definition.
 
----
+### Step 2: EDIT
+- Use line-based editing or search/replace (not full file overwrite).
+- **Rule:** Every edit must be idempotent if possible.
 
-## Open-Source Options
+### Step 3: VERIFY (The Missing Link)
+- **Action:** The agent MUST run a command to verify the edit.
+    - *Syntax Check:* `python -m py_compile file.py`
+    - *Linter:* `ruff check file.py`
+    - *Test:* `pytest test_file.py`
 
-| Project | Focus |
-|:---|:---|
-| OpenHands | Full Devin alternative |
-| Devika | High-level goal execution |
-| GPT Pilot | Writing entire apps |
-| SWE-agent | GitHub issue resolution |
+### Step 4: RECOVER
+- If verification fails, read the stderr.
+- **Do not apologize.** Plan the fix.
+- Retry (Max 3 times).
 
 ---
 
-## 2026 Trends
+## Tool Definition Example (JSON)
 
-1. **Agentic AI adoption**: 10-15% of IT spending
-2. **Self-evolving software**: Autonomous maintenance
-3. **Multi-agent systems**: Specialized collaboration
-4. **Enterprise focus**: Security and privacy
-
----
-
-## For Sovereign Framework
-
-Coding agents represent:
-- Peer agents for collaboration
-- Pattern source for architecture
-- Competition awareness
-- Capability benchmarks
+```json
+{
+  "name": "edit_file",
+  "description": "Replace a specific string in a file.",
+  "parameters": {
+    "path": "src/main.py",
+    "old_string": "def foo():",
+    "new_string": "def bar():"
+  }
+}
+```
