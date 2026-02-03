@@ -1,67 +1,73 @@
 ---
 name: pandas-expert
-description: Skill for expert-level data manipulation using Pandas (Python).
+description: High-performance data manipulation, vectorization patterns, and memory optimization.
 ---
 
-# Skill: Pandas Expert (v1.0)
+# Pandas Expert
 
-## Purpose
-Write performant, readable, and "vectorized" Pandas code. Avoid loops.
+> "If you are looping, you are losing."
 
-## Activation Trigger
-- "Process this CSV"
-- "Pandas" mentioned
-- Data manipulation tasks.
+## 1. Vectorization Protocols
 
----
+**The Golden Rule:** NEVER use `iterrows()` for math.
 
-## Protocol: Vectorization (No Loops)
+| Slow (Loop) | Fast (Vector) | Speedup |
+|:---|:---|:---|
+| `for i, r in df.iterrows()` | `df['col'] = ...` | ~1000x |
+| `df.apply(lambda x: ...)` | `np.where(...)` | ~100x |
+| String matching loop | `df['s'].str.contains()` | ~50x |
 
-**❌ Bad (Iterating):**
+**Complex Logic?** Use `numpy.select()`:
 ```python
-for index, row in df.iterrows():
-    df.at[index, 'total'] = row['price'] * row['quantity']
+conditions = [
+    (df['age'] < 18),
+    (df['age'] >= 18) & (df['student'] == True)
+]
+choices = ['child', 'student']
+df['status'] = np.select(conditions, choices, default='adult')
 ```
 
-**✅ Good (Vectorized):**
+## 2. Memory Optimization (The Diet)
+Default Pandas uses massive RAM. Shrink it.
+
+1.  **Load Less:** `pd.read_csv(..., usecols=['id', 'val'])`
+2.  **Downcast Types:**
+    - `float64` -> `float32` (Half size)
+    - `object` (Strings) -> `category` (Index-based, massive savings for low cardinality)
+3.  **Nullable Ints:** Use `Int64` instead of `float64` for columns with NaNs.
+
 ```python
-df['total'] = df['price'] * df['quantity']
+# Automatic Downcasting Code
+for col in df.select_dtypes(include=['float64']):
+    df[col] = pd.to_numeric(df[col], downcast='float')
 ```
 
----
-
-## Protocol: Method Chaining
-
-Use method chaining for readable transformations.
+## 3. Method Chaining (The Fluent Style)
+Readable pipelines are debuggable pipelines.
 
 ```python
-# The "Fluent" Interface
-clean_df = (
-    raw_df
-    .dropna(subset=['id'])
+(
+    load_data()
+    .pipe(clean_names)
     .assign(
-        date=lambda x: pd.to_datetime(x['date_str']),
-        total=lambda x: x['price'] * x['qty']
+        revenue=lambda x: x.price * x.qty,
+        date=lambda x: pd.to_datetime(x.timestamp)
     )
-    .rename(columns={'date_str': 'timestamp'})
-    .query('total > 0')
+    .query("revenue > 100")
+    .groupby("category")
+    .agg(total_rev=("revenue", "sum"))
+    .reset_index()
 )
 ```
 
----
+## 4. Polars (The 2026 Alternative)
+If dataset > 10GB, abandon Pandas. Use **Polars**.
+- Lazy Evaluation (`.lazy().collect()`)
+- Parallel Execution (Rust backend)
+- No index headaches.
 
-## Performance Tips
-
-1.  **Types:** Downcast int64 to int32 if possible. Use `category` for low-cardinality strings.
-2.  **Parquet:** Use `.to_parquet()` instead of `.to_csv()` for massive speedups.
-3.  **Chunks:** If file > RAM, use `pd.read_csv(chunksize=10000)`.
-
----
-
-## Common Patterns
-
-| Task | Pattern |
-|:---|:---|
-| **Vlookup** | `df1.merge(df2, on='key', how='left')` |
-| **Pivot Table** | `df.pivot_table(index='date', columns='cat', values='val')` |
-| **Moving Avg** | `df['val'].rolling(window=7).mean()` |
+## 5. Debugging Pipelines
+Break the chain to inspect:
+```python
+.pipe(lambda df: print(df.shape) or df)  # Returns df after printing
+```

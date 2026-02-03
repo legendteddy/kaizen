@@ -1,57 +1,57 @@
 ---
 name: data-intelligence-pro
-description: Skill for advanced data analysis, cleaning, and insight generation.
+description: Advanced Exploratory Data Analysis (EDA), Statistical rigor, and Insight Generation.
 ---
 
-# Skill: Data Intelligence Pro (v1.0)
+# Data Intelligence Pro
 
-## Purpose
-Turn raw data (CSV, JSON, Logs) into actionable insights using rigorous statistical methods.
+> "Data is just noise until you find the signal."
 
-## Activation Trigger
-- "Analyze this dataset."
-- "Find the trends."
-- "Why did sales drop?"
+## 1. The Automated EDA Protocol
+Don't guess. Run the standard battery.
 
----
-
-## Protocol: The Data Pipeline
-
-### 1. Profiling (The "Health Check")
-**Action:** Before any analysis, run a profile.
+### Phase 1: The Shape of Water
 ```python
-import pandas as pd
-
-df = pd.read_csv("data.csv")
-print(f"Shape: {df.shape}")
-print(f"Columns: {df.columns.tolist()}")
-print(f"Missing: {df.isnull().sum()}") # Check for holes
-print(f"Duplicates: {df.duplicated().sum()}")
+def check_health(df):
+    print(f"Shape: {df.shape}")
+    print(f"Types:\n{df.dtypes}")
+    print(f"Missing %:\n{df.isnull().mean() * 100}")
+    print(f"Duplicates: {df.duplicated().sum()}")
 ```
 
-### 2. Cleaning (The "Janitor Work")
-- **Dates:** Convert strings to `datetime` immediately.
-- **Numbers:** Strip `$` and `,` from currency columns.
-- **Categoricals:** Standardize case (`"Apple"` == `"apple"`).
+### Phase 2: Univariate Analysis (One Variable)
+- **Numerical:** Histogram + Boxplot (Check for outliers).
+- **Categorical:** Bar chart (Check for balance).
+- **Protocol:** If skew > 1.0, consider Log Transform `np.log1p()`.
 
-### 3. Analysis (The "Detective Work")
-- **Distribution:** Use `df.describe()` for outliers.
-- **Correlation:** `df.corr()` for relationships.
-- **Time Series:** Resample by day/week (`df.resample('W')`).
+### Phase 3: Bivariate Analysis (Relationships)
+- **Num vs Num:** Scatterplot / Correlation Matrix.
+- **Num vs Cat:** Boxplot (Side-by-side).
+- **Cat vs Cat:** Heatmap (Crosstab).
 
----
+## 2. Statistical Rigor
+Don't say "A is better than B" without a test.
 
-## Protocol: Insight Generation
+| Scenario | Test |
+|:---|:---|
+| Compare 2 Means | T-Test |
+| Compare >2 Means | ANOVA |
+| Compare Categories | Chi-Square |
+| Correlation | Pearson/Spearman |
 
-**Do not just dump numbers.** Use the **"What, So What, Now What"** framework.
+## 3. Outlier Detection
+1.  **IQR Method:** `< Q1 - 1.5*IQR` or `> Q3 + 1.5*IQR`.
+2.  **Z-Score:** `> 3` standard deviations.
+3.  **Isolation Forest:** For high-dimensional data (AI approach).
 
-1.  **What:** "Sales dropped 10% in Q3." (Fact)
-2.  **So What:** "This correlates with the server outage on July 4th." (Cause)
-3.  **Now What:** "Investigate SLA credits for affected customers." (Action)
+## 4. Insight Generation Framework
+**"The What, So What, Now What"**
 
----
+1.  **What:** "Churn increased to 5% in May."
+2.  **So What:** "This coincides with the price hike. High-value cohorts were unaffected."
+3.  **Now What:** "Segment retention offers to low-value cohorts only."
 
-## Visualization Rules (Matplotlib/Seaborn)
-- **Title:** Every chart needs a title.
-- **Labels:** X and Y axes must be labeled.
-- **Color:** Use color accessible palettes (e.g., Viridis).
+## 5. Visualization Rules
+- **No Pie Charts:** Humans can't compare angles. Use Bar Charts.
+- **Color:** Use color to highlight data, not for decoration.
+- **Titles:** Title should be the insight ("Sales dropped in Q3"), not the metric ("Sales over Time").

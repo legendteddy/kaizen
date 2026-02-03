@@ -1,69 +1,71 @@
 ---
 name: react-ts-expert
-description: Skill for building type-safe, performant React applications with TypeScript.
+description: Protocols for React 19, Server Components, TypeScript, and State Management.
 ---
 
-# Skill: React TypeScript Expert (v1.0)
+# React TypeScript Expert
 
-## Purpose
-Enforce strict typing and modern patterns in React development.
+> "UI as a function of State."
 
-## Activation Trigger
-- "Write a React component"
-- "Fix this TS error"
-- "React" or "TSX" mentioned.
-
----
-
-## Protocol: Typing Patterns
-
-### 1. Props Interface
-**Rule:** Use `interface` over `type` for props (better error messages).
+## 1. React 19 & Server Components (RSC)
+The paradigm has shifted. Data fetching belongs on the server.
 
 ```tsx
-interface UserProfileProps {
-  id: string;
-  name: string;
-  role: 'admin' | 'user'; // Union type
-  onUpdate: (user: User) => Promise<void>;
-}
-```
-
-### 2. Generic Components
-**Rule:** Use generics for flexible components.
-
-```tsx
-interface ListProps<T> {
-  items: T[];
-  renderItem: (item: T) => React.ReactNode;
-}
-
-export function List<T extends { id: string }>({ items, renderItem }: ListProps<T>) {
+// Server Component (Default in Next.js 14+)
+async function userProfile({ id }: { id: string }) {
+  const user = await db.user.findUnique({ where: { id } });
+  
   return (
-    <ul>
-      {items.map(item => (
-        <li key={item.id}>{renderItem(item)}</li>
-      ))}
-    </ul>
+    <div>
+      <h1>{user.name}</h1>
+      <ClientButton userId={user.id} />
+    </div>
   );
 }
 ```
 
----
+## 2. Server Actions (The New Mutation)
+No more `useEffect` for data fetching. No more API routes for simple mutations.
 
-## Protocol: Hooks Rules
+```tsx
+// action.ts
+'use server'
+export async function updateUser(id: string, data: FormData) {
+  await db.user.update(...)
+  revalidatePath('/profile')
+}
+```
 
-1.  **Dependency Arrays:** ALWAYS verify exhaustive deps.
-    *   *Bad:* `useEffect(() => { ... }, [])` (ignoring props)
-    *   *Good:* `useEffect(() => { ... }, [prop])`
-2.  **Custom Hooks:** Extract logic > 10 lines into `useFeatureName.ts`.
+## 3. State Management Decision Matrix
 
----
+| State Type | Solution | Library |
+|:---|:---|:---|
+| **Server Data** | React Query / SWR | `@tanstack/react-query` |
+| **Global Client** | Atomic Store | `Zustand` / `Jotai` |
+| **Form State** | Uncontrolled | `react-hook-form` |
+| **Local UI** | `useState` / `useReducer` | Native |
 
-## Protocol: Performance
+## 4. TypeScript Patterns
 
-- **Memoization:** Don't premature optimize. Only use `useMemo`/`useCallback` when passing props to heavy children or context.
-- **Code Splitting:** Use `lazy` for routes.
-  ```tsx
-  const Dashboard = lazy(() => import('./pages/Dashboard'));
-  ```
+### Advanced Props
+```tsx
+// Polymorphic Component (render as 'a' or 'button')
+type ButtonProps<T extends React.ElementType> = {
+  as?: T;
+  children: React.ReactNode;
+} & React.ComponentPropsWithoutRef<T>;
+```
+
+### Discriminated Unions (The "State Machine" of Types)
+```ts
+type State = 
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: User }
+  | { status: 'error'; error: Error };
+```
+
+## 5. Performance Checklist
+- [ ] **Virtualization:** List > 100 items? Use `react-window`.
+- [ ] **Code Splitting:** `import("dynamic")` for heavy charts/modals.
+- [ ] **Stability:** `useCallback` on event handlers passed to optimized children.

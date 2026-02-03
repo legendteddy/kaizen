@@ -1,81 +1,69 @@
 ---
 name: implementation-planning
-description: Create detailed implementation plans that junior engineers can follow.
+description: Creating architectural blueprints, dependency graphs, and phased rollout plans.
 ---
 
 # Implementation Planning
 
-> Write plans clear enough for autonomous execution.
+> "Measure twice, cut once."
 
-## Purpose
+## 1. The Planning Template (Artifact)
 
-Create step-by-step plans that:
-- Can be followed by subagents
-- Have clear success criteria
-- Include verification steps
-
----
-
-## Plan Structure
+Create an `implementation_plan.md` before writing code for complex features.
 
 ```markdown
 # Implementation Plan: [Feature Name]
 
-## Goal
-[One sentence describing the outcome]
+## 1. Goal & Outcome
+**User Story:** As a [User], I want [Action] so that [Benefit].
+**Success Metric:** Response time < 200ms.
 
-## Prerequisites
-- [ ] Database access configured
-- [ ] Dependencies installed
+## 2. Architecture Changes
+### Database
+- New Table: `users_v2` (migrating from `users`)
+- New Index: `idx_email_v2`
 
-## Steps
+### API Layer
+- `POST /api/v2/login` (Replaces v1)
 
-### Step 1: [Action]
-**Files**: `path/to/file.py`
-**Changes**:
-- Add function X
-- Modify class Y
+## 3. Implementation Steps (Atomic)
 
-**Verification**:
-- [ ] Tests pass
-- [ ] No lint errors
+### Phase 1: Foundation
+- [ ] Create `users_v2` migration.
+- [ ] Update ORM models.
+- [ ] **Verification:** Run `migrations check`.
 
-### Step 2: [Action]
-...
+### Phase 2: Core Logic
+- [ ] Implement `AuthService` class.
+- [ ] Unit test `AuthService`.
+- [ ] **Verification:** `pytest tests/unit/auth`.
 
-## Rollback Plan
-If something goes wrong:
-1. Revert commit X
-2. Restore backup Y
+### Phase 3: Integration
+- [ ] Wire up API endpoints.
+- [ ] Connect to Frontend.
+- [ ] **Verification:** E2E smoke test.
 
-## Definition of Done
-- [ ] All tests pass
-- [ ] Code reviewed
-- [ ] Documentation updated
+## 4. Risks & Rollback
+- **Risk:** Migration locks DB.
+- **Mitigation:** Run "Concurrently".
+- **Rollback:** Standard SQL `DOWN` migration.
 ```
 
----
+## 2. Dependency Graphing
+Map the order of operations.
 
-## Principles
-
-### YAGNI (You Aren't Gonna Need It)
-Don't plan for hypothetical future needs.
-
-### DRY (Don't Repeat Yourself)
-Identify shared logic upfront.
-
-### Small Steps
-Each step should be completable in < 30 minutes.
-
----
-
-## Checkpoints
-
-Insert checkpoints after risky steps:
+```mermaid
+graph TD
+    DB[(Database Change)] --> Model[Update Models]
+    Model --> Service[Update Service Layer]
+    Service --> API[Update API Endpoints]
+    API --> UI[Update Frontend]
+    
+    Test[Write Tests] -.-> Service
 ```
-### Checkpoint: Verify Database Migration
-Before proceeding:
-- [ ] Migration ran successfully
-- [ ] Data integrity verified
-- [ ] Rollback tested
-```
+
+## 3. Principles of Planning
+1.  **Atomic Commits:** Each step should be one mergeable PR.
+2.  **Test-First:** Define *how* you will verify before you build.
+3.  **No Dead Ends:** Ensure Step 1 doesn't block Step 3 unexpectedly.
+4.  **Legacy Bridge:** If replacing a system, plan the "Dual Write" or "Feature Flag" phase.

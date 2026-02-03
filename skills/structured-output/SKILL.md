@@ -1,77 +1,68 @@
 ---
 name: structured-output
-description: Constrained generation techniques for reliable JSON output from LLMs.
+description: Enforcing JSON/XML formats via Pydantic, Zod, and Grammar Constrained Generation.
 ---
 
-# Structured Output (v1.0)
+# Structured Output
 
-> Guaranteed valid JSON from LLMs using constrained generation
+> "If it's not JSON, it didn't happen."
 
-## Purpose
-Ensure LLM outputs are valid, parseable structured data.
+## 1. The Pydantic Protocol (Python)
+Don't ask for "JSON". Ask for a "Pydantic Schema".
 
-## Activation Trigger
-- API integration needs
-- Database operations
-- Tool/function calling
+```python
+from pydantic import BaseModel, Field
 
----
+class User(BaseModel):
+    name: str = Field(..., description="Full name")
+    age: int = Field(..., gt=0, lt=150)
+    tags: list[str]
 
-## Techniques
-
-### 1. Prompt Engineering
-- Specify exact JSON schema in prompt
-- Include examples for few-shot learning
-
-### 2. Constrained Decoding
+# Prompt
+prompt = f"Extract user info. Schema: {User.model_json_schema()}"
 ```
-Standard:   Any token possible at each step
-Constrained: Only valid tokens per schema
+
+## 2. The Zod Protocol (TypeScript)
+For JS/TS agents.
+```typescript
+const UserSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+});
 ```
-- Uses FSM (Finite State Machine)
-- Logit masking: Invalid tokens → 0 probability
-- 100% schema compliance guaranteed
 
-### 3. Schema-Guided Generation
-- Define structure with JSON Schema
-- Integrate with Pydantic models
-- Validate at generation time
+## 3. Techniques for Robustness
 
----
+### Option A: Schema-Constrained Decoding (Grammar)
+*Best for local LLMs (Llama.cpp, Ollama).*
+- Force the LLM to output ONLY tokens that fit the grammar.
+- **Result:** 100% Valid JSON. Zero syntax errors.
 
-## API Parameters (vLLM/Fireworks)
+### Option B: The "Retry Healer" Loop
+*Best for cloud APIs (Claude, GPT).*
 
-| Param | Purpose |
+```python
+for attempt in range(3):
+    try:
+        response = llm.generate()
+        json_obj = json.loads(response)
+        User.model_validate(json_obj)
+        return json_obj
+    except ValidationError as e:
+        # FEED THE ERROR BACK
+        prompt += f"\n\nError: {e}\nFix your JSON."
+```
+
+## 4. Format Selection Strategy
+
+| Format | When to use |
 |:---|:---|
-| `choice` | One of predefined options |
-| `regex` | Match regex pattern |
-| `json` | Follow JSON schema |
-| `grammar` | Context-free grammar |
+| **JSON** | Complex data, APIs, Databases. |
+| **XML** | Large document extraction (LLMs parse tags better than JSON brackets). |
+| **YAML** | Config files, human-readable lists. |
+| **Markdown Table** | Comparison data for humans. |
 
----
-
-## Benefits
-
-- ✅ No parsing errors
-- ✅ No schema violations
-- ✅ No wrong data types
-- ✅ No free-form drift
-
----
-
-## 2026 Trends
-
-### Generative UI (GenUI)
-- AI generates UI at runtime
-- JSON describes components
-- Adapts to user context
-
----
-
-## For Sovereign Framework
-
-Structured output enables:
-- Tool calling reliability
-- API integration
-- Database operations
-- Configuration generation
+## 5. Anti-Patterns
+- **Do NOT** ask for JSON without a schema.
+- **Do NOT** mix JSON with Markdown text ("Here is the JSON: ```json...").
+  - *Fix:* Use `response_format={"type": "json_object"}`.

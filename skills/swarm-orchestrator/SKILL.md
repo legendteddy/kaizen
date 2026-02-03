@@ -1,41 +1,63 @@
 ---
 name: swarm-orchestrator
-description: Manages local swarm sub-agents. Allows spawning background jobs to Ollama via the swarm bus.
+description: Protocols for Multi-Agent coordination, Shared Message Bus, and Swarm Topologies.
 ---
 
-# Swarm Orchestrator (Phase 6)
+# Swarm Orchestrator
 
-This skill enables "Parallel Brain" operations by delegating tasks to local background workers.
+> "None of us is as smart as all of us."
 
-## 🐝 Swarm Protocols
+## 1. Topologies
 
-### 1. Spawning a "Prime" Job (Gemini CLI)
-The Gemini CLI is our most intelligent worker. It uses local Google Auth.
-To spawn a Prime Job, set the model to `gemini-cli`:
+### The Hierarchy (Boss-Worker)
+Best for: Defined tasks (e.g., "Build an App").
+```mermaid
+graph TD
+    Boss[Manager Agent] --> UI[Frontend Worker]
+    Boss --> API[Backend Worker]
+    Boss --> DB[Database Worker]
+    
+    UI --> Boss
+    API --> Boss
+    DB --> Boss
+```
+
+### The Mesh (Peer-to-Peer)
+Best for: Creative exploration (e.g., "Research and Debate").
+- Agents post finding to a shared `message_bus`.
+- Other agents react to messages they are interested in.
+- No central bottleneck.
+
+## 2. The Message Bus Protocol (JSON)
+Agents communicate via a shared file or Redis stream.
+
 ```json
 {
-  "id": "UUID",
-  "status": "pending",
-  "prompt": "The detailed task for the sub-agent",
-  "model": "gemini-cli",
-  "priority": "high",
-  "created_at": "ISO8601"
+  "id": "msg_123",
+  "from": "research_agent",
+  "to": "writer_agent",
+  "type": "findings_report",
+  "payload": {
+    "summary": "Competitor X launched feature Y...",
+    "source": "url..."
+  },
+  "timestamp": "2026-02-03T12:00:00Z"
 }
 ```
 
-### 2. Spawning a "Base" Job (Ollama)
-For simple, fast tasks (poems, summaries), use local Ollama models.
+## 3. Local Swarm (Ollama/Gemini)
+How to run a swarm on **one machine**:
 
-### 2. Launching Workers
-If no workers are active (check `last_pulse` in `swarm_bus.json`), execute the worker script in background mode with appropriate system paths.
+1.  **Orchestrator:** Python script (`swarm.py`).
+2.  **Workers:** ThreadPool executing API calls.
+3.  **Memory:** Shared `sqlite` database.
 
-### 3. Monitoring & Collection
-*   **Step 1:** Read `swarm_bus.json`.
-*   **Step 2:** Identify `completed` jobs.
-*   **Step 3:** Collect `result` and move the job to `history`.
-*   **Step 4:** Summarize the findings for the user.
+**Safety Gate:**
+- **MAX_CONCURRENCY:** `min(cpu_cores - 2, 4)`. Don't fry the user's laptop.
+- **Context Isolation:** Workers do NOT share context history. They share *outputs*.
 
-## 🛡️ Safety Gates
-1. **Concurrency Limit:** Do not spawn more than 3 background jobs at once to avoid GPU thrashing.
-2. **Context Isolation:** Sub-agents only see the prompt provided. Important context must be passed explicitly.
-3. **Self-Monitoring:** If a job stays `processing` for > 5 minutes, mark it as `failed` and retry or escalate.
+## 4. Conflict Resolution
+When two agents disagree (e.g., Frontend wants Blue, Design wants Red):
+1.  **Escalate:** Trigger `Boss` agent.
+2.  **Vote:** Majority rule (if >3 agents).
+3.  **Random:** (Last resort).

@@ -1,66 +1,51 @@
 ---
 name: brainstorming
-description: Socratic design refinement and collaborative ideation.
+description: Protocols for Generative Thinking, First Principles, and Inversion.
 ---
 
-# Brainstorming
+# Brainstorming Engine
 
-> Explore possibilities before committing to solutions.
+> "The best way to have a good idea is to have a lot of ideas."
 
-## The Socratic Method
+## 1. First Principles Thinking (Physics)
+Break problems down to fundamental truths.
+1.  **Deconstruct:** What are the absolute non-negotiables? (e.g., "Must run on a browser").
+2.  **Reconstruct:** Build up from there without using "analogies" ("We usually use React").
+3.  **Result:** "Why not use WebAssembly?"
 
-Ask probing questions to refine understanding:
+## 2. Inversion (The Stoic method)
+Instead of "How do I succeed?", ask "How do I guarantee failure?"
+- **Goal:** "Make the app fast."
+- **Inversion:** "How do I make the app incredibly slow?"
+    - Use 10MB images.
+    - Block the main thread.
+    - Waterfall network requests.
+- **Solution:** "Don't do those things."
 
+## 3. SCAMPER Framework
+Iterate on an existing idea:
+- **S**ubstitute: Can we swap the DB?
+- **C**ombine: Can Auth and User Profile be one service?
+- **A**dapt: How does Linux handle this?
+- **M**odify: What if we cached it?
+- **P**ut to other use: Can the Logger be an Analytics tool?
+- **E**liminate: Do we need this feature?
+- **R**everse: Build the UI before the Backend?
+
+## 4. The "Hot/Cold" Protocol (For Agents)
+When you (the Agent) are stuck:
+1.  **Hot Mode (Temperature 1.0):** Generate 5 wild, impossible ideas.
+2.  **Cold Mode (Temperature 0.2):** Critique the 5 ideas ruthlessly.
+3.  **Synthesis:** Pick the survivor.
+
+## Output Format (The Options Memo)
+Present brainstorming results as:
+
+```markdown
+### 3 Approaches Considered
+1.  **The Boring Way:** (Description + Tradeoffs)
+2.  **The Fast Way:** (Description + Tradeoffs)
+3.  **The Crazy Way:** (Description + Tradeoffs)
+
+**Recommendation:** Option 2, because...
 ```
-1. What problem are we really solving?
-2. Who is affected?
-3. What are the constraints?
-4. What have we tried before?
-5. What would the ideal solution look like?
-```
-
----
-
-## Brainstorming Modes
-
-### 1. Divergent (Generate Ideas)
-- No criticism allowed
-- Quantity over quality
-- Build on others' ideas
-- Wild ideas welcome
-
-### 2. Convergent (Refine Ideas)
-- Evaluate feasibility
-- Combine similar ideas
-- Prioritize by impact
-- Select best options
-
----
-
-## Structured Techniques
-
-### "Yes, And..."
-Build on each idea instead of rejecting:
-```
-Idea: "We could cache the results"
-"Yes, and we could invalidate on write"
-"Yes, and we could use Redis for speed"
-```
-
-### Six Thinking Hats
-- 🎩 White: Facts and data
-- 🎩 Red: Emotions and intuition
-- 🎩 Black: Risks and problems
-- 🎩 Yellow: Benefits and value
-- 🎩 Green: Creative alternatives
-- 🎩 Blue: Process and summary
-
----
-
-## Output
-
-After brainstorming, document:
-1. **Problem statement** (refined)
-2. **Top 3 options** considered
-3. **Selected approach** with rationale
-4. **Open questions** remaining

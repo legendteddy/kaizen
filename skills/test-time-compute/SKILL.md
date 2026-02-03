@@ -1,80 +1,57 @@
 ---
 name: test-time-compute
-description: Test-time compute scaling and slow thinking techniques for enhanced AI reasoning.
+description: Scaling intelligence at inference via Chain-of-Thought, Best-of-N, and Tree Search.
 ---
 
-# Test-Time Compute (v1.0)
+# Test-Time Compute (TTC)
 
-> The "third scaling law" - think more at inference time
+> "Don't just answer. Think."
 
-## Purpose
-Understand test-time compute scaling for improved reasoning.
+## 1. The Scaling Law
+Accuracy scales with inference compute.
+- **System 1 (Fast):** "Paris is the capital of France." (0.1s)
+- **System 2 (Slow):** "Paris's GDP relative to London's post-Brexit." (30s)
 
-## Activation Trigger
-- Complex reasoning tasks
-- Multi-step problems
-- High-accuracy requirements
+## 2. Protocols for "Slow Thinking"
 
----
+### A. Manual Chain-of-Thought (The "<thinking>" Tag)
+If the model doesn't support o1/DeepSeek-R1 natively, force it:
 
-## Concept
-
-### Traditional Scaling
-- More parameters
-- More training data
-- More pre-training compute
-
-### Test-Time Scaling (2026)
-```
-More compute at INFERENCE time
-= More accurate answers
-= Better reasoning
-= "Slow thinking"
+```markdown
+<thinking>
+1.  **Understand Goal:** User wants a regex for emails.
+2.  **Edge Cases:** logical.part@sub.domain.co.uk? +tag?
+3.  **Draft 1:** ^[\w]+@[\w]+\.[\w]+$ (Too simple).
+4.  **Critique:** Fails on dots in name.
+5.  **Refinement:** Use standard RFC 5322 permissive pattern.
+</thinking>
+Final Answer: [Regex]
 ```
 
----
+### B. Best-of-N (Voting)
+Generate 5 solutions. Pick the best.
+```python
+solutions = [llm.generate(prompt) for _ in range(5)]
+evaluator_prompt = f"Rank these 5 solutions by robustness: {solutions}"
+best = llm.generate(evaluator_prompt)
+```
 
-## Techniques
+### C. Tree of Thoughts (ToT)
+Explore branches. Backtrack if dead end.
+1.  **Branch:** Generate 3 possible architectural approaches.
+2.  **Evaluate:** Score each approach (1-10).
+3.  **Expand:** Take the top score and detail it further.
 
-### 1. Chain-of-Thought (CoT)
-- Generate intermediate steps
-- Self-verify reasoning
-- Explore alternatives
+## 3. When to Use TTC?
 
-### 2. Simulated Reasoning (o3)
-- Private chain-of-thought
-- Assess multiple solutions
-- Select best path
-- "Think before answering"
-
-### 3. Multimodal CoT
-- Reason across text, images, video
-- 2026: Becoming mainstream
-
----
-
-## Hardware Implications
-
-| Shift | Impact |
+| Task | Compute Strategy |
 |:---|:---|
-| Compute → Inference | More GPU for serving |
-| Batch → Interactive | Latency matters |
-| Microsoft Maia 200 | Optimized for inference |
+| Chat / Greeting | **Zero-Shot** (System 1) |
+| SQL Generation | **Few-Shot + CoT** (System 1.5) |
+| Architecture Design | **Tree of Thoughts** (System 2) |
+| Math / Physics | **DeepSeek-R1 / o1-preview** (Native System 2) |
 
----
-
-## Impact
-
-- Higher accuracy on complex tasks
-- Visual reasoning approaching human level
-- Self-debugging code assistants
-- Engineers: Review AI solutions vs write code
-
----
-
-## For Sovereign Framework
-
-TTC enables:
-- Deep reasoning when needed
-- Trade latency for accuracy
-- Critical task verification
+## 4. The "Wait" Token
+If an agent realizes it needs more time:
+- **Bad:** Hallucinate a quick answer.
+- **Good:** "I need to run a simulation to answer this. Standby..." (Then runs a loop).
