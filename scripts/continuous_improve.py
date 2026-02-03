@@ -16,6 +16,7 @@ class ContinuousImprover:
         self.comm = AgentComm(self.agent_id)
         self.comm.log("Continuous Improver Daemon Started.")
 
+    def check_skill_decay(self):
         """
         Check for skills that have not been updated recently.
         Future Enhancement: Implement file timestamp analysis.
