@@ -1,85 +1,54 @@
 ---
 name: ambiguity-handling
-description: Know when to ask vs when to assume. Make smart decisions under uncertainty.
+description: Protocols for resolving uncertainty, handling edge cases, and making reversible assumptions.
 ---
 
 # Ambiguity Handling
 
-> Uncertainty is normal. Handle it gracefully.
+> "In the face of uncertainty, choose the path of least regret."
 
-## Activation Trigger
-- Request is vague
-- Multiple interpretations possible
-- Missing critical information
-- User intent unclear
+## The Decision Matrix
 
----
+When you hit a fork in the road and the user isn't there:
 
-## Decision Framework
+| Stakes | Reversible? | Strategy | Example |
+|:---|:---|:---|:---|
+| **High** | No | **STOP & ASK** | "Delete database?", "Deploy to Prod?" |
+| **High** | Yes | **PROPOSE** | "I plan to refactor Auth, here is the plan." |
+| **Low** | No | **WARN & ACT** | "I'm overwriting the config (backup created)." |
+| **Low** | Yes | **ASSUME & ACT** | "Choosing standard blue button style." |
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    AMBIGUITY DECISION                           │
-│                                                                 │
-│  Is the ambiguity...                                           │
-│                                                                 │
-│  HIGH STAKES (irreversible, costly, complex)?                  │
-│     → ASK for clarification                                    │
-│                                                                 │
-│  LOW STAKES (reversible, quick, simple)?                       │
-│     → ASSUME reasonably, state assumption, proceed             │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+## Protocol: The "Reviewable Assumption"
+When you must act but aren't 100% sure:
 
-## When to ASK
+1.  **Declare:** "I am assuming [X] because [Reason]."
+2.  **Act:** Perform the action.
+3.  **Invite:** "If you preferred [Y], I can switch it by running [Z]."
 
-| Situation | Example |
-|:---|:---|
-| Irreversible actions | "Should I delete this folder?" |
-| Multiple valid paths | "Do you want A or B approach?" |
-| Resource commitment | "This will take 2 hours, proceed?" |
-| Missing requirements | "What should happen when X?" |
-| Contradictory info | "You said X but also Y, which?" |
+*Example:*
+> "I assumed you wanted the 'modern' layout based on your previous cues. I've implemented it. If you prefer 'classic', I can revert commit `abc1234`."
 
-## When to ASSUME
+## Protocol: Breaking Ties (Conflict Resolution)
+If requirements conflict:
 
-| Situation | Assumption |
-|:---|:---|
-| Style preferences | Follow existing codebase |
-| Minor details | Use sensible defaults |
-| Implementation choices | Pick simplest option |
-| Naming conventions | Match existing patterns |
-| Error messages | Be descriptive and helpful |
+1.  **Hierarchy of Truth:**
+    1.  User's *latest* message.
+    2.  User's *previous* explicit instruction.
+    3.  `KAIZEN.md` / System Rules.
+    4.  Codebase Conventions.
+    5.  General Best Practices.
 
-## The Assumption Protocol
+2.  **The "Least Surprise" Rule:**
+    Choose the option that would surprise a competent engineer the least.
 
-When assuming:
-```
-1. State: "I'm assuming X because Y"
-2. Proceed: Do the work
-3. Verify: "Is this what you wanted?"
-4. Adjust: If wrong, correct quickly
-```
+## Question Batching (Anti-Nagging)
+Do NOT stop for every small detail.
+- **Bad:** Stop 5 times for 5 variables.
+- **Good:** Stop once with a numbered list:
+  > "I need clarification on:
+  > 1. Auth provider (Google or Email?)
+  > 2. Database (Postgres or SQLite?)
+  > 3. Color scheme (Dark or Light?)"
 
-## Batching Questions
-
-Don't ask one question at a time. Batch related questions:
-
-**Bad:**
-- "What color?" 
-- (wait)
-- "What size?"
-- (wait)
-
-**Good:**
-- "I need to know: 1) color, 2) size, 3) format"
-
-## Self-Improvement Hook
-
-After handling ambiguity:
-```
-□ Did my assumption prove correct?
-□ Should I ask earlier next time?
-□ Can I add this to domain knowledge?
-```
+## Self-Improvement
+- **Did the user correct me?** -> Update the project's `.cursorrules` or `memory.md` so I don't guess wrong next time.
