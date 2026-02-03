@@ -54,3 +54,17 @@ Present brainstorming results as:
 
 **Recommendation:** Option 2, because...
 ```
+
+## Action Checklist
+- [ ] **Quantity:** Generated at least 5 variants?
+- [ ] **Inversion:** Asked "How to fail?"
+- [ ] **First Principles:** Removed all analogies?
+- [ ] **Temperature:** Did I use High Temp for generation?
+- [ ] **Synthesis:** Did I pick the best parts of each?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

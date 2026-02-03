@@ -65,3 +65,14 @@ If the model says "Context Full" or starts forgetting:
 ## Self-Improvement
 - **Did I fail to find a bug?** -> Maybe it was in a file I "compressed" too much? Check assumptions.
 - **Did I hallucinate a library?** -> You probably guessed instead of checking `package.json`.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

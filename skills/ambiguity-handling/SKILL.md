@@ -12,6 +12,18 @@ description: Protocols for resolving uncertainty, handling edge cases, and makin
 - High-stakes decision with low information.
 - User input is vague.
 
+## Decision Logic
+```mermaid
+graph TD
+    A[Ambiguity Detected] --> B{Stakes?}
+    B -->|High| C{Reversible?}
+    B -->|Low| D{Reversible?}
+    C -->|No| E[STOP & ASK]
+    C -->|Yes| F[PROPOSE Plan]
+    D -->|No| G[WARN & ACT]
+    D -->|Yes| H[ASSUME & ACT]
+```
+
 ## The Decision Matrix
 
 When you hit a fork in the road and the user isn't there:
@@ -57,3 +69,17 @@ Do NOT stop for every small detail.
 
 ## Self-Improvement
 - **Did the user correct me?** -> Update the project's `.cursorrules` or `memory.md` so I don't guess wrong next time.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Brainstorming](../brainstorming/SKILL.md)

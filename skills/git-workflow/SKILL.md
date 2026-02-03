@@ -5,6 +5,8 @@ description: Professional version control standards (Branching, Conventional Com
 
 # Git Workflow
 
+> "History is written by the victors (who squash their commits)."
+
 ## Activation Trigger
 - Managing branches or commits.
 - Resolving merge conflicts.
@@ -85,3 +87,10 @@ git rebase -i HEAD~3
 - [ ] `npm test` passes
 - [ ] No `console.log` left behind
 - [ ] No secrets in `git diff`
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

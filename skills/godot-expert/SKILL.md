@@ -68,3 +68,17 @@ func take_damage(amount: int) -> void:
 ## Self-Improvement
 - Did I write a hardcoded path? -> Use `%UniqueName` next time.
 - Did a signal fail? -> Check signal syntax (Godot 4 vs 3).
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

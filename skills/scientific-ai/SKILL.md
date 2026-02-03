@@ -82,3 +82,17 @@ Scientific AI patterns teach:
 3. **Verification**: Science requires empirical validation
 4. **Iterative refinement**: Continuous improvement from experiments
 
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

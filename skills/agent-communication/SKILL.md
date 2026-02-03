@@ -72,3 +72,17 @@ Another agent (e.g., `react-ts-expert`) picks it up.
 ## 7. Safety Limits
 - **Max Concurrency:** Check `registry.json`. If > 3 agents active, consider yielding.
 - **Rate Limit:** Do not commit more than once every 5 minutes per agent to avoid git conflicts.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)
+- [Agent Security](../agent-security/SKILL.md)

@@ -5,6 +5,8 @@ description: Skill for Deep Learning engineering using PyTorch.
 
 # Skill: PyTorch Expert (v1.0)
 
+> "The gradient flows where the math goes."
+
 ## Purpose
 Build, train, and debug neural networks using modern PyTorch best practices.
 
@@ -84,5 +86,36 @@ If loss becomes `NaN`:
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 # ...
-x = x.to(device)
 ```
+
+## Common Pitfalls & Anti-Patterns
+
+### 1. The "Detach" Bug
+If you store loss history without detaching, you leak the entire graph.
+- **Bad:** `history.append(loss)`
+- **Good:** `history.append(loss.item())` (Breaks graph connection)
+
+### 2. The "Eval Mode" Miss
+Forgetting `model.eval()` during inference leaves Dropout/BatchNorm active.
+- **Result:** Inconsistent predictions.
+- **Fix:** Always use a `with torch.no_grad():` block and `model.eval()`.
+
+### 3. The "In-Place" Error
+Modifying tensors in-place during autograd.
+- **Bad:** `x += 1` (sometimes okay, often breaks gradient)
+- **Good:** `x = x + 1` (safer)
+
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

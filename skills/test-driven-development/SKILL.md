@@ -86,3 +86,17 @@ def test_user_login():
 ```
 
 Most tests should be unit tests. Few E2E tests.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

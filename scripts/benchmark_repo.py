@@ -18,7 +18,7 @@ class RepoJudge:
         return len([d for d in os.listdir(SKILLS_DIR) if os.path.isdir(os.path.join(SKILLS_DIR, d))])
 
     def assess_depth(self):
-        """Count skills that are 'Industrial Grade' (> 1.5KB)"""
+        """Count skills that are 'Sovereign Grade' (> 2.0KB). Strict!"""
         if not os.path.exists(SKILLS_DIR):
             return 0
         deep_skills = 0
@@ -27,52 +27,125 @@ class RepoJudge:
             path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
             if os.path.exists(path):
                 total_skills += 1
-                if os.path.getsize(path) > 1500:
+                if os.path.getsize(path) > 2000: # Increased from 1500
                     deep_skills += 1
         
         return (deep_skills / total_skills * 100) if total_skills > 0 else 0
 
-    def check_safety(self):
-        """Check if lock files are stale."""
-        locks_dir = os.path.join(AGENTS_DIR, "locks")
-        if not os.path.exists(locks_dir):
-            return 100
-        
-        stale = 0
+    def assess_actionability(self):
+        """Check for Executable Checklists (- [ ])"""
+        if not os.path.exists(SKILLS_DIR):
+            return 0
+        actionable = 0
         total = 0
-        for lock in os.listdir(locks_dir):
-            total += 1
-            # Simple heuristic: if created > 1 hour ago (not implemented here, just counting presence)
-            # In a real judge, we'd parse the JSON expiry.
-            pass
-        
-        # Arbitrary score: -10 per lock (assuming locks should be transient)
-        return max(0, 100 - (total * 10))
+        for sk in os.listdir(SKILLS_DIR):
+            path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
+            if os.path.exists(path):
+                total += 1
+                with open(path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    if "- [ ]" in content or "- [x]" in content or "## Checklist" in content:
+                        actionable += 1
+        return (actionable / total * 100) if total > 0 else 0
+
+    def assess_connectivity(self):
+        """Check for Internal Links to other skills"""
+        if not os.path.exists(SKILLS_DIR):
+            return 0
+        connected = 0
+        total = 0
+        for sk in os.listdir(SKILLS_DIR):
+            path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
+            if os.path.exists(path):
+                total += 1
+                with open(path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    # Check for markdown links to sibling directories
+                    # Regex for [Text](../skill_name) or [Text](./skill_name) or just skill_name
+                    # Simple heuristic: Does it contain "(../" or "(./" or "skills/"?
+                    if "](./" in content or "](../" in content or "skills/" in content:
+                        connected += 1
+        return (connected / total * 100) if total > 0 else 0
 
     def run(self):
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] ⚖️  Running Judgment Day...")
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] ⚖️  Running Judgment Day (God Mode)...")
         
+        # Track failures
+        fails_depth = []
+        fails_compliance = []
+        fails_intelligence = []
+        fails_actionability = []
+        fails_connectivity = []
+        
+        if os.path.exists(SKILLS_DIR):
+            for sk in os.listdir(SKILLS_DIR):
+                path = os.path.join(SKILLS_DIR, sk, "SKILL.md")
+                if not os.path.exists(path): continue
+                
+                # Check Depth
+                if os.path.getsize(path) <= 2000:
+                    fails_depth.append(sk)
+                
+                # Check Content
+                with open(path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    # Compliance
+                    if "## Activation Trigger" not in content or "> " not in content:
+                        fails_compliance.append(sk)
+                    # Intelligence
+                    if "```" not in content:
+                        fails_intelligence.append(sk)
+                    # Actionability
+                    if "- [ ]" not in content and "- [x]" not in content and "## Checklist" not in content:
+                        fails_actionability.append(sk)
+                    # Connectivity
+                    if "](./" not in content and "](../" not in content and "skills/" not in content:
+                        fails_connectivity.append(sk)
+
         skill_count = self.count_skills()
-        skill_depth = self.assess_depth()
-        safety_score = self.check_safety()
+        skill_depth = (1 - (len(fails_depth) / skill_count)) * 100 if skill_count else 0
+        compliance = (1 - (len(fails_compliance) / skill_count)) * 100 if skill_count else 0
+        intelligence = (1 - (len(fails_intelligence) / skill_count)) * 100 if skill_count else 0
+        actionability = (1 - (len(fails_actionability) / skill_count)) * 100 if skill_count else 0
+        connectivity = (1 - (len(fails_connectivity) / skill_count)) * 100 if skill_count else 0
         
-        # Blended Score
-        # 40% Depth, 30% Scale (target 70), 30% Safety
+        # Blended Score (God Mode)
+        # 20% Each: Compliance, Intelligence, Depth, Actionability, Connectivity
         scale_score = min(100, (skill_count / 70) * 100)
-        kaizen_score = (skill_depth * 0.4) + (scale_score * 0.3) + (safety_score * 0.3)
+        
+        kaizen_score = (
+            (compliance * 0.20) + 
+            (intelligence * 0.20) + 
+            (skill_depth * 0.20) +
+            (actionability * 0.20) +
+            (connectivity * 0.20)
+        )
         
         report = {
             "timestamp": datetime.now().isoformat(),
             "metrics": {
                 "skill_count": skill_count,
-                "skill_depth_percent": round(skill_depth, 1),
-                "safety_score": safety_score
+                "compliance": round(compliance, 1),
+                "intelligence": round(intelligence, 1),
+                "actionability": round(actionability, 1),
+                "connectivity": round(connectivity, 1),
+                "depth_strict": round(skill_depth, 1)
             },
             "kaizen_score": round(kaizen_score, 1)
         }
         
         self.log_report(report)
-        print(f"🏆 Kaizen Score: {report['kaizen_score']}/100 (Depth: {report['metrics']['skill_depth_percent']}%)")
+        print(f"🏆 God Mode Score: {report['kaizen_score']}/100")
+        print(f"   - Compliance: {report['metrics']['compliance']}%")
+        print(f"   - Intelligence: {report['metrics']['intelligence']}%")
+        print(f"   - Actionability: {report['metrics']['actionability']}%")
+        
+        print(f"   - Connectivity: {report['metrics']['connectivity']}% (Failed: {len(fails_connectivity)})")
+        if fails_connectivity: print(f"     ❌ {fails_connectivity[:5]}... (+{len(fails_connectivity)-5} more)" if len(fails_connectivity) > 5 else f"     ❌ {fails_connectivity}")
+        
+        print(f"   - Depth (>2KB): {report['metrics']['depth_strict']}% (Failed: {len(fails_depth)})")
+        if fails_depth: print(f"     ❌ {fails_depth}")
+        
         return report
 
     def log_report(self, report):

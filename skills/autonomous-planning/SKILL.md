@@ -126,3 +126,6 @@ Total mission: Checkpoint every 50 tool calls
 | L4 | 8 hr | On completion or blockers |
 | L5 | 30+ hr | Pre-approved via constitution |
 
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

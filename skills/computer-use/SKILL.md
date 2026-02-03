@@ -66,3 +66,14 @@ def login(username, password):
     if "Dashboard" not in ocr(screen):
         raise LoginError("Failed to login")
 ```
+
+## Action Checklist
+- [ ] **See:** Did you take a screenshot before acting?
+- [ ] **Think:** Are coordinates centered on the element?
+- [ ] **Click:** Did you wait 500ms after action?
+- [ ] **Verify:** Did the screen change state?
+- [ ] **Rescue:** If stuck, did you try keyboard shortcuts (Tab/Enter)?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

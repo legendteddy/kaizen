@@ -82,3 +82,16 @@ Robotics AI represents:
 2. **Simulation training**: Test without hardware
 3. **AGI milestone**: Embodied general intelligence
 
+## Action Checklist
+- [ ] **Safety:** Is there a hardware kill-switch?
+- [ ] **Sim:** Validated in simulation (Isaac Gym) first?
+- [ ] **Latency:** Is the conceptual inference loop < 100ms?
+- [ ] **Data:** Training on real-world or synthetic data?
+- [ ] **Ethics:** Does it adhere to Asimov/Safety compliance?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)

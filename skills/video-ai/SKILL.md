@@ -56,3 +56,16 @@ ffmpeg -i input.mkv -c:v libx264 -profile:v high -level 4.0 -pix_fmt yuv420p -c:
 ## Self-Improvement
 - **Did the video look melty?** -> Reduce motion parameters.
 - **Did FFMPEG invalid input?** -> Check if input file path has spaces (quote them).
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

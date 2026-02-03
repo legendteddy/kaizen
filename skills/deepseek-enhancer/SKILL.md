@@ -5,6 +5,8 @@ description: Forces System 2 deep reasoning with Chain-of-Thought, verification 
 
 # DeepSeek Enhancer — System 2 Reasoning Engine
 
+> "Slow is smooth. Smooth is fast."
+
 This skill forces **deep thinking** before action. It is the cognitive core of the Sovereign Agent.
 
 ## Activation Trigger
@@ -200,3 +202,10 @@ When a path isn't working:
 ---
 
 *"Think twice, code once."*
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

@@ -29,6 +29,18 @@ Scripts must be safe to run multiple times.
 | `echo "line" >> file` | `grep -q "line" file || echo "line" >> file` | Prevents duplicates |
 | `npm install` | `npm ci` | Strict version install |
 
+## Snippet Library
+```bash
+# Safe Directory Creation
+mkdir -p /path/to/dir
+
+# Safe Append
+grep -qF "line" file.txt || echo "line" >> file.txt
+
+# Safe Find & Delete (Verify first!)
+find . -name "*.tmp" -type f -delete
+```
+
 ## Shell Specifics
 
 ### Linux / Bash
@@ -64,3 +76,17 @@ Scripts must be safe to run multiple times.
 ## Self-Improvement
 - **Did a script fail silently?** -> Add error checking next time.
 - **Did I accidentally overwrite a file?** -> Use `cp -n` (no clobber) or backup pattern.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

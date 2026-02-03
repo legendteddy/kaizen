@@ -5,6 +5,8 @@ description: Advanced debugging methodology with 4-phase root cause analysis, st
 
 # Debug Master — Systematic Problem Solving
 
+> "The bug is not in the code. The bug is in your mental model."
+
 This skill provides a **battle-tested debugging methodology**. When bugs appear, you don't guess—you investigate.
 
 ## Activation Trigger
@@ -328,3 +330,7 @@ Escalate when:
 ---
 
 *"Debugging is like being a detective in a crime movie where you are also the murderer."*
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

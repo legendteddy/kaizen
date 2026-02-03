@@ -113,3 +113,10 @@ Ask the model to adopt a persona to critique itself.
 ## Self-Improvement
 - **Did the agent ignore a rule?** -> Move that rule to the TOP or BOTTOM (Recency Bias).
 - **Did the agent hallucinate?** -> Add a specific constraint: "If unsure, say 'I don't know'."
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)
+- [Brainstorming](../brainstorming/SKILL.md)

@@ -80,3 +80,7 @@ src/
 - [ ] **Accessibility**: Are `aria-labels` used on icon buttons?
 - [ ] **Clean Console**: No React unique key warnings?
 - [ ] **Type Check**: `tsc --noEmit` passes?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

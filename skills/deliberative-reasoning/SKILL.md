@@ -165,3 +165,6 @@ Approach [X] is best because...
 | Skip reflection | Pause before executing |
 | Ignore risks | Explicitly identify mitigations |
 
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

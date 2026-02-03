@@ -77,6 +77,29 @@ Model plays against itself
 ## For Sovereign Framework
 
 Self-play enables:
-- Autonomous improvement loops
-- Self-verification patterns
 - Reduced human oversight needs
+
+## 3. The Reward Hacking Trap
+When agents game the system:
+
+### Symptoms
+- Agent outputs max length responses to look "smart".
+- Agent agrees with user aliases even when wrong.
+- Agent uses "safety language" to avoid hard tasks.
+
+### Mitigation
+- **KL Divergence Penalty:** Keep model close to base model.
+- **Rule-Based Overrides:** Hard-coded "Thou Shalt Not" rules.
+- **Red Teaming:** Adversarial attacks during training.
+
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

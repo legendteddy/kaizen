@@ -290,8 +290,9 @@ After subagent completes:
 
 ---
 
-## Related Skills
 
-- `decision-router` → When to delegate vs direct execution
-- `trajectory-sentinel` → Monitor efficiency of multi-agent workflows
-- `recursive-kaizen` → Learn from multi-agent failures
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)

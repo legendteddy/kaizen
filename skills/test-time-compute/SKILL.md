@@ -60,3 +60,17 @@ Explore branches. Backtrack if dead end.
 If an agent realizes it needs more time:
 - **Bad:** Hallucinate a quick answer.
 - **Good:** "I need to run a simulation to answer this. Standby..." (Then runs a loop).
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

@@ -80,3 +80,17 @@ After proactive action:
 □ Did I overstep or understep?
 □ Calibrate proactivity level for this user
 ```
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)

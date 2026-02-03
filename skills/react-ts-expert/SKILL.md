@@ -74,3 +74,10 @@ type State =
 - [ ] **Virtualization:** List > 100 items? Use `react-window`.
 - [ ] **Code Splitting:** `import("dynamic")` for heavy charts/modals.
 - [ ] **Stability:** `useCallback` on event handlers passed to optimized children.
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [Fastapi Expert](../fastapi-expert/SKILL.md)

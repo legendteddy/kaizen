@@ -165,3 +165,17 @@ select = ["E", "F", "I", "UP", "B"] # Pycodestyle, Pyflakes, Isort, Pyupgrade, B
 | Testing | `pytest` |
 | Linting | `ruff` |
 
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)
+- [Fastapi Expert](../fastapi-expert/SKILL.md)

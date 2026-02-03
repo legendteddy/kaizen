@@ -70,3 +70,23 @@ Before reviewing, check:
 6. Reviewer approves or requests changes
 7. Author merges after approval
 ```
+
+## Self-Improvement
+- **Did I review > 400 lines at once?** -> You missed bugs. Split it up.
+- **Did I comment only on style?** -> Dig deeper into logic.
+- **Did I ask "Why?"** -> Understand intent before judging implementation.
+
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

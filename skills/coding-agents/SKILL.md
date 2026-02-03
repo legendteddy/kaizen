@@ -70,3 +70,17 @@ Coding agents fail when they "blindly edit." Enforce this loop:
   }
 }
 ```
+
+## Action Checklist
+- [ ] **Sandboxed:** Is this running in Docker/Container?
+- [ ] **Timeout:** Is there a strict execution timeout (e.g. 30s)?
+- [ ] **Read-First:** Did the agent read the file before editing?
+- [ ] **Verified:** Did the agent run a test/linter after editing?
+- [ ] **Idempotent:** Is the edit safe to run twice?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)

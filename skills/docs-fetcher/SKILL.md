@@ -33,6 +33,17 @@ Before fetching, define exactly what you need.
 4. **Extract** ONLY the relevant function signatures and examples.
 5. **Discard** marketing fluff, installation guides (unless installing), and unrelated features.
 
+### Retrieval Pseudocode
+```python
+def precise_fetch(query):
+    # 1. Google Search specific documentation
+    url = search(f"{query} site:docs.python.org OR site:readthedocs.io")
+    # 2. Scrape only the main content div
+    content = scrape(url, selector="main.content")
+    # 3. Summarize for API signatures
+    return extract_signatures(content)
+```
+
 ### 3. Context Optimization
 | Content | Action |
 |:---|:---|
@@ -57,3 +68,16 @@ If code written using fetched docs fails:
 - **Did I fetch too much?** -> Refine search queries next time.
 - **Did I miss a parameter?** -> Check function signature more carefully.
 - **Is this a tool I use often?** -> Suggest creating a dedicated skill for it.
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Stability Protocols](../stability-protocols/SKILL.md)
+- [Safety Boundaries](../safety-boundaries/SKILL.md)

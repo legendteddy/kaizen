@@ -66,3 +66,17 @@ When two agents disagree (e.g., Frontend wants Blue, Design wants Red):
 1.  **Escalate:** Trigger `Boss` agent.
 2.  **Vote:** Majority rule (if >3 agents).
 3.  **Random:** (Last resort).
+
+## Action Checklist
+- [ ] **Topology:** Mesh (Creative) or Hierarchy (Task)?
+- [ ] **Bus:** Is the message format strict JSON?
+- [ ] **Conflict:** Is there a defined Resolver Agent?
+- [ ] **Safety:** Is MAX_CONCURRENCY set (e.g. 4)?
+- [ ] **Memory:** Do agents share context (bad) or outputs (good)?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)

@@ -86,3 +86,17 @@ After task:
 □ Did I over-deliver unnecessarily?
 □ Did I under-deliver?
 ```
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Stability Protocols](../stability-protocols/SKILL.md)
+- [Safety Boundaries](../safety-boundaries/SKILL.md)

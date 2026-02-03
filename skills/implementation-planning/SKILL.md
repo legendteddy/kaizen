@@ -72,3 +72,10 @@ graph TD
 2.  **Test-First:** Define *how* you will verify before you build.
 3.  **No Dead Ends:** Ensure Step 1 doesn't block Step 3 unexpectedly.
 4.  **Legacy Bridge:** If replacing a system, plan the "Dual Write" or "Feature Flag" phase.
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Stability Protocols](../stability-protocols/SKILL.md)
+- [Safety Boundaries](../safety-boundaries/SKILL.md)

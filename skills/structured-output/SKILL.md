@@ -71,3 +71,17 @@ for attempt in range(3):
 - **Do NOT** ask for JSON without a schema.
 - **Do NOT** mix JSON with Markdown text ("Here is the JSON: ```json...").
   - *Fix:* Use `response_format={"type": "json_object"}`.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

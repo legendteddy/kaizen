@@ -5,6 +5,8 @@ description: Skill for writing robust, safe, and maintainable Python automation 
 
 # Skill: Python Automation Expert (v1.0)
 
+> "If you do it twice, automate it."
+
 ## Purpose
 Write "Set and Forget" scripts. Automation code must be more robust than application code because it often runs unmonitored.
 
@@ -79,3 +81,17 @@ def scan_and_process(directory: Path):
         logger.info(f"Processing {file.name}")
         # ... logic ...
 ```
+
+## Action Checklist
+- [ ] **Logging:** Used `logging` instead of `print`?
+- [ ] **Args:** Used `argparse` for paths/flags?
+- [ ] **Safety:** Implemented `--dry-run` mode?
+- [ ] **Exit:** Defined exit codes (sys.exit(1))?
+- [ ] **Path:** Used `pathlib` for OS independence?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)
+- [Fastapi Expert](../fastapi-expert/SKILL.md)

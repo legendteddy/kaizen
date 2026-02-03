@@ -45,22 +45,29 @@ Your goal is to complete the assigned task by executing tools.
 {kaizen_principles[:1000]}...
 
 # Available Tools
-- read_file(path) -> str
-- write_file(path, content) -> str
-- run_shell(command) -> str
-- list_files(path) -> str
+- read_file(path)
+- write_file(path, content)
+- run_shell(command)
+- list_files(path)
 
 # Protocol
 1. THINK: Analyze the situation and decide next step.
-2. ACT: Execute a tool using this format:
-   TOOL: tool_name(arg1="value", arg2="value")
+2. ACT: Execute a tool using XML format:
+   
+   For writing files:
+   <tool name="write_file" path="filename.md">
+   File content goes here...
+   </tool>
+
+   For commands:
+   <tool name="run_shell" command="ls -la" />
+
 3. OBSERVE: Read the tool output.
 4. REPEAT: Loop until task is done.
 5. FINISH: When done, output "FINISHED: <summary>"
 
 # IMPORTANT
 - Only one tool call per turn.
-- To write a file, you MUST use `write_file`.
 - Do not hallucinate file contents. Read them first.
 """
         
@@ -72,6 +79,9 @@ WORKSPACE: {files}
 Begin.
 """
         history.append({"role": "user", "content": initial_user_prompt})
+
+        consecutive_failures = 0
+        MAX_FAILURES = 3
 
         for turn in range(MAX_TURNS):
             print(f"🔄 Turn {turn+1}/{MAX_TURNS}")
@@ -95,12 +105,27 @@ Begin.
                 print(f"🛠️ Executing: {name} {args}")
                 
                 output = execute_tool(name, args, tools)
-                print(f"📄 Output:\n{output[:200]}...") # Truncate log
                 
+                # STABILITY CHECK: If tool output is an error, count as failure
+                if output.startswith("Error") or output.startswith("SECURITY ALERT"):
+                    consecutive_failures += 1
+                    print(f"⚠️ Tool Failure ({consecutive_failures}/{MAX_FAILURES})")
+                else:
+                    consecutive_failures = 0 # Reset on success
+                
+                print(f"📄 Output:\n{output[:200]}...") # Truncate log
                 history.append({"role": "user", "content": f"TOOL_OUTPUT: {output}"})
             else:
-                print("⚠️ No tool call detected. Prompting agent to act...")
-                history.append({"role": "user", "content": "Please execute a tool or say FINISHED."})
+                consecutive_failures += 1
+                print(f"⚠️ No tool call detected ({consecutive_failures}/{MAX_FAILURES}).")
+                history.append({"role": "user", "content": "Error: No valid tool call found. You MUST use XML format."})
+
+            # CIRCUIT BREAKER
+            if consecutive_failures >= MAX_FAILURES:
+                error_msg = "Circuit Breaker Tripped: Too many consecutive failures/hallucinations."
+                print(f"❌ {error_msg}")
+                backlog.complete_task(task['id'], success=False, result=error_msg)
+                return
 
         # If we run out of turns
         backlog.complete_task(task['id'], success=False, result="Task timed out (Max turns reached).")
@@ -111,31 +136,56 @@ Begin.
         backlog.complete_task(task['id'], success=False, result=str(e))
 
 def format_history(history):
-    # Convert list of dicts to string for simple LLMs
     return "\n".join([f"{msg['role'].upper()}: {msg['content']}" for msg in history])
 
 def parse_tool_call(text):
-    # Regex for TOOL: name(arg="val")
-    # Very basic parsing, fragile but works for MVP
+    """
+    Parses tool calls from LLM output.
+    Supports:
+    1. XML: <tool name="write_file" path="x">content</tool>
+    2. Legacy: TOOL: name(arg="val")
+    """
+    # 1. Try XML parsing (Robust)
+    # <tool name="write_file" path="skills/test.md">Content here</tool>
+    xml_match = re.search(r'<tool\s+name=["\'](\w+)["\']\s*([^>]*)>(.*?)</tool>', text, re.DOTALL)
+    if xml_match:
+        name = xml_match.group(1)
+        attrs_str = xml_match.group(2)
+        content = xml_match.group(3)
+        
+        args = {"content": content}
+        
+        # Parse attributes: key="value"
+        for attr in re.finditer(r'(\w+)=["\']([^"\\]+)["\\]', attrs_str):
+            args[attr.group(1)] = attr.group(2)
+            
+        return name, args
+
+    # 2. Try XML self-closing (for commands)
+    # <tool name="run_shell" command="ls -la" />
+    xml_simple = re.search(r'<tool\s+name=["\'](\w+)["\']\s*([^>]*?)\s*/>', text, re.DOTALL)
+    if xml_simple:
+        name = xml_simple.group(1)
+        attrs_str = xml_simple.group(2)
+        args = {}
+        for attr in re.finditer(r'(\w+)=["\']([^"\\]+)["\\]', attrs_str):
+            args[attr.group(1)] = attr.group(2)
+        return name, args
+
+    # 3. Legacy Fallback (Fragile)
     match = re.search(r'TOOL:\s*(\w+)\((.*)\)', text, re.DOTALL)
     if match:
         name = match.group(1)
         args_str = match.group(2)
-        
-        # Parse args (hacky)
         args = {}
-        # path="foo.txt", content="bar"
-        # This regex is a simplification and fails on complex strings with commas
-        # Ideally use an LLM that outputs JSON
         
-        # Simple parser for path="value"
-        path_match = re.search(r'path=["\']([^"\']+)["\']', args_str)
+        path_match = re.search(r'path=["\']([^"\\]+)["\\]', args_str)
         if path_match: args['path'] = path_match.group(1)
         
-        content_match = re.search(r'content=["\']([\s\S]*)["\']', args_str)
+        content_match = re.search(r'content=["\']([\s\S]*)["\\]', args_str)
         if content_match: args['content'] = content_match.group(1)
         
-        cmd_match = re.search(r'command=["\']([^"\']+)["\']', args_str)
+        cmd_match = re.search(r'command=["\']([^"\\]+)["\\]', args_str)
         if cmd_match: args['command'] = cmd_match.group(1)
         
         return name, args

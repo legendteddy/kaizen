@@ -370,3 +370,10 @@ After:
 ---
 
 *"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler*
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

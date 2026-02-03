@@ -67,3 +67,17 @@ Best for: Visual users, tweaking GGUF layers on the fly.
 ## Self-Improvement
 - **Tokens/sec too low?** -> Check if layers are offloaded to GPU (`-ngl` in llama.cpp).
 - **Out of Memory (OOM)?** -> Use a higher instruction context size `-c` or lower quantization.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

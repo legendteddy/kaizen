@@ -323,3 +323,10 @@ Before submitting any code, verify against all quality dimensions:
 ---
 
 *"Write code like the next maintainer is a violent psychopath who knows where you live."*
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Python Automation Expert](../python-automation-expert/SKILL.md)
+- [Python Development](../python-development/SKILL.md)
+- [React Ts Expert](../react-ts-expert/SKILL.md)

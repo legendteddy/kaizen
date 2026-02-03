@@ -56,3 +56,17 @@ Before any `write` or `delete` operation:
 2.  Does it exist?
 3.  Is it what I think it is?
 4.  **Confirm:** "I am about to overwrite `main.py`. It currently contains 50 lines. Proceed?"
+
+## Action Checklist
+- [ ] **Circuit Breaker:** Is the retry counter set to max 3?
+- [ ] **Backoff:** Is exponential backoff (1s, 2s, 4s) implemented?
+- [ ] **Drift:** Have you checked the original goal in the last 10 turns?
+- [ ] **Blast Radius:** Did you verify the `rm` command path?
+- [ ] **Do No Harm:** Did you confirm file existence before overwrite?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Safety Boundaries](../safety-boundaries/SKILL.md)
+- [Self Improvement](../self-improvement/SKILL.md)

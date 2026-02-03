@@ -83,3 +83,17 @@ After communication:
 □ Did I use jargon unnecessarily?
 □ Could I have been more concise?
 ```
+
+## Action Checklist
+- [ ] **Clarity:** Is the main point in the first sentence?
+- [ ] **Formatting:** Did I use bold/bullets for readability?
+- [ ] **Tone:** Is it professional and high-agency?
+- [ ] **Action:** Is the next step clearly defined?
+- [ ] **Review:** Did I assume knowledge the user might not have?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Architecture](../agent-architecture/SKILL.md)
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)

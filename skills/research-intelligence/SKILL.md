@@ -172,8 +172,6 @@ Research Intelligence enables:
 
 ---
 
-## Related Skills
 
-- `docs-fetcher` → Deep documentation retrieval
-- `decision-router` → When to research vs implement directly
-- `verification` → Validate research findings before use
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

@@ -76,3 +76,16 @@ stateDiagram-v2
 - [ ] **Loop Prevention:** `max_turns` limit?
 - [ ] **Tool Sandboxing:** Docker/e2b?
 - [ ] **Observability:** LangSmith/Phoenix traces?
+
+## Self-Repair Protocol
+When the architecture fails:
+- **Bottleneck:** If Router is slow -> Switch to Swarm (Parallel).
+- **Hallucination:** If Worker lies -> Add Evaluator (Verification).
+- **Looping:** If Agents argue -> Add "Boss" (Conflict Resolution).
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Agent Communication](../agent-communication/SKILL.md)
+- [Agent Cowork](../agent-cowork/SKILL.md)
+- [Agent Security](../agent-security/SKILL.md)

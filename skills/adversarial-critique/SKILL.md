@@ -86,3 +86,13 @@ Before any major action:
 3. **VERDICT**: PASSED, FLAGGED, or BLOCKED
 4. **PROCEED**: Only if PASSED or human override
 
+## Action Checklist
+- [ ] **ROI:** Is the profit margin > 25%?
+- [ ] **Inventory:** Is risk exposure < 30% of capacity?
+- [ ] **Friction:** Is the operation compliant with local laws?
+- [ ] **Scenario:** Have you simulated the worst-case outcome?
+- [ ] **Verdict:** Is the final status clearly PASSED or BLOCKED?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

@@ -5,6 +5,8 @@ description: Mastery over the Claude Code CLI, leveraging deep integration and p
 
 # Skill: Expert Claude Code User (v1.0)
 
+> "The CLI is the IDE of the future."
+
 ## Purpose
 Maximize the capabilities of the `claude` CLI tool for terminal-based workflow automation.
 
@@ -62,3 +64,26 @@ Claude Code supports **Model Context Protocol (MCP)** servers.
 | "Context full" | Run `/compact` immediately. |
 | "I can't run commands" | Check permissions (`claude --approve-tools`). |
 | "Hallucinating files" | Run `/add <filename>` to ground it. |
+
+## 6. Advanced Plugin Ideas
+Extending Claude Code with custom tools:
+- **`mcp-server-git`**: Advanced manipulation of git history.
+- **`mcp-server-brave`**: Web search integration for real-time docs.
+- **`mcp-server-filesystem`**: Safer, sandboxed file operations.
+
+## Self-Improvement
+- **Did I use `ls` manually?** -> Use `/add .` next time.
+- **Did I copy-paste code?** -> Use `/edit` to apply directly.
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)

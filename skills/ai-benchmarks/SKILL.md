@@ -112,3 +112,14 @@ python scripts/benchmark_repo.py
 
 ## Continuous Improvement
 Add new failure cases to your local benchmark dataset every time a mistake is caught. This prevents regression and builds the framework's "immune system."
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

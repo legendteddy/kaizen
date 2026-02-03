@@ -16,10 +16,16 @@ description: Protocols for Context Hygiene, Session Anchors, and Memory Persiste
 When context usage hits 80%, **STOP and COMPRESS**.
 
 ### Compression Algorithm
-1.  **Draft Summary:** "We are building feature X. We have completed steps 1-3. Step 4 failed with error Y."
-2.  **Snapshot State:** "File `A.py` is currently broken. File `B.py` is stable."
-3.  **Wipe History:** Request the user to clear chat or collapse the thread.
-4.  **Restore:** Paste the summary as the first message of the new context.
+```python
+def compress_context(history):
+    summary = summarize(history)
+    snapshot = get_file_status()
+    new_context = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": f"PREVIOUS_SESSION_SUMMARY:\n{summary}\n\nFILE_STATE:\n{snapshot}"}
+    ]
+    return new_context
+```
 
 ## 2. Session Anchor (Start of Task)
 Never start "blind".
@@ -61,3 +67,17 @@ Treat specific files as "External Working Memory".
 ## Self-Improvement
 - **Did I re-read the same file 3 times?** -> You are forgetting. Copy critical snippets to `scratchpad.md`.
 - **Did I parse a 1MB log file?** -> Don't. Grep it first.
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)
+- [Brainstorming](../brainstorming/SKILL.md)

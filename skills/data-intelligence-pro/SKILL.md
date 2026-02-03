@@ -60,3 +60,14 @@ Don't say "A is better than B" without a test.
 - **No Pie Charts:** Humans can't compare angles. Use Bar Charts.
 - **Color:** Use color to highlight data, not for decoration.
 - **Titles:** Title should be the insight ("Sales dropped in Q3"), not the metric ("Sales over Time").
+
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.

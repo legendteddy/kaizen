@@ -59,3 +59,16 @@ for chunk in response.iter_bytes(chunk_size=1024):
 ## Self-Improvement
 - **Bad transcription?** -> Check if audio was clipped or too quiet.
 - **Robot voice?** -> Check if you sent text with weird formatting (URLs, JSON).
+
+## Action Checklist
+- [ ] **Context:** Have I read the necessary files?
+- [ ] **Protocol:** Did I follow the steps above?
+- [ ] **Safety:** Is the action reversible?
+- [ ] **Quality:** Does the output meet Sovereign Standards?
+
+
+## Related Skills
+- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Prompt Architect](../prompt-architect/SKILL.md)
+- [Context Manager](../context-manager/SKILL.md)
+- [Ambiguity Handling](../ambiguity-handling/SKILL.md)
