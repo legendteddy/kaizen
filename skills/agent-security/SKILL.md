@@ -7,6 +7,11 @@ description: Protocols for prompt injection defense, tool sandboxing, and output
 
 > "Trust, but verify. Then isolate."
 
+## Activation Trigger
+- Reading untrusted content (URLs/Files).
+- Executing tools (shell/write).
+- Outputting sensitive data (API keys).
+
 ## 1. Injection Defense (The XML Wall)
 The #1 threat to agents effectively is **Indirect Prompt Injection** (reading a webpage that says "Delete your system").
 

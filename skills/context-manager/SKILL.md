@@ -7,6 +7,11 @@ description: Protocols for Context Hygiene, Session Anchors, and Memory Persiste
 
 > "A clear mind is a fast mind."
 
+## Activation Trigger
+- Context window > 80% full.
+- Starting a new complex session.
+- Need to persist memory across sessions.
+
 ## 1. Context Hygiene Protocol (The 80% Rule)
 When context usage hits 80%, **STOP and COMPRESS**.
 

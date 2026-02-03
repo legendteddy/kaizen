@@ -7,6 +7,11 @@ description: Skill for designing robust agentic systems (Router, Worker, Evaluat
 
 > "Structure determines function."
 
+## Activation Trigger
+- Designing a new multi-agent system.
+- Routing logic is becoming complex.
+- Need to parallelize tasks (Swarm).
+
 ## Visual Map
 
 ```mermaid

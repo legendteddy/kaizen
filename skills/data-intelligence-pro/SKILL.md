@@ -7,6 +7,11 @@ description: Advanced Exploratory Data Analysis (EDA), Statistical rigor, and In
 
 > "Data is just noise until you find the signal."
 
+## Activation Trigger
+- Performing Exploratory Data Analysis (EDA).
+- Validating statistical significance.
+- Detecting outliers or anomalies.
+
 ## 1. The Automated EDA Protocol
 Don't guess. Run the standard battery.
 

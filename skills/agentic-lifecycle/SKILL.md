@@ -7,6 +7,11 @@ description: Protocols for the autonomous execution loop (Perceive, Plan, Act, R
 
 > "The cycle of autonomy."
 
+## Activation Trigger
+- Building a custom execution loop.
+- Debugging an agent stuck in a loop.
+- Designing state management for an agent.
+
 ## Visual State Machine
 
 ```mermaid

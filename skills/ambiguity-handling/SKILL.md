@@ -7,6 +7,11 @@ description: Protocols for resolving uncertainty, handling edge cases, and makin
 
 > "In the face of uncertainty, choose the path of least regret."
 
+## Activation Trigger
+- Requirements are unclear or conflicting.
+- High-stakes decision with low information.
+- User input is vague.
+
 ## The Decision Matrix
 
 When you hit a fork in the road and the user isn't there:
