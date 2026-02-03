@@ -7,6 +7,11 @@ description: Protocol for retrieving, parsing, and applying external documentati
 
 > "Read the manual so the user doesn't have to."
 
+## Activation Trigger
+- Using a new library or tool.
+- Encountering API deprecation errors.
+- Verifying syntax for a specific version.
+
 ## When to Use
 - User mentions a library/tool you don't know.
 - You encounter an API error (deprecated methods).

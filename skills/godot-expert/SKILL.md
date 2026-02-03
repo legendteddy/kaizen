@@ -7,6 +7,11 @@ description: Expert protocols for Godot 4.x development (GDScript, Nodes, Archit
 
 > "Signals Up, Calls Down."
 
+## Activation Trigger
+- Developing Godot (4.x) games or tools.
+- Writing GDScript code.
+- Designing game architecture (Nodes/Scenes).
+
 ## Architecture Principles
 
 ### 1. Communication Flow

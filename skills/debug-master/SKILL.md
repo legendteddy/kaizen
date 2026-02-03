@@ -7,6 +7,11 @@ description: Advanced debugging methodology with 4-phase root cause analysis, st
 
 This skill provides a **battle-tested debugging methodology**. When bugs appear, you don't guess—you investigate.
 
+## Activation Trigger
+- Encountering a runtime error or bug.
+- Need to isolate a root cause.
+- Analyzing stack traces.
+
 ---
 
 ## 1. The 4-Phase Debugging Protocol

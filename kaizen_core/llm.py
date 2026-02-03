@@ -7,7 +7,7 @@ import urllib.error
 from typing import List, Dict, Optional
 
 class LLMClient:
-    def __init__(self, provider="ollama", model="llama3", base_url="http://localhost:11434"):
+    def __init__(self, provider="ollama", model="llama3.2", base_url="http://localhost:11434"):
         self.provider = provider
         self.model = model
         self.base_url = base_url

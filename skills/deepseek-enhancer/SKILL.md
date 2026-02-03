@@ -7,6 +7,11 @@ description: Forces System 2 deep reasoning with Chain-of-Thought, verification 
 
 This skill forces **deep thinking** before action. It is the cognitive core of the Sovereign Agent.
 
+## Activation Trigger
+- Handling complex, multi-step reasoning tasks.
+- Designing architecture or significant refactors.
+- When high reliability is required (System 2 thinking).
+
 ---
 
 ## 1. The Thinking Protocol

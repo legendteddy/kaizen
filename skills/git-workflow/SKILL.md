@@ -5,6 +5,11 @@ description: Professional version control standards (Branching, Conventional Com
 
 # Git Workflow
 
+## Activation Trigger
+- Managing branches or commits.
+- Resolving merge conflicts.
+- Using advanced Git features (worktrees, rebase).
+
 ## Visual Branching Strategy
 
 ```mermaid
