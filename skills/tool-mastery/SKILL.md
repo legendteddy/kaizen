@@ -79,7 +79,7 @@ Submit multiple independent tool calls together:
 // These are independent - can run in parallel
 read('package.json')
 glob('**/*.test.ts')
-grep('TODO', 'src/')
+grep('function_name', 'src/')
 ```
 
 ---

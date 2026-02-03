@@ -61,7 +61,7 @@ When multiple tasks exist:
 If a task takes <2 minutes: **Do it now**
 
 Don't:
-- Add to todo list
+- Add to task list
 - Schedule for later
 - Ask for prioritization
 

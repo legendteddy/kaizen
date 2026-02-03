@@ -58,7 +58,7 @@ Region → Friction Level
 
 ```json
 {
-  "action_id": "xxx",
+  "action_id": "uuid",
   "status": "PASSED|FLAGGED|BLOCKED",
   "issues": ["issue 1", "issue 2"],
   "recommendations": ["rec 1", "rec 2"]

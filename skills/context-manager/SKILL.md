@@ -33,7 +33,7 @@ Never start "blind".
 **Before first action:**
 1.  **Read `KAIZEN.md`**: Principles.
 2.  **Read `README.md`**: Project state.
-3.  **Read `TODO.md` / `task.md`**: Current objective.
+3.  **Read `task.md`**: Current objective.
 
 *If you skip this, you will hallucinate requirements.*
 
