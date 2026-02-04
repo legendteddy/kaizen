@@ -20,7 +20,7 @@ Every session provides data points. This protocol ensures those points are index
 - What are the user's non-negotiable standards?
 - What is their preferred tech stack?
 - What are their common pitfalls?
-*Stored in:* `.gemini/memory/user_axioms.md` (or equivalent persistent store).
+*Stored in:* `memory/user_axioms.md`.
 
 ## 2. Extraction Protocol
 After every major task completion, perform a **Metacognitive Sweep**:

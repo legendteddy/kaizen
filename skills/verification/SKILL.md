@@ -20,6 +20,11 @@ A task is NOT marked as "Done" until verification is documented. No "Assumed Suc
 - **Proof**: Match `stdout` against the expected state. 
 - **Verify**: If a command says "Updated 5 files," run `git status` to confirm.
 
+### C. Formal Verification (Step 3: Logic Tracing)
+- **Constraint**: Complex logic must be traced BEFORE execution.
+- **Protocol**: If a function has 3+ branches, you MUST create a truth table or logic tree in `<thinking>` tags.
+- **Verification**: Match the actual output against the predicted logic tree.
+
 ### C. Repository Discovery
 - **Proof**: Provide the exact `grep` or `find` command used to verify presence/absence.
 
@@ -28,6 +33,7 @@ Conclude every phase with:
 ```markdown
 ### Verification
 - **State Change**: [What was modified]
+- **Logic Proof**: [Truth table or logic trace link]
 - **Tool Proof**: [Success/Fail log]
 - **Persistence Proof**: [Confirmed on disk via read-back]
 ```
