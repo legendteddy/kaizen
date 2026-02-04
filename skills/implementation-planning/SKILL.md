@@ -3,21 +3,26 @@ name: implementation-planning
 description: Creating architectural blueprints, dependency graphs, and phased rollout plans.
 ---
 
-# Implementation Planning
+# Protocol: Implementation Planning
 
-> "Measure twice, cut once."
+> Structured methodology for designing solutions before execution.
 
 ## Activation Trigger
-- Starting a complex feature (>1 day work).
-- Modifying core architecture or DB schema.
-- Coordinating dependency chains across multiple files.
+- Initial task analysis after Session Anchor.
+- Discovering unexpected complexity during execution.
+- User requests a technical specification.
 
 ## Protocols
 
 ### 1. First Principle: Plan Before You Code
 Never write a line of code until you know exactly where it fits in the architecture.
 
-### 2. The Planning Artifact
+### 2. Phase 1: Research & Discovery
+1.  **Search First**: Use `skills/research-rigor/SKILL.md` to map the current system.
+2.  **Constraint Analysis**: Identify security, performance, and architectural boundaries.
+3.  **Draft Implementation Plan**: Create an artifact documented as a technical spec.
+
+### 3. The Planning Artifact
 Create `implementation_plan.md` using this strict structure:
 
 1.  **Goal & Outcome**: User Story + Success Metric.
@@ -25,7 +30,7 @@ Create `implementation_plan.md` using this strict structure:
 3.  **Implementation Steps**: Atomic phases with checkboxes.
 4.  **Verification Plan**: Exact commands to prove it works.
 
-### 3. Dependency Graphing
+### 4. Dependency Graphing
 Map the order. API must exist before Frontend can consume it.
 
 ### 4. Risk Analysis

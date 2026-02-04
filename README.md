@@ -54,7 +54,7 @@ Copy `UNIVERSAL_PROMPT.txt` content into your `CLAUDE.md`.
 ---
 
 ## What Is This?
-It's a standard library of instructions (SOPs). Instead of prompting "be careful", you load the `precision-coder` skill.
+Kaizen is a standard library of technical protocols written by engineers for AI agents. It replaces vague prompts with structured Standard Operating Procedures (SOPs) to ensure high-reliability execution and minimal cognitive drift.
 
 ### How It Works
 

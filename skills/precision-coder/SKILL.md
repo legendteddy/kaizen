@@ -1,11 +1,11 @@
-# Precision Coder (Senior Standards)
+# Protocol: Precision Coder
 
-> Systematically reducing technical debt through defensive programming.
+> Technical standards for high-reliability software engineering.
 
-## 1. Defensive Execution
-- **Atomic Intent**: One change, one commit.
-- **Fail Fast**: Every `try/catch` must log structured context (Error, Stack, Input).
-- **Edge Mastery**: Null/Undefined/Empty-Array checks are mandatory.
+## 1. Defensive Execution Protocol
+- **Atomic Commits**: Single-purpose changes with descriptive messages.
+- **Structured Error Handling**: `try/catch` must capture input state and stack traces.
+- **Input Validation**: Mandatory checks for Null, Undefined, and Empty sets at component boundaries.
 
 ## 2. Strong Typing
 - **Explicit Only**: `any` is forbidden in production code.
