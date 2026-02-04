@@ -2,6 +2,13 @@
 
 A curated collection of 70+ skills (prompts & SOPs) to make AI coding agents more useful.
 
+## 🚨 AGENT BOOTSTRAP PROTOCOL (READ THIS FIRST)
+If you are an AI agent reading this file:
+1.  **IMMEDIATELY** read `hooks/session_anchor.md`.
+2.  **EXECUTE** the Session Anchor Protocol defined there.
+3.  **DO NOT PROCEED** until you have anchored your identity and objective.
+4.  **CHECK** `skills/research-rigor/SKILL.md` before making any assumptions.
+
 ## ⚡ Quick Start: Choose Your Fighter
 
 ### 🟢 Google Antigravity / Gemini CLI

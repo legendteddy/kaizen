@@ -67,6 +67,15 @@ find . -name "*.tmp" -type f -delete
 | **Kill Process** | `kill -9 <pid>` | `Stop-Process -Id <pid> -Force` |
 | **Download** | `curl -O url` | `Invoke-WebRequest -Uri url -OutFile file` |
 
+## ⚠️ Automated Command Safety (The "&&" Trap)
+When executing commands via tools (e.g. `run_command`), **avoid chaining with `&&` or `;`**.
+*   **Reason 1**: Windows PowerShell (legacy) does not support `&&`.
+*   **Reason 2**: Debugging is harder. If `cmd1 && cmd2` fails, potential loss of stderr.
+
+**Protocol**:
+1.  **Split It**: Run `git add .` then `git commit`.
+2.  **Verify It**: Check the exit code of each step individually.
+
 ## Diagnostic Workflow
 1. **Resource Check:** High CPU/RAM? (`top`, `Get-Process`)
 2. **Disk Space:** Full disk? (`df -h`, `Get-PSDrive`)

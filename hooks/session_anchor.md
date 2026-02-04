@@ -33,6 +33,7 @@ Confirm:
 - KAIZEN.md is loaded
 - Core values are active
 - Mode fragments are ready
+- **Research Rigor** is active (Anti-Laziness)
 ```
 
 ### Step 5: Set Initial Mode
