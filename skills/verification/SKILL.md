@@ -1,132 +1,43 @@
 ---
 name: verification
-description: Skill for verification tasks and workflows.
+description: Mandatory proof-of-work protocols. No completions without evidence.
 ---
 
-# Skill: Verification Before Completion (v1.0)
+# Verification Protocol (Directive)
 
-> Never assume a fix works. Always verify before marking Done.
+> "Assertion is not proof. Proof is verification."
 
-## Purpose
-Enforce verification as a mandatory step before claiming completion.
+## 1. The Proof Mandate
+A task is NOT marked as "Done" until verification is documented.
 
-## Activation Trigger
-- After every significant code change
-- Before marking any task as "Done"
-- Before notifying user of completion
+## 2. Tool-Based Proof
+### Code Changes
+- **Constraint**: Must perform a `view_file` or `read-back` to verify the edit applied correctly.
+- **Verification**: Run `cargo check`, `tsc`, or `npm test` as applicable.
 
----
+### File Operations
+- **Constraint**: `ls` or `view_file` to confirm existence/content.
+- **Verification**: No "assumed" creation. High-trust only.
 
-## The Rule
+### Commands
+- **Constraint**: Check **Exit Code**.
+- **Verification**: Match stdout/stderr against expected patterns.
 
-**CRITICAL**: A task is NOT complete until it is VERIFIED.
-
-```
-❌ WRONG: "I made the change. Done."
-✅ RIGHT: "I made the change. Verified: [proof]. Done."
-```
-
-## Verification Protocol
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    EXECUTION VERIFICATION                       │
-│                                                                 │
-│  Before saying "done", ALWAYS:                                 │
-│                                                                 │
-│  1. RUN    → Execute the code/command                          │
-│  2. CHECK  → Look at actual output                             │
-│  3. TEST   → Verify expected behavior                          │
-│  4. EDGE   → Consider edge cases                               │
-│  5. CLEAN  → No errors, warnings addressed                     │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+## 3. Verification Header (Mandatory)
+Every turning point in a complex task must conclude with:
+```markdown
+### Verification
+- **Action**: [Brief description]
+- **Proof**: [specific tool output or file read-back]
+- **Status**: [PASS/FAIL]
 ```
 
----
-
-## Verification Methods
-
-### For Code Changes
-1. **Syntax Check**: Does it compile/parse?
-2. **Read-Back**: View the file to confirm changes applied
-3. **Build Check**: `cargo check`, `tsc`, `npm run build`
-4. **Test Run**: Execute relevant tests
-
-### For File Operations
-1. **Existence Check**: Does the file exist?
-2. **Content Check**: Does it contain expected content?
-3. **Permission Check**: Is it accessible?
-
-### For Commands
-1. **Exit Code**: Did it return 0?
-2. **Output Check**: Does output match expectations?
-3. **Side Effect Check**: Did intended changes occur?
-
----
-
-## Verification Template
-
-```
-VERIFICATION:
-- Action: [what was done]
-- Method: [how verified]
-- Result: [PASS/FAIL]
-- Evidence: [specific proof]
-```
-
----
-
-## Examples
-
-### Good Verification
-```
-VERIFICATION:
-- Action: Fixed syntax error in app.js line 42
-- Method: Ran `npm run build`
-- Result: PASS
-- Evidence: Build completed with 0 errors
-```
-
-### Bad Verification
-```
-VERIFICATION:
-- Action: Fixed syntax error
-- Method: None
-- Result: ASSUMED
-- Evidence: None
-```
-
----
-
-## Anti-Patterns
-
-| Bad | Good |
-|:---|:---|
-| "Should work now" | "Verified: [proof]" |
-| "I fixed it" | "Fixed and tested: [result]" |
-| "Change applied" | "Change applied and read-back confirmed" |
-
----
-
-## Enforcement
-
-Before calling `notify_user` with BlockedOnUser=false:
-1. **Check**: Did I verify all changes?
-2. **Prove**: Can I cite specific evidence?
-3. **Proceed**: Only if both are YES
-
-
-
-## Action Checklist
-- [ ] **Context:** Have I read the necessary files?
-- [ ] **Protocol:** Did I follow the steps above?
-- [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
-
+## 4. Anti-Patterns (Forbidden)
+- ❌ "I have fixed it." (Without proof).
+- ❌ "It should work now."
+- ❌ "Assumed success."
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
 - [Sovereign Identity](../sovereign-identity/SKILL.md)
-- [Stability Protocols](../stability-protocols/SKILL.md)
+- [Precision Coder](../precision-coder/SKILL.md)
 - [Safety Boundaries](../safety-boundaries/SKILL.md)
