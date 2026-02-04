@@ -3,7 +3,7 @@ name: implementation-planning
 description: Creating architectural blueprints, dependency graphs, and phased rollout plans.
 ---
 
-# Protocol: Protocol: Implementation Planning
+# Protocol: Implementation Planning
 
 > Structured methodology for designing solutions before execution.
 

@@ -86,7 +86,7 @@ After proactive action:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

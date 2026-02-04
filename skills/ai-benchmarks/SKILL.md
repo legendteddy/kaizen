@@ -3,7 +3,7 @@ name: ai-benchmarks
 description: Standards and tools for verifying AI agent performance and code quality.
 ---
 
-# Protocol: Protocol: AI Benchmarking & Verification (v1.0)
+# Protocol: AI Benchmarking & Verification (v1.0)
 
 > "If you can't measure it, you can't improve it."
 
@@ -117,7 +117,7 @@ Add new failure cases to your local benchmark dataset every time a mistake is ca
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

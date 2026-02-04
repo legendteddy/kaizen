@@ -3,7 +3,7 @@ name: world-modeling
 description: Skill for world-modeling tasks and workflows.
 ---
 
-# Protocol: Protocol: World Modeling (v1.0)
+# Protocol: World Modeling (v1.0)
 
 > Text-to-world generation and simulation (Project Genie pattern)
 
@@ -100,7 +100,7 @@ When combined with tool use:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

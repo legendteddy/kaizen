@@ -3,7 +3,7 @@ name: research-rigor
 description: Protocols for verifying knowledge BEFORE acting (Grep First, Input Rigor).
 ---
 
-# Protocol: Protocol: Research Rigor
+# Protocol: Research Rigor
 
 > Technical standards for verifying repository state before execution.
 

@@ -3,7 +3,7 @@ name: cursor-ide
 description: Skill for cursor-ide tasks and workflows.
 ---
 
-# Protocol: Protocol: Cursor IDE Patterns (v1.0)
+# Protocol: Cursor IDE Patterns (v1.0)
 
 > AI-first IDE patterns for agentic coding
 
@@ -100,7 +100,7 @@ Cursor patterns align with our approach:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

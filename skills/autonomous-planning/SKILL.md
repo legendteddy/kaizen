@@ -3,7 +3,7 @@ name: autonomous-planning
 description: Skill for autonomous-planning tasks and workflows.
 ---
 
-# Protocol: Protocol: Autonomous Planning (v1.0)
+# Protocol: Autonomous Planning (v1.0)
 
 > Long-horizon task decomposition and execution planning
 

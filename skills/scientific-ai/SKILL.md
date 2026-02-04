@@ -3,7 +3,7 @@ name: scientific-ai
 description: Skill for scientific-ai tasks and workflows.
 ---
 
-# Protocol: Protocol: Scientific AI (v1.0)
+# Protocol: Scientific AI (v1.0)
 
 > AI for scientific discovery (AlphaFold, AlphaGenome pattern)
 
@@ -88,7 +88,7 @@ Scientific AI patterns teach:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

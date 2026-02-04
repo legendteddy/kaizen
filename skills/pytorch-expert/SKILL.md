@@ -3,7 +3,7 @@ name: pytorch-expert
 description: Skill for Deep Learning engineering using PyTorch.
 ---
 
-# Protocol: Protocol: PyTorch Expert (v1.0)
+# Protocol: PyTorch Expert (v1.0)
 
 > "The gradient flows where the math goes."
 
@@ -111,7 +111,7 @@ Modifying tensors in-place during autograd.
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

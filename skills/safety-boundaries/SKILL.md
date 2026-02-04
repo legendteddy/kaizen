@@ -3,7 +3,7 @@ name: safety-boundaries
 description: Hard constraints on autonomous tool usage to ensure system integrity.
 ---
 
-# Protocol: Protocol: Safety Boundaries
+# Protocol: Safety Boundaries
 
 > Hard constraints on autonomous tool usage to ensure system integrity.
 

@@ -3,7 +3,7 @@ name: synthetic-data
 description: Skill for synthetic-data tasks and workflows.
 ---
 
-# Protocol: Protocol: Synthetic Data Generation (v1.0)
+# Protocol: Synthetic Data Generation (v1.0)
 
 > AI-generated training data (75% of AI data by 2026)
 
@@ -94,7 +94,7 @@ Synthetic data applies to:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills

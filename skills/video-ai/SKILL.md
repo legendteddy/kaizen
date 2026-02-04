@@ -61,7 +61,7 @@ ffmpeg -i input.mkv -c:v libx264 -profile:v high -level 4.0 -pix_fmt yuv420p -c:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Standard Standards?
+- [ ] **Quality:** Does the output meet Professional Standards?
 
 
 ## Related Skills
