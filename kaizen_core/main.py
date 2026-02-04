@@ -17,32 +17,39 @@ AGENT_ID = f"kaizen-core-{os.getpid()}"
 MAX_TURNS = 10 # Increased for complex tasks
 
 def main():
-    logging.info(f"Kaizen Agent ({AGENT_ID}) started.")
+    logging.info(f"Kaizen Codex Agent ({AGENT_ID}) started.")
     logging.info(f"Workspace: {REPO_ROOT}")
     
     backlog = BacklogManager(AGENT_ID)
-    tools = ToolManager(REPO_ROOT)
+    tools = ToolManager(REPO_ROOT, agent_id=AGENT_ID)
     llm = LLMClient() 
- 
+    
+    # Enable Codex Sandbox (Isolated Worktree)
+    sandbox_info = tools.setup_sandbox()
+    logging.info(sandbox_info)
 
-    while True:
-        logging.debug("Polling backlog...")
-        task = backlog.get_pending_task()
-        
-        if task:
-            logging.info(f"Claimed task: {task['title']}")
-            process_task(task, tools, llm, backlog)
-        else:
-            time.sleep(5) 
+    try:
+        while True:
+            logging.debug("Polling backlog...")
+            task = backlog.get_pending_task()
+            
+            if task:
+                logging.info(f"Claimed task: {task['title']}")
+                process_task(task, tools, llm, backlog)
+            else:
+                time.sleep(5) 
+    finally:
+        # Codex Cleanup: Ensure worktrees are removed on exit
+        tools.cleanup()
 
 def process_task(task: Task, tools: ToolManager, llm: LLMClient, backlog: BacklogManager):
     try:
         # 1. Gather Context
-        kaizen_principles = tools.read_file("KAIZEN.md")
+        tools.read_file("KAIZEN.md")
         files = tools.list_files(".")
         history = []
         
-        system_prompt = f"""
+        system_prompt = """
 You are KAIZEN CODEX, an elite autonomous software engineer.
 Your mission is to execute tasks with pixel-perfect precision and architectural elegance.
 

@@ -2,38 +2,76 @@
 
 A collection of skills and patterns to make AI agents (Gemini, Claude, Cursor) actually useful for coding.
 
-It's basically a standard library for your agent so you don't have to keep prompting it to "be careful" or "check your work."
+## Quick Start
+
+### 1. Run the Demo
+
+```bash
+# With Ollama (local, free)
+ollama serve
+python demo.py
+
+# With OpenAI
+export OPENAI_API_KEY="sk-..."
+python demo.py
+
+# With Anthropic
+export ANTHROPIC_API_KEY="sk-ant-..."
+python demo.py
+
+# With Google
+export GOOGLE_API_KEY="..."
+python demo.py
+```
+
+### 2. Add a Task
+
+```python
+from kaizen_core.backlog import BacklogManager
+backlog = BacklogManager("my-agent")
+backlog.add_task("Add docstrings to utils.py")
+```
+
+### 3. Run the Agent
+
+```bash
+python -m kaizen_core.main
+```
+
+---
 
 ## What's Inside?
 
-The core idea is **Recursive Self-Improvement** (RSI), but without the sci-fi hype. It just means the agent can read `.md` files to learn new tricks and update them when it finds a better way to do things.
+- **70+ Skills:** Pre-written SOPs for React, Python, debugging, etc.
+- **Multi-Provider LLM:** OpenAI (gpt-5), Anthropic (claude-4.5), Google (gemini-3), Ollama
+- **Judge:** A script that audits code quality
+- **Backlog:** SQLite task queue
 
-### Key Features
-*   **70+ Skills:** Pre-written SOPs for React, Python, Debugging, etc.
-*   **The "Judge":** A script that yells at the agent if it writes bad code.
-*   **Backlog:** A simple SQLite db to keep track of tasks so the agent doesn't forget what it's doing.
+## Setup for Editors
 
-## Setup
-
-### For Cursor
-Run this in your project root:
+### Cursor
 ```bash
 curl -o .cursorrules https://raw.githubusercontent.com/legendteddy/kaizen/main/.cursorrules
 ```
 
-### For Gemini CLI
-Copy the skills folder:
+### Gemini CLI
 ```bash
 cp -r kaizen/skills ~/.gemini/skills
 ```
 
-### For Claude
-Just verify `CLAUDE.md` includes the prompts from `UNIVERSAL_PROMPT.txt`.
+### Claude
+Add the prompts from `UNIVERSAL_PROMPT.txt` to your Claude config.
 
-## Why I Built This
-Most AI agents drift off-topic or write buggy code because they lack context. This repo forces them to follow a process (Plan -> Act -> Verify) instead of just guessing.
+---
 
-It's not magic, it's just checklists.
+## Supported Models (Feb 2026)
+
+| Provider | Models | Env Var |
+|----------|--------|---------|
+| OpenAI | gpt-5.2, gpt-5-mini | `OPENAI_API_KEY` |
+| Anthropic | claude-opus-4.5, claude-sonnet-4.5 | `ANTHROPIC_API_KEY` |
+| Google | gemini-3-pro, gemini-3-flash | `GOOGLE_API_KEY` |
+| Ollama | llama3.2, qwen2.5 | (none, local) |
 
 ## License
-MIT. Do whatever you want with it.
+MIT

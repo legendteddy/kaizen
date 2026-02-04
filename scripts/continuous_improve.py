@@ -48,11 +48,35 @@ class ContinuousImprover:
             print(f"Claimed task: {task['title']}")
             self.comm.log(f"Started task: {task['title']}")
             
-            # Placeholder: Agentic Execution Loop
-            # In production, this invokes the LLM agent to perform the work.
-            time.sleep(2) 
+            # Execute with the real Kaizen agent
+            try:
+                from pathlib import Path
+
+                from kaizen_core.llm import LLMClient
+                from kaizen_core.main import process_task as execute_task
+                from kaizen_core.models import Task
+                from kaizen_core.tools.manager import ToolManager
+                
+                # Initialize agent components
+                repo_root = Path(__file__).parent.parent
+                llm = LLMClient()  # Auto-detects provider from env
+                tools = ToolManager(repo_root, agent_id=self.agent_id)
+                
+                # Convert dict task to Task model
+                agent_task = Task(
+                    id=task['id'],
+                    title=task['title'],
+                    context=task.get('context', ''),
+                )
+                
+                # Actually execute the task with LLM
+                execute_task(agent_task, tools, llm, self.hive)
+                result = "Completed by Kaizen agent."
+            except Exception as e:
+                result = f"Error: {e}"
+                self.comm.log(f"Task failed: {e}")
             
-            self.hive.complete_task(task['id'], result="Analyzed and updated.")
+            self.hive.complete_task(task['id'], result=result)
             print(f"Completed task: {task['title']}")
             self.comm.log(f"Completed task: {task['title']}")
         else:
