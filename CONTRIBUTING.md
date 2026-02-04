@@ -1,42 +1,35 @@
 # Contributing to Kaizen
 
-Thank you for your interest in contributing to the Kaizen framework. We are building the future of Recursive Self-Improvement (RSI) for autonomous agents.
+We treat this repository as a "Cognitive Codebase". Each file adds a capability to the AI.
 
-## Core Philosophy: The Kaizen Loop
+## How to Add a Skill
 
-All contributions must adhere to the core loop:
-1.  **Observe:** Identify a gap or inefficiency.
-2.  **Improve:** Implement a fix or new skill.
-3.  **Codify:** Document the improvement in a `SKILL.md` or Pattern.
-4.  **Verify:** Prove it works (Benchmarks/Tests).
+1. **Copy the Template**
+   ```bash
+   cp templates/NEW_SKILL.md skills/your-skill-name/SKILL.md
+   ```
 
-## Development Standards
+2. **Define the Header**
+   The YAML frontmatter is critical for the indexer.
+   ```yaml
+   ---
+   name: your-skill-name
+   description: 10-15 words. Specific and searchable.
+   ---
+   ```
 
-### 1. Epistemic Sovereignty
-- Agents must be able to run locally (Ollama/Llama).
-- No hard dependencies on closed-source APIs (OpenAI/Anthropic) unless optional.
+3. **Write the Logic**
+   - Use **imperative mood** ("Do this", not "You should do this").
+   - Include **Guardrails** ("Never delete without asking").
+   - Providing **Examples** is the best way to steer behavior.
 
-### 2. Code Quality
-We enforce strict standards using `ruff` and `mypy`.
-```bash
-# Run before committing
-ruff check .
-ruff format .
-mypy .
-```
+## How to Improve a Skill
 
-### 3. Skill Architecture
-New skills must follow the template in `skills/_template/SKILL.md`.
-- **Purpose:** One sentence goal.
-- **Trigger:** When should an agent use this?
-- **Protocol:** Step-by-step instructions.
+1. **Profile**: Where did the agent fail?
+2. **Patch**: Edit the markdown to explicitly handle that edge case.
+3. **Verify**: Test the new prompt.
 
-## Pull Request Process
-
-1.  **Fork** the repo.
-2.  **Create** a branch (`feat/new-skill-x`).
-3.  **Verify** using the Repo Judge: `python -m kaizen_core.judge`.
-4.  **Submit** PR.
-
-## License
-By contributing, you agree that your contributions will be licensed under its MIT License.
+## Style Guide
+- **Concise**: Agents have token limits. Be brief.
+- **Structural**: Use headers (#, ##) to organize thought.
+- **Explicit**: Don't just imply rules; state them.
