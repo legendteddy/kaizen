@@ -1,11 +1,9 @@
 ---
 name: metacognition
-description: Long-term memory and user preference indexing. Builds a "Personal Operating System" for the specific user.
+description: Long-term memory and user preference indexing.
 ---
 
 # Protocol: Metacognition (Long-Term Memory)
-
-> "An agent that forgets its user is just a temporary tool. An agent that remembers is an extension of the self."
 
 ## 1. The Metacognitive Layer
 Every session provides data points. This protocol ensures those points are indexed into persistent **User Axioms**.
