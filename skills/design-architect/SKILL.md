@@ -3,7 +3,7 @@ name: design-architect
 description: Establishing premium visual systems (Tokens, Hierarchy, Glassmorphism).
 ---
 
-# Design Architect (Visual Systems)
+# Protocol: Design Architect (Visual Systems)
 
 > "Design is not just what it looks like. Design is how it feels."
 

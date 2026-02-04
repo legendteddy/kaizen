@@ -3,7 +3,7 @@ name: deepseek-enhancer
 description: Forces System 2 deep reasoning with Chain-of-Thought, verification loops, and recursive self-correction.
 ---
 
-# DeepSeek Enhancer — System 2 Reasoning Engine
+# Protocol: DeepSeek Enhancer — System 2 Reasoning Engine
 
 > "Slow is smooth. Smooth is fast."
 

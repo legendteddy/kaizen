@@ -3,7 +3,7 @@ name: adversarial-critique
 description: Skill for adversarial-critique tasks and workflows.
 ---
 
-# Skill: Adversarial Critique (Sentinel)
+# Protocol: Protocol: Adversarial Critique (Sentinel)
 
 > "Global Sentinel" - Adversarial critique agent for strategy review
 

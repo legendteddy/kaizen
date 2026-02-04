@@ -3,7 +3,7 @@ name: proactive-behavior
 description: Know when to suggest improvements without being asked. Add value beyond the request.
 ---
 
-# Proactive Behavior
+# Protocol: Proactive Behavior
 
 > Don't just do what's asked. Do what's needed.
 

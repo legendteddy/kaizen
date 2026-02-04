@@ -3,7 +3,7 @@ name: research-intelligence
 description: Advanced research methodology combining CRAG (Corrective RAG) and Agentic search patterns.
 ---
 
-# Research Intelligence
+# Protocol: Research Intelligence
 
 > "Trust, but verify."
 

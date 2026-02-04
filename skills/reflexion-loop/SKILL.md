@@ -3,7 +3,7 @@ name: reflexion-loop
 description: Runtime self-correction protocol. Critique and refine output BEFORE delivery.
 ---
 
-# Reflexion Loop
+# Protocol: Reflexion Loop
 
 Don't just ship the first thing you think of. Pause for 5 seconds and check if it's stupid.
 

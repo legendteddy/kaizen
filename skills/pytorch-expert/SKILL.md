@@ -3,7 +3,7 @@ name: pytorch-expert
 description: Skill for Deep Learning engineering using PyTorch.
 ---
 
-# Skill: PyTorch Expert (v1.0)
+# Protocol: Protocol: PyTorch Expert (v1.0)
 
 > "The gradient flows where the math goes."
 
@@ -24,11 +24,11 @@ Build, train, and debug neural networks using modern PyTorch best practices.
 If raw PyTorch is required, follow this structure:
 
 ```python
-# 1. Setup
+# Protocol: 1. Setup
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 criterion = nn.CrossEntropyLoss()
 
-# 2. Loop
+# Protocol: 2. Loop
 for epoch in range(epochs):
     model.train() # Set mode
     for batch in dataloader:
@@ -85,7 +85,7 @@ If loss becomes `NaN`:
 ```python
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
-# ...
+# Protocol: ...
 ```
 
 ## Common Pitfalls & Anti-Patterns

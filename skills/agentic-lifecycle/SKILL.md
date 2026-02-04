@@ -3,7 +3,7 @@ name: agentic-lifecycle
 description: Protocols for the autonomous execution loop (Perceive, Plan, Act, Reflect).
 ---
 
-# Agentic Lifecycle
+# Protocol: Agentic Lifecycle
 
 > "The cycle of autonomy."
 

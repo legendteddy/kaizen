@@ -3,7 +3,7 @@ name: docs-fetcher
 description: Protocol for retrieving, parsing, and applying external documentation.
 ---
 
-# Documentation Fetcher
+# Protocol: Documentation Fetcher
 
 > "Read the manual so the user doesn't have to."
 

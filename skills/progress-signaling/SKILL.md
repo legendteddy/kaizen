@@ -3,7 +3,7 @@ name: progress-signaling
 description: Keep user informed of progress during long tasks.
 ---
 
-# Progress Signaling
+# Protocol: Progress Signaling
 
 > Silence during work feels like abandonment. Signal progress.
 

@@ -3,7 +3,7 @@ name: creative-solving
 description: Approach novel problems without precedent. Think outside existing patterns.
 ---
 
-# Creative Problem Solving
+# Protocol: Creative Problem Solving
 
 > When standard approaches fail, create new ones.
 

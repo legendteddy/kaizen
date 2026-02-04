@@ -3,7 +3,7 @@ name: assumption-tracking
 description: Track assumptions made, validate them, and correct course when wrong.
 ---
 
-# Assumption Tracking
+# Protocol: Assumption Tracking
 
 > Every assumption is a risk. Track them, validate them, correct them.
 

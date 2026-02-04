@@ -3,7 +3,7 @@ name: error-recovery
 description: Gracefully handle failures, retry intelligently, and recover without user intervention.
 ---
 
-# Error Recovery & Resilience
+# Protocol: Error Recovery & Resilience
 
 > When things break, fix them. Don't stop. Don't panic.
 

@@ -3,7 +3,7 @@ name: world-modeling
 description: Skill for world-modeling tasks and workflows.
 ---
 
-# Skill: World Modeling (v1.0)
+# Protocol: Protocol: World Modeling (v1.0)
 
 > Text-to-world generation and simulation (Project Genie pattern)
 

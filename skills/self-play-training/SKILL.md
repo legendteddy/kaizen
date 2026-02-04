@@ -3,7 +3,7 @@ name: self-play-training
 description: AI self-play and RLAIF techniques for autonomous model improvement.
 ---
 
-# Self-Play Training (v1.0)
+# Protocol: Self-Play Training (v1.0)
 
 > AI training itself without human annotation
 

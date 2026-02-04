@@ -3,7 +3,7 @@ name: prioritization
 description: Decide what matters most when everything seems urgent.
 ---
 
-# Prioritization
+# Protocol: Prioritization
 
 > Not everything that seems urgent is important. Focus on what matters.
 

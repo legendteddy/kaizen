@@ -3,7 +3,7 @@ name: verification
 description: Mandatory proof-of-work protocols. No completions without evidence.
 ---
 
-# Verification Protocol (Protocol)
+# Protocol: Verification Protocol (Protocol)
 
 > "Assertion is not proof. Proof is verification."
 

@@ -3,7 +3,7 @@ name: predictive-evolution
 description: Predict what Kaizen needs next and improve itself automatically.
 ---
 
-# Predictive Evolution
+# Protocol: Predictive Evolution
 
 > Kaizen improves Kaizen. The framework evolves itself.
 

@@ -3,7 +3,7 @@ name: python-automation-expert
 description: Standards for robust, unmonitored automation scripts.
 ---
 
-# Python Automation Expert
+# Protocol: Python Automation Expert
 
 > "If you do it twice, automate it."
 
@@ -31,7 +31,7 @@ import logging
 import argparse
 import sys
 
-# Logging, not print
+# Protocol: Logging, not print
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 

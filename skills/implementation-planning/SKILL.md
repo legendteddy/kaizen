@@ -3,7 +3,7 @@ name: implementation-planning
 description: Creating architectural blueprints, dependency graphs, and phased rollout plans.
 ---
 
-# Protocol: Implementation Planning
+# Protocol: Protocol: Implementation Planning
 
 > Structured methodology for designing solutions before execution.
 
@@ -40,7 +40,7 @@ Identify the "Blast Radius". What breaks if this fails?
 
 ### The Standard Template
 ```markdown
-# Implementation Plan: [Feature]
+# Protocol: Implementation Plan: [Feature]
 
 ## Goal
 As a user, I want X so that Y.

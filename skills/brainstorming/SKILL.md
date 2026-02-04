@@ -3,7 +3,7 @@ name: brainstorming
 description: Protocols for Generative Thinking, First Principles, and Inversion.
 ---
 
-# Brainstorming Engine
+# Protocol: Brainstorming Engine
 
 > "The best way to have a good idea is to have a lot of ideas."
 

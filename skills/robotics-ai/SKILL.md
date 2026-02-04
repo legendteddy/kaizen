@@ -3,7 +3,7 @@ name: robotics-ai
 description: Skill for robotics-ai tasks and workflows.
 ---
 
-# Skill: Robotics AI (v1.0)
+# Protocol: Protocol: Robotics AI (v1.0)
 
 > Physical intelligence and embodied AI (2026)
 

@@ -3,7 +3,7 @@ name: deliberative-reasoning
 description: Skill for deliberative-reasoning tasks and workflows.
 ---
 
-# Skill: Deliberative Reasoning (v1.0)
+# Protocol: Protocol: Deliberative Reasoning (v1.0)
 
 > Chain-of-thought reasoning for complex problem solving
 

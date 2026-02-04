@@ -3,7 +3,7 @@ name: agent-communication
 description: Mandatory IAC (Inter-Agent Communication) protocols and Handover Metadata.
 ---
 
-# Agent Communication Protocol (IAC)
+# Protocol: Agent Communication Protocol (IAC)
 
 > "Clear communication is the prerequisite for autonomous safety."
 

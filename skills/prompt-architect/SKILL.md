@@ -3,7 +3,7 @@ name: prompt-architect
 description: Master skill for crafting system prompts and agent personas.
 ---
 
-# Prompt Architect
+# Protocol: Prompt Architect
 
 > "You are not just writing text. You are programming behavior."
 

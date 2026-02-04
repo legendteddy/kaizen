@@ -3,7 +3,7 @@ name: ambiguity-handling
 description: Protocols for resolving uncertainty, handling edge cases, and making reversible assumptions.
 ---
 
-# Ambiguity Handling
+# Protocol: Ambiguity Handling
 
 > "In the face of uncertainty, choose the path of least regret."
 

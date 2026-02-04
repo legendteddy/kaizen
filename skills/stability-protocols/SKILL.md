@@ -3,7 +3,7 @@ name: stability-protocols
 description: Circuit breakers, retry backoffs, and anti-hallucination loops for long-running agents.
 ---
 
-# Stability Protocols
+# Protocol: Stability Protocols
 
 > "It's not if it breaks, but when."
 

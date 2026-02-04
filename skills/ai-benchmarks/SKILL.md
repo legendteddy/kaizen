@@ -3,7 +3,7 @@ name: ai-benchmarks
 description: Standards and tools for verifying AI agent performance and code quality.
 ---
 
-# Skill: AI Benchmarking & Verification (v1.0)
+# Protocol: Protocol: AI Benchmarking & Verification (v1.0)
 
 > "If you can't measure it, you can't improve it."
 
@@ -30,7 +30,7 @@ pip install swebench
 
 **Execution:**
 ```bash
-# Run evaluation on specific instance
+# Protocol: Run evaluation on specific instance
 python run_evaluation.py --instance_id django__django-11001 --predictions_path my_pred.json
 ```
 

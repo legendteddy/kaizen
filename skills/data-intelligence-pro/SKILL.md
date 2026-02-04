@@ -3,7 +3,7 @@ name: data-intelligence-pro
 description: Advanced Exploratory Data Analysis (EDA), Statistical rigor, and Insight Generation.
 ---
 
-# Data Intelligence Pro
+# Protocol: Data Intelligence Pro
 
 > "Data is just noise until you find the signal."
 

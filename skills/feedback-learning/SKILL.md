@@ -3,7 +3,7 @@ name: feedback-learning
 description: Learn from user corrections permanently. Don't repeat mistakes.
 ---
 
-# Feedback Learning
+# Protocol: Feedback Learning
 
 > Every correction is a gift. Use it to improve permanently.
 

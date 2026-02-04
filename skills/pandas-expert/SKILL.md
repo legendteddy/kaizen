@@ -3,7 +3,7 @@ name: pandas-expert
 description: High-performance data manipulation, vectorization patterns, and memory optimization.
 ---
 
-# Pandas Expert
+# Protocol: Pandas Expert
 
 > "If you are looping, you are losing."
 
@@ -42,7 +42,7 @@ Default Pandas uses massive RAM. Shrink it.
 3.  **Nullable Ints:** Use `Int64` instead of `float64` for columns with NaNs.
 
 ```python
-# Automatic Downcasting Code
+# Protocol: Automatic Downcasting Code
 for col in df.select_dtypes(include=['float64']):
     df[col] = pd.to_numeric(df[col], downcast='float')
 ```
@@ -74,7 +74,7 @@ If dataset > 10GB, abandon Pandas. Use **Polars**.
 ## 5. Debugging Pipelines
 Break the chain to inspect:
 ```python
-# In the middle of a chain:
+# Protocol: In the middle of a chain:
 df.pipe(lambda df: print(df.shape) or df)  # Returns df after printing
 ```
 

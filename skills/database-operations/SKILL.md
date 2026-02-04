@@ -3,7 +3,7 @@ name: database-operations
 description: Engineering standards for Schema Design, SQL Optimization, and Migrations.
 ---
 
-# Database Operations
+# Protocol: Database Operations
 
 > "Data outlives code."
 
@@ -32,10 +32,10 @@ Never break backward compatibility in a live app.
 
 ### Safe Parameterization
 ```python
-# ❌ SQL Injection Vector
+# Protocol: ❌ SQL Injection Vector
 cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
 
-# ✅ Safe
+# Protocol: ✅ Safe
 cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
 ```
 

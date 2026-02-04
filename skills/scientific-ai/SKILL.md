@@ -3,7 +3,7 @@ name: scientific-ai
 description: Skill for scientific-ai tasks and workflows.
 ---
 
-# Skill: Scientific AI (v1.0)
+# Protocol: Protocol: Scientific AI (v1.0)
 
 > AI for scientific discovery (AlphaFold, AlphaGenome pattern)
 

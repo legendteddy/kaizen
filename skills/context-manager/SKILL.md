@@ -3,7 +3,7 @@ name: context-manager
 description: Protocols for Context Hygiene, Session Anchors, and Memory Persistence.
 ---
 
-# Context Manager
+# Protocol: Context Manager
 
 > "A clear mind is a fast mind."
 

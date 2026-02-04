@@ -3,7 +3,7 @@ name: swarm-orchestrator
 description: Protocols for Multi-Agent coordination, Shared Message Bus, and Swarm Topologies.
 ---
 
-# Swarm Orchestrator
+# Protocol: Swarm Orchestrator
 
 > "None of us is as smart as all of us."
 

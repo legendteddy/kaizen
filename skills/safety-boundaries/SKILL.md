@@ -1,11 +1,16 @@
 ---
 name: safety-boundaries
-description: Tool-mapped safety guardrails and escalation logic.
+description: Hard constraints on autonomous tool usage to ensure system integrity.
 ---
 
-# Safety Boundaries (Tool-Mapped)
+# Protocol: Protocol: Safety Boundaries
 
-> "Power requires responsibility. Know when to abort."
+> Hard constraints on autonomous tool usage to ensure system integrity.
+
+## Activation Trigger
+- Prior to any destructive shell command (`rm`, `del`, `git reset --hard`).
+- Prior to overwriting critical system files or repository configuration.
+- When an action's blast radius exceeds the immediate task scope.
 
 ## 🔴 Hard Boundaries (Immediate Abort)
 - **Tool**: `run_command` -> `rm -rf /`, `chmod -R 777`, or system-destruct.

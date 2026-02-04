@@ -3,7 +3,7 @@ name: test-time-compute
 description: Scaling intelligence at inference via Chain-of-Thought, Best-of-N, and Tree Search.
 ---
 
-# Test-Time Compute (TTC)
+# Protocol: Test-Time Compute (TTC)
 
 > "Don't just answer. Think."
 

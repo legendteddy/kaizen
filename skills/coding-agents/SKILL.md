@@ -3,7 +3,7 @@ name: coding-agents
 description: Skill for building and managing autonomous software engineering agents (Devin-like).
 ---
 
-# Skill: Coding Agents (v1.0)
+# Protocol: Protocol: Coding Agents (v1.0)
 
 > "Automating the artisan."
 

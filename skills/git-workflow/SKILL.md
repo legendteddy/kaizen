@@ -3,7 +3,7 @@ name: git-workflow
 description: Professional version control standards (Branching, Commit Hygiene, Worktrees).
 ---
 
-# Git Workflow
+# Protocol: Git Workflow
 
 > "History is written by the victors (who squash their commits)."
 
@@ -33,7 +33,7 @@ Example: `feat(auth): add google sso login`
 Stop switching branches. Clone locally.
 ```bash
 git worktree add ../hotfix-folder fix/critical-bug
-# Works in parallel directory
+# Protocol: Works in parallel directory
 git worktree remove ../hotfix-folder
 ```
 

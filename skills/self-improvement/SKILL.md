@@ -3,7 +3,7 @@ name: self-improvement
 description: Skill for self-improvement tasks and workflows.
 ---
 
-# Skill: Self-Improvement (Recursive Kaizen)
+# Protocol: Protocol: Self-Improvement (Recursive Kaizen)
 
 > Continuous self-improvement and framework evolution
 

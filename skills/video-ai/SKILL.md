@@ -3,7 +3,7 @@ name: video-ai
 description: Protocols for generative video and programmatic editing (FFmpeg).
 ---
 
-# Video AI & Processing
+# Protocol: Video AI & Processing
 
 ## Activation Trigger
 - Generating video prompts (Camera/Lighting).

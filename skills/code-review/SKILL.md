@@ -3,7 +3,7 @@ name: code-review
 description: Giving and receiving constructive, high-value code reviews.
 ---
 
-# Code Review
+# Protocol: Code Review
 
 > "Code review is about improving the code, not judging the coder."
 

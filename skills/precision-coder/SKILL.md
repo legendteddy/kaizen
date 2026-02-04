@@ -1,4 +1,4 @@
-# Protocol: Precision Coder
+# Protocol: Protocol: Precision Coder
 
 > Technical standards for high-reliability software engineering.
 

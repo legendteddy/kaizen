@@ -3,7 +3,7 @@ name: computer-use
 description: Skill for controlling the cursor and keyboard to automate GUI tasks (Anthropic/OpenAI Computer Use).
 ---
 
-# Skill: Computer Use Automation (v1.0)
+# Protocol: Protocol: Computer Use Automation (v1.0)
 
 > "The hands of the agent."
 

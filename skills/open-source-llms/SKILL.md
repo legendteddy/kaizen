@@ -3,7 +3,7 @@ name: open-source-llms
 description: Guide to local Llama/Mistral/Qwen models, hardware requirements, and serving engines.
 ---
 
-# Open-Source LLMs (2026 Landscape)
+# Protocol: Open-Source LLMs (2026 Landscape)
 
 > "Own your intelligence."
 

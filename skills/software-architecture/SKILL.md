@@ -3,7 +3,7 @@ name: software-architecture
 description: Enterprise-grade patterns including SOLID principles, Clean Architecture, and design patterns.
 ---
 
-# Software Architecture (Enterprise Patterns)
+# Protocol: Software Architecture (Enterprise Patterns)
 
 > "Architecture is about the important stuff. Whatever that is."
 

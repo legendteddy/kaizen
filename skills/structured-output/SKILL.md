@@ -3,7 +3,7 @@ name: structured-output
 description: Enforcing JSON/XML formats via Pydantic, Zod, and Grammar Constrained Generation.
 ---
 
-# Structured Output
+# Protocol: Structured Output
 
 > "If it's not JSON, it didn't happen."
 
@@ -23,7 +23,7 @@ class User(BaseModel):
     age: int = Field(..., gt=0, lt=150)
     tags: list[str]
 
-# Prompt
+# Protocol: Prompt
 prompt = f"Extract user info. Schema: {User.model_json_schema()}"
 ```
 

@@ -3,7 +3,7 @@ name: meta-optimizer
 description: Self-Taught Optimizer (STO) protocol. Systematically improve the agent's own cognitive source code.
 ---
 
-# Meta-Optimizer (STO)
+# Protocol: Meta-Optimizer (STO)
 
 > "The machine that builds the machine."
 

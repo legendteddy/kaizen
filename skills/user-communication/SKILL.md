@@ -3,7 +3,7 @@ name: user-communication
 description: Explain clearly, teach effectively, collaborate smoothly.
 ---
 
-# User Communication
+# Protocol: User Communication
 
 > Communication is the interface. Make it excellent.
 

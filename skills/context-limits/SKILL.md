@@ -3,7 +3,7 @@ name: context-limits
 description: Techniques for lossy and lossless compression of information in LLM context.
 ---
 
-# Context Limits & Compression
+# Protocol: Context Limits & Compression
 
 > "Information Density is Key."
 
@@ -27,7 +27,7 @@ Don't dump files. Walk the tree.
 When summarizing a long thread, use this template to preserve **signal**:
 
 ```markdown
-# Summary of [Task]
+# Protocol: Summary of [Task]
 - **Status:** [Active/Blocked/Done]
 - **Decisions:**
   - Used BytePair Encoding for tokenizer.

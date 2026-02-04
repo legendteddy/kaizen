@@ -3,7 +3,7 @@ name: python-development
 description: Python development standards, project structure, and type safety constraints.
 ---
 
-# Python Development
+# Protocol: Python Development
 
 > "Explicit is better than implicit."
 

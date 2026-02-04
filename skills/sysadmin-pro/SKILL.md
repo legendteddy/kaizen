@@ -3,7 +3,7 @@ name: sysadmin-pro
 description: Protocols for safe, idempotent system administration (Linux/Windows).
 ---
 
-# Sysadmin Pro
+# Protocol: Sysadmin Pro
 
 > "Measure twice, cut once."
 
@@ -31,13 +31,13 @@ Scripts must be safe to run multiple times.
 
 ## Snippet Library
 ```bash
-# Safe Directory Creation
+# Protocol: Safe Directory Creation
 mkdir -p /path/to/dir
 
-# Safe Append
+# Protocol: Safe Append
 grep -qF "line" file.txt || echo "line" >> file.txt
 
-# Safe Find & Delete (Verify first!)
+# Protocol: Safe Find & Delete (Verify first!)
 find . -name "*.tmp" -type f -delete
 ```
 

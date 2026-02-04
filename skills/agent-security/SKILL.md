@@ -3,7 +3,7 @@ name: agent-security
 description: Protocols for prompt injection defense, tool sandboxing, and output validation.
 ---
 
-# Agent Security
+# Protocol: Agent Security
 
 > "Trust, but verify. Then isolate."
 
@@ -53,11 +53,11 @@ When calling a risky tool:
 **Rule:** Agents MUST NOT see `.env` files unless specifically deploying.
 
 ```python
-# Bad
+# Protocol: Bad
 print(os.environ)
 
-# Good
-# (Agent has no tool to dump env vars)
+# Protocol: Good
+# Protocol: (Agent has no tool to dump env vars)
 ```
 
 ## 4. Output Validation (The Filter)

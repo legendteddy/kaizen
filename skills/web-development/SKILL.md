@@ -3,7 +3,7 @@ name: web-development
 description: Modern web engineering standards (Tailwind, Vite, Accessibility).
 ---
 
-# Web Development
+# Protocol: Web Development
 
 > "Fast, Accessible, Beautiful."
 

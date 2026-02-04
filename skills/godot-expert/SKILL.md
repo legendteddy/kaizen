@@ -3,7 +3,7 @@ name: godot-expert
 description: Expert protocols for Godot 4.x development (GDScript, Nodes, Architecture).
 ---
 
-# Godot Expert
+# Protocol: Godot Expert
 
 > "Signals Up, Calls Down."
 
@@ -33,12 +33,12 @@ description: Expert protocols for Godot 4.x development (GDScript, Nodes, Archit
 ### Static Typing
 Always use static typing for performance and safety.
 ```gdscript
-# Bad
+# Protocol: Bad
 var health = 100
 func take_damage(amount):
     health -= amount
 
-# Good
+# Protocol: Good
 var health: int = 100
 func take_damage(amount: int) -> void:
     health -= amount

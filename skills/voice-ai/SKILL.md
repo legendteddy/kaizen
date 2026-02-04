@@ -3,7 +3,7 @@ name: voice-ai
 description: Protocols for TTS, STT, Voice Cloning, and audio pipeline optimization.
 ---
 
-# Voice AI
+# Protocol: Voice AI
 
 ## Activation Trigger
 - Implementing Text-to-Speech (TTS) or STT.
@@ -45,7 +45,7 @@ For voice assistants, you need **Voice Activity Detection (VAD)**.
 
 ## Code Snippet: Minimal Latency Streaming (Concept)
 ```python
-# Concept: Play chunks as they arrive
+# Protocol: Concept: Play chunks as they arrive
 response = client.audio.speech.create(
     model="tts-1",
     voice="alloy",

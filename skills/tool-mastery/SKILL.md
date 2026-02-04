@@ -3,7 +3,7 @@ name: tool-mastery
 description: Master the available tools for file operations, code search, web research, and bash commands. Understand capabilities, limitations, and best practices.
 ---
 
-# Tool Mastery
+# Protocol: Tool Mastery
 
 > Optimal use of available tools for maximum efficiency.
 

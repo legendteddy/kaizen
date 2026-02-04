@@ -3,7 +3,7 @@ name: agent-architecture
 description: Skill for designing robust agentic systems (Router, Worker, Evaluator patterns).
 ---
 
-# Agent Architecture
+# Protocol: Agent Architecture
 
 > "Structure determines function."
 
@@ -53,7 +53,7 @@ sequenceDiagram
 **Use when:** Massive parallelizable tasks (Map-Reduce).
 
 ```python
-# Swarm Logic
+# Protocol: Swarm Logic
 with ThreadPoolExecutor() as executor:
     futures = [executor.submit(research_agent.run, c) for c in companies]
     results = [f.result() for f in futures]

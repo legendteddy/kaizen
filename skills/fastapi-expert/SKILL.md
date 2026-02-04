@@ -3,7 +3,7 @@ name: fastapi-expert
 description: Building high-performance, async web APIs with FastAPI and Pydantic.
 ---
 
-# FastAPI Expert
+# Protocol: FastAPI Expert
 
 > "Validation is not an option. It's the law."
 

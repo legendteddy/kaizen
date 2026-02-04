@@ -3,7 +3,7 @@ name: expert-claude-code-user
 description: Mastery over the Claude Code CLI, leveraging deep integration and plugins.
 ---
 
-# Skill: Expert Claude Code User (v1.0)
+# Protocol: Protocol: Expert Claude Code User (v1.0)
 
 > "The CLI is the IDE of the future."
 

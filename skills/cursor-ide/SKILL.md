@@ -3,7 +3,7 @@ name: cursor-ide
 description: Skill for cursor-ide tasks and workflows.
 ---
 
-# Skill: Cursor IDE Patterns (v1.0)
+# Protocol: Protocol: Cursor IDE Patterns (v1.0)
 
 > AI-first IDE patterns for agentic coding
 

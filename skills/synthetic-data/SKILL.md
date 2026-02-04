@@ -3,7 +3,7 @@ name: synthetic-data
 description: Skill for synthetic-data tasks and workflows.
 ---
 
-# Skill: Synthetic Data Generation (v1.0)
+# Protocol: Protocol: Synthetic Data Generation (v1.0)
 
 > AI-generated training data (75% of AI data by 2026)
 

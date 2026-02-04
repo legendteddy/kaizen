@@ -3,7 +3,7 @@ name: debug-master
 description: Advanced debugging methodology with 4-phase root cause analysis and systematic problem isolation.
 ---
 
-# Debug Master (Systematic Problem Solving)
+# Protocol: Debug Master (Systematic Problem Solving)
 
 > "The bug is not in the code. The bug is in your mental model."
 

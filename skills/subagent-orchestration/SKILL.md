@@ -3,7 +3,7 @@ name: subagent-orchestration
 description: Comprehensive guide to multi-agent systems, subagent orchestration, and parallel task execution. Covers architecture patterns, coordination strategies, and practical implementation.
 ---
 
-# Multi-Agent Systems & Subagent Orchestration
+# Protocol: Multi-Agent Systems & Subagent Orchestration
 
 > Patterns for coordinating multiple AI agents to solve complex problems efficiently.
 

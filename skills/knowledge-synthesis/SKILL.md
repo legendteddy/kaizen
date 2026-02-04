@@ -3,7 +3,7 @@ name: knowledge-synthesis
 description: Combine information from multiple sources into coherent understanding.
 ---
 
-# Knowledge Synthesis
+# Protocol: Knowledge Synthesis
 
 > Information is scattered. Wisdom is synthesized.
 

@@ -3,7 +3,7 @@ name: agent-cowork
 description: SOP for autonomous file automation (Batch processing, Auth folders, Idempotency).
 ---
 
-# File Automation SOP (Cowork)
+# Protocol: File Automation SOP (Cowork)
 
 > "Transforming folders into structured intelligence."
 

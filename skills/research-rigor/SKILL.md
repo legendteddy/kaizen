@@ -3,17 +3,16 @@ name: research-rigor
 description: Protocols for verifying knowledge BEFORE acting (Grep First, Input Rigor).
 ---
 
-# Research Rigor (Field Verification)
+# Protocol: Protocol: Research Rigor
 
-> Knowledge based on verified data, not assumptions.
+> Technical standards for verifying repository state before execution.
 
 ## Activation Trigger
-- User asks: "Do we have X?"
-- You think: "I don't think we have X."
-- You are about to say: "I cannot find..."
-- You are about to create a new file/skill.
+- Encountering unknown file paths or project structures.
+- Before claiming a file or capability does not exist.
+- Before creating redundant assets or skills.
 
-## Protocols
+## Operational Standards
 
 ### 1. First Principle: The "Grep First" Rule
 You are strictly FORBIDDEN from declaring "X does not exist" until you have performed a `grep_search` for X and its synonyms.
@@ -36,13 +35,13 @@ If you fail to find something, you must state your search method to the user.
 
 ### The Rigorous Search Loop
 ```python
-# 1. Broad Search
+# Protocol: 1. Broad Search
 grep_search(query="SEO", path="src/")
 
-# 2. Synonym Search
+# Protocol: 2. Synonym Search
 grep_search(query="search engine", path="src/")
 
-# 3. File List Analysis
+# Protocol: 3. File List Analysis
 find_by_name(pattern="*seo*", path="src/")
 ```
 

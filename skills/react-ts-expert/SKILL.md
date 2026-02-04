@@ -3,7 +3,7 @@ name: react-ts-expert
 description: Protocols for React 19, Server Components, TypeScript, and State Management.
 ---
 
-# React TypeScript Expert
+# Protocol: React TypeScript Expert
 
 > "UI is a function of State."
 

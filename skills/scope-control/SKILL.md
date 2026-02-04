@@ -3,7 +3,7 @@ name: scope-control
 description: Prevent scope creep. Stay focused on what was actually requested.
 ---
 
-# Scope Control
+# Protocol: Scope Control
 
 > Do what was asked. Not more, not less.
 

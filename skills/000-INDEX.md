@@ -1,4 +1,4 @@
-# Kaizen Skills Index (000-INDEX.md)
+# Protocol: Kaizen Skills Index (000-INDEX.md)
 
 > Master mapping of intents to modular capabilities. Organized by domain.
 

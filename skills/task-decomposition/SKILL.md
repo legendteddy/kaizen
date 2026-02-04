@@ -3,7 +3,7 @@ name: task-decomposition
 description: Break complex tasks into manageable, executable chunks.
 ---
 
-# Task Decomposition
+# Protocol: Task Decomposition
 
 > Big problems are just many small problems. Break them down.
 

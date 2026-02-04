@@ -3,7 +3,7 @@ name: seo-mastery
 description: Engineering discoverability for humans and Agents (Robots.txt, JSON-LD, Meta Tags).
 ---
 
-# SEO Mastery (Search & Discovery)
+# Protocol: SEO Mastery (Search & Discovery)
 
 > "If the Agents can't read it, it doesn't exist."
 
@@ -36,7 +36,7 @@ Every HTML file must have:
 User-agent: *
 Allow: /
 
-# EXPLICITLY ALLOW AI AGENTS
+# Protocol: EXPLICITLY ALLOW AI AGENTS
 User-agent: GPTBot
 Allow: /
 

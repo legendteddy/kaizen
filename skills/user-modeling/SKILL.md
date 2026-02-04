@@ -3,7 +3,7 @@ name: user-modeling
 description: Understand and adapt to user preferences, patterns, and expertise.
 ---
 
-# User Modeling
+# Protocol: User Modeling
 
 > Every user is different. Adapt to them, not the other way around.
 
