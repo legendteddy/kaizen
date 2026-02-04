@@ -1,0 +1,239 @@
+import logging
+import os
+import re
+import time
+from pathlib import Path
+
+from .backlog import BacklogManager
+from .llm import LLMClient
+from .models import Task
+from .tools.manager import ToolManager
+
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
+
+# Constants
+REPO_ROOT = Path(__file__).parent.parent
+AGENT_ID = f"kaizen-core-{os.getpid()}"
+MAX_TURNS = 10 # Increased for complex tasks
+
+def main():
+    logging.info(f"Kaizen Codex Agent ({AGENT_ID}) started.")
+    logging.info(f"Workspace: {REPO_ROOT}")
+    
+    backlog = BacklogManager(AGENT_ID)
+    tools = ToolManager(REPO_ROOT, agent_id=AGENT_ID)
+    llm = LLMClient() 
+    
+    # Enable Codex Sandbox (Isolated Worktree)
+    sandbox_info = tools.setup_sandbox()
+    logging.info(sandbox_info)
+
+    try:
+        while True:
+            logging.debug("Polling backlog...")
+            task = backlog.get_pending_task()
+            
+            if task:
+                logging.info(f"Claimed task: {task['title']}")
+                process_task(task, tools, llm, backlog)
+            else:
+                time.sleep(5) 
+    finally:
+        # Codex Cleanup: Ensure worktrees are removed on exit
+        tools.cleanup()
+
+def process_task(task: Task, tools: ToolManager, llm: LLMClient, backlog: BacklogManager):
+    try:
+        # 1. Gather Context
+        tools.read_file("KAIZEN.md")
+        files = tools.list_files(".")
+        history = []
+        
+        system_prompt = """
+You are KAIZEN CODEX, an elite autonomous software engineer.
+Your mission is to execute tasks with pixel-perfect precision and architectural elegance.
+
+# CORE OPERATING RULES
+1. **TRUTH**: Never guess. If a file path or content is unknown, `read_file` or `search_files` first.
+2. **PRECISION**: When editing, use `replace_string` to surgicaly modify code. Only use `write_file` for CREATING new files.
+3. **COMPLETENESS**: Write production-grade code. No "TODOs", no placeholders, no "implementation details omitted".
+4. **VERIFICATION**: After every edit, verify the integrity of your changes (e.g., read the file back or run a test).
+
+# AVAILABLE TOOLS
+- read_file(path="path/to/file")
+- write_file(path="path/to/file", content="full content")
+- replace_string(path="path/to/file", old="exact string to find", new="replacement string")
+- run_shell(command="ls -la")
+- list_files(path=".")
+- search_files(pattern="text to find", path=".")
+
+# THINKING PROTOCOL (Chain of Thought)
+Before any action, you must output a <thought> block:
+1. Analyze the state.
+2. Identify the specific file/lines to change.
+3. Formulate the tool call.
+
+# RESPONSE FORMAT
+<thought>...</thought>
+<tool name="tool_name" arg1="val1" ...>...</tool>
+"""
+        
+        initial_user_prompt = f"""
+TASK: {task.title}
+CONTEXT: {task.context or 'None'}
+WORKSPACE: {files}
+
+Begin.
+"""
+        history.append({"role": "user", "content": initial_user_prompt})
+
+        consecutive_failures = 0
+        max_failures = 3
+
+        for turn in range(MAX_TURNS):
+            logging.debug(f"Turn {turn+1}/{MAX_TURNS}")
+            
+            # CALL LLM
+            response = llm.complete(system_prompt, format_history(history))
+            logging.debug(f"Agent response: {response[:100]}...")
+            history.append({"role": "assistant", "content": response})
+
+            # CHECK FOR FINISH
+            if "FINISHED:" in response:
+                summary = response.split("FINISHED:", 1)[1].strip()
+                backlog.complete_task(task.id, success=True, result=summary)
+                logging.info("Task completed.")
+                return
+
+            # PARSE AND EXECUTE TOOL
+            tool_call = parse_tool_call(response)
+            if tool_call:
+                name, args = tool_call
+                logging.debug(f"Proposing tool: {name} {args}")
+
+                # --- REFLEXION LOOP (AGI LEVEL 1) ---
+                # "Measure twice, cut once."
+                logging.debug("Running critic review...")
+                critique = llm.critique_action(
+                    proposed_action=f"{name} {args}", 
+                    context=format_history(history[-2:]) # Last 2 turns context
+                )
+
+                if not critique.get("approved", True):
+                    logging.warning(f"CRITIC REJECTED: {critique['feedback']}")
+                    history.append({
+                        "role": "user", 
+                        "content": f"CRITIC_INTERVENTION: Action blocked. Feedback: {critique['feedback']}. Please revise your plan."
+                    })
+                    continue  # SKIP EXECUTION, FORCE RETRY
+                
+                logging.debug(f"Critic approved: {critique.get('feedback', 'ok')}")
+                # ------------------------------------
+                
+                output = execute_tool(name, args, tools)
+                
+                # STABILITY CHECK: If tool output is an error, count as failure
+                if output.startswith("Error") or output.startswith("SECURITY ALERT"):
+                    consecutive_failures += 1
+                    logging.warning(f"Tool failure ({consecutive_failures}/{max_failures})")
+                else:
+                    consecutive_failures = 0 # Reset on success
+                
+                logging.debug(f"Tool output: {output[:100]}...")
+                history.append({"role": "user", "content": f"TOOL_OUTPUT: {output}"})
+            else:
+                consecutive_failures += 1
+                logging.warning(f"No tool call detected ({consecutive_failures}/{max_failures}).")
+                history.append({"role": "user", "content": "Error: No valid tool call found. You MUST use XML format."})
+
+            # CIRCUIT BREAKER
+            if consecutive_failures >= max_failures:
+                error_msg = "Circuit Breaker Tripped: Too many consecutive failures/hallucinations."
+                logging.error(error_msg)
+                backlog.complete_task(task.id, success=False, result=error_msg)
+                return
+
+        # If we run out of turns
+        backlog.complete_task(task.id, success=False, result="Task timed out (Max turns reached).")
+        logging.error("Task timed out.")
+        
+    except Exception as e:
+        logging.error(f"Task failed: {e}")
+        backlog.complete_task(task.id, success=False, result=str(e))
+
+def format_history(history):
+    return "\n".join([f"{msg['role'].upper()}: {msg['content']}" for msg in history])
+
+def parse_tool_call(text):
+    """
+    Parses tool calls from LLM output.
+    Supports:
+    1. XML: <tool name="write_file" path="x">content</tool>
+    2. Legacy: TOOL: name(arg="val")
+    """
+    # 1. Try XML parsing (Robust)
+    # <tool name="write_file" path="skills/test.md">Content here</tool>
+    xml_match = re.search(r'<tool\s+name=["\'](\w+)["\']\s*([^>]*)>(.*?)</tool>', text, re.DOTALL)
+    if xml_match:
+        name = xml_match.group(1)
+        attrs_str = xml_match.group(2)
+        content = xml_match.group(3)
+        
+        args = {"content": content}
+        
+        # Parse attributes: key="value"
+        for attr in re.finditer(r'(\w+)=["\']([^"\\]+)["\\]', attrs_str):
+            args[attr.group(1)] = attr.group(2)
+            
+        return name, args
+
+    # 2. Try XML self-closing (for commands)
+    # <tool name="run_shell" command="ls -la" />
+    xml_simple = re.search(r'<tool\s+name=["\'](\w+)["\']\s*([^>]*?)\s*/>', text, re.DOTALL)
+    if xml_simple:
+        name = xml_simple.group(1)
+        attrs_str = xml_simple.group(2)
+        args = {}
+        for attr in re.finditer(r'(\w+)=["\']([^"\\]+)["\\]', attrs_str):
+            args[attr.group(1)] = attr.group(2)
+        return name, args
+
+    # 3. Legacy Fallback (Fragile)
+    match = re.search(r'TOOL:\s*(\w+)\((.*)\)', text, re.DOTALL)
+    if match:
+        name = match.group(1)
+        args_str = match.group(2)
+        args = {}
+        
+        path_match = re.search(r'path=["\']([^"\\]+)["\\]', args_str)
+        if path_match:
+            args['path'] = path_match.group(1)
+        
+        content_match = re.search(r'content=["\']([\s\S]*)["\\]', args_str)
+        if content_match:
+            args['content'] = content_match.group(1)
+        
+        cmd_match = re.search(r'command=["\']([^"\\]+)["\\]', args_str)
+        if cmd_match:
+            args['command'] = cmd_match.group(1)
+        
+        return name, args
+    return None
+
+def execute_tool(name, args, tools):
+    if name == "read_file":
+        return tools.read_file(args.get('path', ''))
+    elif name == "write_file":
+        return tools.write_file(args.get('path', ''), args.get('content', ''))
+    elif name == "replace_string":
+        return tools.replace_string(args.get('path', ''), args.get('old', ''), args.get('new', ''))
+    elif name == "run_shell":
+        return tools.run_shell(args.get('command', ''))
+    elif name == "list_files":
+        return tools.list_files(args.get('path', '.'))
+    elif name == "search_files":
+        return tools.search_files(args.get('pattern', ''), args.get('path', '.'))
+    return "Error: Unknown tool."
+
+if __name__ == "__main__":
+    main()

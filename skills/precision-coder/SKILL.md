@@ -99,7 +99,7 @@ db.query('SELECT * FROM users WHERE id = ?', [userId]);  // Parameterized
 ### Secret Management
 ```javascript
 // ❌ NEVER
-const API_KEY = "[REDACTED_KEY]";
+const API_KEY = "sk-abc123...";
 console.log("Auth token:", token);
 
 // ✅ ALWAYS

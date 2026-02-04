@@ -1,0 +1,97 @@
+import os
+import random
+import sys
+import time
+from datetime import datetime
+
+# Add local path for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from agent_comm import AgentComm
+from benchmark_repo import RepoJudge
+from hive_client import HiveClient
+
+
+class ContinuousImprover:
+    def __init__(self, agent_name="worker"):
+        self.agent_id = f"{agent_name}-{os.getpid()}"
+        self.hive = HiveClient(self.agent_id)
+        self.comm = AgentComm(self.agent_id)
+        self.judge = RepoJudge()
+        self.cycle_count = 0
+        self.comm.log("Continuous Improver Daemon Started.")
+
+    def check_skill_decay(self):
+        """
+        Check for skills that have not been updated recently.
+        Future Enhancement: Implement file timestamp analysis.
+        """
+        # Heuristic: 10% chance to flag decay during demo mode
+        if random.random() < 0.1:
+            self.comm.log("Detected skill decay in 'random-skill'. Creating task.")
+            self.hive.add_task("Review 'random-skill' for updates", priority="low")
+
+    def run_cycle(self):
+        """Single Tick"""
+        self.cycle_count += 1
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] Polling backlog (Cycle {self.cycle_count})...")
+        
+        # 0. Run Benchmarks (every 10 cycles)
+        if self.cycle_count % 10 == 0:
+            report = self.judge.run()
+            self.comm.log(f"Kaizen Score: {report['kaizen_score']}")
+            if report['kaizen_score'] < 50:
+                 self.hive.add_task("Improve Repository Health (Score < 50)", priority="high")
+
+        # 1. Check for work
+        task = self.hive.get_task()
+        if task:
+            print(f"Claimed task: {task['title']}")
+            self.comm.log(f"Started task: {task['title']}")
+            
+            # Execute with the real Kaizen agent
+            try:
+                from pathlib import Path
+
+                from kaizen_core.llm import LLMClient
+                from kaizen_core.main import process_task as execute_task
+                from kaizen_core.models import Task
+                from kaizen_core.tools.manager import ToolManager
+                
+                # Initialize agent components
+                repo_root = Path(__file__).parent.parent
+                llm = LLMClient()  # Auto-detects provider from env
+                tools = ToolManager(repo_root, agent_id=self.agent_id)
+                
+                # Convert dict task to Task model
+                agent_task = Task(
+                    id=task['id'],
+                    title=task['title'],
+                    context=task.get('context', ''),
+                )
+                
+                # Actually execute the task with LLM
+                execute_task(agent_task, tools, llm, self.hive)
+                result = "Completed by Kaizen agent."
+            except Exception as e:
+                result = f"Error: {e}"
+                self.comm.log(f"Task failed: {e}")
+            
+            self.hive.complete_task(task['id'], result=result)
+            print(f"Completed task: {task['title']}")
+            self.comm.log(f"Completed task: {task['title']}")
+        else:
+            print("No tasks. Checking for improvements...")
+            # 2. If no work, look for improvements (Self-Evolution)
+            self.check_skill_decay()
+            time.sleep(5)
+
+    def start(self):
+        try:
+            while True:
+                self.run_cycle()
+        except KeyboardInterrupt:
+            print("Stopping daemon.")
+
+if __name__ == "__main__":
+    bot = ContinuousImprover(agent_name="kaizen-bot")
+    bot.start()

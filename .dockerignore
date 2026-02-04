@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.agents/*.db
+.agents/*.lock
+.git/
+.pytest_cache/
+node_modules/
+target/
+build/
+dist/
+venv/
+.venv/
