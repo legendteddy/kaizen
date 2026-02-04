@@ -24,6 +24,7 @@ Enable the framework to evolve and improve itself over time.
 ┌─────────────────────────────────────────────────────────────────┐
 │                    RECURSIVE KAIZEN                             │
 │                                                                 │
+│  0. VERIFY    → Grep First (Research Rigor)                     │
 │  1. OBSERVE   → Identify patterns in behavior                   │
 │  2. ANALYZE   → Determine root causes                           │
 │  3. IMPROVE   → Create/update skills or patterns                │

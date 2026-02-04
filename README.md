@@ -57,9 +57,10 @@ Copy `UNIVERSAL_PROMPT.txt` content into your `CLAUDE.md`.
 It's a standard library of instructions (SOPs). Instead of prompting "be careful", you load the `precision-coder` skill.
 
 ## How It Works
-1. **Index**: `skills/000-INDEX.md` maps intents to skills.
-2. **Skills**: `skills/category/SKILL.md` contains the logic.
-3. **Agent**: Reads the skill and behaves better.
+1. **Index**: `skills/000-INDEX.md` maps intents to modular skills.
+2. **Skills**: `skills/{domain}/SKILL.md` contains the logic.
+3. **Hooks**: `hooks/` contain session-level automation.
+4. **Agent**: Follows the **Bootstrap Protocol** to load these capabilities.
 
 ## License
 MIT
