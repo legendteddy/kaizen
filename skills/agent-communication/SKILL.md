@@ -20,10 +20,11 @@ NEXT_STEP_IMPERATIVE: [What the next agent MUST do]
 ---
 ```
 
-## 2. Shared Backlog Protocol
-- **Location**: `.agents/backlog.json`
-- **Claiming**: Before starting a task from the backlog, an agent must "Claim" it by setting `status: "in_progress"` and `assigned_to: [agent_id]`.
-- **Atomic Operations**: Always `read` -> `modify` -> `write` in a single tool turn if possible to minimize race conditions.
+## 2. Shared Task Handoffs
+Since no central registry exists, agents must communicate state via the **Identity Anchor**:
+1. **Log Progress**: Always update `task.md` or a session log.
+2. **Context Persistence**: Use the Handover Metadata Header defined in Section 1.
+3. **Explicit Handovers**: State exactly which agent should take over and what their first tool call should be.
 
 ## 3. Conflict Resolution (The Boss Pattern)
 - If two agents disagree on a file edit, the **Identity Agent** (Sovereign Identity) acts as the arbiter.

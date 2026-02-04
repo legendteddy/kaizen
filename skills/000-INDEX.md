@@ -65,11 +65,10 @@
 - **Agent Architecture**: `skills/agent-architecture/SKILL.md`
 - **Deliberative Reasoning**: `skills/deliberative-reasoning/SKILL.md`
 - **Subagent Orchestration**: `skills/subagent-orchestration/SKILL.md`
-- **MCP Protocol**: `skills/mcp-protocol/SKILL.md`
 - **Computer Use**: `skills/computer-use/SKILL.md`
 - **Tool Mastery**: `skills/tool-mastery/SKILL.md`
 - **Structured Output**: `skills/structured-output/SKILL.md`
 - **Adversarial Critique**: `skills/adversarial-critique/SKILL.md`
 
 ---
-*Index updated 2026-02-04. Includes all currently installed modular capabilities.*
+*Index updated 2026-02-04. Includes all verified modular capabilities.*
