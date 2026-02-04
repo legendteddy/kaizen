@@ -10,6 +10,7 @@
 - **Proactive Behavior**: `skills/proactive-behavior/SKILL.md`
 - **Assumption Tracking**: `skills/assumption-tracking/SKILL.md`
 - **Reflexion Loop**: `skills/reflexion-loop/SKILL.md` (Self-Correction & Ambiguity Handling)
+- **Metacognition**: `skills/metacognition/SKILL.md` (Long-Term Memory & Persona Priming)
 
 ## 🟡 Strategy & Planning
 - **Implementation Planning**: `skills/implementation-planning/SKILL.md` (Strategy, Breakdown, Priority)
