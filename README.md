@@ -1,77 +1,58 @@
-# Kaizen: Self-Improving Agent Skills
+# Kaizen: AI Agent Skills Library
 
-A collection of skills and patterns to make AI agents (Gemini, Claude, Cursor) actually useful for coding.
+A curated collection of 70+ skills (prompts & SOPs) to make AI coding agents more useful.
 
-## Quick Start
+## ⚡ Quick Start: Choose Your Fighter
 
-### 1. Run the Demo
-
+### 🟢 Google Antigravity / Gemini CLI
+The built-in choice.
 ```bash
-# With Ollama (local, free)
-ollama serve
-python demo.py
-
-# With OpenAI
-export OPENAI_API_KEY="sk-..."
-python demo.py
-
-# With Anthropic
-export ANTHROPIC_API_KEY="sk-ant-..."
-python demo.py
-
-# With Google
-export GOOGLE_API_KEY="..."
-python demo.py
+cp -r skills ~/.gemini/skills
 ```
 
-### 2. Add a Task
-
-```python
-from kaizen_core.backlog import BacklogManager
-backlog = BacklogManager("my-agent")
-backlog.add_task("Add docstrings to utils.py")
-```
-
-### 3. Run the Agent
-
-```bash
-python -m kaizen_core.main
-```
-
----
-
-## What's Inside?
-
-- **70+ Skills:** Pre-written SOPs for React, Python, debugging, etc.
-- **Multi-Provider LLM:** OpenAI (gpt-5), Anthropic (claude-4.5), Google (gemini-3), Ollama
-- **Judge:** A script that audits code quality
-- **Backlog:** SQLite task queue
-
-## Setup for Editors
-
-### Cursor
+### 🔵 Cursor
+One-line install for project rules.
 ```bash
 curl -o .cursorrules https://raw.githubusercontent.com/legendteddy/kaizen/main/.cursorrules
 ```
 
-### Gemini CLI
+### 🟣 Windsurf / Codeium
+Copy the rules file to your project root.
 ```bash
-cp -r kaizen/skills ~/.gemini/skills
+cp integrations/windsurf/.windsurfrules .
 ```
 
-### Claude
-Add the prompts from `UNIVERSAL_PROMPT.txt` to your Claude config.
+### ⚫ Cline (VS Code)
+Enable autonomy with Kaizen patterns.
+```bash
+cp integrations/cline/.clinerules .
+```
+
+### ⚪ GitHub Copilot
+Instructions for the workspace.
+```bash
+mkdir -p .github
+cp integrations/github-copilot/.github/copilot-instructions.md .github/
+```
+
+### 🔴 Aider
+Configuration for CLI usage.
+```bash
+cp integrations/aider/.aider.conf.yml .
+```
+
+### 🟠 Claude Desktop
+Copy `UNIVERSAL_PROMPT.txt` content into your `CLAUDE.md`.
 
 ---
 
-## Supported Models (Feb 2026)
+## What Is This?
+It's a standard library of instructions (SOPs). Instead of prompting "be careful", you load the `precision-coder` skill.
 
-| Provider | Models | Env Var |
-|----------|--------|---------|
-| OpenAI | gpt-5.2, gpt-5-mini | `OPENAI_API_KEY` |
-| Anthropic | claude-opus-4.5, claude-sonnet-4.5 | `ANTHROPIC_API_KEY` |
-| Google | gemini-3-pro, gemini-3-flash | `GOOGLE_API_KEY` |
-| Ollama | llama3.2, qwen2.5 | (none, local) |
+## How It Works
+1. **Index**: `skills/000-INDEX.md` maps intents to skills.
+2. **Skills**: `skills/category/SKILL.md` contains the logic.
+3. **Agent**: Reads the skill and behaves better.
 
 ## License
 MIT
