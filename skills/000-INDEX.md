@@ -11,6 +11,7 @@
 - **Assumption Tracking**: `skills/assumption-tracking/SKILL.md`
 - **Reflexion Loop**: `skills/reflexion-loop/SKILL.md` (Self-Correction & Ambiguity Handling)
 - **Metacognition**: `skills/metacognition/SKILL.md` (Long-Term Memory & Persona Priming)
+- **Verification**: `skills/verification/SKILL.md` (Deterministic Proof Standards)
 
 ## 🟡 Strategy & Planning
 - **Implementation Planning**: `skills/implementation-planning/SKILL.md` (Strategy, Breakdown, Priority)
