@@ -3,34 +3,38 @@ name: verification
 description: Mandatory proof-of-work protocols. No completions without evidence.
 ---
 
-# Protocol: Verification Protocol (Protocol)
+# Protocol: Verification (The Proof Standard)
 
-> "Assertion is not proof. Proof is verification."
+> "Assertion is not proof. Proof is deterministic verification."
 
 ## 1. The Proof Standard
-A task is NOT marked as "Done" until verification is documented.
+A task is NOT marked as "Done" until verification is documented. No "Assumed Success."
 
-## 2. Tool-Based Proof
-### Code Changes
-- **Constraint**: Must perform a `view_file` or `read-back` to verify the edit applied correctly.
-- **Verification**: Run `cargo check`, `tsc`, or `npm test` as applicable.
+## 2. Hard Verification Protocols
 
-### File Operations
-- **Constraint**: `ls` or `view_file` to confirm existence/content.
-- **Verification**: No "assumed" creation. High-trust only.
+### A. Code Mutations
+- **Proof-of-Write**: MANDATORY `read_file` or `view_file` after any edit/write.
+- **Functional Proof**: Run the relevant compiler (`tsc`), linter (`eslint`), or test suite (`pytest`).
 
-### Commands
-- **Constraint**: Check **Exit Code**.
-- **Verification**: Match stdout/stderr against expected patterns.
+### B. Command Execution
+- **Proof**: Match `stdout` against the expected state. 
+- **Verify**: If a command says "Updated 5 files," run `git status` to confirm.
 
-## 3. Verification Header (Mandatory)
-Every turning point in a complex task must conclude with:
+### C. Repository Discovery
+- **Proof**: Provide the exact `grep` or `find` command used to verify presence/absence.
+
+## 3. The Verification Header
+Conclude every phase with:
 ```markdown
 ### Verification
-- **Action**: [Brief description]
-- **Proof**: [specific tool output or file read-back]
-- **Status**: [PASS/FAIL]
+- **State Change**: [What was modified]
+- **Tool Proof**: [Success/Fail log]
+- **Persistence Proof**: [Confirmed on disk via read-back]
 ```
+
+## Related Skills
+- [Precision Coder](../precision-coder/SKILL.md)
+- [Stability Protocols](../stability-protocols/SKILL.md)
 
 ## 4. Anti-Patterns (Forbidden)
 - ❌ "I have fixed it." (Without proof).
@@ -38,6 +42,6 @@ Every turning point in a complex task must conclude with:
 - ❌ "Assumed success."
 
 ## Related Skills
-- [Agent Identity](../agent-identity/SKILL.md)
-- [Precision Coder](../precision-coder/SKILL.md)
+- **Metacognition**: `skills/metacognition/SKILL.md` (Long-Term Memory & Persona Priming)
+- **Context Compaction**: `skills/context-compact/SKILL.md` (Token Budgeting & State Management)
 - [Safety Boundaries](../safety-boundaries/SKILL.md)
