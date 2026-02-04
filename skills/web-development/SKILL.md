@@ -1,86 +1,54 @@
 ---
 name: web-development
-description: Skill for web-development tasks and workflows.
+description: Modern web engineering standards (Tailwind, Vite, Accessibility).
 ---
 
-# Skill: Web Development (v1.0)
+# Web Development
 
-> Modern, component-driven, and accessible web engineering.
-
-## Purpose
-Build production-grade web interfaces using React, Tailwind, and Vite.
+> "Fast, Accessible, Beautiful."
 
 ## Activation Trigger
-- User mentions: "website," "web app," "frontend," "dashboard"
-- Task involves HTML/CSS/JS generation.
+- "Create a website"
+- "Fix CSS issues"
+- "Build a dashboard"
 
----
+## Protocols
 
-## Protocol: The Stack
+### 1. First Principle: Semantic HTML
+Use `<button>`, not `<div onClick>`. Accessibility is not optional.
 
-| Layer | Choice | Rationale |
-|:---|:---|:---|
-| **Framework** | React + Vite | Fast HMR, massive ecosystem |
-| **Language** | TypeScript | Prevents 90% of runtime errors |
-| **Styling** | Tailwind CSS | Colocated styles, design system tokens |
-| **Icons** | Lucide React | Clean, consistent SVG icons |
+### 2. The Tech Stack
+- **Framework**: React + Vite (Fast HMR)
+- **Styling**: Tailwind CSS (Utility-first)
+- **Icons**: Lucide React (SVG)
 
----
+### 3. Component Architecture
+One component, one file. PascalCase.
 
-## Protocol: Component Implementation
+## Code Patterns
 
-### 1. Component Structure
-**Rule:** One component per file. PascalCase naming.
-
+### The Reusable Component
 ```tsx
-// src/components/Button.tsx
-import { ReactNode } from 'react';
-
 interface ButtonProps {
-  children: ReactNode;
   variant?: 'primary' | 'secondary';
-  onClick?: () => void;
+  children: React.ReactNode;
 }
 
-export function Button({ children, variant = 'primary', onClick }: ButtonProps) {
-  const baseStyles = "px-4 py-2 rounded-md font-medium transition-colors";
-  const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300"
-  };
-
+export function Button({ variant = 'primary', children }: ButtonProps) {
   return (
-    <button 
-      className={`${baseStyles} ${variants[variant]}`}
-      onClick={onClick}
-    >
+    <button className={clsx(
+      "px-4 py-2 rounded",
+      variant === 'primary' ? "bg-blue-500" : "bg-gray-200"
+    )}>
       {children}
     </button>
   );
 }
 ```
 
-### 2. State Management
-**Rule:** Use `useState` for local, `Zustand` for global. Avoid Redux unless requested.
-
-### 3. File Organization
-```
-src/
-├── components/   # Reusable UI atoms (Button, Card)
-├── features/     # Domain specific logic (Auth, Dashboard)
-├── hooks/        # Custom React hooks
-└── lib/          # Utilities (API clients, formatters)
-```
-
----
-
-## Checklist: Before Shipping
-
-- [ ] **Mobile Responsive**: Does it work on 375px width?
-- [ ] **Accessibility**: Are `aria-labels` used on icon buttons?
-- [ ] **Clean Console**: No React unique key warnings?
-- [ ] **Type Check**: `tsc --noEmit` passes?
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+## Safety Guardrails
+- **No Console Errors**: Zero tolerance for React warnings.
+- **Mobile First**: Design for small screens, scale up.
+- **Type Safety**: No `any`. Use generic types.
+- **Performance**: Images must have `alt` and be optimized.
+- **Zero Layout Shift**: Reserve space for images/loaders.

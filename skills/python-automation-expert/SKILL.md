@@ -1,97 +1,55 @@
 ---
 name: python-automation-expert
-description: Skill for writing robust, safe, and maintainable Python automation scripts and CLI tools.
+description: Standards for robust, unmonitored automation scripts.
 ---
 
-# Skill: Python Automation Expert (v1.0)
+# Python Automation Expert
 
 > "If you do it twice, automate it."
 
-## Purpose
-Write "Set and Forget" scripts. Automation code must be more robust than application code because it often runs unmonitored.
-
 ## Activation Trigger
-- "Write a script to..."
-- "Automate this..."
-- "Scrape this website..."
-- "Organize these files..."
+- Writing "set and forget" scripts.
+- Data fetching/scraping.
+- File system organization.
 
----
+## Protocols
 
-## Protocol: The "Robutness" Checklist
-
-### 1. Logging (Not Print)
-**Rule:** Never use `print()`. Use `logging`.
-```python
-import logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-# Usage
-logger.info("Starting job...")
-```
+### 1. First Principle: Graceful Failure
+Scripts run when you are asleep. They must fail loudly and safely.
 
 ### 2. Argument Parsing
-**Rule:** Use `argparse` or `typer`. Never hardcode paths.
+Never hardcode paths. Use `argparse` or `typer`.
+
+### 3. Dry Run Discipline
+Destructive actions (delete, upload) MUST support `--dry-run`.
+
+## Code Patterns
+
+### The "Robutness" Scaffold
 ```python
+import logging
 import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--input", required=True, help="Input directory")
-parser.add_argument("--dry-run", action="store_true", help="Simulate only")
-args = parser.parse_args()
-```
-
-### 3. Error Handling (Graceful Exit)
-**Rule:** Catch expected errors and exit with code 1.
-```python
 import sys
 
-try:
-    process_files(args.input)
-except FileNotFoundError:
-    logger.error("Directory not found.")
-    sys.exit(1)
+# Logging, not print
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args()
+
+    try:
+        run_job(dry_run=args.dry_run)
+    except Exception as e:
+        logger.error(f"Fatal error: {e}")
+        sys.exit(1)
 ```
 
-### 4. Dry Run Mode
-**Rule:** Every destructive script MUST have a `--dry-run` flag.
-```python
-if args.dry_run:
-    logger.info(f"[DRY RUN] Would delete: {file_path}")
-else:
-    os.remove(file_path)
-```
-
----
-
-## Template: Safe File Processor
-
-```python
-from pathlib import Path
-
-def scan_and_process(directory: Path):
-    for file in directory.glob("**/*.txt"):
-        if file.name.startswith("."): 
-            continue # Skip hidden
-        
-        logger.info(f"Processing {file.name}")
-        # ... logic ...
-```
-
-## Action Checklist
-- [ ] **Logging:** Used `logging` instead of `print`?
-- [ ] **Args:** Used `argparse` for paths/flags?
-- [ ] **Safety:** Implemented `--dry-run` mode?
-- [ ] **Exit:** Defined exit codes (sys.exit(1))?
-- [ ] **Path:** Used `pathlib` for OS independence?
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Python Development](../python-development/SKILL.md)
-- [React Ts Expert](../react-ts-expert/SKILL.md)
-- [Fastapi Expert](../fastapi-expert/SKILL.md)
+## Safety Guardrails
+- **Dry Run Mandatory**: If it deletes file, it needs `--dry-run`.
+- **Exit Codes**: Success = 0, Error = 1.
+- **Pathlib**: Use `Path("foo/bar")`, not string manipulation.
+- **Retries**: Network calls must have exponential backoff.
+- **Limits**: Scrapers must have rate limits (sleep).

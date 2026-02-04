@@ -1,138 +1,55 @@
 ---
 name: api-development
-description: Skill for api-development tasks and workflows.
+description: REST API design standards, status codes, and security practices.
 ---
 
-# Skill: API Development (v1.0)
+# API Development
 
-> REST API design and implementation best practices
-
-## Purpose
-Ensure APIs follow professional standards and modern patterns.
+> "Your API is your product."
 
 ## Activation Trigger
-- Building REST APIs
-- API design review
-- Backend development
+- Building REST endpoints.
+- Designing API contracts.
+- Integrating with external services.
 
----
+## Protocols
 
-## REST Principles
+### 1. First Principle: Resources over Actions
+`POST /users`, not `POST /createUser`.
 
-### Resource Naming
-```
-✅ Good:
-GET  /users           # List users
-GET  /users/123       # Get user 123
-POST /users           # Create user
-PUT  /users/123       # Update user 123
-DELETE /users/123     # Delete user 123
+### 2. Status Code Semantics
+- **200**: OK.
+- **201**: Created (Return Location header).
+- **400**: Client Error (Validation).
+- **401**: Who are you? (Auth).
+- **403**: You can't do that (Permission).
+- **404**: Not found.
+- **500**: We messed up.
 
-❌ Bad:
-GET /getUsers
-POST /createUser
-GET /user/delete/123
-```
+### 3. Pagination is Mandatory
+Never return unbounded lists. Default `limit=20`.
 
-### HTTP Status Codes
-| Code | Meaning | Use Case |
-|:---:|:---|:---|
-| 200 | OK | Successful GET, PUT |
-| 201 | Created | Successful POST |
-| 204 | No Content | Successful DELETE |
-| 400 | Bad Request | Validation error |
-| 401 | Unauthorized | Missing/invalid auth |
-| 403 | Forbidden | No permission |
-| 404 | Not Found | Resource doesn't exist |
-| 500 | Server Error | Unexpected error |
+## Code Patterns
 
----
-
-## Request/Response Patterns
-
-### Pagination
-```json
-GET /users?page=2&limit=20
-
-{
-  "data": [...],
-  "pagination": {
-    "page": 2,
-    "limit": 20,
-    "total": 150,
-    "pages": 8
-  }
-}
-```
-
-### Error Response
+### Standard Error Response
 ```json
 {
   "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Email is required",
+    "code": "VALIDATION_FAILED",
+    "message": "Email is invalid",
     "field": "email"
   }
 }
 ```
 
-### Filtering
-```
-GET /orders?status=pending&created_after=2026-01-01
-```
-
----
-
-## FastAPI Example
-
-```python
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-
-app = FastAPI()
-
-class User(BaseModel):
-    name: str
-    email: str
-
-class UserResponse(User):
-    id: int
-
-@app.get("/users/{user_id}", response_model=UserResponse)
-async def get_user(user_id: int):
-    user = await db.get_user(user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user
-
-@app.post("/users", response_model=UserResponse, status_code=201)
-async def create_user(user: User):
-    return await db.create_user(user)
+### Filtering Syntax
+```text
+GET /orders?status=active&created_after=2026-01-01
 ```
 
----
-
-## Security Best Practices
-
-| Practice | Description |
-|:---|:---|
-| Use HTTPS | Encrypt all traffic |
-| Validate input | Never trust client data |
-| Rate limiting | Prevent abuse |
-| Authentication | JWT, API keys, OAuth |
-| CORS | Configure allowed origins |
-
-
-
-## Action Checklist
-- [ ] **Context:** Have I read the necessary files?
-- [ ] **Protocol:** Did I follow the steps above?
-- [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Python Automation Expert](../python-automation-expert/SKILL.md)
-- [Python Development](../python-development/SKILL.md)
-- [React Ts Expert](../react-ts-expert/SKILL.md)
+## Safety Guardrails
+- **Rate Limiting**: APIs must be protected from abuse.
+- **Sanitize Input**: Validate all query params and body fields.
+- **No Info Leaks**: Never return stack traces in 500 errors.
+- **Authz Check**: Every endpoint must verify ownership of the resource being accessed.
+- **Idempotency**: `GET`, `PUT`, `DELETE` should be safe to retry.

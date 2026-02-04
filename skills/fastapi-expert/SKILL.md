@@ -1,115 +1,52 @@
 ---
 name: fastapi-expert
-description: Skill for building high-performance, async web APIs with FastAPI.
+description: Building high-performance, async web APIs with FastAPI and Pydantic.
 ---
 
-# Skill: FastAPI Expert (v1.0)
+# FastAPI Expert
 
 > "Validation is not an option. It's the law."
 
-## Purpose
-Build production-ready, type-safe APIs using Modern Python.
-
 ## Activation Trigger
-- "Create an API..."
-- "Build a backend..."
+- "Create an API"
+- "Backend development"
 - "FastAPI" mentioned.
 
----
+## Protocols
 
-## Protocol: The Standard Stack
+### 1. First Principle: Type-Safe Contracts
+The Pydantic model IS the documentation.
 
-| Component | Choice |
-|:---|:---|
-| **App** | `FastAPI` |
-| **Server** | `Uvicorn` |
-| **Validation** | `Pydantic v2` |
-| **DB** | `SQLAlchemy` + `Alembic` |
-| **Async** | `async def` everywhere |
+### 2. The Stack
+- **Web**: FastAPI + Uvicorn
+- **Data**: SQLAlchemy (Async) + Pydantic v2
+- **Migrations**: Alembic
 
----
+### 3. Dependency Injection
+Use `Depends()` for everything (DB, Auth, Config). Testing becomes trivial.
 
-## Protocol: Implementation Patterns
+## Code Patterns
 
-### 1. The Pydantic Model (Schema)
-**Rule:** Separate Request and Response models.
-
+### Response Model Separation
 ```python
-from pydantic import BaseModel, EmailStr
-
 class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
+    password: str # In request
 
 class UserResponse(BaseModel):
-    id: int
-    email: EmailStr
-    is_active: bool
-    
-    class Config:
-        from_attributes = True # ORM Mode
+    id: int       # In response
+    # password excluded
 ```
 
-### 2. The Dependency Injection
-**Rule:** Use `Depends` for DB sessions and Auth.
-
+### Async Database Session
 ```python
-from fastapi import Depends, FastAPI
-from sqlalchemy.orm import Session
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-@app.post("/users/", response_model=UserResponse)
-def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    return crud.create_user(db, user)
+async def get_db():
+    async with SessionLocal() as session:
+        yield session
 ```
 
-### 3. Error Handling
-**Rule:** Use `HTTPException`, don't return dicts.
-
-```python
-from fastapi import HTTPException
-
-if not user:
-    raise HTTPException(status_code=404, detail="User not found")
-```
-
----
-
-## Checklist: Production Readiness
-- [ ] **Docs:** Are `/docs` (Swagger) working?
-- [ ] **CORS:** Is `CORSMiddleware` configured?
-- [ ] **Env:** Are secrets loaded from `.env`?
-- [ ] **Tests:** Are `TestClient` tests passing?
-
-## Advanced: Background Tasks
-Don't block the request for email sending.
-
-```python
-from fastapi import BackgroundTasks
-
-def send_email(email: str, message: str):
-    # ... logic ...
-    pass
-
-@app.post("/send-notification/")
-async def send_notification(email: str, background_tasks: BackgroundTasks):
-    background_tasks.add_task(send_email, email, "Subscription confirmed")
-    return {"message": "Notification sent"}
-```
-
-## Scaling Up
-- **Gunicorn:** Use `gunicorn -w 4 -k uvicorn.workers.UvicornWorker`.
-- **Docker:** Use minimal `python:3.11-slim` images.
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Python Automation Expert](../python-automation-expert/SKILL.md)
-- [Python Development](../python-development/SKILL.md)
-- [React Ts Expert](../react-ts-expert/SKILL.md)
+## Safety Guardrails
+- **No Secrets in Code**: Environment variables only.
+- **SQL Injection**: Always use ORM methods or parameterized queries.
+- **Input Validation**: Never trust user input. Pydantic handles this.
+- **Status Codes**: Return standard HTTP codes (201 Created, 404 Not Found), not 200 OK for everything.
+- **Async Hygiene**: Do not use blocking IO (e.g. `requests`) inside async routes.

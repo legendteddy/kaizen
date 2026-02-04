@@ -1,102 +1,51 @@
 ---
 name: test-driven-development
-description: RED-GREEN-REFACTOR cycle with testing best practices and anti-patterns.
+description: The RED-GREEN-REFACTOR cycle and testing antipatterns.
 ---
 
 # Test-Driven Development (TDD)
 
-> Write the test first, then make it pass.
+> "Write the test first, then make it pass."
 
 ## Activation Trigger
-- Starting a new feature implementation.
-- Refactoring legacy code (needs safety net).
-- Designing test suites (Unit vs Integration).
+- Implementing complex logic.
+- Fixing a bug (Reproduce first).
+- Refactoring legacy code.
 
-## The Cycle
+## Protocols
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    RED → GREEN → REFACTOR                       │
-│                                                                 │
-│  1. RED      → Write a failing test                            │
-│  2. GREEN    → Write minimal code to pass                      │
-│  3. REFACTOR → Clean up while keeping tests green              │
-│  4. REPEAT   → Next test case                                  │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+### 1. First Principle: Red-Green-Refactor
+1. **Red**: Write a failing test.
+2. **Green**: Write minimal code to pass.
+3. **Refactor**: Clean up the code.
 
----
+### 2. AAA Pattern
+- **Arrange**: Setup state.
+- **Act**: Call the function.
+- **Assert**: Check results.
 
-## Test Structure
+### 3. The Test Pyramid
+Unit (70%) > Integration (20%) > E2E (10%).
 
-### Arrange-Act-Assert (AAA)
+## Code Patterns
+
+### The Standard Test
 ```python
-def test_user_login():
+def test_login_success():
     # Arrange
-    user = User(email="test@example.com", password="secret")
+    user = create_test_user("valid@example.com")
     
     # Act
-    result = auth_service.login(user.email, "secret")
+    token = login(user.email, "password")
     
     # Assert
-    assert result.success == True
-    assert result.token is not None
+    assert token is not None
+    assert token.starts_with("eyJ")
 ```
 
----
-
-## Anti-Patterns to Avoid
-
-| Anti-Pattern | Problem | Fix |
-|:---|:---|:---|
-| Testing implementation | Brittle tests | Test behavior |
-| Giant test functions | Hard to debug | One assertion per test |
-| No edge cases | Bugs slip through | Test boundaries |
-| Mocking everything | False confidence | Integration tests |
-| Skipping REFACTOR | Tech debt | Always clean up |
-
----
-
-## When to Write Tests
-
-### Always Test
-- Business logic
-- Edge cases
-- Error handling
-- API contracts
-
-### Consider Skipping
-- Simple getters/setters
-- Framework code
-- One-off scripts
-
----
-
-## Test Pyramid
-
-```
-        /\
-       /  \      E2E (few)
-      /----\
-     /      \    Integration (some)
-    /--------\
-   /          \  Unit (many)
-  /____________\
-```
-
-Most tests should be unit tests. Few E2E tests.
-
-
-## Action Checklist
-- [ ] **Context:** Have I read the necessary files?
-- [ ] **Protocol:** Did I follow the steps above?
-- [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Python Automation Expert](../python-automation-expert/SKILL.md)
-- [Python Development](../python-development/SKILL.md)
-- [React Ts Expert](../react-ts-expert/SKILL.md)
+## Safety Guardrails
+- **Test Behavior, Not Implementation**: Don't test private methods.
+- **One Assert Per Concept**: Don't check 5 unrelated things in one test.
+- **No Sleep**: Never use `time.sleep()` in tests. Use polling/await.
+- **Isolate**: Tests must not depend on order or shared global state.
+- **Speed**: Unit tests must run in milliseconds. If it hits DB, it's Integration.

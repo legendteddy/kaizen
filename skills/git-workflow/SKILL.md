@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Professional version control standards (Branching, Conventional Commits, Worktrees).
+description: Professional version control standards (Branching, Commit Hygiene, Worktrees).
 ---
 
 # Git Workflow
@@ -8,89 +8,44 @@ description: Professional version control standards (Branching, Conventional Com
 > "History is written by the victors (who squash their commits)."
 
 ## Activation Trigger
-- Managing branches or commits.
-- Resolving merge conflicts.
-- Using advanced Git features (worktrees, rebase).
+- Committing code.
+- Managing branches.
+- Resolving conflicts.
 
-## Visual Branching Strategy
+## Protocols
 
-```mermaid
-gitGraph
-    commit
-    commit
-    branch feature/auth
-    checkout feature/auth
-    commit id: "feat: add jwt"
-    commit id: "test: verify token"
-    checkout main
-    merge feature/auth
-    branch fix/monitor
-    commit id: "fix: memory leak"
-    checkout main
-    merge fix/monitor
-    commit tag: "v1.0.0"
-```
+### 1. First Principle: Atomic Commits
+One commit = One logical change. Tests must pass at every commit point.
 
-## Branch Naming
-- `feature/kb-integration`
-- `fix/login-timeout`
-- `refactor/database-layer`
-- `chore/upgrade-deps`
+### 2. Branching Strategy
+- `feat/feature-name`
+- `fix/bug-name`
+- `chore/maintenance`
+- `refactor/code-cleanup`
 
-## Conventional Commits
-
-| Type | Meaning | Example |
-|:---|:---|:---|
-| **feat** | New feature | `feat(auth): add google sso` |
-| **fix** | Bug fix | `fix(api): handle timeout 500s` |
-| **docs** | Documentation | `docs: update readme badges` |
-| **chore** | Tooling | `chore: update .gitignore` |
-| **refactor** | clean up | `refactor: extract logic to util` |
-
-**Format:**
+### 3. Commit Message Hygiene (Conventional Commits)
 `type(scope): imperative description`
+Example: `feat(auth): add google sso login`
 
-## Advanced Workflows
+## Code Patterns
 
-### 1. Git Worktrees (Parallel Dev)
-Stop switching branches. Use parallel folders.
+### Git Worktrees (Advanced)
+Stop switching branches. Clone locally.
 ```bash
-# Create detached folder for hotfix
-git worktree add ../hotfix-folder hotfix/login-bug
-
-# Work there, commit, push
-cd ../hotfix-folder
-git push origin hotfix/login-bug
-
-# Delete when done
-cd ../main-repo
+git worktree add ../hotfix-folder fix/critical-bug
+# Works in parallel directory
 git worktree remove ../hotfix-folder
 ```
 
-### 2. Clean History (Interactive Rebase)
-Squash messy "wip" commits before merging.
+### The "Oh Shit" Fix (Reset Soft)
+Undo the commit, keep the changes in staging.
 ```bash
-git rebase -i HEAD~3
-# Pick the first, 'squash' the rest
+git reset --soft HEAD~1
 ```
 
-### 3. "Oh Shit" Recovery
-| Situation | Command |
-|:---|:---|
-| Undo commit (keep files) | `git reset --soft HEAD~1` |
-| Undo commit (delete files) | `git reset --hard HEAD~1` |
-| Edit last message | `git commit --amend` |
-| Forgot to add file | `git add . && git commit --amend` |
-
-## Pre-Push Checklist
-- [ ] `git status` is clean
-- [ ] `npm test` passes
-- [ ] No `console.log` left behind
-- [ ] No secrets in `git diff`
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Python Automation Expert](../python-automation-expert/SKILL.md)
-- [Python Development](../python-development/SKILL.md)
-- [React Ts Expert](../react-ts-expert/SKILL.md)
+## Safety Guardrails
+- **No Force Push**: Check `git push --force-with-lease` if you absolutely must.
+- **No Secrets**: Check `git diff` for API keys before every commit.
+- **Clean History**: Squash "wip" commits before merging to main.
+- **CI Green**: Never merge broken tests.
+- **Lock Files**: Always commit `package-lock.json` / `poetry.lock`.
