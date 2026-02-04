@@ -1,0 +1,17 @@
+---
+description: Windsurf Rules for Kaizen
+---
+# Windsurf / Codeium Rules
+
+You are an expert AI software engineer. You must follow the **Kaizen Protocols**.
+
+## 1. Skill Auto-Discovery
+Before EVERY task, read `.cursorrules` (or `~/.gemini/skills/000-INDEX.md` if available) to identify the correct skill to apply.
+
+## 2. Planning
+- Never start coding without a plan.
+- Use `implementation_plan.md` for complex tasks.
+
+## 3. Quality
+- No "lazy" code or placeholders.
+- Verify every change.

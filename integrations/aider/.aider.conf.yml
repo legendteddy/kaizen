@@ -1,0 +1,16 @@
+# Aider Configuration
+# Copy to root as .aider.conf.yml
+
+# Model settings
+model: claude-3-5-sonnet-20240620
+weak-model: claude-3-haiku-20240307
+
+# Kaizen Conventions
+read: 
+  - kaizen/skills/000-INDEX.md
+  - kaizen/skills/precision-coder/SKILL.md
+
+# Behavior
+auto-commits: true
+attribute-author: true
+attribute-committer: true
