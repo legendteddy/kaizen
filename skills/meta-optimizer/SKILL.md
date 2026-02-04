@@ -42,5 +42,7 @@ When editing your own source code:
 3.  **Verify Integrity:** After writing `SKILL.md`, read it back to ensure it's valid Markdown.
 
 ## Related Skills
-- [Predictive Evolution](../predictive-evolution/SKILL.md)
-- [Software Architecture](../software-architecture/SKILL.md)
+- [Predictive Evolution](../predictive-evolution/SKILL.md): Pattern detection for upgrades.
+- [Software Architecture](../software-architecture/SKILL.md): Structural optimization.
+- [Self-Improvement](../self-improvement/SKILL.md): The core Kaizen mechanism.
+- [Research Rigor](../research-rigor/SKILL.md): Input verification before optimization.
