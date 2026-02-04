@@ -266,7 +266,6 @@ Make reflection automatic:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
 - [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Stability Protocols](../stability-protocols/SKILL.md)
 - [Safety Boundaries](../safety-boundaries/SKILL.md)

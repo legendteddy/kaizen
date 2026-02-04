@@ -79,7 +79,7 @@ Do NOT stop for every small detail.
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Brainstorming](../brainstorming/SKILL.md)

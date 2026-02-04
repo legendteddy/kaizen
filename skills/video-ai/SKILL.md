@@ -65,7 +65,7 @@ ffmpeg -i input.mkv -c:v libx264 -profile:v high -level 4.0 -pix_fmt yuv420p -c:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

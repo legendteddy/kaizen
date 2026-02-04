@@ -96,4 +96,4 @@ After creative solving:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)

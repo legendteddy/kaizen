@@ -77,7 +77,7 @@ Best for: Visual users, tweaking GGUF layers on the fly.
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

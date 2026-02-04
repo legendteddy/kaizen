@@ -116,7 +116,7 @@ Ask the model to adopt a persona to critique itself.
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)
 - [Brainstorming](../brainstorming/SKILL.md)

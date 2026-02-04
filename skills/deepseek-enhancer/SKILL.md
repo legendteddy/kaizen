@@ -205,7 +205,7 @@ When a path isn't working:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

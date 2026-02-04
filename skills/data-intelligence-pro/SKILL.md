@@ -70,4 +70,4 @@ Don't say "A is better than B" without a test.
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)

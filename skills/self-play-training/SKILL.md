@@ -102,7 +102,7 @@ When agents game the system:
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Meta-Optimizer](../meta-optimizer/SKILL.md): Recursive improvement logic.
 - [Predictive Evolution](../predictive-evolution/SKILL.md): Forward-looking modeling.
 - [Self-Improvement](../self-improvement/SKILL.md): The Kaizen loop.

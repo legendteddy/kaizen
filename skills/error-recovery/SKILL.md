@@ -81,7 +81,7 @@ After every error recovery:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Python Automation Expert](../python-automation-expert/SKILL.md)
 - [Python Development](../python-development/SKILL.md)
 - [React Ts Expert](../react-ts-expert/SKILL.md)

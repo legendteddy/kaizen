@@ -75,4 +75,4 @@ If the model says "Context Full" or starts forgetting:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)

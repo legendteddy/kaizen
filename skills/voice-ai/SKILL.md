@@ -68,7 +68,7 @@ for chunk in response.iter_bytes(chunk_size=1024):
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

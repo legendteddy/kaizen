@@ -128,4 +128,4 @@ Total mission: Checkpoint every 50 tool calls
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)

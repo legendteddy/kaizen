@@ -91,7 +91,7 @@ Robotics AI represents:
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Agent Architecture](../agent-architecture/SKILL.md)
 - [Agent Communication](../agent-communication/SKILL.md)
 - [Agent Cowork](../agent-cowork/SKILL.md)

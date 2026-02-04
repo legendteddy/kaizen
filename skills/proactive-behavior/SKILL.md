@@ -91,7 +91,7 @@ After proactive action:
 
 ## Related Skills
 - [Research Rigor](../research-rigor/SKILL.md): The prerequisite for all action.
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Agent Architecture](../agent-architecture/SKILL.md)
 - [Agent Communication](../agent-communication/SKILL.md)
 - [Agent Cowork](../agent-cowork/SKILL.md)

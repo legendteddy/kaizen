@@ -121,4 +121,4 @@ Add new failure cases to your local benchmark dataset every time a mistake is ca
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)

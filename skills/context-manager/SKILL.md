@@ -77,7 +77,7 @@ Treat specific files as "External Working Memory".
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)
 - [Brainstorming](../brainstorming/SKILL.md)

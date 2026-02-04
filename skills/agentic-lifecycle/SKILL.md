@@ -93,7 +93,7 @@ def agent_loop(goal: str, max_turns=10):
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Agent Architecture](../agent-architecture/SKILL.md)
 - [Agent Communication](../agent-communication/SKILL.md)
 - [Agent Cowork](../agent-cowork/SKILL.md)

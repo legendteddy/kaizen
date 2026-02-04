@@ -87,7 +87,7 @@ df.pipe(lambda df: print(df.shape) or df)  # Returns df after printing
 
 
 ## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
+- [Sovereign Identity](../sovereign-identity/SKILL.md)
 - [Python Automation Expert](../python-automation-expert/SKILL.md)
 - [Python Development](../python-development/SKILL.md)
 - [React Ts Expert](../react-ts-expert/SKILL.md)
