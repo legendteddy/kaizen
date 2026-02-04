@@ -72,6 +72,29 @@ class ToolManager:
         except Exception as e:
             return f"Error reading file: {e}"
 
+    def list_files(self, path: str = ".") -> str:
+        """Lists files in a directory."""
+        if not self._is_safe_path(path):
+            return "SECURITY ALERT: Access denied (Outside sandbox)."
+        try:
+            target = self._get_active_root() / path
+            if not target.exists():
+                return f"Error: Path {path} not found."
+            if not target.is_dir():
+                return f"Error: {path} is not a directory."
+            
+            files = []
+            for item in sorted(target.iterdir()):
+                # Skip hidden and venv
+                if item.name.startswith(".") or item.name in ("__pycache__", "node_modules", "venv"):
+                    continue
+                prefix = "[DIR]" if item.is_dir() else "[FILE]"
+                files.append(f"{prefix} {item.name}")
+            
+            return "\n".join(files) if files else "(empty directory)"
+        except Exception as e:
+            return f"Error listing files: {e}"
+
     def search_files(self, pattern: str, path: str = ".") -> str:
         """Python-native search (Cross-platform)."""
         if not self._is_safe_path(path):
@@ -101,7 +124,47 @@ class ToolManager:
             
             if not matches:
                 return "No matches found."
-            return "\n".join(matches[:50]) # Limit to top 50
+            return "\n".join(matches[:50])  # Limit to top 50
         except Exception as e:
             return f"Error searching files: {e}"
 
+    def write_file(self, path: str, content: str) -> str:
+        """Writes content to a file."""
+        if not self._is_safe_path(path):
+            return "SECURITY ALERT: Access denied (Outside sandbox)."
+        try:
+            file_path = self._get_active_root() / path
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            file_path.write_text(content, encoding="utf-8")
+            return f"Successfully wrote to {path}"
+        except Exception as e:
+            return f"Error writing file: {e}"
+
+    def run_shell(self, command: str) -> str:
+        """Runs a whitelisted shell command."""
+        # Security: Extract first word (command name)
+        cmd_name = command.split()[0] if command.split() else ""
+        
+        # Block dangerous patterns
+        dangerous = [";", "&&", "||", "|", "`", "$(", "rm ", "del ", "format "]
+        if any(d in command for d in dangerous):
+            return "SECURITY ALERT: Dangerous command pattern blocked."
+        
+        if cmd_name not in self.whitelist:
+            return f"SECURITY ALERT: Command '{cmd_name}' not whitelisted. Allowed: {', '.join(self.whitelist)}"
+        
+        try:
+            result = subprocess.run(
+                command,
+                shell=True,
+                cwd=self._get_active_root(),
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            output = result.stdout + result.stderr
+            return output.strip() if output.strip() else "(no output)"
+        except subprocess.TimeoutExpired:
+            return "Error: Command timed out (30s limit)."
+        except Exception as e:
+            return f"Error running command: {e}"
