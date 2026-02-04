@@ -3,9 +3,9 @@ name: research-rigor
 description: Protocols for verifying knowledge BEFORE acting (Grep First, Input Rigor).
 ---
 
-# Research Rigor (Anti-Laziness Protocol)
+# Research Rigor (Field Verification)
 
-> "To guess is cheap. To know is Sovereign."
+> Knowledge based on verified data, not assumptions.
 
 ## Activation Trigger
 - User asks: "Do we have X?"

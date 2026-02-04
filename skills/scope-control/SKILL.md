@@ -92,11 +92,11 @@ After task:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
+- [ ] **Quality:** Does the output meet Standard Standards?
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Stability Protocols](../stability-protocols/SKILL.md)
 - [Safety Boundaries](../safety-boundaries/SKILL.md)

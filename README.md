@@ -2,12 +2,12 @@
 
 A curated collection of 70+ skills (prompts & SOPs) to make AI coding agents more useful.
 
-## 🚨 AGENT BOOTSTRAP PROTOCOL (READ THIS FIRST)
-If you are an AI agent reading this file:
-1.  **IMMEDIATELY** read `hooks/session_anchor.md`.
-2.  **EXECUTE** the Session Anchor Protocol defined there.
-3.  **DO NOT PROCEED** until you have anchored your identity and objective.
-4.  **CHECK** `skills/research-rigor/SKILL.md` before making any assumptions.
+## AGENT BOOTSTRAP PROTOCOL (MANDATORY)
+
+1. **Identity Anchor**: Read `skills/agent-identity/SKILL.md` immediately.
+2. **Objective Extraction**: Extract the session goal and state it in silent thought.
+3. **Research First**: Before acting, verify current repository state via `skills/research-rigor/SKILL.md`.
+4. **Context Check**: Confirm all relevant files are loaded or indexed.
 
 ## ⚡ Quick Start: Choose Your Fighter
 
@@ -56,11 +56,12 @@ Copy `UNIVERSAL_PROMPT.txt` content into your `CLAUDE.md`.
 ## What Is This?
 It's a standard library of instructions (SOPs). Instead of prompting "be careful", you load the `precision-coder` skill.
 
-## How It Works
-1. **Index**: `skills/000-INDEX.md` maps intents to modular skills.
-2. **Skills**: `skills/{domain}/SKILL.md` contains the logic.
-3. **Hooks**: `hooks/` contain session-level automation.
-4. **Agent**: Follows the **Bootstrap Protocol** to load these capabilities.
+### How It Works
+
+1. **Skill Discovery**: Consult [000-INDEX.md](file:///c:/Users/thoma/Documents/kaizen/skills/000-INDEX.md).
+2. **Modular Execution**: Read the relevant `skills/{domain}/SKILL.md` before starting work.
+3. **Lifecycle Management**: Use [hooks/](file:///c:/Users/thoma/Documents/kaizen/hooks/) to maintain state across sessions.
+4. **Identity Enforcement**: Agents must follow the [Agent Identity](file:///c:/Users/thoma/Documents/kaizen/skills/agent-identity/SKILL.md) protocol.
 
 ## License
 MIT

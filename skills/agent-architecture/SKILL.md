@@ -85,7 +85,7 @@ When the architecture fails:
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Agent Communication](../agent-communication/SKILL.md)
 - [Agent Cowork](../agent-cowork/SKILL.md)
 - [Agent Security](../agent-security/SKILL.md)

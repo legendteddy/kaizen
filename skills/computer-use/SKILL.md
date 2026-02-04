@@ -76,4 +76,4 @@ def login(username, password):
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)

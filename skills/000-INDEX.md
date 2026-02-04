@@ -3,8 +3,8 @@
 > Master mapping of intents to modular capabilities. Organized by domain.
 
 ## 🟢 Core & Identity
-- **Sovereign Identity**: `skills/sovereign-identity/SKILL.md` (Who you are)
-- **Research Rigor**: `skills/research-rigor/SKILL.md` (Anti-Laziness)
+- **Agent Identity**: `skills/agent-identity/SKILL.md` (Foundation)
+- **Research Rigor**: `skills/research-rigor/SKILL.md` (Verification)
 - **Proactive Behavior**: `skills/proactive-behavior/SKILL.md` (Value Add)
 - **Assumption Tracking**: `skills/assumption-tracking/SKILL.md` (Risk Mgmt)
 - **Reflexion Loop**: `skills/reflexion-loop/SKILL.md` (Self-Correction)

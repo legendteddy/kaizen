@@ -64,7 +64,7 @@ Present brainstorming results as:
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

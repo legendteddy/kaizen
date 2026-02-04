@@ -3,11 +3,11 @@ name: verification
 description: Mandatory proof-of-work protocols. No completions without evidence.
 ---
 
-# Verification Protocol (Directive)
+# Verification Protocol (Protocol)
 
 > "Assertion is not proof. Proof is verification."
 
-## 1. The Proof Mandate
+## 1. The Proof Standard
 A task is NOT marked as "Done" until verification is documented.
 
 ## 2. Tool-Based Proof
@@ -38,6 +38,6 @@ Every turning point in a complex task must conclude with:
 - ❌ "Assumed success."
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Precision Coder](../precision-coder/SKILL.md)
 - [Safety Boundaries](../safety-boundaries/SKILL.md)

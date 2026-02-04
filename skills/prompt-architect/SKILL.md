@@ -116,7 +116,7 @@ Ask the model to adopt a persona to critique itself.
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)
 - [Brainstorming](../brainstorming/SKILL.md)

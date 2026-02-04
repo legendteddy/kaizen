@@ -50,5 +50,5 @@ Splitting it would make testing easier. What do you think?"
 ## Safety Guardrails
 - **No Big Bangs**: Reject PRs > 400 lines unless mostly generated.
 - **Security First**: Block immediately if secrets or injection risks found.
-- **Test Mandate**: No "logic change" without "test change".
+- **Test Standard**: No "logic change" without "test change".
 - **Documentation**: If the code is confusing, documentation is required, not optional.

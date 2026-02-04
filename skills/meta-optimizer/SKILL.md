@@ -31,7 +31,7 @@ We treat our **Prompt System** and **Skills** as a codebase. We apply software e
 | Target | Description | Action |
 |:---|:---|:---|
 | **Skills** | Specialized logic (`skills/*.md`) | Refine protocols, remove fluff, add code snippets. |
-| **Core** | Identity (`GEMINI.md`) | Sharpen mandates, update tech stack whitelists. |
+| **Core** | Identity (`GEMINI.md`) | Sharpen Standards, update tech stack whitelists. |
 | **Engine** | Python runner (`kaizen_core/*.py`) | Improve the tool execution logic or memory retrieval. |
 
 ## Safety Guardrails (The "Lobotomy" Prevention)

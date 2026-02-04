@@ -1,19 +1,14 @@
----
-name: precision-coder
-description: High-signal mandates for Zero-Bug production code. No boilerplate.
----
+# Precision Coder (Senior Standards)
 
-# Precision Coder (Mandates)
+> Systematically reducing technical debt through defensive programming.
 
-> "Write code like the next maintainer is a violent psychopath who knows where you live."
-
-## 1. Zero-Bug Execution
+## 1. Defensive Execution
 - **Atomic Intent**: One change, one commit.
 - **Fail Fast**: Every `try/catch` must log structured context (Error, Stack, Input).
 - **Edge Mastery**: Null/Undefined/Empty-Array checks are mandatory.
 
-## 2. Type Sovereignty
-- **Explicit Only**: `any` is a fatal error.
+## 2. Strong Typing
+- **Explicit Only**: `any` is forbidden in production code.
 - **Contract First**: Define `interface` or `TypedDict` BEFORE implementing logic.
 - **Strict Optionality**: Use `Optional[T]` or `T | undefined`.
 

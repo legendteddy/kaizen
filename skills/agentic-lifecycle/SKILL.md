@@ -89,11 +89,11 @@ def agent_loop(goal: str, max_turns=10):
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
+- [ ] **Quality:** Does the output meet Standard Standards?
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Agent Architecture](../agent-architecture/SKILL.md)
 - [Agent Communication](../agent-communication/SKILL.md)
 - [Agent Cowork](../agent-cowork/SKILL.md)

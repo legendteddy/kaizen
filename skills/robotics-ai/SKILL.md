@@ -75,7 +75,7 @@ Embodied AI: Sense → Reason → Act (physical world)
 
 ---
 
-## For Sovereign Framework
+## For Standard Framework
 
 Robotics AI represents:
 1. **Physical world interface**: Code → real actions
@@ -91,7 +91,7 @@ Robotics AI represents:
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Agent Architecture](../agent-architecture/SKILL.md)
 - [Agent Communication](../agent-communication/SKILL.md)
 - [Agent Cowork](../agent-cowork/SKILL.md)

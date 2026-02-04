@@ -74,7 +74,7 @@ Model plays against itself
 
 ---
 
-## For Sovereign Framework
+## For Standard Framework
 
 Self-play enables:
 - Reduced human oversight needs
@@ -98,11 +98,11 @@ When agents game the system:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
+- [ ] **Quality:** Does the output meet Standard Standards?
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Meta-Optimizer](../meta-optimizer/SKILL.md): Recursive improvement logic.
 - [Predictive Evolution](../predictive-evolution/SKILL.md): Forward-looking modeling.
 - [Self-Improvement](../self-improvement/SKILL.md): The Kaizen loop.

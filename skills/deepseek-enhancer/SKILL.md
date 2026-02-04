@@ -7,7 +7,7 @@ description: Forces System 2 deep reasoning with Chain-of-Thought, verification 
 
 > "Slow is smooth. Smooth is fast."
 
-This skill forces **deep thinking** before action. It is the cognitive core of the Sovereign Agent.
+This skill forces **deep thinking** before action. It is the cognitive core of the Standard Agent.
 
 ## Activation Trigger
 - Handling complex, multi-step reasoning tasks.
@@ -205,7 +205,7 @@ When a path isn't working:
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

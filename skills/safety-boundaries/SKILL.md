@@ -32,6 +32,6 @@ description: Tool-mapped safety guardrails and escalation logic.
 3. **Ask for Intent**: "Confirm `DELETE_PROCEED`?"
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Verification](../verification/SKILL.md)
 - [Stability Protocols](../stability-protocols/SKILL.md)

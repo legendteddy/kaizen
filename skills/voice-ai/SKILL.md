@@ -64,11 +64,11 @@ for chunk in response.iter_bytes(chunk_size=1024):
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
+- [ ] **Quality:** Does the output meet Standard Standards?
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Context Manager](../context-manager/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)

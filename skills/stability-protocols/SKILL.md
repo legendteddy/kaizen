@@ -66,6 +66,6 @@ Before any `write` or `delete` operation:
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Safety Boundaries](../safety-boundaries/SKILL.md)
 - [Self Improvement](../self-improvement/SKILL.md)

@@ -77,11 +77,11 @@ After every error recovery:
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
+- [ ] **Quality:** Does the output meet Standard Standards?
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Python Automation Expert](../python-automation-expert/SKILL.md)
 - [Python Development](../python-development/SKILL.md)
 - [React Ts Expert](../react-ts-expert/SKILL.md)

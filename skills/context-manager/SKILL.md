@@ -73,11 +73,11 @@ Treat specific files as "External Working Memory".
 - [ ] **Context:** Have I read the necessary files?
 - [ ] **Protocol:** Did I follow the steps above?
 - [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
+- [ ] **Quality:** Does the output meet Standard Standards?
 
 
 ## Related Skills
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
+- [Agent Identity](../agent-identity/SKILL.md)
 - [Prompt Architect](../prompt-architect/SKILL.md)
 - [Ambiguity Handling](../ambiguity-handling/SKILL.md)
 - [Brainstorming](../brainstorming/SKILL.md)
