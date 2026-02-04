@@ -1,67 +1,37 @@
-# Kaizen: AI Agent Skills Library
+# Kaizen: AI Agent Protocol Library
 
-A curated collection of 70+ skills (prompts & SOPs) to make AI coding agents more useful.
+A high-density collection of 31 technical protocols (SOPs) designed to ground AI coding agents in professional engineering standards.
 
-## AGENT BOOTSTRAP PROTOCOL (MANDATORY)
+## ⚓ AGENT BOOTSTRAP PROTOCOL (MANDATORY)
 
-1. **Identity Anchor**: Read `skills/agent-identity/SKILL.md` immediately.
-2. **Objective Extraction**: Extract the session goal and state it in silent thought.
-3. **Research First**: Before acting, verify current repository state via `skills/research-rigor/SKILL.md`.
-4. **Context Check**: Confirm all relevant files are loaded or indexed.
+1. **Identity Anchor**: Read `skills/agent-identity/SKILL.md` immediately to prime the technical persona.
+2. **Logic Trace**: Before execution, map complex branching logic using `skills/verification/SKILL.md`.
+3. **Research Rigor**: Before acting, verify current repository state via `skills/research-rigor/SKILL.md`.
+4. **Context Compaction**: Maintain token efficiency by following `skills/context-compact/SKILL.md`.
 
-## ⚡ Quick Start: Choose Your Fighter
+## ⚡ Integration: Zero-Script Deployment
 
-### 🟢 Google Antigravity / Gemini CLI
-The built-in choice.
-```bash
-cp -r skills ~/.gemini/skills
-```
+Kaizen is framework-agnostic. It works via Markdown injection across all major agentic IDEs and CLIs.
 
-### 🔵 Cursor
-One-line install for project rules.
-```bash
-curl -o .cursorrules https://raw.githubusercontent.com/legendteddy/kaizen/main/.cursorrules
-```
+### 🟢 IDE Project Rules
+Copy the library index or specific skills into your project's local configuration.
+- **Cursor**: `curl -o .cursorrules ...`
+- **Windsurf**: `cp integrations/windsurf/.windsurfrules .`
+- **Cline**: `cp integrations/cline/.clinerules .`
 
-### 🟣 Windsurf / Codeium
-Copy the rules file to your project root.
-```bash
-cp integrations/windsurf/.windsurfrules .
-```
-
-### ⚫ Cline (VS Code)
-Enable autonomy with Kaizen patterns.
-```bash
-cp integrations/cline/.clinerules .
-```
-
-### ⚪ GitHub Copilot
-Instructions for the workspace.
-```bash
-mkdir -p .github
-cp integrations/github-copilot/.github/copilot-instructions.md .github/
-```
-
-### 🔴 Aider
-Configuration for CLI usage.
-```bash
-cp integrations/aider/.aider.conf.yml .
-```
-
-### 🟠 Claude Desktop
-Copy `UNIVERSAL_PROMPT.txt` content into your `CLAUDE.md`.
+### 🔵 Agentic Frameworks
+- **Aider**: Configure `.aider.conf.yml` to point to Kaizen protocol paths.
+- **GitHub Copilot**: Load skills into `.github/copilot-instructions.md`.
 
 ---
 
 ## What Is This?
-Kaizen is a standard library of technical protocols written by engineers for AI agents. It replaces vague prompts with structured Standard Operating Procedures (SOPs) to ensure high-reliability execution and minimal cognitive drift.
+Kaizen is a **Protocol Engine**. It replaces "visionary fluff" with structured Standard Operating Procedures (SOPs). It is 100% script-less, framework-agnostic, and optimized for deterministic agentic reasoning.
 
-### How It Works
-
-1. **Skill Discovery**: Consult [000-INDEX.md](file:///c:/Users/thoma/Documents/kaizen/skills/000-INDEX.md).
-2. **Modular Execution**: Read the relevant `skills/{domain}/SKILL.md` before starting work.
-3. **Lifecycle Management**: Use [hooks/](file:///c:/Users/thoma/Documents/kaizen/hooks/) to maintain state across sessions.
-4. **Identity Enforcement**: Agents must follow the [Agent Identity](file:///c:/Users/thoma/Documents/kaizen/skills/agent-identity/SKILL.md) protocol.
+### The Density Standard
+- **No Decoration**: If a skill doesn't provide a technical SOP, it is deleted.
+- **No Hallucination**: Every protocol is anchored in verified tool capabilities.
+- **No Bloat**: 31 high-signal skills replace 100+ "vibe" prompts.
 
 ## License
 MIT
