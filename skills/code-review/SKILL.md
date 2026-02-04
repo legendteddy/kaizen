@@ -1,92 +1,54 @@
 ---
 name: code-review
-description: Giving and receiving code review with constructive feedback.
+description: Giving and receiving constructive, high-value code reviews.
 ---
 
 # Code Review
 
-> Improve code quality through collaborative review.
+> "Code review is about improving the code, not judging the coder."
 
 ## Activation Trigger
 - Reviewing a Pull Request.
 - Auditing code quality.
 - Receiving feedback on your own code.
 
-## Giving Reviews
+## Protocols
 
-### Pre-Review Checklist
-Before reviewing, check:
-```
-□ Do I understand the goal?
-□ Have I read the related issue/ticket?
-□ Am I in the right mindset (not rushed)?
-```
+### 1. First Principle: Constructive Quality
+The goal is to ship better software, not to prove intelligence.
 
-### What to Look For
+### 2. Giving Review (The Checklist)
+1. **Context First**: Read the ticket/issue before the code.
+2. **Prioritize**: Security > Logic > Performance > Style.
+3. **Be Specific**: "X is wrong" is bad. "X causes Y bug" is good.
 
-| Priority | Check |
-|:---|:---|
-| 🔴 Critical | Security vulnerabilities, data loss risks |
-| 🟠 Important | Logic errors, performance issues |
-| 🟡 Moderate | Code style, naming, documentation |
-| 🟢 Minor | Formatting, typos |
+### 3. Receiving Review (The Mindset)
+- Feedback is a gift.
+- Explain, don't defend.
+- "Good catch" is the best response.
 
-### Constructive Feedback
+## Code Patterns
 
-**Bad**: "This is wrong."
-**Good**: "This could throw a null pointer if X is undefined. Consider adding a check."
+### Constructive Feedback Templates
+```text
+// ❌ Bad
+"This is messy."
 
-**Bad**: "Why did you do it this way?"
-**Good**: "I'm curious about the choice of X over Y here. Was there a specific reason?"
-
----
-
-## Receiving Reviews
-
-### Mindset
-- Feedback is about the code, not you
-- Assume good intent
-- Ask for clarification if unclear
-
-### Response Patterns
-
-| Feedback Type | Response |
-|:---|:---|
-| Valid critique | "Good catch, fixing now" |
-| Disagreement | "I see your point. Here's my reasoning: ..." |
-| Unclear | "Could you elaborate on what you mean?" |
-| Stylistic | "Happy to change if you feel strongly" |
-
----
-
-## Review Workflow
-
-```
-1. Author creates PR with description
-2. Reviewer reads description first
-3. Reviewer checks code in logical order
-4. Comments are specific and actionable
-5. Author responds to all comments
-6. Reviewer approves or requests changes
-7. Author merges after approval
+// ✅ Good
+"This function handles three different responsibilities: A, B, and C.
+Splitting it would make testing easier. What do you think?"
 ```
 
-## Self-Improvement
-- **Did I review > 400 lines at once?** -> You missed bugs. Split it up.
-- **Did I comment only on style?** -> Dig deeper into logic.
-- **Did I ask "Why?"** -> Understand intent before judging implementation.
+### Safety Checks
+```text
+[ ] Is this a breaking change?
+[ ] Does this introduce a SQL injection risk?
+[ ] Are secrets exposed?
+[ ] Is there a rollback plan?
+```
 
-
-
-## Action Checklist
-- [ ] **Context:** Have I read the necessary files?
-- [ ] **Protocol:** Did I follow the steps above?
-- [ ] **Safety:** Is the action reversible?
-- [ ] **Quality:** Does the output meet Sovereign Standards?
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Python Automation Expert](../python-automation-expert/SKILL.md)
-- [Python Development](../python-development/SKILL.md)
-- [React Ts Expert](../react-ts-expert/SKILL.md)
+## Safety Guardrails
+- **No Big Bangs**: Reject PRs > 400 lines unless mostly generated.
+- **Security First**: Block immediately if secrets or injection risks found.
+- **Test Mandate**: No "logic change" without "test change".
+- **Documentation**: If the code is confusing, documentation is required, not optional.

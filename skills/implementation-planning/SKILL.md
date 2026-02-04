@@ -12,70 +12,46 @@ description: Creating architectural blueprints, dependency graphs, and phased ro
 - Modifying core architecture or DB schema.
 - Coordinating dependency chains across multiple files.
 
-## 1. The Planning Template (Artifact)
+## Protocols
 
-Create an `implementation_plan.md` before writing code for complex features.
+### 1. First Principle: Plan Before You Code
+Never write a line of code until you know exactly where it fits in the architecture.
 
+### 2. The Planning Artifact
+Create `implementation_plan.md` using this strict structure:
+
+1.  **Goal & Outcome**: User Story + Success Metric.
+2.  **Architecture Changes**: Database, API, Logic.
+3.  **Implementation Steps**: Atomic phases with checkboxes.
+4.  **Verification Plan**: Exact commands to prove it works.
+
+### 3. Dependency Graphing
+Map the order. API must exist before Frontend can consume it.
+
+### 4. Risk Analysis
+Identify the "Blast Radius". What breaks if this fails?
+
+## Code Patterns
+
+### The Standard Template
 ```markdown
-# Implementation Plan: [Feature Name]
+# Implementation Plan: [Feature]
 
-## 1. Goal & Outcome
-**User Story:** As a [User], I want [Action] so that [Benefit].
-**Success Metric:** Response time < 200ms.
+## Goal
+As a user, I want X so that Y.
 
-## 2. Architecture Changes
-### Database
-- New Table: `users_v2` (migrating from `users`)
-- New Index: `idx_email_v2`
+## Proposed Changes
+### [Component A]
+- [ ] Step 1
+- [ ] Step 2
 
-### API Layer
-- `POST /api/v2/login` (Replaces v1)
-
-## 3. Implementation Steps (Atomic)
-
-### Phase 1: Foundation
-- [ ] Create `users_v2` migration.
-- [ ] Update ORM models.
-- [ ] **Verification:** Run `migrations check`.
-
-### Phase 2: Core Logic
-- [ ] Implement `AuthService` class.
-- [ ] Unit test `AuthService`.
-- [ ] **Verification:** `pytest tests/unit/auth`.
-
-### Phase 3: Integration
-- [ ] Wire up API endpoints.
-- [ ] Connect to Frontend.
-- [ ] **Verification:** E2E smoke test.
-
-## 4. Risks & Rollback
-- **Risk:** Migration locks DB.
-- **Mitigation:** Run "Concurrently".
-- **Rollback:** Standard SQL `DOWN` migration.
+## Verification
+- [ ] Run `pytest tests/auth`
+- [ ] check `logs/app.log`
 ```
 
-## 2. Dependency Graphing
-Map the order of operations.
-
-```mermaid
-graph TD
-    DB[(Database Change)] --> Model[Update Models]
-    Model --> Service[Update Service Layer]
-    Service --> API[Update API Endpoints]
-    API --> UI[Update Frontend]
-    
-    Test[Write Tests] -.-> Service
-```
-
-## 3. Principles of Planning
-1.  **Atomic Commits:** Each step should be one mergeable PR.
-2.  **Test-First:** Define *how* you will verify before you build.
-3.  **No Dead Ends:** Ensure Step 1 doesn't block Step 3 unexpectedly.
-4.  **Legacy Bridge:** If replacing a system, plan the "Dual Write" or "Feature Flag" phase.
-
-
-## Related Skills
-- [Identity](../sovereign-identity/SKILL.md): The core constraints.
-- [Sovereign Identity](../sovereign-identity/SKILL.md)
-- [Stability Protocols](../stability-protocols/SKILL.md)
-- [Safety Boundaries](../safety-boundaries/SKILL.md)
+## Safety Guardrails
+- **Mandatory Verification**: Every plan MUST have a "Verification" section.
+- **Atomic Commits**: Plan implies small, mergeable steps.
+- **No Mystery**: If you don't know how to implement a step, switch to Research mode first.
+- **Rollback Strategy**: Always define how to undo a database migration.
