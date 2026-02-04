@@ -1,68 +1,34 @@
 ---
 name: agent-architecture
-description: Skill for designing robust agentic systems (Router, Worker, Evaluator patterns).
+description: Skill for designing robust agentic systems (Router, Worker, Evaluator patterns) and Multi-Agent Orchestration.
 ---
 
-# Protocol: Agent Architecture
+# Protocol: Agent Architecture & Orchestration
 
-> "Structure determines function."
+> "Structure determines function. Communication ensures safety."
 
-## Activation Trigger
-- Designing a new multi-agent system.
-- Routing logic is becoming complex.
-- Need to parallelize tasks (Swarm).
+## 1. Topologies
 
-## Visual Map
-
+### The Hierarchy (Manager-Worker)
+Best for: Defined tasks (e.g., "Build an App").
 ```mermaid
 graph TD
-    User([User]) --> Router{Router Agent}
-    
-    Router -->|Coding| Worker1[Coder Agent]
-    Router -->|Research| Worker2[Research Agent]
-    Router -->|General| Worker3[Chat Agent]
-    
-    Worker1 --> Evaluator{Evaluator}
-    Evaluator -->|Reject| Worker1
-    Evaluator -->|Approve| Output([Final Output])
-    
-    Worker2 --> Output
-    Worker3 --> Output
+    Boss[Manager Agent] --> UI[Frontend Worker]
+    Boss --> API[Backend Worker]
+    Boss --> DB[Database Worker]
 ```
 
-## Protocol: The Core Patterns
+### The Mesh (Peer-to-Peer)
+Best for: Creative exploration (e.g., "Research and Debate").
+- Agents post finding to a shared bus.
+- No central bottleneck.
 
-### 1. Router Pattern (The Switchboard)
-**Use when:** One input, multiple potential handlers.
+## 2. Core Operational Patterns
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Router
-    participant SQL
-    participant Search
-    
-    User->>Router: "What was Q3 revenue?"
-    Router->>Router: Classify -> SQL
-    Router->>SQL: Execute Query
-    SQL->>Router: Result
-    Router->>User: "Q3 Revenue was $1M"
-```
+### Router Pattern (The Switchboard)
+One input, multiple potential handlers based on task classification.
 
-### 2. Worker Swarm (The Parallel Process)
-**Use when:** Massive parallelizable tasks (Map-Reduce).
-
-```python
-# Protocol: Swarm Logic
-with ThreadPoolExecutor() as executor:
-    futures = [executor.submit(research_agent.run, c) for c in companies]
-    results = [f.result() for f in futures]
-aggregator_agent.summarize(results)
-```
-
-### 3. Evaluator-Optimizer (The Loop)
-**Use when:** Quality > Speed.
-
+### Evaluator-Optimizer (The Loop)
 ```mermaid
 stateDiagram-v2
     [*] --> Generate
@@ -71,21 +37,31 @@ stateDiagram-v2
     Critique --> Generate: Fail (Feedback)
 ```
 
+## 3. Communication Standards (SHP)
+When an agent hands over a task, it MUST include a **Handover Metadata Header**:
+
+```markdown
+---
+AGENT_ID: [Agent Name]
+OBJECTIVE: [Current Task]
+LAST_ACTION: [Tool Called]
+RESULT: [Success/Fail/Blocked]
+NEXT_STEP_IMPERATIVE: [What the next agent MUST do]
+---
+```
+
+## 4. Local Swarm Protocols
+- **MAX_CONCURRENCY**: `min(cpu_cores - 2, 4)`. Protect host resources.
+- **Context Isolation**: Workers share *outputs*, not *history*.
+- **Conflict Resolution**: Decisions are based on **Truth Always**. Use a "Boss" agent to arbitrate.
+
 ## Architecture Checklist
-- [ ] **State Management:** Redis/Memory/File?
-- [ ] **Loop Prevention:** `max_turns` limit?
-- [ ] **Tool Sandboxing:** Docker/e2b?
-- [ ] **Observability:** LangSmith/Phoenix traces?
-
-## Self-Repair Protocol
-When the architecture fails:
-- **Bottleneck:** If Router is slow -> Switch to Swarm (Parallel).
-- **Hallucination:** If Worker lies -> Add Evaluator (Verification).
-- **Looping:** If Agents argue -> Add "Boss" (Conflict Resolution).
-
+- [ ] **State Management**: Redis/File?
+- [ ] **Handover**: Is the Metadata Header present?
+- [ ] **Sandboxing**: Is tool execution isolated?
+- [ ] **Max Turns**: Is there a safety circuit breaker for loops?
 
 ## Related Skills
 - [Agent Identity](../agent-identity/SKILL.md)
-- [Agent Communication](../agent-communication/SKILL.md)
-- [Agent Cowork](../agent-cowork/SKILL.md)
-- [Agent Security](../agent-security/SKILL.md)
+- [Stability Protocols](../stability-protocols/SKILL.md)
+- [Precision Coder](../precision-coder/SKILL.md)

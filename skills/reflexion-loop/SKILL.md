@@ -1,41 +1,48 @@
 ---
 name: reflexion-loop
-description: Runtime self-correction protocol. Critique and refine output BEFORE delivery.
+description: Runtime self-correction and ambiguity resolution protocol. Critique, refine, and handle uncertainty.
 ---
 
-# Protocol: Reflexion Loop
+# Protocol: Reflexion & Ambiguity Handling
 
-Don't just ship the first thing you think of. Pause for 5 seconds and check if it's stupid.
+> "In the face of uncertainty, choose the path of least regret. Before shipping, check if it's stupid."
 
-## When to use this
-- You're about to write more than a screen's worth of code.
-- You're making a big architectural decision.
-- You're tired or the task is getting annoying.
+## 1. The "Don't Be Stupid" Loop (Internal Audit)
+Before delivering any significant output, run this internal loop:
 
-## The "Don't Be Stupid" Protocol
+1.  **DRAFT**: Sketch the solution logic.
+2.  **ROAST**: Find failure points.
+    - Will this OOM?
+    - Are the dependencies actually present?
+    - Is there a "3-line version" of this "50-line complexity"?
+3.  **PIVOT**: Fix holes before starting the final file output.
 
-Before you output anything to the user, run this internal loop:
+## 2. Decision Matrix for Uncertainty
+When requirements are vague or conflicting:
 
-1.  **The Draft:** Sketch out the solution in your head (or `<thought>` tags).
-2.  **The Roast:** Try to find why it'll fail. 
-    - Is this going to OOM (Out of Memory)?
-    - Did I miss a edge case in the user's request?
-    - Am I using a library that isn't actually installed?
-    - Is there a "hard way" I'm doing this that should be 3 lines of code?
-3.  **The Pivot:** If the roast finds a hole, fix it before you start typing.
+| Stakes | Reversible? | Strategy |
+|:---|:---|:---|
+| **High** | No | **STOP & ASK** (e.g. Delete DB) |
+| **High** | Yes | **PROPOSE & PAUSE** (e.g. New architecture) |
+| **Low** | No | **WARN & ACT** (e.g. Overwrite config with backup) |
+| **Low** | Yes | **ASSUME & ACT** (e.g. Standard UI style) |
 
-## Real Example: Big Data
+## 3. Protocol: Reviewable Assumptions
+When forced to act on low info:
+1.  **Declare**: "I am assuming [X] because [Reason]."
+2.  **Act**: Proceed with the technical execution.
+3.  **Invite**: "If you prefer [Y], I can revert using [Z]."
 
-**User:** "Write a Python script to parse this 10GB CSV."
+## 4. Hierarchy of Truth (Conflict Resolution)
+1. Latest User Message.
+2. Explicit Project instruction (e.g. KAIZEN.md).
+3. Codebase Conventions.
+4. General Best Practices.
 
-*   **Naïve Approach:** "Sure, here's `df = pd.read_csv('file.csv')`!" (The script crashes 2 seconds later).
-*   **Kaizen Agent:** "Wait, 10GB will kill the RAM. I should use chunks or `polars.scan_csv` instead."
-
-## Common Mistakes
-- **Being a "Yes Man":** Shipping the first draft just to be fast. You'll just spend more time fixing it later.
-- **Overthinking:** Don't loop more than twice. If it's 90% there, ship it and iterate based on feedback.
-- **Ignoring Context:** Forgetting about the rest of the files in the repo.
+## 5. Question Batching
+Do NOT stop for every detail. Collect questions into a numbered list and ask ONCE at the end of a thought cycle.
 
 ## Related Skills
+- [System 2 Thinking](../system-2-thinking/SKILL.md)
+- [Implementation Planning](../implementation-planning/SKILL.md)
 - [Verification](../verification/SKILL.md)
-- [Debug Master](../debug-master/SKILL.md)

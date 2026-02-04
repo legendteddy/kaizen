@@ -1,74 +1,49 @@
 # Protocol: Kaizen Skills Index (000-INDEX.md)
 
-> Master mapping of intents to modular capabilities. Organized by domain.
+> Master mapping of intents to modular capabilities. Organized by high-density domains.
 
-## 🟢 Core & Identity
-- **Agent Identity**: `skills/agent-identity/SKILL.md` (Foundation)
-- **Research Rigor**: `skills/research-rigor/SKILL.md` (Verification)
-- **Proactive Behavior**: `skills/proactive-behavior/SKILL.md` (Value Add)
-- **Assumption Tracking**: `skills/assumption-tracking/SKILL.md` (Risk Mgmt)
-- **Reflexion Loop**: `skills/reflexion-loop/SKILL.md` (Self-Correction)
-- **Agentic Lifecycle**: `skills/agentic-lifecycle/SKILL.md`
+## 🟢 Core & Identity (Foundation)
+- **Agent Identity**: `skills/agent-identity/SKILL.md` (Identity & Lifecycle)
+- **Research Rigor**: `skills/research-rigor/SKILL.md` (Verification & Synthesis)
+- **Stability Protocols**: `skills/stability-protocols/SKILL.md` (Resilience & Recovery)
 - **Safety Boundaries**: `skills/safety-boundaries/SKILL.md`
-- **Stability Protocols**: `skills/stability-protocols/SKILL.md`
+- **Proactive Behavior**: `skills/proactive-behavior/SKILL.md`
+- **Assumption Tracking**: `skills/assumption-tracking/SKILL.md`
+- **Reflexion Loop**: `skills/reflexion-loop/SKILL.md` (Self-Correction & Ambiguity Handling)
 
 ## 🟡 Strategy & Planning
-- **Implementation Planning**: `skills/implementation-planning/SKILL.md`
-- **Autonomous Planning**: `skills/autonomous-planning/SKILL.md`
-- **Task Decomposition**: `skills/task-decomposition/SKILL.md`
+- **Implementation Planning**: `skills/implementation-planning/SKILL.md` (Strategy, Breakdown, Priority)
 - **Scope Control**: `skills/scope-control/SKILL.md`
-- **Prioritization**: `skills/prioritization/SKILL.md`
-- **Decision Making**: `skills/decision-making/SKILL.md`
-- **Risk Assessment**: `skills/risk-assessment/SKILL.md`
 
 ## 🔵 Engineering & Development
+- **Precision Coder**: `skills/precision-coder/SKILL.md` (Standards & Automation)
 - **Software Architecture**: `skills/software-architecture/SKILL.md`
-- **Precision Coder**: `skills/precision-coder/SKILL.md`
 - **Web Development**: `skills/web-development/SKILL.md`
-- **Design Architect**: `skills/design-architect/SKILL.md` (UI/UX)
-- **SEO Mastery**: `skills/seo-mastery/SKILL.md`
+- **API Development**: `skills/api-development/SKILL.md`
 - **Database Operations**: `skills/database-operations/SKILL.md`
 - **Git Workflow**: `skills/git-workflow/SKILL.md`
-- **API Development**: `skills/api-development/SKILL.md`
 - **Test-Driven Development**: `skills/test-driven-development/SKILL.md`
-- **Error Recovery**: `skills/error-recovery/SKILL.md`
 - **Code Review**: `skills/code-review/SKILL.md`
-- **FastAPI Expert**: `skills/fastapi-expert/SKILL.md`
-- **React TS Expert**: `skills/react-ts-expert/SKILL.md`
-- **Python Development**: `skills/python-development/SKILL.md`
-- **Godot Expert**: `skills/godot-expert/SKILL.md`
-- **Sysadmin Pro**: `skills/sysadmin-pro/SKILL.md`
+- **API Expert (FastAPI)**: `skills/fastapi-expert/SKILL.md`
+- **Frontend Expert (React)**: `skills/react-ts-expert/SKILL.md`
 
 ## 🔴 AI, Data & Research
-- **Research Intelligence**: `skills/research-intelligence/SKILL.md`
-- **Data Intelligence Pro**: `skills/data-intelligence-pro/SKILL.md`
-- **Scientific AI**: `skills/scientific-ai/SKILL.md`
+- **System 2 Thinking**: `skills/system-2-thinking/SKILL.md` (Deep Reasoning & TTC)
+- **Synthetic Data**: `skills/synthetic-data/SKILL.md`
+- **Data Intelligence**: `skills/data-intelligence-pro/SKILL.md`
+- **Open Source LLMs**: `skills/open-source-llms/SKILL.md`
 - **PyTorch Expert**: `skills/pytorch-expert/SKILL.md`
 - **Pandas Expert**: `skills/pandas-expert/SKILL.md`
-- **Open Source LLMs**: `skills/open-source-llms/SKILL.md`
-- **AI Benchmarks**: `skills/ai-benchmarks/SKILL.md`
-- **Synthetic Data**: `skills/synthetic-data/SKILL.md`
-- **Self-Play Training**: `skills/self-play-training/SKILL.md`
-- **Meta-Optimizer**: `skills/meta-optimizer/SKILL.md`
-- **Predictive Evolution**: `skills/predictive-evolution/SKILL.md`
 
-## 🟣 Communication & Collaboration
-- **Agent Communication**: `skills/agent-communication/SKILL.md`
-- **User Communication**: `skills/user-communication/SKILL.md`
-- **Knowledge Synthesis**: `skills/knowledge-synthesis/SKILL.md`
-- **Ambiguity Handling**: `skills/ambiguity-handling/SKILL.md`
-- **Feedback Learning**: `skills/feedback-learning/SKILL.md`
-- **Agent Cowork**: `skills/agent-cowork/SKILL.md`
-
-## 🟠 Specialized & Advanced
-- **Swarm Orchestrator**: `skills/swarm-orchestrator/SKILL.md`
-- **Agent Architecture**: `skills/agent-architecture/SKILL.md`
-- **Deliberative Reasoning**: `skills/deliberative-reasoning/SKILL.md`
+## 🟣 Orchestration & Specialized
+- **Agent Architecture**: `skills/agent-architecture/SKILL.md` (Swarm & Multi-Agent)
 - **Subagent Orchestration**: `skills/subagent-orchestration/SKILL.md`
 - **Computer Use**: `skills/computer-use/SKILL.md`
 - **Tool Mastery**: `skills/tool-mastery/SKILL.md`
 - **Structured Output**: `skills/structured-output/SKILL.md`
-- **Adversarial Critique**: `skills/adversarial-critique/SKILL.md`
+
+---
+*Index updated 2026-02-04. High-density protocol mapping complete.*
 
 ---
 *Index updated 2026-02-04. Includes all verified modular capabilities.*
