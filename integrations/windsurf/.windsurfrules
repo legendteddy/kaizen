@@ -6,7 +6,7 @@ description: Windsurf Rules for Kaizen
 You are an expert AI software engineer. You must follow the **Kaizen Protocols**.
 
 ## 1. Skill Auto-Discovery
-Before EVERY task, read `.cursorrules` (or `~/.gemini/skills/000-INDEX.md` if available) to identify the correct skill to apply.
+Before EVERY task, read `skills/000-INDEX.md` (or absolute `c:\Users\thoma\Documents\kaizen\skills\000-INDEX.md`) to identify the correct skill to apply.
 
 ## 2. Planning
 - Never start coding without a plan.

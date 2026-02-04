@@ -32,6 +32,7 @@ async function UserProfile({ id }) {
 - **Global UI**: Use `Zustand` (Atomic).
 - **Form State**: Use `react-hook-form` (Uncontrolled).
 - **Local State**: Use `useState`.
+- **Testing**: Use `Vitest` + `Testing Library`. (MANDATORY)
 
 ## Code Patterns
 
@@ -58,3 +59,7 @@ export async function update(formData: FormData) {
 - **Responsive Check**: Always verify mobile layout (375px).
 - **Accessibility**: All interactive elements need `aria-label`.
 - **Key Stability**: Never use `index` as key in lists.
+## Related Skills
+- [Software Architecture](../software-architecture/SKILL.md): For clean component design.
+- [Design Architect](../design-architect/SKILL.md): For UI tokens and styling.
+- [Verification](../verification/SKILL.md): For automated check protocols.
