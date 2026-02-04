@@ -8,7 +8,7 @@ class RepoJudge:
         self.root = repo_root
         self.skills_dir = self.root / "skills"
         self.score = 100
-        self.report = []
+        self.report: list[str] = []
 
     def run_audit(self) -> str:
         """Runs all checks and returns a markdown report."""
@@ -140,8 +140,8 @@ class RepoJudge:
 if __name__ == "__main__":
     import sys
     # Force UTF-8 output for emojis on Windows
-    if sys.stdout.encoding != 'utf-8':
-        sys.stdout.reconfigure(encoding='utf-8')
+    if sys.stdout.encoding != 'utf-8' and hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')  # type: ignore[union-attr]
 
     # Test run
     # If running as 'python -m kaizen_core.judge' from 'kaizen/' dir

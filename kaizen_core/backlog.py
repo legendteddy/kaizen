@@ -3,7 +3,7 @@ import sqlite3
 from datetime import datetime
 from pathlib import Path
 
-from .models import Task, TaskStatus
+from .models import Task, TaskPriority, TaskStatus
 
 
 class BacklogManager:
@@ -37,7 +37,9 @@ class BacklogManager:
             """)
             conn.commit()
 
-    def add_task(self, title: str, priority: str = "medium", context: str = ""):
+    def add_task(self, title: str, priority: str | TaskPriority = "medium", context: str = ""):
+        if isinstance(priority, str):
+            priority = TaskPriority(priority)
         task = Task(title=title, priority=priority, context=context)
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
