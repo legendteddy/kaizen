@@ -1,57 +1,94 @@
 # Sovereign Memory Integration
 
-## Description
-Protocol for using the Sovereign Memory Engine — a local GraphRAG-powered persistent memory system.
+---
+description: Protocol for using the Sovereign Memory Engine (GraphRAG + CRAG)
+---
 
-## Prerequisites
-- Memory engine running: `python -m engine.server` (port 8787)
-- Or MCP server configured in your AI tool
+## 🏗️ System Blueprint
 
-## When to Use Memory
-
-### SAVE when:
-- User teaches you something project-specific
-- You discover a bug/solution pattern
-- You learn user preferences
-- Important architectural decisions are made
-
-### SEARCH when:
-- Query references "last time", "before", "previously"
-- User asks about past projects/conversations
-- You need context about recurring patterns
-- Debugging a familiar-sounding issue
-
-## MCP Tools
+**Location**: `Documents\sovereign-memory\`
+**Architecture**: Hybrid GraphRAG + Vector Search + CRAG Quality Control
 
 ```
-memory_save(content, memory_type, source)
-memory_search(query, limit)  
-memory_reflect(topic)
+┌─────────────────────────────────────────────────────────────┐
+│              SOVEREIGN MEMORY ENGINE                        │
+│   ┌───────────┐   ┌───────────┐   ┌───────────────────┐     │
+│   │  MCP      │   │  REST API │   │  CRAG + Self-RAG  │     │
+│   │  Server   │   │  :8787    │   │  Quality Control  │     │
+│   └───────────┘   └───────────┘   └───────────────────┘     │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## HTTP API
+## 📦 Dependencies
+
+The engine requires the following stack to be active:
+
+| Component | Technology | Requirement |
+|-----------|------------|-------------|
+| **Runtime** | Python 3.10+ | `uvicorn`, `fastapi` |
+| **Vectors** | ChromaDB | Local persistence |
+| **Embeddings** | Ollama | `ollama pull nomic-embed-text` |
+| **Self-RAG** | Ollama | `ollama pull llama3.2` (optional) |
+| **Graph** | NetworkX | In-memory graph processing |
+
+## 🚀 Usage Protocol
+
+### 1. Prerequisites
+Ensure the engine is running before making calls:
+```powershell
+cd Documents\sovereign-memory
+.\.venv\Scripts\Activate.ps1
+python -m engine.server
+```
+
+### 2. When to Use Memory
+
+| Context | Action | Why? |
+|---------|--------|------|
+| **Bug Fix** | `memory_save` | Record the fix for future regressions |
+| **New Project** | `memory_save` | Store architectural decisions |
+| **"Recall..."** | `memory_search` | User asks about past context |
+| **Debugging** | `memory_search` | Check if this error was solved before |
+
+### 3. MCP Tools (Native)
+
+For Cursor, Cline, and Claude:
+
+```typescript
+// Save important context
+await use_mcp_tool("sovereign-memory", "memory_save", {
+  content: "Fixed footer scroll bug by globalizing .whatsapp-float CSS",
+  memory_type: "semantic", // or "procedural" for code patterns
+  source: "task_123"
+});
+
+// Recall past solutions
+const result = await use_mcp_tool("sovereign-memory", "memory_search", {
+  query: "how to fix footer scroll bug",
+  limit: 3
+});
+```
+
+### 4. HTTP API (Universal)
+
+For generic scripts or CLI tools:
 
 ```bash
 # Save
 curl -X POST http://localhost:8787/ingest \
+  -H "Content-Type: application/json" \
   -d '{"content": "...", "memory_type": "semantic"}'
 
 # Search
 curl -X POST http://localhost:8787/search \
+  -H "Content-Type: application/json" \
   -d '{"query": "...", "limit": 5}'
 ```
 
-## Memory Types
+## 🧠 Quality Signals (CRAG)
 
-| Type | Use For |
-|------|---------|
-| `episodic` | Full conversation snapshots |
-| `semantic` | Facts, concepts, decisions |
-| `procedural` | Code patterns, how-tos |
+The engine returns a `crag_score` (0.0 - 1.0) with every search.
 
-## Quality Signal
-
-The engine returns a `crag_score` (0-1):
-- **> 0.7**: High confidence results
-- **0.5-0.7**: Use with caution
-- **< 0.5**: Fallback triggered (results unreliable)
+- **> 0.7 (High)**: Use results directly.
+- **0.5 - 0.7 (Medium)**: Use with caution, verify against current context.
+- **< 0.5 (Low)**: **IGNORE RESULTS**. Trigger fallback (web search or ask user).
