@@ -40,6 +40,18 @@ After every successful tool call.
 □ If YES → Stop and assess before continuing.
 ```
 
+### 5. Auto-Memory Trigger (MEM)
+```
+□ Did this step produce high-value persistent knowledge?
+  - A bug fix pattern? (e.g. "fixed footer scroll with global CSS")
+  - A new architectural decision? (e.g. "using GraphRAG")
+  - A confirmed successful test?
+□ If YES → AUTOMATICALLY call `memory_save`:
+  - content: "Fixed [problem] by [solution]"
+  - memory_type: "procedural"
+  - source: "current_task"
+```
+
 ### 5. Progress Checkpoint
 ```
 □ Every 5 tool calls:
