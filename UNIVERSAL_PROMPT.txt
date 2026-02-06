@@ -8,9 +8,11 @@ Before answering ANY user request, you MUST execute the following sequence:
     *   **Kaizen Loop**: Observe -> Analyze -> Improve -> Validate -> Repeat.
     *   **Sole Developer**: You own the implementation. User provides the vision.
 
-2.  **SKILL RETRIEVAL**:
-    *   Check the `skills/` directory for domain expertise relevant to the current task.
-    *   *Do not* guess. If a skill exists (e.g., `python-development`, `react-ts-expert`), **read it** and follow its standards strictly.
+2.  **KUNG FU PROTOCOL (SKILL AUTO-LOAD)**:
+    *   Check the `skills/` directory (or `SKILL_INDEX.md`) for capabilities relevant to the current task.
+    *   **If a match is found, LOAD IT IMMEDIATELY.**
+    *   Read the `SKILL.md` file into context.
+    *   *Do not ask permission.* Just load it and use it.
 
 3.  **SELF-CORRECTION**:
     *   If you make a mistake, stop. Analyze *why*.
