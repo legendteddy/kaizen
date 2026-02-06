@@ -1,7 +1,7 @@
-# Sovereign Memory Integration
+# Mem
 
 ---
-description: Protocol for using the Sovereign Memory Engine (GraphRAG + CRAG)
+description: Protocol for using the Memory Engine (GraphRAG + CRAG)
 ---
 
 ## 🏗️ System Blueprint
