@@ -33,13 +33,17 @@ The engine requires the following stack to be active:
 
 ## 🚀 Usage Protocol
 
-### 1. Prerequisites
-Ensure the engine is running before making calls:
+### 1. Auto-Start (Zero Touch)
+If you receive `ConnectionRefused` or cannot access port 8787, run the bootloader:
+
 ```powershell
-cd Documents\sovereign-memory
-.\.venv\Scripts\Activate.ps1
-python -m engine.server
+powershell -ExecutionPolicy Bypass -File C:\Users\thoma\Documents\sovereign-memory\boot.ps1
 ```
+
+This script will automatically:
+- Start Ollama (if down)
+- Start the Memory Engine (if down)
+- Verify health check
 
 ### 2. When to Use Memory
 
