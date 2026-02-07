@@ -1,6 +1,6 @@
 # Kaizen: AI Agent Protocol Library
 
-A high-density collection of 31 technical protocols (SOPs) designed to ground AI coding agents in professional engineering standards.
+A high-density collection of 42 technical protocols (SOPs) designed to ground AI coding agents in professional engineering standards.
 
 ## ⚓ AGENT BOOTSTRAP PROTOCOL (MANDATORY)
 
@@ -31,7 +31,7 @@ Kaizen is a **Protocol Engine**. It replaces "visionary fluff" with structured S
 ### The Density Standard
 - **No Decoration**: If a skill doesn't provide a technical SOP, it is deleted.
 - **No Hallucination**: Every protocol is anchored in verified tool capabilities.
-- **No Bloat**: 31 high-signal skills replace 100+ "vibe" prompts.
+- **No Bloat**: 42 high-signal skills replace 100+ "vibe" prompts.
 
 ## License
 MIT

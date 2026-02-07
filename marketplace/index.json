@@ -1,0 +1,13 @@
+{
+  "format": "kaizen-market-index-v1",
+  "updated_at": "2026-02-06T00:00:00",
+  "packages": [
+    {
+      "name": "skill-marketplace",
+      "version": "0.0.1",
+      "description": "Local-first packaging + install tool for .kaizen skill zips",
+      "file": "packages/skill-marketplace.kaizen"
+    }
+  ]
+}
+

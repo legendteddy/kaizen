@@ -16,6 +16,21 @@ Guide the agent on how to effectively use "Computer Use" tools (screenshot -> co
 
 ---
 
+## Local Tooling (Kaizen Repo)
+
+This repo includes a conservative Windows helper that uses PowerShell/.NET (no extra Python deps):
+
+```powershell
+# take a screenshot
+python tools\computer_use.py screenshot --out C:\Users\thoma\Documents\kaizen\dist\screenshot.png
+
+# click/type require explicit confirmation
+python tools\computer_use.py click 500 500 --confirm
+python tools\computer_use.py type "hello" --confirm
+```
+
+Safety: `click/type/key` refuse to run without `--confirm`.
+
 ## Protocol: The "See-Think-Click" Loop
 
 ### 1. SEE (Screenshot)

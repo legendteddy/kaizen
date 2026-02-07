@@ -6,7 +6,7 @@ description: Protocol for using the Memory Engine (GraphRAG + CRAG)
 
 ## 🏗️ System Blueprint
 
-**Location**: `Documents\sovereign-memory\`
+**Location**: `.gemini\sovereign-engine\`
 **Architecture**: Hybrid GraphRAG + Vector Search + CRAG Quality Control
 
 ```
@@ -37,7 +37,8 @@ The engine requires the following stack to be active:
 If you receive `ConnectionRefused` or cannot access port 8787, run the bootloader:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File C:\Users\thoma\Documents\sovereign-memory\boot.ps1
+cd C:\Users\thoma\.gemini\sovereign-engine
+.\start_engine.bat
 ```
 
 This script will automatically:
